@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "GradeSubject" ALTER COLUMN "internalFullMarks" SET DATA TYPE DECIMAL(6,2),
+ALTER COLUMN "internalPassMarks" SET DATA TYPE DECIMAL(6,2),
+ALTER COLUMN "theoryFullMarks" SET DATA TYPE DECIMAL(6,2),
+ALTER COLUMN "theoryPassMarks" SET DATA TYPE DECIMAL(6,2);

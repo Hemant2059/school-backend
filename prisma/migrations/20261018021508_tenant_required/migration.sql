@@ -1,0 +1,24 @@
+-- AlterTable
+ALTER TABLE "Tenant" ADD COLUMN     "latitude" DOUBLE PRECISION NOT NULL,
+ADD COLUMN     "longitude" DOUBLE PRECISION NOT NULL,
+ADD COLUMN     "motoEn" TEXT NOT NULL,
+ADD COLUMN     "motoNe" TEXT NOT NULL,
+ADD COLUMN     "panVatNumber" TEXT NOT NULL,
+ADD COLUMN     "registrationNumber" TEXT NOT NULL,
+ADD COLUMN     "schoolCode" TEXT NOT NULL,
+ALTER COLUMN "iemisCode" SET NOT NULL,
+ALTER COLUMN "provinceEn" SET NOT NULL,
+ALTER COLUMN "districtEn" SET NOT NULL,
+ALTER COLUMN "municipalityEn" SET NOT NULL,
+ALTER COLUMN "toleEn" SET NOT NULL,
+ALTER COLUMN "toleNe" SET NOT NULL,
+ALTER COLUMN "addressEn" SET NOT NULL,
+ALTER COLUMN "addressNe" SET NOT NULL,
+ALTER COLUMN "phone" SET NOT NULL,
+ALTER COLUMN "email" SET NOT NULL,
+ALTER COLUMN "establishedDateAd" SET NOT NULL,
+ALTER COLUMN "establishedDateBs" SET NOT NULL,
+ALTER COLUMN "createdByPlatformUserId" SET NOT NULL;
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tenant_schoolCode_key" ON "Tenant"("schoolCode");

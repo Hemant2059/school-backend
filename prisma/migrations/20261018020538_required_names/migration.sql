@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "PlatformUser" ALTER COLUMN "firstNameNe" SET NOT NULL,
+ALTER COLUMN "lastNameNe" SET NOT NULL;
+
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "firstNameEn" SET NOT NULL,
+ALTER COLUMN "firstNameNe" SET NOT NULL,
+ALTER COLUMN "lastNameEn" SET NOT NULL,
+ALTER COLUMN "lastNameNe" SET NOT NULL;

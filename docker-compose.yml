@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: school-backend-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: johndoe
+      POSTGRES_PASSWORD: randompassword
+      POSTGRES_DB: mydb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U johndoe -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: school-backend-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgresql://johndoe:randompassword@postgres:5432/mydb?schema=public"
+      PORT: "3000"
+      JWT_SECRET: "dev-access-secret-change-in-production"
+      JWT_REFRESH_SECRET: "dev-refresh-secret-change-in-production"
+      JWT_EXPIRES_IN: "2h"
+      JWT_REFRESH_EXPIRES_IN: "7d"
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:

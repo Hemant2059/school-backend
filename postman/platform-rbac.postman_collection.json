@@ -1,0 +1,4491 @@
+{
+  "info": {
+    "name": "School SaaS - Platform RBAC",
+    "description": "Platform users, roles and permissions APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "permissionCode",
+      "value": "reports.read"
+    },
+    {
+      "key": "roleName",
+      "value": "QA Role"
+    },
+    {
+      "key": "userEmail",
+      "value": "qa.user@example.com"
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "organizationId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tenantId",
+      "value": "c1bcb482-346d-41c2-952e-815e45722e63",
+      "type": "string"
+    },
+    {
+      "key": "globalUserId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tenantUserId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "planId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "invoiceId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "platformUserId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "academicYearId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "streamId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "gradeLevelId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "sectionId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "staffProfileId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "subjectId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "gradeSubjectId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "studentId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "addressId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "guardianId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "studentGuardianId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "enrollmentId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "transferCertificateId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "paymentId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "gradingScaleId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "gradingScaleItemId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "examId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "examScheduleId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "examMarkId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "summaryId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "fiscalYearId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "feeHeadId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "classFeeStructureId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "scholarshipSchemeId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "studentScholarshipId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "feeInvoiceId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "feeInvoiceItemId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "feePaymentId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "creditNoteId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "allocationId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "payrollRunId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "salarySlipId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "academicCalendarEventId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "vehicleId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "routeId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "stopId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "studentTransportId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "hostelId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "hostelRoomId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "hostelAllocationId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.accessToken) pm.collectionVariables.set('accessToken', json.accessToken);",
+                  "if (json.refreshToken) pm.collectionVariables.set('refreshToken', json.refreshToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@platform.local\",\n  \"password\": \"ChangeMe123!\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/refresh"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/auth/me"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/logout"
+          }
+        },
+        {
+          "name": "Tenant Login (School Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.accessToken) pm.collectionVariables.set('accessToken', json.accessToken);",
+                  "if (json.refreshToken) pm.collectionVariables.set('refreshToken', json.refreshToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"tenantadmin@example.com\",\n  \"password\": \"ChangeMe123!\",\n  \"tenantId\": \"{{tenantId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/tenant/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permissions",
+      "item": [
+        {
+          "name": "Create Permission",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"reports.read\",\n  \"name\": \"Read reports\",\n  \"description\": \"Can view reports\",\n  \"category\": \"reports\"\n}"
+            },
+            "url": "{{baseUrl}}/platform/permissions"
+          }
+        },
+        {
+          "name": "List Permissions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/permissions?page=1&limit=20&search=reports"
+          }
+        },
+        {
+          "name": "Get Permission",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/permissions/{{permissionCode}}"
+          }
+        },
+        {
+          "name": "Update Permission",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Read reports updated\",\n  \"description\": \"Updated description\",\n  \"category\": \"reports\"\n}"
+            },
+            "url": "{{baseUrl}}/platform/permissions/{{permissionCode}}"
+          }
+        },
+        {
+          "name": "Delete Permission",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/platform/permissions/{{permissionCode}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Create Role",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"QA Role\",\n  \"description\": \"QA testing role\",\n  \"isSystem\": false,\n  \"permissionCodes\": [\"reports.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/roles"
+          }
+        },
+        {
+          "name": "List Roles",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/roles?page=1&limit=20&search=QA"
+          }
+        },
+        {
+          "name": "Get Role",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/roles/QA%20Role"
+          }
+        },
+        {
+          "name": "Update Role",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"QA Role\",\n  \"description\": \"Updated QA role\",\n  \"isSystem\": false\n}"
+            },
+            "url": "{{baseUrl}}/platform/roles/QA%20Role"
+          }
+        },
+        {
+          "name": "Replace Role Permissions",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"reports.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/roles/QA%20Role/permissions"
+          }
+        },
+        {
+          "name": "Add Role Permissions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"reports.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/roles/QA%20Role/permissions"
+          }
+        },
+        {
+          "name": "Remove Role Permissions",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"reports.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/roles/QA%20Role/permissions"
+          }
+        },
+        {
+          "name": "Delete Role",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/platform/roles/QA%20Role"
+          }
+        },
+        {
+          "name": "Restore Role",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/platform/roles/{{roleId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"qa.user@example.com\",\n  \"firstNameEn\": \"QA\",\n  \"firstNameNe\": \"\u0915\u094d\u092f\u0942\u090f\",\n  \"lastNameEn\": \"User\",\n  \"lastNameNe\": \"\u092a\u094d\u0930\u092f\u094b\u0917\u0915\u0930\u094d\u0924\u093e\",\n  \"phone\": \"+9779800000000\",\n  \"status\": \"INVITED\",\n  \"province\": \"Bagmati\",\n  \"district\": \"Kathmandu\",\n  \"twoFactorEnabled\": false,\n  \"mustChangePassword\": false,\n  \"roleNames\": [\"QA Role\"],\n  \"permissionCodes\": [\"reports.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/users"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('platformUserId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/users?page=1&limit=20&search=qa&status=INVITED&province=Bagmati&includeDeleted=false"
+          }
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/users/{{userId}}"
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstNameEn\": \"QA Updated\",\n  \"firstNameNe\": \"\u0915\u094d\u092f\u0942\u090f \u0905\u092a\u0921\u0947\u091f\u0947\u0921\",\n  \"lastNameEn\": \"User\",\n  \"lastNameNe\": \"\u092a\u094d\u0930\u092f\u094b\u0917\u0915\u0930\u094d\u0924\u093e\",\n  \"status\": \"ACTIVE\",\n  \"province\": \"Bagmati\",\n  \"district\": \"Lalitpur\",\n  \"roleNames\": [\"QA Role\"],\n  \"permissionCodes\": [\"reports.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/users/{{userId}}"
+          }
+        },
+        {
+          "name": "Assign User Roles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleNames\": [\"QA Role\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/users/{{userId}}/roles"
+          }
+        },
+        {
+          "name": "Revoke User Roles",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleNames\": [\"QA Role\"]\n}"
+            },
+            "url": "{{baseUrl}}/platform/users/{{userId}}/roles"
+          }
+        },
+        {
+          "name": "Override User Permissions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"reports.read\"],\n  \"granted\": false\n}"
+            },
+            "url": "{{baseUrl}}/platform/users/{{userId}}/permissions"
+          }
+        },
+        {
+          "name": "Remove Permission Override",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/platform/users/{{userId}}/permissions/reports.read"
+          }
+        },
+        {
+          "name": "Soft Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/platform/users/{{userId}}"
+          }
+        },
+        {
+          "name": "Restore User",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/platform/users/{{userId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Features",
+      "item": [
+        {
+          "name": "Create Feature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"library.management\",\n  \"name\": \"Library management\",\n  \"description\": \"Manage school library\",\n  \"category\": \"academics\",\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/features"
+          }
+        },
+        {
+          "name": "List Features",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/features?page=1&limit=20&search=library"
+          }
+        },
+        {
+          "name": "Get Feature",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/features/library.management"
+          }
+        },
+        {
+          "name": "Update Feature",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Library management updated\",\n  \"category\": \"academics\"\n}"
+            },
+            "url": "{{baseUrl}}/features/library.management"
+          }
+        },
+        {
+          "name": "Delete Feature",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/features/library.management"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscription Plans",
+      "item": [
+        {
+          "name": "Create Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"trial-plan\",\n  \"name\": \"Trial Plan\",\n  \"description\": \"Trial plan\",\n  \"price\": 0,\n  \"currency\": \"NPR\",\n  \"billingCycle\": \"MONTHLY\",\n  \"trialDays\": 7,\n  \"isActive\": true,\n  \"sortOrder\": 0\n}"
+            },
+            "url": "{{baseUrl}}/subscription-plans"
+          }
+        },
+        {
+          "name": "List Plans",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscription-plans?page=1&limit=20"
+          }
+        },
+        {
+          "name": "Get Plan",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscription-plans/basic"
+          }
+        },
+        {
+          "name": "Update Plan",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Basic Plan Updated\",\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/subscription-plans/basic"
+          }
+        },
+        {
+          "name": "Delete Plan",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscription-plans/trial-plan"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plan Features",
+      "item": [
+        {
+          "name": "List Plan Features",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscription-plans/basic/features"
+          }
+        },
+        {
+          "name": "Add Feature To Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featureCode\": \"students.limit\",\n  \"isEnabled\": true,\n  \"limit\": 150\n}"
+            },
+            "url": "{{baseUrl}}/subscription-plans/basic/features"
+          }
+        },
+        {
+          "name": "Replace Plan Features",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"features\": [\n    { \"featureCode\": \"students.limit\", \"isEnabled\": true, \"limit\": 250 },\n    { \"featureCode\": \"email.notifications\", \"isEnabled\": true }\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/subscription-plans/basic/features"
+          }
+        },
+        {
+          "name": "Update Plan Feature",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isEnabled\": true,\n  \"limit\": 300\n}"
+            },
+            "url": "{{baseUrl}}/subscription-plans/basic/features/students.limit"
+          }
+        },
+        {
+          "name": "Remove Plan Feature",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscription-plans/basic/features/students.limit"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "Create Organization",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"ABC Education Foundation\",\n  \"nameNe\": \"\u090f\u092c\u0940\u0938\u0940 \u0936\u093f\u0915\u094d\u0937\u093e \u092b\u093e\u0909\u0928\u094d\u0921\u0947\u0938\u0928\",\n  \"organizationType\": \"FOUNDATION\",\n  \"provinceCode\": \"3\",\n  \"provinceNe\": \"\u092c\u093e\u0917\u092e\u0924\u0940 \u092a\u094d\u0930\u0926\u0947\u0936\",\n  \"provinceEn\": \"Bagmati Province\",\n  \"districtCode\": \"27\",\n  \"districtNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902\",\n  \"districtEn\": \"Kathmandu\",\n  \"municipalityCode\": \"2701\",\n  \"municipalityNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902 \u092e\u0939\u093e\u0928\u0917\u0930\u092a\u093e\u0932\u093f\u0915\u093e\",\n  \"municipalityEn\": \"Kathmandu Metropolitan City\",\n  \"wardNumber\": 1,\n  \"toleEn\": \"New Baneshwor\",\n  \"toleNe\": \"\u0928\u092f\u093e\u0901 \u092c\u093e\u0928\u0947\u0936\u094d\u0935\u0930\",\n  \"addressEn\": \"Kathmandu, Nepal\",\n  \"addressNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902, \u0928\u0947\u092a\u093e\u0932\",\n  \"phone\": \"+977-1-4000000\",\n  \"email\": \"info@abcfoundation.edu.np\",\n  \"contactPersonName\": \"Ram Sharma\",\n  \"contactPersonPhone\": \"+977-9800000000\",\n  \"panVatNumber\": \"123456789\",\n  \"fiscalYearStartMonth\": 7,\n  \"timezone\": \"Asia/Kathmandu\"\n}"
+            },
+            "url": "{{baseUrl}}/organizations"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('organizationId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Organizations",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/organizations?page=1&limit=20&search=ABC"
+          }
+        },
+        {
+          "name": "Get Organization",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/organizations/{{organizationId}}"
+          }
+        },
+        {
+          "name": "Update Organization",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ABC Education Foundation Updated\",\n  \"panVatNumber\": \"123456789\"\n}"
+            },
+            "url": "{{baseUrl}}/organizations/{{organizationId}}"
+          }
+        },
+        {
+          "name": "Soft Delete Organization",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/organizations/{{organizationId}}"
+          }
+        },
+        {
+          "name": "Restore Organization",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/organizations/{{organizationId}}/restore"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/organizations/{{organizationId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenants",
+      "item": [
+        {
+          "name": "Create Tenant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"ABC School\",\n  \"nameNe\": \"\u090f\u092c\u0940\u0938\u0940 \u0935\u093f\u0926\u094d\u092f\u093e\u0932\u092f\",\n  \"subdomain\": \"abc-school\",\n  \"iemisCode\": \"123456789\",\n  \"schoolCode\": \"ABC-001\",\n  \"registrationNumber\": \"REG-12345\",\n  \"panVatNumber\": \"987654321\",\n  \"schoolType\": \"INSTITUTIONAL_PRIVATE\",\n  \"provinceCode\": \"3\",\n  \"provinceNe\": \"\u092c\u093e\u0917\u092e\u0924\u0940 \u092a\u094d\u0930\u0926\u0947\u0936\",\n  \"provinceEn\": \"Bagmati Province\",\n  \"districtCode\": \"27\",\n  \"districtNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902\",\n  \"districtEn\": \"Kathmandu\",\n  \"municipalityCode\": \"2701\",\n  \"municipalityNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902 \u092e\u0939\u093e\u0928\u0917\u0930\u092a\u093e\u0932\u093f\u0915\u093e\",\n  \"municipalityEn\": \"Kathmandu Metropolitan City\",\n  \"wardNumber\": 1,\n  \"toleEn\": \"New Baneshwor\",\n  \"toleNe\": \"\u0928\u092f\u093e\u0901 \u092c\u093e\u0928\u0947\u0936\u094d\u0935\u0930\",\n  \"addressEn\": \"Kathmandu, Nepal\",\n  \"addressNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902, \u0928\u0947\u092a\u093e\u0932\",\n  \"phone\": \"+977-1-4000000\",\n  \"email\": \"info@abcschool.edu.np\",\n  \"establishedDateAd\": \"2020-01-01T00:00:00.000Z\",\n  \"establishedDateBs\": \"2076-09-16\",\n  \"motoEn\": \"Knowledge is power\",\n  \"motoNe\": \"\u091c\u094d\u091e\u093e\u0928 \u0928\u0948 \u0936\u0915\u094d\u0924\u093f \u0939\u094b\",\n  \"latitude\": 27.7172,\n  \"longitude\": 85.324,\n  \"status\": \"ONBOARDING\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('tenantId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Tenants",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants?page=1&limit=20&search=abc"
+          }
+        },
+        {
+          "name": "Get Tenant",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}"
+          }
+        },
+        {
+          "name": "Update Tenant",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"ABC School Updated\",\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}"
+          }
+        },
+        {
+          "name": "Soft Delete Tenant",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}"
+          }
+        },
+        {
+          "name": "Restore Tenant",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/restore"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant Permissions",
+      "item": [
+        {
+          "name": "Create Permission",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"students.read\",\n  \"name\": \"Read students\",\n  \"category\": \"students\"\n}"
+            },
+            "url": "{{baseUrl}}/permissions"
+          }
+        },
+        {
+          "name": "List Permissions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/permissions?page=1&limit=20"
+          }
+        },
+        {
+          "name": "Get Permission",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/permissions/students.read"
+          }
+        },
+        {
+          "name": "Update Permission",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Read students updated\"\n}"
+            },
+            "url": "{{baseUrl}}/permissions/students.read"
+          }
+        },
+        {
+          "name": "Delete Permission",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/permissions/students.read"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant Roles",
+      "item": [
+        {
+          "name": "Create Role",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Teacher\",\n  \"description\": \"Teacher role\",\n  \"permissionCodes\": [\"students.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles"
+          }
+        },
+        {
+          "name": "List Roles",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles"
+          }
+        },
+        {
+          "name": "Get Role",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher"
+          }
+        },
+        {
+          "name": "Update Role",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Senior Teacher\",\n  \"description\": \"Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher"
+          }
+        },
+        {
+          "name": "Replace Role Permissions",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"students.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher/permissions"
+          }
+        },
+        {
+          "name": "Delete Role",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher"
+          }
+        },
+        {
+          "name": "Restore Role",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher/restore"
+          }
+        },
+        {
+          "name": "Add Role Permissions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"students.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher/permissions"
+          }
+        },
+        {
+          "name": "Remove Role Permissions",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionCodes\": [\"students.read\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/roles/Teacher/permissions"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant Users",
+      "item": [
+        {
+          "name": "Create Tenant User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{globalUserId}}\",\n  \"isPrimary\": true,\n  \"roleNames\": [\"Teacher\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/users"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('tenantUserId', json.id);",
+                  "if (json.user && json.user.id) pm.collectionVariables.set('globalUserId', json.user.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Tenant Users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/users"
+          }
+        },
+        {
+          "name": "Get Tenant User",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/users/{{tenantUserId}}"
+          }
+        },
+        {
+          "name": "Update Tenant User",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isPrimary\": true,\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/users/{{tenantUserId}}"
+          }
+        },
+        {
+          "name": "Assign Tenant User Roles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleNames\": [\"Teacher\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/users/{{tenantUserId}}/roles"
+          }
+        },
+        {
+          "name": "Revoke Tenant User Roles",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleNames\": [\"Teacher\"]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/users/{{tenantUserId}}/roles"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant Billing",
+      "item": [
+        {
+          "name": "Create Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"{{planId}}\",\n  \"status\": \"TRIAL\",\n  \"startDate\": \"2026-01-01T00:00:00.000Z\",\n  \"endDate\": \"2026-02-01T00:00:00.000Z\",\n  \"autoRenew\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subscriptions"
+          }
+        },
+        {
+          "name": "List Subscriptions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subscriptions"
+          }
+        },
+        {
+          "name": "Create Invoice",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"INV-001\",\n  \"amount\": 1500,\n  \"currency\": \"NPR\",\n  \"dueDate\": \"2026-02-10T00:00:00.000Z\",\n  \"status\": \"ISSUED\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/invoices"
+          }
+        },
+        {
+          "name": "List Invoices",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/invoices"
+          }
+        },
+        {
+          "name": "Create Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{invoiceId}}\",\n  \"amount\": 1500,\n  \"currency\": \"NPR\",\n  \"method\": \"ESEWA\",\n  \"status\": \"SUCCESS\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payments"
+          }
+        },
+        {
+          "name": "List Payments",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payments"
+          }
+        },
+        {
+          "name": "Get Subscription",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subscriptions/{{subscriptionId}}"
+          }
+        },
+        {
+          "name": "Update Subscription",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subscriptions/{{subscriptionId}}"
+          }
+        },
+        {
+          "name": "Cancel Subscription",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subscriptions/{{subscriptionId}}/cancel"
+          }
+        },
+        {
+          "name": "Get Invoice",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/invoices/{{invoiceId}}"
+          }
+        },
+        {
+          "name": "Update Invoice",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"PAID\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/invoices/{{invoiceId}}"
+          }
+        },
+        {
+          "name": "Get Payment",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payments/{{paymentId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Academic Years",
+      "item": [
+        {
+          "name": "Create Academic Year",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"2083\",\n  \"bsYear\": 2083,\n  \"startDateAd\": \"2026-04-14T00:00:00.000Z\",\n  \"endDateAd\": \"2027-04-13T00:00:00.000Z\",\n  \"startDateBs\": \"2083-01-01\",\n  \"endDateBs\": \"2083-12-30\",\n  \"isCurrent\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-years"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('academicYearId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Academic Years",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-years?page=1&limit=20"
+          }
+        },
+        {
+          "name": "Get Academic Year",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-years/{{academicYearId}}"
+          }
+        },
+        {
+          "name": "Update Academic Year",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"2083\",\n  \"isCurrent\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-years/{{academicYearId}}"
+          }
+        },
+        {
+          "name": "Delete Academic Year",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-years/{{academicYearId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-years/{{academicYearId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Streams",
+      "item": [
+        {
+          "name": "Create Stream",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"science\",\n  \"nameEn\": \"Science\",\n  \"nameNe\": \"\u0935\u093f\u091c\u094d\u091e\u093e\u0928\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/streams"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Streams",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/streams"
+          }
+        },
+        {
+          "name": "Get Stream",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/streams/{{streamId}}"
+          }
+        },
+        {
+          "name": "Update Stream",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Science Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/streams/{{streamId}}"
+          }
+        },
+        {
+          "name": "Delete Stream",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/streams/{{streamId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/streams/{{streamId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Grade Levels",
+      "item": [
+        {
+          "name": "Create Grade Level",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Grade 11\",\n  \"nameNe\": \"\u0915\u0915\u094d\u0937\u093e \u0967\u0967\",\n  \"iemisGradeCode\": \"11\",\n  \"evaluationType\": \"PERCENTAGE\",\n  \"sortOrder\": 11\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-levels"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Grade Levels",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-levels"
+          }
+        },
+        {
+          "name": "Get Grade Level",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-levels/{{gradeLevelId}}"
+          }
+        },
+        {
+          "name": "Update Grade Level",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Grade 11 Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-levels/{{gradeLevelId}}"
+          }
+        },
+        {
+          "name": "Delete Grade Level",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-levels/{{gradeLevelId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-levels/{{gradeLevelId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sections",
+      "item": [
+        {
+          "name": "Create Section",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gradeLevelId\": \"{{gradeLevelId}}\",\n  \"nameEn\": \"A\",\n  \"nameNe\": \"\u090f\",\n  \"roomNumber\": \"101\",\n  \"capacity\": 40,\n  \"sortOrder\": 1\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/sections"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Sections",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/sections"
+          }
+        },
+        {
+          "name": "Get Section",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/sections/{{sectionId}}"
+          }
+        },
+        {
+          "name": "Update Section",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"A1\",\n  \"roomNumber\": \"102\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/sections/{{sectionId}}"
+          }
+        },
+        {
+          "name": "Delete Section",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/sections/{{sectionId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/sections/{{sectionId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Staff Profiles",
+      "item": [
+        {
+          "name": "Create Staff Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstNameEn\": \"Ram\",\n  \"firstNameNe\": \"\u0930\u093e\u092e\",\n  \"middleNameEn\": \"Bahadur\",\n  \"middleNameNe\": \"\u092c\u0939\u093e\u0926\u0941\u0930\",\n  \"lastNameEn\": \"Sharma\",\n  \"lastNameNe\": \"\u0936\u0930\u094d\u092e\u093e\",\n  \"employeeCode\": \"EMP-001\",\n  \"iemisTeacherId\": \"IEMIS-001\",\n  \"gender\": \"MALE\",\n  \"casteEthnicityCode\": \"BRAHMIN_CHHETRI\",\n  \"casteEthnicity\": \"Brahmin/Chhetri\",\n  \"staffCategory\": \"TEACHING\",\n  \"employmentType\": \"PRIVATE_SOURCE\",\n  \"teachingLicenseNo\": \"LIC-001\",\n  \"highestQualification\": \"M.Ed\",\n  \"teacherTrainingStatus\": \"TPD_COMPLETED\",\n  \"panNumber\": \"PAN-001\",\n  \"pfNumber\": \"PF-001\",\n  \"citNumber\": \"CIT-001\",\n  \"ssfNumber\": \"SSF-001\",\n  \"bankAccountNo\": \"ACC-001\",\n  \"maritalStatusForTax\": \"MARRIED\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/staff-profiles"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Staff Profiles",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/staff-profiles"
+          }
+        },
+        {
+          "name": "Get Staff Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/staff-profiles/{{staffProfileId}}"
+          }
+        },
+        {
+          "name": "Update Staff Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"designation\": \"Senior Teacher\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/staff-profiles/{{staffProfileId}}"
+          }
+        },
+        {
+          "name": "Delete Staff Profile",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/staff-profiles/{{staffProfileId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/staff-profiles/{{staffProfileId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subjects",
+      "item": [
+        {
+          "name": "Create Subject",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"MATH\",\n  \"nameEn\": \"Mathematics\",\n  \"nameNe\": \"\u0917\u0923\u093f\u0924\",\n  \"description\": \"Mathematics subject\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subjects"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('subjectId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Subjects",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subjects"
+          }
+        },
+        {
+          "name": "Get Subject",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subjects/{{subjectId}}"
+          }
+        },
+        {
+          "name": "Update Subject",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Mathematics Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subjects/{{subjectId}}"
+          }
+        },
+        {
+          "name": "Delete Subject",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subjects/{{subjectId}}"
+          }
+        },
+        {
+          "name": "Restore Subject",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/subjects/{{subjectId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Grade Subjects",
+      "item": [
+        {
+          "name": "Create Grade Subject",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gradeLevelId\": \"{{gradeLevelId}}\",\n  \"subjectId\": \"{{subjectId}}\",\n  \"credits\": 4,\n  \"fullMarks\": 100,\n  \"passMarks\": 40,\n  \"isOptional\": false,\n  \"sortOrder\": 1\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-subjects"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('gradeSubjectId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Grade Subjects",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-subjects"
+          }
+        },
+        {
+          "name": "Get Grade Subject",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-subjects/{{gradeSubjectId}}"
+          }
+        },
+        {
+          "name": "Update Grade Subject",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullMarks\": 100,\n  \"passMarks\": 45\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-subjects/{{gradeSubjectId}}"
+          }
+        },
+        {
+          "name": "Delete Grade Subject",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-subjects/{{gradeSubjectId}}"
+          }
+        },
+        {
+          "name": "Restore Grade Subject",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grade-subjects/{{gradeSubjectId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admissionNo\": \"ADM-001\",\n  \"firstNameEn\": \"Ram\",\n  \"firstNameNe\": \"\u0930\u093e\u092e\",\n  \"middleNameEn\": \"Bahadur\",\n  \"middleNameNe\": \"\u092c\u0939\u093e\u0926\u0941\u0930\",\n  \"lastNameEn\": \"Sharma\",\n  \"lastNameNe\": \"\u0936\u0930\u094d\u092e\u093e\",\n  \"dobAd\": \"2010-01-01T00:00:00.000Z\",\n  \"dobBs\": \"2066-09-16\",\n  \"gender\": \"MALE\",\n  \"casteEthnicityCode\": \"BRAHMIN_CHHETRI\",\n  \"casteEthnicity\": \"Brahmin/Chhetri\",\n  \"disabilityType\": \"NONE\",\n  \"motherTongue\": \"Nepali\",\n  \"birthCertificateNo\": \"BC-001\",\n  \"nationalIdNin\": \"NIN-001\",\n  \"hadEcdExperience\": true,\n  \"photoUrl\": null\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/students"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Students",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/students"
+          }
+        },
+        {
+          "name": "Get Student",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/students/{{studentId}}"
+          }
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstNameEn\": \"Ram Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/students/{{studentId}}"
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/students/{{studentId}}"
+          }
+        },
+        {
+          "name": "Restore Student",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/students/{{studentId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Addresses",
+      "item": [
+        {
+          "name": "Create Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityType\": \"STUDENT\",\n  \"entityId\": \"{{studentId}}\",\n  \"type\": \"PERMANENT\",\n  \"format\": \"PROVINCIAL\",\n  \"provinceCode\": \"3\",\n  \"provinceNe\": \"\u092c\u093e\u0917\u092e\u0924\u0940 \u092a\u094d\u0930\u0926\u0947\u0936\",\n  \"provinceEn\": \"Bagmati Province\",\n  \"districtCode\": \"27\",\n  \"districtNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902\",\n  \"districtEn\": \"Kathmandu\",\n  \"municipalityCode\": \"2701\",\n  \"municipalityNe\": \"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902 \u092e\u0939\u093e\u0928\u0917\u0930\u092a\u093e\u0932\u093f\u0915\u093e\",\n  \"municipalityEn\": \"Kathmandu Metropolitan City\",\n  \"ward\": 1,\n  \"toleNe\": \"\u0928\u092f\u093e\u0901 \u092c\u093e\u0928\u0947\u0936\u094d\u0935\u0930\",\n  \"toleEn\": \"New Baneshwor\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/addresses"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Addresses",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/addresses"
+          }
+        },
+        {
+          "name": "Get Address",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/addresses/{{addressId}}"
+          }
+        },
+        {
+          "name": "Update Address",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ward\": 2\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/addresses/{{addressId}}"
+          }
+        },
+        {
+          "name": "Delete Address",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/addresses/{{addressId}}"
+          }
+        },
+        {
+          "name": "Restore Address",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/addresses/{{addressId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Guardians",
+      "item": [
+        {
+          "name": "Create Guardian",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Ram Sharma\",\n  \"nameNe\": \"\u0930\u093e\u092e \u0936\u0930\u094d\u092e\u093e\",\n  \"phone\": \"+977-9800000000\",\n  \"email\": \"ram@example.com\",\n  \"occupation\": \"Engineer\",\n  \"citizenshipDetails\": {\"number\":\"123\",\"issuedDistrictNe\":\"\u0915\u093e\u0920\u092e\u093e\u0921\u094c\u0902\",\"issuedDistrictEn\":\"Kathmandu\",\"issuedDateBs\":\"2060-01-01\"},\n  \"nationalIdNin\": \"NIN-001\",\n  \"photoUrl\": null\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/guardians"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Guardians",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/guardians"
+          }
+        },
+        {
+          "name": "Get Guardian",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/guardians/{{guardianId}}"
+          }
+        },
+        {
+          "name": "Update Guardian",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"occupation\": \"Senior Engineer\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/guardians/{{guardianId}}"
+          }
+        },
+        {
+          "name": "Delete Guardian",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/guardians/{{guardianId}}"
+          }
+        },
+        {
+          "name": "Restore Guardian",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/guardians/{{guardianId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Guardians",
+      "item": [
+        {
+          "name": "Create Student Guardian",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"{{studentId}}\",\n  \"guardianId\": \"{{guardianId}}\",\n  \"relationship\": \"FATHER\",\n  \"isPrimary\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-guardians"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('studentGuardianId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Student Guardians",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-guardians"
+          }
+        },
+        {
+          "name": "Get Student Guardian",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-guardians/{{studentGuardianId}}"
+          }
+        },
+        {
+          "name": "Update Student Guardian",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"relationship\": \"GUARDIAN\",\n  \"isPrimary\": false\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-guardians/{{studentGuardianId}}"
+          }
+        },
+        {
+          "name": "Delete Student Guardian",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-guardians/{{studentGuardianId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Enrollments",
+      "item": [
+        {
+          "name": "Create Enrollment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"{{studentId}}\",\n  \"academicYearId\": \"{{academicYearId}}\",\n  \"gradeLevelId\": \"{{gradeLevelId}}\",\n  \"sectionId\": \"{{sectionId}}\",\n  \"rollNo\": 1,\n  \"houseName\": \"Red\",\n  \"enrollmentStatus\": \"NEW_ADMISSION\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/enrollments"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('enrollmentId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Enrollments",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/enrollments"
+          }
+        },
+        {
+          "name": "Get Enrollment",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/enrollments/{{enrollmentId}}"
+          }
+        },
+        {
+          "name": "Update Enrollment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rollNo\": 2,\n  \"enrollmentStatus\": \"PROMOTED\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/enrollments/{{enrollmentId}}"
+          }
+        },
+        {
+          "name": "Delete Enrollment",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/enrollments/{{enrollmentId}}"
+          }
+        },
+        {
+          "name": "Restore Enrollment",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/enrollments/{{enrollmentId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transfer Certificates",
+      "item": [
+        {
+          "name": "Create Transfer Certificate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"{{studentId}}\",\n  \"issueDateAd\": \"2026-01-01T00:00:00.000Z\",\n  \"issueDateBs\": \"2082-09-16\",\n  \"tcNumber\": \"TC-001\",\n  \"destinationIemisCode\": \"123456789\",\n  \"characterRemark\": \"Good character\",\n  \"leavingReason\": \"Family relocation\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transfer-certificates"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('transferCertificateId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Transfer Certificates",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transfer-certificates"
+          }
+        },
+        {
+          "name": "Get Transfer Certificate",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transfer-certificates/{{transferCertificateId}}"
+          }
+        },
+        {
+          "name": "Update Transfer Certificate",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"characterRemark\": \"Excellent character\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transfer-certificates/{{transferCertificateId}}"
+          }
+        },
+        {
+          "name": "Delete Transfer Certificate",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transfer-certificates/{{transferCertificateId}}"
+          }
+        },
+        {
+          "name": "Restore Transfer Certificate",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transfer-certificates/{{transferCertificateId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Grading Scales",
+      "item": [
+        {
+          "name": "Create Grading Scale",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"CDC Letter Grading 2078\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('gradingScaleId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Grading Scales",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales"
+          }
+        },
+        {
+          "name": "Get Grading Scale",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/{{gradingScaleId}}"
+          }
+        },
+        {
+          "name": "Update Grading Scale",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"CDC Letter Grading 2078 Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/{{gradingScaleId}}"
+          }
+        },
+        {
+          "name": "Delete Grading Scale",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/{{gradingScaleId}}"
+          }
+        },
+        {
+          "name": "Restore Grading Scale",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/{{gradingScaleId}}/restore"
+          }
+        },
+        {
+          "name": "Create Grading Scale Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minPercentage\": 90,\n  \"maxPercentage\": 100,\n  \"letterGrade\": \"A+\",\n  \"gradePoint\": 4.0,\n  \"descriptorEn\": \"Outstanding\",\n  \"descriptorNp\": \"\u0938\u0930\u094d\u0935\u094b\u0924\u094d\u0924\u092e\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/{{gradingScaleId}}/items"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('gradingScaleItemId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Grading Scale Item",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gradePoint\": 4.0\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/items/{{gradingScaleItemId}}"
+          }
+        },
+        {
+          "name": "Delete Grading Scale Item",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/grading-scales/items/{{gradingScaleItemId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exams",
+      "item": [
+        {
+          "name": "Create Exam",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"academicYearId\": \"{{academicYearId}}\",\n  \"name\": \"First Terminal\",\n  \"termWeightage\": 20,\n  \"startDateAd\": \"2026-04-14T00:00:00.000Z\",\n  \"endDateAd\": \"2026-04-20T00:00:00.000Z\",\n  \"startDateBs\": \"2083-01-01\",\n  \"endDateBs\": \"2083-01-07\",\n  \"isPublished\": false,\n  \"isLocked\": false\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exams"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Exams",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exams"
+          }
+        },
+        {
+          "name": "Get Exam",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exams/{{examId}}"
+          }
+        },
+        {
+          "name": "Update Exam",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"First Terminal Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exams/{{examId}}"
+          }
+        },
+        {
+          "name": "Delete Exam",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exams/{{examId}}"
+          }
+        },
+        {
+          "name": "Restore Exam",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exams/{{examId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exam Schedules",
+      "item": [
+        {
+          "name": "Create Exam Schedule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"examId\": \"{{examId}}\",\n  \"gradeSubjectId\": \"{{gradeSubjectId}}\",\n  \"examDateAd\": \"2026-04-14T00:00:00.000Z\",\n  \"examDateBs\": \"2083-01-01\",\n  \"startTime\": \"10:00\",\n  \"endTime\": \"13:00\",\n  \"theoryFullMarks\": 75,\n  \"theoryPassMarks\": 30,\n  \"internalFullMarks\": 25,\n  \"internalPassMarks\": 10\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-schedules"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Exam Schedules",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-schedules"
+          }
+        },
+        {
+          "name": "Get Exam Schedule",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-schedules/{{examScheduleId}}"
+          }
+        },
+        {
+          "name": "Update Exam Schedule",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startTime\": \"10:30\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-schedules/{{examScheduleId}}"
+          }
+        },
+        {
+          "name": "Delete Exam Schedule",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-schedules/{{examScheduleId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exam Marks",
+      "item": [
+        {
+          "name": "Create Exam Mark",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"examScheduleId\": \"{{examScheduleId}}\",\n  \"enrollmentId\": \"{{enrollmentId}}\",\n  \"theoryMarksObtained\": 60,\n  \"isTheoryAbsent\": false,\n  \"internalMarksObtained\": 20,\n  \"isInternalAbsent\": false,\n  \"internalBreakdown\": {\"attendance\":4,\"project_work\":16},\n  \"theoryGrade\": \"A\",\n  \"theoryGp\": 3.6,\n  \"internalGrade\": \"A+\",\n  \"internalGp\": 4.0,\n  \"finalSubjectGrade\": \"A\",\n  \"finalSubjectGp\": 3.6\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-marks"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Exam Marks",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-marks"
+          }
+        },
+        {
+          "name": "Get Exam Mark",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-marks/{{examMarkId}}"
+          }
+        },
+        {
+          "name": "Update Exam Mark",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"theoryMarksObtained\": 65\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-marks/{{examMarkId}}"
+          }
+        },
+        {
+          "name": "Delete Exam Mark",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/exam-marks/{{examMarkId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Exam Summaries",
+      "item": [
+        {
+          "name": "Create Summary",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"examId\": \"{{examId}}\",\n  \"studentId\": \"{{studentId}}\",\n  \"totalMarksObtained\": 85,\n  \"percentage\": 85,\n  \"gpa\": 3.6,\n  \"finalGrade\": \"A\",\n  \"rankInSection\": 1,\n  \"rankInGrade\": 5,\n  \"totalAttendanceDays\": 100,\n  \"presentDays\": 95,\n  \"classTeacherRemarks\": \"Good performance\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-exam-summaries"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Summaries",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-exam-summaries"
+          }
+        },
+        {
+          "name": "Get Summary",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-exam-summaries/{{summaryId}}"
+          }
+        },
+        {
+          "name": "Update Summary",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classTeacherRemarks\": \"Excellent\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-exam-summaries/{{summaryId}}"
+          }
+        },
+        {
+          "name": "Delete Summary",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-exam-summaries/{{summaryId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fiscal Years",
+      "item": [
+        {
+          "name": "Create Fiscal Year",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"2083/84\",\n  \"startDateAd\": \"2026-07-17T00:00:00.000Z\",\n  \"startDateBs\": \"2083-04-01\",\n  \"endDateAd\": \"2027-07-16T00:00:00.000Z\",\n  \"endDateBs\": \"2084-03-31\",\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fiscal-years"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Fiscal Years",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fiscal-years"
+          }
+        },
+        {
+          "name": "Get Fiscal Year",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fiscal-years/{{fiscalYearId}}"
+          }
+        },
+        {
+          "name": "Update Fiscal Year",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fiscal-years/{{fiscalYearId}}"
+          }
+        },
+        {
+          "name": "Delete Fiscal Year",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fiscal-years/{{fiscalYearId}}"
+          }
+        },
+        {
+          "name": "Restore Fiscal Year",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fiscal-years/{{fiscalYearId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fee Heads",
+      "item": [
+        {
+          "name": "Create Fee Head",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Monthly Tuition Fee\",\n  \"nameNe\": \"\u092e\u093e\u0938\u093f\u0915 \u0936\u093f\u0915\u094d\u0937\u0923 \u0936\u0941\u0932\u094d\u0915\",\n  \"frequency\": \"MONTHLY_BS\",\n  \"isTaxable\": false\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-heads"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Fee Heads",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-heads"
+          }
+        },
+        {
+          "name": "Get Fee Head",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-heads/{{feeHeadId}}"
+          }
+        },
+        {
+          "name": "Update Fee Head",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isTaxable\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-heads/{{feeHeadId}}"
+          }
+        },
+        {
+          "name": "Delete Fee Head",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-heads/{{feeHeadId}}"
+          }
+        },
+        {
+          "name": "Restore Fee Head",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-heads/{{feeHeadId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Class Fee Structures",
+      "item": [
+        {
+          "name": "Create Class Fee Structure",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"academicYearId\": \"{{academicYearId}}\",\n  \"gradeLevelId\": \"{{gradeLevelId}}\",\n  \"feeHeadId\": \"{{feeHeadId}}\",\n  \"amount\": 1500,\n  \"applicableBsMonths\": [1,2,3,4,5,6,7,8,9,10,11,12]\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/class-fee-structures"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Class Fee Structures",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/class-fee-structures"
+          }
+        },
+        {
+          "name": "Get Class Fee Structure",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/class-fee-structures/{{classFeeStructureId}}"
+          }
+        },
+        {
+          "name": "Update Class Fee Structure",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 1600\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/class-fee-structures/{{classFeeStructureId}}"
+          }
+        },
+        {
+          "name": "Delete Class Fee Structure",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/class-fee-structures/{{classFeeStructureId}}"
+          }
+        },
+        {
+          "name": "Restore Class Fee Structure",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/class-fee-structures/{{classFeeStructureId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scholarship Schemes",
+      "item": [
+        {
+          "name": "Create Scholarship Scheme",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Merit Scholarship\",\n  \"iemisScholarshipType\": \"POOR_TALENTED\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/scholarship-schemes"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Scholarship Schemes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/scholarship-schemes"
+          }
+        },
+        {
+          "name": "Get Scholarship Scheme",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/scholarship-schemes/{{scholarshipSchemeId}}"
+          }
+        },
+        {
+          "name": "Update Scholarship Scheme",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Merit Scholarship Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/scholarship-schemes/{{scholarshipSchemeId}}"
+          }
+        },
+        {
+          "name": "Delete Scholarship Scheme",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/scholarship-schemes/{{scholarshipSchemeId}}"
+          }
+        },
+        {
+          "name": "Restore Scholarship Scheme",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/scholarship-schemes/{{scholarshipSchemeId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Scholarships",
+      "item": [
+        {
+          "name": "Create Student Scholarship",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enrollmentId\": \"{{enrollmentId}}\",\n  \"scholarshipSchemeId\": \"{{scholarshipSchemeId}}\",\n  \"feeHeadId\": \"{{feeHeadId}}\",\n  \"discountType\": \"PERCENTAGE\",\n  \"discountValue\": 10\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-scholarships"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Student Scholarships",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-scholarships"
+          }
+        },
+        {
+          "name": "Get Student Scholarship",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-scholarships/{{studentScholarshipId}}"
+          }
+        },
+        {
+          "name": "Update Student Scholarship",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"discountValue\": 15\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-scholarships/{{studentScholarshipId}}"
+          }
+        },
+        {
+          "name": "Delete Student Scholarship",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-scholarships/{{studentScholarshipId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fee Invoices",
+      "item": [
+        {
+          "name": "Create Fee Invoice",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fiscalYearId\": \"{{fiscalYearId}}\",\n  \"academicYearId\": \"{{academicYearId}}\",\n  \"enrollmentId\": \"{{enrollmentId}}\",\n  \"invoiceNumber\": \"INV-001\",\n  \"issueDateAd\": \"2026-01-01T00:00:00.000Z\",\n  \"issueDateBs\": \"2082-09-16\",\n  \"dueDateBs\": \"2082-10-16\",\n  \"subtotalAmount\": 1500,\n  \"discountAmount\": 0,\n  \"previousDuesBroughtForward\": 0,\n  \"netPayableAmount\": 1500,\n  \"paidAmount\": 0,\n  \"balanceDue\": 1500,\n  \"status\": \"UNPAID\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoices"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Fee Invoices",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoices"
+          }
+        },
+        {
+          "name": "Get Fee Invoice",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoices/{{feeInvoiceId}}"
+          }
+        },
+        {
+          "name": "Update Fee Invoice",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"PARTIALLY_PAID\",\n  \"paidAmount\": 500,\n  \"balanceDue\": 1000\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoices/{{feeInvoiceId}}"
+          }
+        },
+        {
+          "name": "Delete Fee Invoice",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoices/{{feeInvoiceId}}"
+          }
+        },
+        {
+          "name": "Restore Fee Invoice",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoices/{{feeInvoiceId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fee Invoice Items",
+      "item": [
+        {
+          "name": "Create Fee Invoice Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{feeInvoiceId}}\",\n  \"feeHeadId\": \"{{feeHeadId}}\",\n  \"bsMonth\": 1,\n  \"description\": \"Tuition Fee - Baisakh 2083\",\n  \"grossAmount\": 1500,\n  \"discountAmount\": 0,\n  \"netAmount\": 1500\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoice-items"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Fee Invoice Items",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoice-items"
+          }
+        },
+        {
+          "name": "Get Fee Invoice Item",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoice-items/{{feeInvoiceItemId}}"
+          }
+        },
+        {
+          "name": "Update Fee Invoice Item",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"netAmount\": 1400\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoice-items/{{feeInvoiceItemId}}"
+          }
+        },
+        {
+          "name": "Delete Fee Invoice Item",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-invoice-items/{{feeInvoiceItemId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fee Payments",
+      "item": [
+        {
+          "name": "Create Fee Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fiscalYearId\": \"{{fiscalYearId}}\",\n  \"enrollmentId\": \"{{enrollmentId}}\",\n  \"invoiceId\": \"{{feeInvoiceId}}\",\n  \"receiptNumber\": \"RCP-001\",\n  \"paymentDateAd\": \"2026-01-01T00:00:00.000Z\",\n  \"paymentDateBs\": \"2082-09-16\",\n  \"amountPaid\": 500,\n  \"paymentMethod\": \"CASH\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-payments"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Fee Payments",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-payments"
+          }
+        },
+        {
+          "name": "Get Fee Payment",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-payments/{{feePaymentId}}"
+          }
+        },
+        {
+          "name": "Update Fee Payment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentMethod\": \"ESEWA\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-payments/{{feePaymentId}}"
+          }
+        },
+        {
+          "name": "Delete Fee Payment",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-payments/{{feePaymentId}}"
+          }
+        },
+        {
+          "name": "Restore Fee Payment",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/fee-payments/{{feePaymentId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Credit Notes",
+      "item": [
+        {
+          "name": "Create Credit Note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{feeInvoiceId}}\",\n  \"creditNoteNumber\": \"CN-001\",\n  \"reason\": \"Fee waiver\",\n  \"amount\": 100\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/credit-notes"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{var}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Credit Notes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/credit-notes"
+          }
+        },
+        {
+          "name": "Get Credit Note",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/credit-notes/{{creditNoteId}}"
+          }
+        },
+        {
+          "name": "Update Credit Note",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Updated reason\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/credit-notes/{{creditNoteId}}"
+          }
+        },
+        {
+          "name": "Delete Credit Note",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/credit-notes/{{creditNoteId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teacher Subject Allocations",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"academicYearId\": \"{{academicYearId}}\",\n  \"staffId\": \"{{staffProfileId}}\",\n  \"sectionId\": \"{{sectionId}}\",\n  \"subjectId\": \"{{subjectId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/teacher-subject-allocations"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/teacher-subject-allocations"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/teacher-subject-allocations/{{allocationId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subjectId\": \"{{subjectId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/teacher-subject-allocations/{{allocationId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/teacher-subject-allocations/{{allocationId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/teacher-subject-allocations/{{allocationId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payroll Runs",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fiscalYearId\": \"{{fiscalYearId}}\",\n  \"bsYear\": 2083,\n  \"bsMonth\": 1,\n  \"status\": \"DRAFT\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payroll-runs"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payroll-runs"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payroll-runs/{{payrollRunId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"APPROVED\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payroll-runs/{{payrollRunId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payroll-runs/{{payrollRunId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/payroll-runs/{{payrollRunId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Salary Slips",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payrollRunId\": \"{{payrollRunId}}\",\n  \"staffId\": \"{{staffProfileId}}\",\n  \"basicSalary\": 30000,\n  \"gradeAllowance\": 2000,\n  \"dearnessAllowance\": 5000,\n  \"employerPfSsfContribution\": 3000,\n  \"employeePfSsfDeduction\": 3000,\n  \"citDeduction\": 1000,\n  \"salaryAdvanceDeduction\": 0,\n  \"sstTax1Percent\": 300,\n  \"tdsIncomeTax\": 1500,\n  \"netPayable\": 32200\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/salary-slips"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/salary-slips"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/salary-slips/{{salarySlipId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"netPayable\": 32500\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/salary-slips/{{salarySlipId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/salary-slips/{{salarySlipId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/salary-slips/{{salarySlipId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Academic Calendar Events",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"academicYearId\": \"{{academicYearId}}\",\n  \"title\": \"Dashain Holiday\",\n  \"dateAd\": \"2026-10-01T00:00:00.000Z\",\n  \"dateBs\": \"2083-06-15\",\n  \"isHoliday\": true\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-calendar-events"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('academicCalendarEventId', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-calendar-events"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-calendar-events/{{academicCalendarEventId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Dashain Holiday Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-calendar-events/{{academicCalendarEventId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-calendar-events/{{academicCalendarEventId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/academic-calendar-events/{{academicCalendarEventId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transport Vehicles",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleNumber\": \"BA-1-PA-1234\",\n  \"type\": \"BUS\",\n  \"capacity\": 40\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-vehicles"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-vehicles"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-vehicles/{{vehicleId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacity\": 45\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-vehicles/{{vehicleId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-vehicles/{{vehicleId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-vehicles/{{vehicleId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transport Routes",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Route A\",\n  \"description\": \"Main route\",\n  \"fare\": 500,\n  \"vehicleId\": \"{{vehicleId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-routes"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-routes"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-routes/{{routeId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fare\": 550\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-routes/{{routeId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-routes/{{routeId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-routes/{{routeId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transport Stops",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"routeId\": \"{{routeId}}\",\n  \"name\": \"Stop 1\",\n  \"sequence\": 1,\n  \"arrivalTime\": \"07:30\",\n  \"latitude\": 27.7,\n  \"longitude\": 85.3\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-stops"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-stops"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-stops/{{stopId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arrivalTime\": \"07:35\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-stops/{{stopId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-stops/{{stopId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/transport-stops/{{stopId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Transports",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enrollmentId\": \"{{enrollmentId}}\",\n  \"routeId\": \"{{routeId}}\",\n  \"stopId\": \"{{stopId}}\",\n  \"vehicleId\": \"{{vehicleId}}\",\n  \"startDate\": \"2026-01-01T00:00:00.000Z\",\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-transports"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-transports"
+          }
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-transports/{{studentTransportId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"INACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-transports/{{studentTransportId}}"
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-transports/{{studentTransportId}}"
+          }
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/student-transports/{{studentTransportId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hostels",
+      "item": [
+        {
+          "name": "Create Hostel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nameEn\": \"Boys Hostel\",\n  \"nameNe\": \"\u092c\u093e\u0932\u0915 \u091b\u093e\u0924\u094d\u0930\u093e\u0935\u093e\u0938\",\n  \"type\": \"BOYS\",\n  \"capacity\": 100\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostels"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Hostels",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostels"
+          }
+        },
+        {
+          "name": "Get Hostel",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostels/{{hostelId}}"
+          }
+        },
+        {
+          "name": "Update Hostel",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacity\": 120\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostels/{{hostelId}}"
+          }
+        },
+        {
+          "name": "Delete Hostel",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostels/{{hostelId}}"
+          }
+        },
+        {
+          "name": "Restore Hostel",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostels/{{hostelId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hostel Rooms",
+      "item": [
+        {
+          "name": "Create Hostel Room",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostelId\": \"{{hostelId}}\",\n  \"roomNumber\": \"101\",\n  \"floor\": 1,\n  \"capacity\": 4,\n  \"roomType\": \"DOUBLE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-rooms"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Hostel Rooms",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-rooms"
+          }
+        },
+        {
+          "name": "Get Hostel Room",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-rooms/{{hostelRoomId}}"
+          }
+        },
+        {
+          "name": "Update Hostel Room",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacity\": 3\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-rooms/{{hostelRoomId}}"
+          }
+        },
+        {
+          "name": "Delete Hostel Room",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-rooms/{{hostelRoomId}}"
+          }
+        },
+        {
+          "name": "Restore Hostel Room",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-rooms/{{hostelRoomId}}/restore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hostel Allocations",
+      "item": [
+        {
+          "name": "Create Hostel Allocation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostelId\": \"{{hostelId}}\",\n  \"roomId\": \"{{hostelRoomId}}\",\n  \"enrollmentId\": \"{{enrollmentId}}\",\n  \"startDate\": \"2026-01-01\",\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-allocations"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.collectionVariables.set('{varname}', json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Hostel Allocations",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-allocations"
+          }
+        },
+        {
+          "name": "Get Hostel Allocation",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-allocations/{{hostelAllocationId}}"
+          }
+        },
+        {
+          "name": "Update Hostel Allocation",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"INACTIVE\"\n}"
+            },
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-allocations/{{hostelAllocationId}}"
+          }
+        },
+        {
+          "name": "Delete Hostel Allocation",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-allocations/{{hostelAllocationId}}"
+          }
+        },
+        {
+          "name": "Restore Hostel Allocation",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/{{tenantId}}/hostel-allocations/{{hostelAllocationId}}/restore"
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  }
+}
