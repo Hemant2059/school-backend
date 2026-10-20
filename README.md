@@ -1,124 +1,186 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# School SaaS Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Multi-tenant school management system backend for Nepali schools, built with **NestJS**, **Prisma 7**, and **PostgreSQL**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tech Stack
 
-## Description
+- **Runtime**: Node.js 22, TypeScript (ESM)
+- **Framework**: NestJS 12
+- **ORM**: Prisma 7 with `@prisma/adapter-pg`
+- **Database**: PostgreSQL 17
+- **Auth**: JWT (access + refresh), Passport, bcrypt
+- **Validation**: class-validator / class-transformer
+- **Docs**: Swagger (`/api-docs`)
+- **Testing**: Vitest (unit + e2e)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Project Structure
 
-## Project setup
-
-```bash
-$ pnpm install
+```
+src/
+  app.module.ts
+  main.ts
+  prisma.service.ts / prisma.module.ts
+  auth/                 # Platform + tenant authentication, guards, decorators
+  platform/             # Platform users, roles, permissions
+  organizations/        # Educational foundations / parent entities
+  tenants/              # Individual schools / campuses
+  subscriptions/        # Subscription plans & dynamic features
+  tenant-rbac/          # Tenant roles, permissions, tenant users
+  billing/              # Tenant subscriptions, invoices, payments
+  academics/            # Academic years, streams, grade levels, sections, staff, subjects
+  students/             # Students, addresses, guardians, enrollments, transfer certificates
+  exams/                # Exams, schedules, marks, summaries, grading scales
+  fees/                 # Fiscal years, fee heads, class fee structures, scholarships
+  fee-billing/          # IRD-compliant fee invoices, items, payments, credit notes
+  hr/                   # Teacher allocations, payroll runs, salary slips
+  transport/            # Vehicles, routes, stops, student transport
+  hostel/               # Hostels, rooms, allocations
+  library/              # Library books & book issues
+  notifications/        # In-app notifications
+prisma/
+  schema.prisma
+  migrations/
+  seed.ts
+postman/
+  platform-rbac.postman_collection.json
 ```
 
-## Compile and run the project
+## Environment Variables
+
+Copy `.env.example` to `.env` and update values:
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+cp .env.example .env
 ```
 
-## Run tests
+See `.env.example` for all required variables.
+
+## Getting Started
+
+### 1. Install dependencies
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Start PostgreSQL (Docker)
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+docker compose up -d postgres
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Observability
-
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
-
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
-
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
-
-To add it to this project:
+### 3. Run migrations & seed
 
 ```bash
-$ pnpm install @nestjs/observe
+pnpm prisma migrate deploy
+pnpm seed
 ```
 
-Then follow the [setup guide](https://docs.nestjs.com/observability/overview) - it takes a single import and an app key.
+### 4. Start the server
 
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
+```bash
+pnpm start:dev
+```
 
-## Resources
+Server: `http://localhost:3000`  
+Swagger: `http://localhost:3000/api-docs`  
+Postman collection: `postman/platform-rbac.postman_collection.json`
 
-Check out a few resources that may come in handy when working with NestJS:
+## Docker (Full Stack)
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Run both Postgres and the backend:
 
-## Support
+```bash
+docker compose up -d --build
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Key Concepts
 
-## Stay in touch
+### Authentication & Authorization
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **Platform auth** (`/auth/*`): SaaS staff (super admin, support, sales partners)
+- **Tenant auth** (`/tenant/auth/*`): School users (admin, teachers, students, parents)
+- Global `JwtAuthGuard` + `PermissionsGuard` enforce authentication and permission-based authorization
+- Route-level `@Permissions('code')` decorators
+
+### Multi-Tenancy
+
+- `Tenant` represents an individual school/campus
+- `Organization` groups multiple campuses under a parent entity
+- All tenant-scoped tables include `tenantId` as the leading column in composite indexes
+
+### Global Identity
+
+- `User` is a global identity (one phone/email across tenants)
+- `TenantUser` links a global user to a tenant with roles
+
+### Soft Deletes & Restore
+
+- Most entities support soft delete (`deletedAt`) and restore endpoints
+- Unique constraints use partial indexes (`WHERE deletedAt IS NULL`) so records can be recreated after deletion
+
+### Nepal-Specific Features
+
+- Bilingual fields (`*En` / `*Ne`)
+- BS/AD date pairs (`*Ad` / `*Bs`)
+- PAN/VAT, IEMIS codes, fiscal year (Shrawan–Ashadh)
+- Provincial & zonal address formats
+- IRD-compliant fee invoices with print count and sync flag
+- Nepali payroll components (PF, CIT, SSF, TDS, SST)
+
+## Database & Prisma
+
+```bash
+# Validate schema
+pnpm prisma validate
+
+# Create migration (dev)
+pnpm prisma migrate dev --name <name>
+
+# Apply migrations (prod)
+pnpm prisma migrate deploy
+
+# Generate client
+pnpm prisma generate
+
+# Open Prisma Studio
+pnpm prisma studio
+
+# Seed data
+pnpm seed
+```
+
+## Testing
+
+```bash
+# Unit tests
+pnpm test
+
+# E2E tests
+pnpm test:e2e
+
+# Coverage
+pnpm test:cov
+```
+
+## Scripts
+
+| Script               | Description             |
+| -------------------- | ----------------------- |
+| `pnpm start`         | Start production server |
+| `pnpm start:dev`     | Start in watch mode     |
+| `pnpm build`         | Compile TypeScript      |
+| `pnpm test`          | Run unit tests          |
+| `pnpm test:e2e`      | Run e2e tests           |
+| `pnpm seed`          | Seed database           |
+| `pnpm prisma studio` | Open Prisma Studio      |
+
+## Default Credentials (after seed)
+
+- **Platform super admin**: `superadmin@platform.local` / `ChangeMe123!`
+- **Tenant school admin**: `tenantadmin@example.com` / `ChangeMe123!`
+- **Demo tenant ID**: `c1bcb482-346d-41c2-952e-815e45722e63`
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+UNLICENSED (private)
