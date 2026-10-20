@@ -460,7 +460,8 @@ export const ModelName = {
   Hostel: 'Hostel',
   HostelRoom: 'HostelRoom',
   HostelAllocation: 'HostelAllocation',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  AuditLog: 'AuditLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -476,7 +477,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification"
+    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5216,6 +5217,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AuditLog: {
+      payload: Prisma.$AuditLogPayload<ExtArgs>
+      fields: Prisma.AuditLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AuditLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AuditLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        findFirst: {
+          args: Prisma.AuditLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AuditLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        findMany: {
+          args: Prisma.AuditLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+        }
+        create: {
+          args: Prisma.AuditLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        createMany: {
+          args: Prisma.AuditLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AuditLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+        }
+        delete: {
+          args: Prisma.AuditLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        update: {
+          args: Prisma.AuditLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.AuditLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AuditLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AuditLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.AuditLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        aggregate: {
+          args: Prisma.AuditLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAuditLog>
+        }
+        groupBy: {
+          args: Prisma.AuditLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuditLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AuditLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuditLogCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -5260,13 +5335,13 @@ export const PlatformUserScalarFieldEnum = {
   email: 'email',
   firstNameEn: 'firstNameEn',
   firstNameNe: 'firstNameNe',
+  middleNameEn: 'middleNameEn',
+  middleNameNe: 'middleNameNe',
   lastNameEn: 'lastNameEn',
   lastNameNe: 'lastNameNe',
   phone: 'phone',
   passwordHash: 'passwordHash',
   status: 'status',
-  province: 'province',
-  district: 'district',
   address: 'address',
   emailVerifiedAt: 'emailVerifiedAt',
   phoneVerifiedAt: 'phoneVerifiedAt',
@@ -5573,6 +5648,7 @@ export const SubscriptionScalarFieldEnum = {
   cancelledAt: 'cancelledAt',
   autoRenew: 'autoRenew',
   metadata: 'metadata',
+  assignedByPlatformUserId: 'assignedByPlatformUserId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -6457,6 +6533,22 @@ export const NotificationScalarFieldEnum = {
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  method: 'method',
+  path: 'path',
+  action: 'action',
+  resource: 'resource',
+  resourceId: 'resourceId',
+  statusCode: 'statusCode',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7285,6 +7377,7 @@ export type GlobalOmitConfig = {
   hostelRoom?: Prisma.HostelRoomOmit
   hostelAllocation?: Prisma.HostelAllocationOmit
   notification?: Prisma.NotificationOmit
+  auditLog?: Prisma.AuditLogOmit
 }
 
 /* Types for Logging */

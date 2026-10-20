@@ -39,13 +39,13 @@ export type PlatformUserMinAggregateOutputType = {
   email: string | null
   firstNameEn: string | null
   firstNameNe: string | null
+  middleNameEn: string | null
+  middleNameNe: string | null
   lastNameEn: string | null
   lastNameNe: string | null
   phone: string | null
   passwordHash: string | null
   status: $Enums.PlatformUserStatus | null
-  province: string | null
-  district: string | null
   address: string | null
   emailVerifiedAt: Date | null
   phoneVerifiedAt: Date | null
@@ -73,13 +73,13 @@ export type PlatformUserMaxAggregateOutputType = {
   email: string | null
   firstNameEn: string | null
   firstNameNe: string | null
+  middleNameEn: string | null
+  middleNameNe: string | null
   lastNameEn: string | null
   lastNameNe: string | null
   phone: string | null
   passwordHash: string | null
   status: $Enums.PlatformUserStatus | null
-  province: string | null
-  district: string | null
   address: string | null
   emailVerifiedAt: Date | null
   phoneVerifiedAt: Date | null
@@ -107,13 +107,13 @@ export type PlatformUserCountAggregateOutputType = {
   email: number
   firstNameEn: number
   firstNameNe: number
+  middleNameEn: number
+  middleNameNe: number
   lastNameEn: number
   lastNameNe: number
   phone: number
   passwordHash: number
   status: number
-  province: number
-  district: number
   address: number
   emailVerifiedAt: number
   phoneVerifiedAt: number
@@ -151,13 +151,13 @@ export type PlatformUserMinAggregateInputType = {
   email?: true
   firstNameEn?: true
   firstNameNe?: true
+  middleNameEn?: true
+  middleNameNe?: true
   lastNameEn?: true
   lastNameNe?: true
   phone?: true
   passwordHash?: true
   status?: true
-  province?: true
-  district?: true
   address?: true
   emailVerifiedAt?: true
   phoneVerifiedAt?: true
@@ -185,13 +185,13 @@ export type PlatformUserMaxAggregateInputType = {
   email?: true
   firstNameEn?: true
   firstNameNe?: true
+  middleNameEn?: true
+  middleNameNe?: true
   lastNameEn?: true
   lastNameNe?: true
   phone?: true
   passwordHash?: true
   status?: true
-  province?: true
-  district?: true
   address?: true
   emailVerifiedAt?: true
   phoneVerifiedAt?: true
@@ -219,13 +219,13 @@ export type PlatformUserCountAggregateInputType = {
   email?: true
   firstNameEn?: true
   firstNameNe?: true
+  middleNameEn?: true
+  middleNameNe?: true
   lastNameEn?: true
   lastNameNe?: true
   phone?: true
   passwordHash?: true
   status?: true
-  province?: true
-  district?: true
   address?: true
   emailVerifiedAt?: true
   phoneVerifiedAt?: true
@@ -340,13 +340,13 @@ export type PlatformUserGroupByOutputType = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn: string | null
+  middleNameNe: string | null
   lastNameEn: string
   lastNameNe: string
   phone: string | null
   passwordHash: string | null
   status: $Enums.PlatformUserStatus
-  province: string | null
-  district: string | null
   address: string | null
   emailVerifiedAt: Date | null
   phoneVerifiedAt: Date | null
@@ -397,13 +397,13 @@ export type PlatformUserWhereInput = {
   email?: Prisma.StringFilter<"PlatformUser"> | string
   firstNameEn?: Prisma.StringFilter<"PlatformUser"> | string
   firstNameNe?: Prisma.StringFilter<"PlatformUser"> | string
+  middleNameEn?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
+  middleNameNe?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   lastNameEn?: Prisma.StringFilter<"PlatformUser"> | string
   lastNameNe?: Prisma.StringFilter<"PlatformUser"> | string
   phone?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   passwordHash?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   status?: Prisma.EnumPlatformUserStatusFilter<"PlatformUser"> | $Enums.PlatformUserStatus
-  province?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
-  district?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   address?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   emailVerifiedAt?: Prisma.DateTimeNullableFilter<"PlatformUser"> | Date | string | null
   phoneVerifiedAt?: Prisma.DateTimeNullableFilter<"PlatformUser"> | Date | string | null
@@ -432,6 +432,8 @@ export type PlatformUserWhereInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionListRelationFilter
   createdOrganizations?: Prisma.OrganizationListRelationFilter
   resellerOrganizations?: Prisma.OrganizationListRelationFilter
+  assignedSubscriptions?: Prisma.SubscriptionListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }
 
 export type PlatformUserOrderByWithRelationInput = {
@@ -439,13 +441,13 @@ export type PlatformUserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   firstNameEn?: Prisma.SortOrder
   firstNameNe?: Prisma.SortOrder
+  middleNameEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  middleNameNe?: Prisma.SortOrderInput | Prisma.SortOrder
   lastNameEn?: Prisma.SortOrder
   lastNameNe?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  province?: Prisma.SortOrderInput | Prisma.SortOrder
-  district?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -474,6 +476,8 @@ export type PlatformUserOrderByWithRelationInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionOrderByRelationAggregateInput
   createdOrganizations?: Prisma.OrganizationOrderByRelationAggregateInput
   resellerOrganizations?: Prisma.OrganizationOrderByRelationAggregateInput
+  assignedSubscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
 }
 
 export type PlatformUserWhereUniqueInput = Prisma.AtLeast<{
@@ -486,12 +490,12 @@ export type PlatformUserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PlatformUserWhereInput | Prisma.PlatformUserWhereInput[]
   firstNameEn?: Prisma.StringFilter<"PlatformUser"> | string
   firstNameNe?: Prisma.StringFilter<"PlatformUser"> | string
+  middleNameEn?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
+  middleNameNe?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   lastNameEn?: Prisma.StringFilter<"PlatformUser"> | string
   lastNameNe?: Prisma.StringFilter<"PlatformUser"> | string
   passwordHash?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   status?: Prisma.EnumPlatformUserStatusFilter<"PlatformUser"> | $Enums.PlatformUserStatus
-  province?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
-  district?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   address?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   emailVerifiedAt?: Prisma.DateTimeNullableFilter<"PlatformUser"> | Date | string | null
   phoneVerifiedAt?: Prisma.DateTimeNullableFilter<"PlatformUser"> | Date | string | null
@@ -519,6 +523,8 @@ export type PlatformUserWhereUniqueInput = Prisma.AtLeast<{
   grantedPermissions?: Prisma.PlatformUserPermissionListRelationFilter
   createdOrganizations?: Prisma.OrganizationListRelationFilter
   resellerOrganizations?: Prisma.OrganizationListRelationFilter
+  assignedSubscriptions?: Prisma.SubscriptionListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }, "id" | "email" | "phone" | "invitationToken">
 
 export type PlatformUserOrderByWithAggregationInput = {
@@ -526,13 +532,13 @@ export type PlatformUserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   firstNameEn?: Prisma.SortOrder
   firstNameNe?: Prisma.SortOrder
+  middleNameEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  middleNameNe?: Prisma.SortOrderInput | Prisma.SortOrder
   lastNameEn?: Prisma.SortOrder
   lastNameNe?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  province?: Prisma.SortOrderInput | Prisma.SortOrder
-  district?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -568,13 +574,13 @@ export type PlatformUserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"PlatformUser"> | string
   firstNameEn?: Prisma.StringWithAggregatesFilter<"PlatformUser"> | string
   firstNameNe?: Prisma.StringWithAggregatesFilter<"PlatformUser"> | string
+  middleNameEn?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
+  middleNameNe?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
   lastNameEn?: Prisma.StringWithAggregatesFilter<"PlatformUser"> | string
   lastNameNe?: Prisma.StringWithAggregatesFilter<"PlatformUser"> | string
   phone?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
   passwordHash?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
   status?: Prisma.EnumPlatformUserStatusWithAggregatesFilter<"PlatformUser"> | $Enums.PlatformUserStatus
-  province?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
-  district?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"PlatformUser"> | string | null
   emailVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PlatformUser"> | Date | string | null
   phoneVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PlatformUser"> | Date | string | null
@@ -602,13 +608,13 @@ export type PlatformUserCreateInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -636,6 +642,8 @@ export type PlatformUserCreateInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateInput = {
@@ -643,13 +651,13 @@ export type PlatformUserUncheckedCreateInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -677,6 +685,8 @@ export type PlatformUserUncheckedCreateInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUpdateInput = {
@@ -684,13 +694,13 @@ export type PlatformUserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -718,6 +728,8 @@ export type PlatformUserUpdateInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateInput = {
@@ -725,13 +737,13 @@ export type PlatformUserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -759,6 +771,8 @@ export type PlatformUserUncheckedUpdateInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateManyInput = {
@@ -766,13 +780,13 @@ export type PlatformUserCreateManyInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -800,13 +814,13 @@ export type PlatformUserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -833,13 +847,13 @@ export type PlatformUserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -882,13 +896,13 @@ export type PlatformUserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   firstNameEn?: Prisma.SortOrder
   firstNameNe?: Prisma.SortOrder
+  middleNameEn?: Prisma.SortOrder
+  middleNameNe?: Prisma.SortOrder
   lastNameEn?: Prisma.SortOrder
   lastNameNe?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  province?: Prisma.SortOrder
-  district?: Prisma.SortOrder
   address?: Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrder
   phoneVerifiedAt?: Prisma.SortOrder
@@ -920,13 +934,13 @@ export type PlatformUserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   firstNameEn?: Prisma.SortOrder
   firstNameNe?: Prisma.SortOrder
+  middleNameEn?: Prisma.SortOrder
+  middleNameNe?: Prisma.SortOrder
   lastNameEn?: Prisma.SortOrder
   lastNameNe?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  province?: Prisma.SortOrder
-  district?: Prisma.SortOrder
   address?: Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrder
   phoneVerifiedAt?: Prisma.SortOrder
@@ -954,13 +968,13 @@ export type PlatformUserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   firstNameEn?: Prisma.SortOrder
   firstNameNe?: Prisma.SortOrder
+  middleNameEn?: Prisma.SortOrder
+  middleNameNe?: Prisma.SortOrder
   lastNameEn?: Prisma.SortOrder
   lastNameNe?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  province?: Prisma.SortOrder
-  district?: Prisma.SortOrder
   address?: Prisma.SortOrder
   emailVerifiedAt?: Prisma.SortOrder
   phoneVerifiedAt?: Prisma.SortOrder
@@ -1172,18 +1186,50 @@ export type PlatformUserUpdateOneWithoutResellerOrganizationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlatformUserUpdateToOneWithWhereWithoutResellerOrganizationsInput, Prisma.PlatformUserUpdateWithoutResellerOrganizationsInput>, Prisma.PlatformUserUncheckedUpdateWithoutResellerOrganizationsInput>
 }
 
+export type PlatformUserCreateNestedOneWithoutAssignedSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.PlatformUserCreateWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput>
+  connectOrCreate?: Prisma.PlatformUserCreateOrConnectWithoutAssignedSubscriptionsInput
+  connect?: Prisma.PlatformUserWhereUniqueInput
+}
+
+export type PlatformUserUpdateOneWithoutAssignedSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlatformUserCreateWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput>
+  connectOrCreate?: Prisma.PlatformUserCreateOrConnectWithoutAssignedSubscriptionsInput
+  upsert?: Prisma.PlatformUserUpsertWithoutAssignedSubscriptionsInput
+  disconnect?: Prisma.PlatformUserWhereInput | boolean
+  delete?: Prisma.PlatformUserWhereInput | boolean
+  connect?: Prisma.PlatformUserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlatformUserUpdateToOneWithWhereWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUpdateWithoutAssignedSubscriptionsInput>, Prisma.PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput>
+}
+
+export type PlatformUserCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.PlatformUserCreateOrConnectWithoutAuditLogsInput
+  connect?: Prisma.PlatformUserWhereUniqueInput
+}
+
+export type PlatformUserUpdateOneWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.PlatformUserCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.PlatformUserUpsertWithoutAuditLogsInput
+  disconnect?: Prisma.PlatformUserWhereInput | boolean
+  delete?: Prisma.PlatformUserWhereInput | boolean
+  connect?: Prisma.PlatformUserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlatformUserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.PlatformUserUpdateWithoutAuditLogsInput>, Prisma.PlatformUserUncheckedUpdateWithoutAuditLogsInput>
+}
+
 export type PlatformUserCreateWithoutInvitedUsersInput = {
   id?: string
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1210,6 +1256,8 @@ export type PlatformUserCreateWithoutInvitedUsersInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutInvitedUsersInput = {
@@ -1217,13 +1265,13 @@ export type PlatformUserUncheckedCreateWithoutInvitedUsersInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1250,6 +1298,8 @@ export type PlatformUserUncheckedCreateWithoutInvitedUsersInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutInvitedUsersInput = {
@@ -1262,13 +1312,13 @@ export type PlatformUserCreateWithoutInvitedByInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1295,6 +1345,8 @@ export type PlatformUserCreateWithoutInvitedByInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutInvitedByInput = {
@@ -1302,13 +1354,13 @@ export type PlatformUserUncheckedCreateWithoutInvitedByInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1335,6 +1387,8 @@ export type PlatformUserUncheckedCreateWithoutInvitedByInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutInvitedByInput = {
@@ -1363,13 +1417,13 @@ export type PlatformUserUpdateWithoutInvitedUsersInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1396,6 +1450,8 @@ export type PlatformUserUpdateWithoutInvitedUsersInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutInvitedUsersInput = {
@@ -1403,13 +1459,13 @@ export type PlatformUserUncheckedUpdateWithoutInvitedUsersInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1436,6 +1492,8 @@ export type PlatformUserUncheckedUpdateWithoutInvitedUsersInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithWhereUniqueWithoutInvitedByInput = {
@@ -1462,13 +1520,13 @@ export type PlatformUserScalarWhereInput = {
   email?: Prisma.StringFilter<"PlatformUser"> | string
   firstNameEn?: Prisma.StringFilter<"PlatformUser"> | string
   firstNameNe?: Prisma.StringFilter<"PlatformUser"> | string
+  middleNameEn?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
+  middleNameNe?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   lastNameEn?: Prisma.StringFilter<"PlatformUser"> | string
   lastNameNe?: Prisma.StringFilter<"PlatformUser"> | string
   phone?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   passwordHash?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   status?: Prisma.EnumPlatformUserStatusFilter<"PlatformUser"> | $Enums.PlatformUserStatus
-  province?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
-  district?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   address?: Prisma.StringNullableFilter<"PlatformUser"> | string | null
   emailVerifiedAt?: Prisma.DateTimeNullableFilter<"PlatformUser"> | Date | string | null
   phoneVerifiedAt?: Prisma.DateTimeNullableFilter<"PlatformUser"> | Date | string | null
@@ -1496,13 +1554,13 @@ export type PlatformUserCreateWithoutRolesInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1529,6 +1587,8 @@ export type PlatformUserCreateWithoutRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutRolesInput = {
@@ -1536,13 +1596,13 @@ export type PlatformUserUncheckedCreateWithoutRolesInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1569,6 +1629,8 @@ export type PlatformUserUncheckedCreateWithoutRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutRolesInput = {
@@ -1581,13 +1643,13 @@ export type PlatformUserCreateWithoutAssignedRolesInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1614,6 +1676,8 @@ export type PlatformUserCreateWithoutAssignedRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutAssignedRolesInput = {
@@ -1621,13 +1685,13 @@ export type PlatformUserUncheckedCreateWithoutAssignedRolesInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1654,6 +1718,8 @@ export type PlatformUserUncheckedCreateWithoutAssignedRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutAssignedRolesInput = {
@@ -1677,13 +1743,13 @@ export type PlatformUserUpdateWithoutRolesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1710,6 +1776,8 @@ export type PlatformUserUpdateWithoutRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutRolesInput = {
@@ -1717,13 +1785,13 @@ export type PlatformUserUncheckedUpdateWithoutRolesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1750,6 +1818,8 @@ export type PlatformUserUncheckedUpdateWithoutRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithoutAssignedRolesInput = {
@@ -1768,13 +1838,13 @@ export type PlatformUserUpdateWithoutAssignedRolesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1801,6 +1871,8 @@ export type PlatformUserUpdateWithoutAssignedRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutAssignedRolesInput = {
@@ -1808,13 +1880,13 @@ export type PlatformUserUncheckedUpdateWithoutAssignedRolesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1841,6 +1913,8 @@ export type PlatformUserUncheckedUpdateWithoutAssignedRolesInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateWithoutPermissionsInput = {
@@ -1848,13 +1922,13 @@ export type PlatformUserCreateWithoutPermissionsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1881,6 +1955,8 @@ export type PlatformUserCreateWithoutPermissionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutPermissionsInput = {
@@ -1888,13 +1964,13 @@ export type PlatformUserUncheckedCreateWithoutPermissionsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1921,6 +1997,8 @@ export type PlatformUserUncheckedCreateWithoutPermissionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutPermissionsInput = {
@@ -1933,13 +2011,13 @@ export type PlatformUserCreateWithoutGrantedPermissionsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -1966,6 +2044,8 @@ export type PlatformUserCreateWithoutGrantedPermissionsInput = {
   assignedRoles?: Prisma.PlatformUserRoleCreateNestedManyWithoutAssignedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutGrantedPermissionsInput = {
@@ -1973,13 +2053,13 @@ export type PlatformUserUncheckedCreateWithoutGrantedPermissionsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -2006,6 +2086,8 @@ export type PlatformUserUncheckedCreateWithoutGrantedPermissionsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutAssignedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutGrantedPermissionsInput = {
@@ -2029,13 +2111,13 @@ export type PlatformUserUpdateWithoutPermissionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2062,6 +2144,8 @@ export type PlatformUserUpdateWithoutPermissionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutPermissionsInput = {
@@ -2069,13 +2153,13 @@ export type PlatformUserUncheckedUpdateWithoutPermissionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2102,6 +2186,8 @@ export type PlatformUserUncheckedUpdateWithoutPermissionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithoutGrantedPermissionsInput = {
@@ -2120,13 +2206,13 @@ export type PlatformUserUpdateWithoutGrantedPermissionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2153,6 +2239,8 @@ export type PlatformUserUpdateWithoutGrantedPermissionsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUpdateManyWithoutAssignedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutGrantedPermissionsInput = {
@@ -2160,13 +2248,13 @@ export type PlatformUserUncheckedUpdateWithoutGrantedPermissionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2193,6 +2281,8 @@ export type PlatformUserUncheckedUpdateWithoutGrantedPermissionsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateWithoutCreatedOrganizationsInput = {
@@ -2200,13 +2290,13 @@ export type PlatformUserCreateWithoutCreatedOrganizationsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -2233,6 +2323,8 @@ export type PlatformUserCreateWithoutCreatedOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleCreateNestedManyWithoutAssignedByInput
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutCreatedOrganizationsInput = {
@@ -2240,13 +2332,13 @@ export type PlatformUserUncheckedCreateWithoutCreatedOrganizationsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -2273,6 +2365,8 @@ export type PlatformUserUncheckedCreateWithoutCreatedOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutAssignedByInput
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutCreatedOrganizationsInput = {
@@ -2285,13 +2379,13 @@ export type PlatformUserCreateWithoutResellerOrganizationsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -2318,6 +2412,8 @@ export type PlatformUserCreateWithoutResellerOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleCreateNestedManyWithoutAssignedByInput
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutResellerOrganizationsInput = {
@@ -2325,13 +2421,13 @@ export type PlatformUserUncheckedCreateWithoutResellerOrganizationsInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -2358,6 +2454,8 @@ export type PlatformUserUncheckedCreateWithoutResellerOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutAssignedByInput
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutResellerOrganizationsInput = {
@@ -2381,13 +2479,13 @@ export type PlatformUserUpdateWithoutCreatedOrganizationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2414,6 +2512,8 @@ export type PlatformUserUpdateWithoutCreatedOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUpdateManyWithoutAssignedByNestedInput
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutCreatedOrganizationsInput = {
@@ -2421,13 +2521,13 @@ export type PlatformUserUncheckedUpdateWithoutCreatedOrganizationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2454,6 +2554,8 @@ export type PlatformUserUncheckedUpdateWithoutCreatedOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithoutResellerOrganizationsInput = {
@@ -2472,13 +2574,13 @@ export type PlatformUserUpdateWithoutResellerOrganizationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2505,6 +2607,8 @@ export type PlatformUserUpdateWithoutResellerOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUpdateManyWithoutAssignedByNestedInput
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutResellerOrganizationsInput = {
@@ -2512,13 +2616,13 @@ export type PlatformUserUncheckedUpdateWithoutResellerOrganizationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2545,6 +2649,376 @@ export type PlatformUserUncheckedUpdateWithoutResellerOrganizationsInput = {
   assignedRoles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type PlatformUserCreateWithoutAssignedSubscriptionsInput = {
+  id?: string
+  email: string
+  firstNameEn: string
+  firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
+  lastNameEn: string
+  lastNameNe: string
+  phone?: string | null
+  passwordHash?: string | null
+  status?: $Enums.PlatformUserStatus
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  twoFactorEnabled?: boolean
+  twoFactorSecret?: string | null
+  lastLoginAt?: Date | string | null
+  lastLoginIp?: string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  passwordChangedAt?: Date | string | null
+  mustChangePassword?: boolean
+  invitationToken?: string | null
+  invitationExpiresAt?: Date | string | null
+  invitationAcceptedAt?: Date | string | null
+  refreshTokenHash?: string | null
+  refreshTokenExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.PlatformUserRoleCreateNestedManyWithoutUserInput
+  permissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutUserInput
+  invitedBy?: Prisma.PlatformUserCreateNestedOneWithoutInvitedUsersInput
+  invitedUsers?: Prisma.PlatformUserCreateNestedManyWithoutInvitedByInput
+  assignedRoles?: Prisma.PlatformUserRoleCreateNestedManyWithoutAssignedByInput
+  grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
+  createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
+  resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+}
+
+export type PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput = {
+  id?: string
+  email: string
+  firstNameEn: string
+  firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
+  lastNameEn: string
+  lastNameNe: string
+  phone?: string | null
+  passwordHash?: string | null
+  status?: $Enums.PlatformUserStatus
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  twoFactorEnabled?: boolean
+  twoFactorSecret?: string | null
+  lastLoginAt?: Date | string | null
+  lastLoginIp?: string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  passwordChangedAt?: Date | string | null
+  mustChangePassword?: boolean
+  invitationToken?: string | null
+  invitationExpiresAt?: Date | string | null
+  invitationAcceptedAt?: Date | string | null
+  refreshTokenHash?: string | null
+  refreshTokenExpiresAt?: Date | string | null
+  invitedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutUserInput
+  permissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutUserInput
+  invitedUsers?: Prisma.PlatformUserUncheckedCreateNestedManyWithoutInvitedByInput
+  assignedRoles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutAssignedByInput
+  grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
+  createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
+  resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type PlatformUserCreateOrConnectWithoutAssignedSubscriptionsInput = {
+  where: Prisma.PlatformUserWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlatformUserCreateWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput>
+}
+
+export type PlatformUserUpsertWithoutAssignedSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.PlatformUserUpdateWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput>
+  create: Prisma.XOR<Prisma.PlatformUserCreateWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput>
+  where?: Prisma.PlatformUserWhereInput
+}
+
+export type PlatformUserUpdateToOneWithWhereWithoutAssignedSubscriptionsInput = {
+  where?: Prisma.PlatformUserWhereInput
+  data: Prisma.XOR<Prisma.PlatformUserUpdateWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput>
+}
+
+export type PlatformUserUpdateWithoutAssignedSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginIp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordChangedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  invitationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitationExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitationAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refreshTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refreshTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.PlatformUserRoleUpdateManyWithoutUserNestedInput
+  permissions?: Prisma.PlatformUserPermissionUpdateManyWithoutUserNestedInput
+  invitedBy?: Prisma.PlatformUserUpdateOneWithoutInvitedUsersNestedInput
+  invitedUsers?: Prisma.PlatformUserUpdateManyWithoutInvitedByNestedInput
+  assignedRoles?: Prisma.PlatformUserRoleUpdateManyWithoutAssignedByNestedInput
+  grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
+  createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
+  resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+}
+
+export type PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginIp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordChangedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  invitationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitationExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitationAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refreshTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refreshTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutUserNestedInput
+  permissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  invitedUsers?: Prisma.PlatformUserUncheckedUpdateManyWithoutInvitedByNestedInput
+  assignedRoles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
+  grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
+  createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
+  resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type PlatformUserCreateWithoutAuditLogsInput = {
+  id?: string
+  email: string
+  firstNameEn: string
+  firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
+  lastNameEn: string
+  lastNameNe: string
+  phone?: string | null
+  passwordHash?: string | null
+  status?: $Enums.PlatformUserStatus
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  twoFactorEnabled?: boolean
+  twoFactorSecret?: string | null
+  lastLoginAt?: Date | string | null
+  lastLoginIp?: string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  passwordChangedAt?: Date | string | null
+  mustChangePassword?: boolean
+  invitationToken?: string | null
+  invitationExpiresAt?: Date | string | null
+  invitationAcceptedAt?: Date | string | null
+  refreshTokenHash?: string | null
+  refreshTokenExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.PlatformUserRoleCreateNestedManyWithoutUserInput
+  permissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutUserInput
+  invitedBy?: Prisma.PlatformUserCreateNestedOneWithoutInvitedUsersInput
+  invitedUsers?: Prisma.PlatformUserCreateNestedManyWithoutInvitedByInput
+  assignedRoles?: Prisma.PlatformUserRoleCreateNestedManyWithoutAssignedByInput
+  grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
+  createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
+  resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
+}
+
+export type PlatformUserUncheckedCreateWithoutAuditLogsInput = {
+  id?: string
+  email: string
+  firstNameEn: string
+  firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
+  lastNameEn: string
+  lastNameNe: string
+  phone?: string | null
+  passwordHash?: string | null
+  status?: $Enums.PlatformUserStatus
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  twoFactorEnabled?: boolean
+  twoFactorSecret?: string | null
+  lastLoginAt?: Date | string | null
+  lastLoginIp?: string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  passwordChangedAt?: Date | string | null
+  mustChangePassword?: boolean
+  invitationToken?: string | null
+  invitationExpiresAt?: Date | string | null
+  invitationAcceptedAt?: Date | string | null
+  refreshTokenHash?: string | null
+  refreshTokenExpiresAt?: Date | string | null
+  invitedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutUserInput
+  permissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutUserInput
+  invitedUsers?: Prisma.PlatformUserUncheckedCreateNestedManyWithoutInvitedByInput
+  assignedRoles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutAssignedByInput
+  grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
+  createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
+  resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
+}
+
+export type PlatformUserCreateOrConnectWithoutAuditLogsInput = {
+  where: Prisma.PlatformUserWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
+}
+
+export type PlatformUserUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.PlatformUserUpdateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
+  where?: Prisma.PlatformUserWhereInput
+}
+
+export type PlatformUserUpdateToOneWithWhereWithoutAuditLogsInput = {
+  where?: Prisma.PlatformUserWhereInput
+  data: Prisma.XOR<Prisma.PlatformUserUpdateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type PlatformUserUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginIp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordChangedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  invitationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitationExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitationAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refreshTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refreshTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.PlatformUserRoleUpdateManyWithoutUserNestedInput
+  permissions?: Prisma.PlatformUserPermissionUpdateManyWithoutUserNestedInput
+  invitedBy?: Prisma.PlatformUserUpdateOneWithoutInvitedUsersNestedInput
+  invitedUsers?: Prisma.PlatformUserUpdateManyWithoutInvitedByNestedInput
+  assignedRoles?: Prisma.PlatformUserRoleUpdateManyWithoutAssignedByNestedInput
+  grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
+  createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
+  resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+}
+
+export type PlatformUserUncheckedUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginIp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordChangedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  invitationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitationExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitationAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refreshTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refreshTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutUserNestedInput
+  permissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  invitedUsers?: Prisma.PlatformUserUncheckedUpdateManyWithoutInvitedByNestedInput
+  assignedRoles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
+  grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
+  createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
+  resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
 }
 
 export type PlatformUserCreateManyInvitedByInput = {
@@ -2552,13 +3026,13 @@ export type PlatformUserCreateManyInvitedByInput = {
   email: string
   firstNameEn: string
   firstNameNe: string
+  middleNameEn?: string | null
+  middleNameNe?: string | null
   lastNameEn: string
   lastNameNe: string
   phone?: string | null
   passwordHash?: string | null
   status?: $Enums.PlatformUserStatus
-  province?: string | null
-  district?: string | null
   address?: string | null
   emailVerifiedAt?: Date | string | null
   phoneVerifiedAt?: Date | string | null
@@ -2585,13 +3059,13 @@ export type PlatformUserUpdateWithoutInvitedByInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2618,6 +3092,8 @@ export type PlatformUserUpdateWithoutInvitedByInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutInvitedByInput = {
@@ -2625,13 +3101,13 @@ export type PlatformUserUncheckedUpdateWithoutInvitedByInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2658,6 +3134,8 @@ export type PlatformUserUncheckedUpdateWithoutInvitedByInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
+  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateManyWithoutInvitedByInput = {
@@ -2665,13 +3143,13 @@ export type PlatformUserUncheckedUpdateManyWithoutInvitedByInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2706,6 +3184,8 @@ export type PlatformUserCountOutputType = {
   grantedPermissions: number
   createdOrganizations: number
   resellerOrganizations: number
+  assignedSubscriptions: number
+  auditLogs: number
 }
 
 export type PlatformUserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2716,6 +3196,8 @@ export type PlatformUserCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   grantedPermissions?: boolean | PlatformUserCountOutputTypeCountGrantedPermissionsArgs
   createdOrganizations?: boolean | PlatformUserCountOutputTypeCountCreatedOrganizationsArgs
   resellerOrganizations?: boolean | PlatformUserCountOutputTypeCountResellerOrganizationsArgs
+  assignedSubscriptions?: boolean | PlatformUserCountOutputTypeCountAssignedSubscriptionsArgs
+  auditLogs?: boolean | PlatformUserCountOutputTypeCountAuditLogsArgs
 }
 
 /**
@@ -2777,19 +3259,33 @@ export type PlatformUserCountOutputTypeCountResellerOrganizationsArgs<ExtArgs ex
   where?: Prisma.OrganizationWhereInput
 }
 
+/**
+ * PlatformUserCountOutputType without action
+ */
+export type PlatformUserCountOutputTypeCountAssignedSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
+}
+
+/**
+ * PlatformUserCountOutputType without action
+ */
+export type PlatformUserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
+}
+
 
 export type PlatformUserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   firstNameEn?: boolean
   firstNameNe?: boolean
+  middleNameEn?: boolean
+  middleNameNe?: boolean
   lastNameEn?: boolean
   lastNameNe?: boolean
   phone?: boolean
   passwordHash?: boolean
   status?: boolean
-  province?: boolean
-  district?: boolean
   address?: boolean
   emailVerifiedAt?: boolean
   phoneVerifiedAt?: boolean
@@ -2818,6 +3314,8 @@ export type PlatformUserSelect<ExtArgs extends runtime.Types.Extensions.Internal
   grantedPermissions?: boolean | Prisma.PlatformUser$grantedPermissionsArgs<ExtArgs>
   createdOrganizations?: boolean | Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs>
   resellerOrganizations?: boolean | Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs>
+  assignedSubscriptions?: boolean | Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.PlatformUser$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.PlatformUserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["platformUser"]>
 
@@ -2826,13 +3324,13 @@ export type PlatformUserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   email?: boolean
   firstNameEn?: boolean
   firstNameNe?: boolean
+  middleNameEn?: boolean
+  middleNameNe?: boolean
   lastNameEn?: boolean
   lastNameNe?: boolean
   phone?: boolean
   passwordHash?: boolean
   status?: boolean
-  province?: boolean
-  district?: boolean
   address?: boolean
   emailVerifiedAt?: boolean
   phoneVerifiedAt?: boolean
@@ -2861,13 +3359,13 @@ export type PlatformUserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   email?: boolean
   firstNameEn?: boolean
   firstNameNe?: boolean
+  middleNameEn?: boolean
+  middleNameNe?: boolean
   lastNameEn?: boolean
   lastNameNe?: boolean
   phone?: boolean
   passwordHash?: boolean
   status?: boolean
-  province?: boolean
-  district?: boolean
   address?: boolean
   emailVerifiedAt?: boolean
   phoneVerifiedAt?: boolean
@@ -2896,13 +3394,13 @@ export type PlatformUserSelectScalar = {
   email?: boolean
   firstNameEn?: boolean
   firstNameNe?: boolean
+  middleNameEn?: boolean
+  middleNameNe?: boolean
   lastNameEn?: boolean
   lastNameNe?: boolean
   phone?: boolean
   passwordHash?: boolean
   status?: boolean
-  province?: boolean
-  district?: boolean
   address?: boolean
   emailVerifiedAt?: boolean
   phoneVerifiedAt?: boolean
@@ -2925,7 +3423,7 @@ export type PlatformUserSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PlatformUserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "firstNameEn" | "firstNameNe" | "lastNameEn" | "lastNameNe" | "phone" | "passwordHash" | "status" | "province" | "district" | "address" | "emailVerifiedAt" | "phoneVerifiedAt" | "twoFactorEnabled" | "twoFactorSecret" | "lastLoginAt" | "lastLoginIp" | "failedLoginAttempts" | "lockedUntil" | "passwordChangedAt" | "mustChangePassword" | "invitationToken" | "invitationExpiresAt" | "invitationAcceptedAt" | "refreshTokenHash" | "refreshTokenExpiresAt" | "invitedById" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["platformUser"]>
+export type PlatformUserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "firstNameEn" | "firstNameNe" | "middleNameEn" | "middleNameNe" | "lastNameEn" | "lastNameNe" | "phone" | "passwordHash" | "status" | "address" | "emailVerifiedAt" | "phoneVerifiedAt" | "twoFactorEnabled" | "twoFactorSecret" | "lastLoginAt" | "lastLoginIp" | "failedLoginAttempts" | "lockedUntil" | "passwordChangedAt" | "mustChangePassword" | "invitationToken" | "invitationExpiresAt" | "invitationAcceptedAt" | "refreshTokenHash" | "refreshTokenExpiresAt" | "invitedById" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["platformUser"]>
 export type PlatformUserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roles?: boolean | Prisma.PlatformUser$rolesArgs<ExtArgs>
   permissions?: boolean | Prisma.PlatformUser$permissionsArgs<ExtArgs>
@@ -2935,6 +3433,8 @@ export type PlatformUserInclude<ExtArgs extends runtime.Types.Extensions.Interna
   grantedPermissions?: boolean | Prisma.PlatformUser$grantedPermissionsArgs<ExtArgs>
   createdOrganizations?: boolean | Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs>
   resellerOrganizations?: boolean | Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs>
+  assignedSubscriptions?: boolean | Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.PlatformUser$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.PlatformUserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlatformUserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2955,19 +3455,21 @@ export type $PlatformUserPayload<ExtArgs extends runtime.Types.Extensions.Intern
     grantedPermissions: Prisma.$PlatformUserPermissionPayload<ExtArgs>[]
     createdOrganizations: Prisma.$OrganizationPayload<ExtArgs>[]
     resellerOrganizations: Prisma.$OrganizationPayload<ExtArgs>[]
+    assignedSubscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
     firstNameEn: string
     firstNameNe: string
+    middleNameEn: string | null
+    middleNameNe: string | null
     lastNameEn: string
     lastNameNe: string
     phone: string | null
     passwordHash: string | null
     status: $Enums.PlatformUserStatus
-    province: string | null
-    district: string | null
     address: string | null
     emailVerifiedAt: Date | null
     phoneVerifiedAt: Date | null
@@ -3390,6 +3892,8 @@ export interface Prisma__PlatformUserClient<T, Null = never, ExtArgs extends run
   grantedPermissions<T extends Prisma.PlatformUser$grantedPermissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$grantedPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlatformUserPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdOrganizations<T extends Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resellerOrganizations<T extends Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedSubscriptions<T extends Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.PlatformUser$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3423,13 +3927,13 @@ export interface PlatformUserFieldRefs {
   readonly email: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly firstNameEn: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly firstNameNe: Prisma.FieldRef<"PlatformUser", 'String'>
+  readonly middleNameEn: Prisma.FieldRef<"PlatformUser", 'String'>
+  readonly middleNameNe: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly lastNameEn: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly lastNameNe: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly phone: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly passwordHash: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly status: Prisma.FieldRef<"PlatformUser", 'PlatformUserStatus'>
-  readonly province: Prisma.FieldRef<"PlatformUser", 'String'>
-  readonly district: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly address: Prisma.FieldRef<"PlatformUser", 'String'>
   readonly emailVerifiedAt: Prisma.FieldRef<"PlatformUser", 'DateTime'>
   readonly phoneVerifiedAt: Prisma.FieldRef<"PlatformUser", 'DateTime'>
@@ -4035,6 +4539,54 @@ export type PlatformUser$resellerOrganizationsArgs<ExtArgs extends runtime.Types
   take?: number
   skip?: number
   distinct?: Prisma.OrganizationScalarFieldEnum | Prisma.OrganizationScalarFieldEnum[]
+}
+
+/**
+ * PlatformUser.assignedSubscriptions
+ */
+export type PlatformUser$assignedSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+}
+
+/**
+ * PlatformUser.auditLogs
+ */
+export type PlatformUser$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AuditLog
+   */
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AuditLog
+   */
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

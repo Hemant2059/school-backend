@@ -94,7 +94,7 @@ export class TenantService {
   }
 
   async hardDelete(id: string) {
-    await this.findOne(id);
+    await this.findOne(id, true);
     await this.prisma.tenant.delete({ where: { id } });
     return { deleted: true, permanent: true };
   }

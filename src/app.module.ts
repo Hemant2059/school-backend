@@ -21,14 +21,13 @@ import { HrModule } from './hr/hr.module.js';
 import { TransportModule } from './transport/transport.module.js';
 import { HostelModule } from './hostel/hostel.module.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
-import { CleanupModule } from './cleanup/cleanup.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { PermissionsGuard } from './auth/guards/permissions.guard.js';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, PlatformModule, AuthModule, SubscriptionsModule, OrganizationsModule, TenantsModule, TenantRbacModule, BillingModule, AcademicsModule, StudentsModule, EnrollmentsModule, TransferCertificatesModule, ExaminationsModule, ExamsModule, FeesModule, FeeBillingModule, HrModule, TransportModule, HostelModule, NotificationsModule, CleanupModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, PlatformModule, AuthModule, SubscriptionsModule, OrganizationsModule, TenantsModule, TenantRbacModule, BillingModule, AcademicsModule, StudentsModule, EnrollmentsModule, TransferCertificatesModule, ExaminationsModule, ExamsModule, FeesModule, FeeBillingModule, HrModule, TransportModule, HostelModule, NotificationsModule],
   controllers: [AppController],
   providers: [
     AppService,

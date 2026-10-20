@@ -80,7 +80,7 @@ export class OrganizationService {
   }
 
   async hardDelete(id: string) {
-    await this.findOne(id);
+    await this.findOne(id, true);
     await this.prisma.organization.delete({ where: { id } });
     return { deleted: true, permanent: true };
   }

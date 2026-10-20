@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query, Req } from '@nestjs/common';
 import { TenantSubscriptionService } from '../services/subscription.service.js';
 import { CreateSubscriptionDto, UpdateSubscriptionDto, QuerySubscriptionsDto } from '../dto/subscription.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
@@ -9,7 +9,7 @@ export class SubscriptionController {
 
   @Permissions('subscriptions.manage')
   @Post()
-  create(@Param('tenantId') tenantId: string, @Body() dto: CreateSubscriptionDto) { return this.service.create(tenantId, dto); }
+  create(@Param('tenantId') tenantId: string, @Body() dto: CreateSubscriptionDto, @Req() req: any) { return this.service.create(tenantId, dto, req.user?.sub ?? req.user?.id); }
 
   @Permissions('subscriptions.read')
   @Get()

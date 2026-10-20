@@ -81,6 +81,19 @@ export class AuthService {
     return { loggedOut: true };
   }
 
+  async changePassword(userId: string, currentPassword: string, newPassword: string) {
+    const user = await this.prisma.platformUser.findFirst({ where: { id: userId, deletedAt: null } });
+    if (!user || !user.passwordHash) throw new UnauthorizedException('User not found');
+    const valid = await bcrypt.compare(currentPassword, user.passwordHash);
+    if (!valid) throw new UnauthorizedException('Current password is incorrect');
+    const hash = await bcrypt.hash(newPassword, 10);
+    await this.prisma.platformUser.update({
+      where: { id: userId },
+      data: { passwordHash: hash, passwordChangedAt: new Date() },
+    });
+    return { changed: true };
+  }
+
   async getMe(userId: string) {
     const user = await this.prisma.platformUser.findFirst({
       where: { id: userId, deletedAt: null },

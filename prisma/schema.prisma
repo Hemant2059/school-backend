@@ -22,18 +22,18 @@ enum PlatformUserStatus {
 model PlatformUser {
   id          String  @id @default(uuid())
   email       String  @unique
-  firstNameEn String
-  firstNameNe String
-  lastNameEn  String
-  lastNameNe  String
-  phone       String? @unique
+  firstNameEn  String
+  firstNameNe  String
+  middleNameEn String?
+  middleNameNe String?
+  lastNameEn   String
+  lastNameNe   String
+  phone        String? @unique
 
   passwordHash String?
 
   status PlatformUserStatus @default(INVITED)
 
-  province String?
-  district String?
   address  String?
 
   emailVerifiedAt     DateTime?
@@ -64,15 +64,16 @@ model PlatformUser {
   assignedRoles      PlatformUserRole[]       @relation("AssignedRoles")
   grantedPermissions PlatformUserPermission[] @relation("GrantedPermissions")
 
-  createdOrganizations  Organization[] @relation("CreatedOrganizations")
-  resellerOrganizations Organization[] @relation("ResellerOrganizations")
+  createdOrganizations     Organization[] @relation("CreatedOrganizations")
+  resellerOrganizations    Organization[] @relation("ResellerOrganizations")
+  assignedSubscriptions   Subscription[] @relation("AssignedSubscriptions")
+  auditLogs              AuditLog[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   @@index([status])
-  @@index([province, district])
   @@index([deletedAt])
   @@index([createdAt])
 }
@@ -543,15 +544,17 @@ model Subscription {
   endDate     DateTime
   trialEndsAt DateTime?
   cancelledAt DateTime?
-  autoRenew   Boolean            @default(true)
-  metadata    Json?
+  autoRenew              Boolean            @default(true)
+  metadata               Json?
+  assignedByPlatformUserId String?
 
-  tenant   Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  plan     SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
-  invoices Invoice[]
+  tenant                  Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  plan                    SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
+  assignedByPlatformUser  PlatformUser?    @relation("AssignedSubscriptions", fields: [assignedByPlatformUserId], references: [id], onDelete: SetNull)
+  invoices                Invoice[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
 
   @@index([tenantId])
   @@index([planId])
@@ -2039,4 +2042,24 @@ model Notification {
   @@index([recipientType, recipientId])
   @@index([isRead])
   @@index([deletedAt])
+}
+
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  method    String
+  path      String
+  action    String?
+  resource  String?
+  resourceId String?
+  statusCode Int?
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+
+  user PlatformUser? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([method])
 }

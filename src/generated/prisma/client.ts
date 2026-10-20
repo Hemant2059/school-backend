@@ -361,3 +361,8 @@ export type HostelAllocation = Prisma.HostelAllocationModel
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel

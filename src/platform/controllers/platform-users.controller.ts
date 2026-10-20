@@ -41,6 +41,10 @@ export class PlatformUsersController {
     return this.service.softDelete(id);
   }
 
+  @Permissions('platform_users.delete')
+  @Delete(':id/permanent')
+  hardDelete(@Param('id') id: string) { return this.service.hardDelete(id); }
+
   @Permissions('platform_users.update')
   @Post(':id/restore')
   @HttpCode(200)

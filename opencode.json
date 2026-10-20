@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "prisma": {
+        "type": "local",
+        "command": ["pnpm", "prisma", "mcp"]
+      },
+      "context7": {
+        "type": "local",
+        "command": ["npx", "-y", "@upstash/context7-mcp@latest"]
+      }
+    }
+  }
+}

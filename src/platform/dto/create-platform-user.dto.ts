@@ -4,6 +4,7 @@ import {
   IsBoolean,
   IsEmail,
   IsEnum,
+  IsInt,
   IsOptional,
   IsString,
   Matches,
@@ -24,6 +25,16 @@ export class CreatePlatformUserDto {
   @MinLength(1)
   @MaxLength(120)
   firstNameNe!: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(120)
+  middleNameEn?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(120)
+  middleNameNe?: string;
 
   @IsString()
   @MinLength(2)
@@ -46,13 +57,8 @@ export class CreatePlatformUserDto {
 
   @IsOptional()
   @IsString()
-  @MaxLength(80)
-  province?: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(80)
-  district?: string;
+  @MaxLength(255)
+  address?: string;
 
   @IsOptional()
   @IsBoolean()

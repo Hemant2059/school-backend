@@ -27,9 +27,8 @@ export class PlatformUsersService {
           lastNameEn: dto.lastNameEn,
           lastNameNe: dto.lastNameNe,
           phone: dto.phone,
+          address: dto.address,
           status: dto.status ?? PlatformUserStatus.INVITED,
-          province: dto.province,
-          district: dto.district,
           twoFactorEnabled: dto.twoFactorEnabled ?? false,
           mustChangePassword: dto.mustChangePassword ?? false,
           roles: {
@@ -52,8 +51,6 @@ export class PlatformUsersService {
     const where: Prisma.PlatformUserWhereInput = {};
     if (!query.includeDeleted) where.deletedAt = null;
     if (query.status) where.status = query.status;
-    if (query.province) where.province = query.province;
-    if (query.district) where.district = query.district;
     if (query.search) {
       where.OR = [
         { email: { contains: query.search, mode: 'insensitive' } },
@@ -110,9 +107,8 @@ export class PlatformUsersService {
           lastNameEn: dto.lastNameEn,
           lastNameNe: dto.lastNameNe,
           phone: dto.phone,
+          address: dto.address,
           status: dto.status,
-          province: dto.province,
-          district: dto.district,
           twoFactorEnabled: dto.twoFactorEnabled,
           mustChangePassword: dto.mustChangePassword,
           ...(roleIds
@@ -148,6 +144,12 @@ export class PlatformUsersService {
       data: { deletedAt: new Date(), status: PlatformUserStatus.DEACTIVATED },
     });
     return { deleted: true };
+  }
+
+  async hardDelete(id: string) {
+    await this.findOne(id, true);
+    await this.prisma.platformUser.delete({ where: { id } });
+    return { deleted: true, permanent: true };
   }
 
   async restore(id: string) {
@@ -251,7 +253,7 @@ export class PlatformUsersService {
 
   private defaultInclude() {
     return {
-      roles: { include: { role: true } },
+      roles: { include: { role: { include: { permissions: { include: { permission: true } } } } } },
       permissions: { include: { permission: true } },
     } as const;
   }

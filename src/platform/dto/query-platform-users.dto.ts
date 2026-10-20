@@ -13,14 +13,6 @@ export class QueryPlatformUsersDto extends PaginationQueryDto {
   status?: PlatformUserStatus;
 
   @IsOptional()
-  @IsString()
-  province?: string;
-
-  @IsOptional()
-  @IsString()
-  district?: string;
-
-  @IsOptional()
   @Type(() => Boolean)
   @IsBoolean()
   includeDeleted?: boolean = false;
