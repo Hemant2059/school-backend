@@ -23,7 +23,9 @@
     "seed": "npx tsx prisma/seed.ts",
     "postinstall": "prisma generate || exit 0",
     "verify:security": "./scripts/verify-security.sh",
-    "verify:domain": "./scripts/verify-domain.sh"
+    "verify:domain": "./scripts/verify-domain.sh",
+    "verify:migrations": "./scripts/verify-migrations.sh",
+    "verify": "./scripts/verify-security.sh && ./scripts/verify-domain.sh && ./scripts/verify-migrations.sh"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",

@@ -24,6 +24,8 @@ import { TransportModule } from './transport/transport.module.js';
 import { HostelModule } from './hostel/hostel.module.js';
 import { LibraryModule } from './library/library.module.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
+import { AttendanceModule } from './attendance/attendance.module.js';
+import { TimetableModule } from './timetable/timetable.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
 import { CommonModule } from './common/common.module.js';
@@ -67,6 +69,8 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.
     HostelModule,
     LibraryModule,
     NotificationsModule,
+    AttendanceModule,
+    TimetableModule,
   ],
   controllers: [AppController],
   providers: [

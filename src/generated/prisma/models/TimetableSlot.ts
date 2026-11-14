@@ -303,7 +303,6 @@ export type TimetableSlotOrderByWithRelationInput = {
 
 export type TimetableSlotWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  tenantId_sectionId_dayOfWeek_periodNo?: Prisma.TimetableSlotTenantIdSectionIdDayOfWeekPeriodNoCompoundUniqueInput
   AND?: Prisma.TimetableSlotWhereInput | Prisma.TimetableSlotWhereInput[]
   OR?: Prisma.TimetableSlotWhereInput[]
   NOT?: Prisma.TimetableSlotWhereInput | Prisma.TimetableSlotWhereInput[]
@@ -322,7 +321,7 @@ export type TimetableSlotWhereUniqueInput = Prisma.AtLeast<{
   section?: Prisma.XOR<Prisma.SectionScalarRelationFilter, Prisma.SectionWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
   staff?: Prisma.XOR<Prisma.StaffProfileScalarRelationFilter, Prisma.StaffProfileWhereInput>
-}, "id" | "tenantId_sectionId_dayOfWeek_periodNo">
+}, "id">
 
 export type TimetableSlotOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -471,13 +470,6 @@ export type TimetableSlotListRelationFilter = {
 
 export type TimetableSlotOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type TimetableSlotTenantIdSectionIdDayOfWeekPeriodNoCompoundUniqueInput = {
-  tenantId: string
-  sectionId: string
-  dayOfWeek: number
-  periodNo: number
 }
 
 export type TimetableSlotCountOrderByAggregateInput = {

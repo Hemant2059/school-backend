@@ -1825,7 +1825,7 @@ model TimetableSlot {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  @@unique([tenantId, sectionId, dayOfWeek, periodNo])
+  @@index([tenantId, sectionId, dayOfWeek, periodNo])
   @@index([tenantId])
   @@index([sectionId])
   @@index([staffId])

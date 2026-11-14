@@ -143,6 +143,51 @@ ok "a locked exam can be unlocked again" \
   "$(c -X POST "$BASE/tenants/$TA/exams/$EXID/unlock" -H "$H")" 201
 
 echo ""
+echo "== Attendance =="
+SEC=$(curl -s "$BASE/tenants/$TA/sections?limit=5" -H "$H" | jq_get "d['data'][0]['id']")
+# A unique date per run so the script can be repeated.
+ATT_DATE=$(python3 -c "import datetime;print((datetime.date.today() + datetime.timedelta(days=(hash('$RANDOM') % 900) + 30)).isoformat())")
+ATT_DAY=$(python3 -c "import datetime;d=datetime.date.fromisoformat('$ATT_DATE');print((d.weekday()+1)%7+1)")
+BULK=$(curl -s -X POST "$BASE/tenants/$TA/attendance/bulk" -H "$H" -H "$C" \
+  -d "{\"sectionId\":\"$SEC\",\"dateAd\":\"${ATT_DATE}T00:00:00.000Z\",\"dateBs\":\"2083-05-31\",\"entries\":[{\"enrollmentId\":\"$EN\",\"status\":\"PRESENT\"}]}")
+REC=$(echo "$BULK" | jq_get "d.get('recorded',0)")
+PRESENT=$(echo "$BULK" | jq_get "d.get('present',0)")
+echo "  recorded=$REC present=$PRESENT"
+ok "the whole section was marked" "$([ "$REC" -ge 1 ] && echo yes || echo no)" yes
+ok "the marked student is present" "$PRESENT" "1"
+ok "a second register for the same day is rejected" \
+  "$(c -X POST "$BASE/tenants/$TA/attendance/bulk" -H "$H" -H "$C" -d "{\"sectionId\":\"$SEC\",\"dateAd\":\"${ATT_DATE}T00:00:00.000Z\",\"dateBs\":\"2083-05-31\",\"entries\":[{\"enrollmentId\":\"$EN\",\"status\":\"ABSENT\"}]}")" 409
+SUMMARY=$(curl -s "$BASE/tenants/$TA/attendance/summary?enrollmentId=$EN&from=${ATT_DATE}T00:00:00.000Z&to=${ATT_DATE}T23:59:59.000Z" -H "$H")
+DAYS=$(echo "$SUMMARY" | jq_get "d.get('totalAttendanceDays',0)")
+PRES=$(echo "$SUMMARY" | jq_get "d.get('presentDays',0)")
+echo "  summary for $ATT_DATE: $SUMMARY"
+ok "the summary counts the day" "$DAYS" "1"
+ok "the summary counts the student present" "$PRES" "1"
+
+echo ""
+echo "== Timetable =="
+SUB=$(curl -s "$BASE/tenants/$TA/subjects?limit=5" -H "$H" | jq_get "d['data'][0]['id']")
+# Free the section's periods so the script can be repeated.
+for SLOTID in $(curl -s "$BASE/tenants/$TA/timetable?sectionId=$SEC&limit=100" -H "$H" \
+  | python3 -c "import sys,json;[print(s['id']) for s in json.load(sys.stdin)['data']]"); do
+  curl -s -X DELETE "$BASE/tenants/$TA/timetable/$SLOTID" -H "$H" >/dev/null
+done
+STAFF=$(curl -s -X POST "$BASE/tenants/$TA/staff-profiles" -H "$H" -H "$C" \
+  -d "{\"employeeCode\":\"VERIFY-$RANDOM\",\"firstNameEn\":\"Verify\",\"lastNameEn\":\"Teacher\",\"staffCategory\":\"TEACHING\",\"basicSalary\":40000}" | jq_get "d.get('id','')")
+curl -s -X POST "$BASE/tenants/$TA/teacher-subject-allocations" -H "$H" -H "$C" \
+  -d "{\"academicYearId\":\"$AY\",\"staffId\":\"$STAFF\",\"sectionId\":\"$SEC\",\"subjectId\":\"$SUB\"}" >/dev/null
+SLOT=$(curl -s -X POST "$BASE/tenants/$TA/timetable" -H "$H" -H "$C" \
+  -d "{\"sectionId\":\"$SEC\",\"dayOfWeek\":1,\"periodNo\":1,\"startTime\":\"08:00\",\"endTime\":\"08:45\",\"subjectId\":\"$SUB\",\"staffId\":\"$STAFF\"}")
+SLOTID=$(echo "$SLOT" | jq_get "d.get('id','')")
+ok "a lesson was scheduled" "$([ -n "$SLOTID" ] && echo yes || echo no)" yes
+ok "a second lesson in the same period is rejected" \
+  "$(c -X POST "$BASE/tenants/$TA/timetable" -H "$H" -H "$C" -d "{\"sectionId\":\"$SEC\",\"dayOfWeek\":1,\"periodNo\":1,\"startTime\":\"09:00\",\"endTime\":\"09:45\",\"subjectId\":\"$SUB\",\"staffId\":\"$STAFF\"}")" 409
+UNALLOC=$(curl -s -X POST "$BASE/tenants/$TA/staff-profiles" -H "$H" -H "$C" \
+  -d "{\"employeeCode\":\"VERIFY-B-$RANDOM\",\"firstNameEn\":\"Other\",\"lastNameEn\":\"Teacher\",\"staffCategory\":\"TEACHING\"}" | jq_get "d.get('id','')")
+ok "an unallocated teacher cannot be scheduled" \
+  "$(c -X POST "$BASE/tenants/$TA/timetable" -H "$H" -H "$C" -d "{\"sectionId\":\"$SEC\",\"dayOfWeek\":2,\"periodNo\":1,\"startTime\":\"08:00\",\"endTime\":\"08:45\",\"subjectId\":\"$SUB\",\"staffId\":\"$UNALLOC\"}")" 400
+
+echo ""
 echo "== Cleanup =="
 # Soft-delete what this script created so the demo data stays tidy and the
 # script can be run repeatedly.

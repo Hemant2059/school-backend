@@ -12,10 +12,17 @@ export interface PaginatedResult<T> {
   meta: PaginatedMeta;
 }
 
-export interface PaginationInput {
+/**
+ * The pagination parameters of a request.
+ *
+ * Deliberately loose: query DTOs carry more than just `page` and `limit`,
+ * and TypeScript's weak-type check rejects a type with no properties in
+ * common with an all-optional interface.
+ */
+export type PaginationInput = {
   page?: number | string;
   limit?: number | string;
-}
+};
 
 export interface PaginationOptions {
   defaultLimit?: number;
@@ -29,14 +36,17 @@ export interface PaginationOptions {
  * in one response by passing `limit=1000000`.
  */
 export function resolvePagination(
-  input: PaginationInput | undefined,
+  // `unknown` rather than a DTO type: a query DTO is a class, so it has no
+  // implicit index signature and would fail the weak-type check.
+  input: unknown,
   options: PaginationOptions = {},
 ): { page: number; limit: number; skip: number; take: number } {
+  const source = (input ?? {}) as PaginationInput & Record<string, unknown>;
   const defaultLimit = options.defaultLimit ?? 20;
   const maxLimit = options.maxLimit ?? 100;
 
-  const rawPage = Number(input?.page ?? 1);
-  const rawLimit = Number(input?.limit ?? defaultLimit);
+  const rawPage = Number(source['page'] ?? 1);
+  const rawLimit = Number(source['limit'] ?? defaultLimit);
 
   const page = Number.isFinite(rawPage) && rawPage >= 1 ? Math.floor(rawPage) : 1;
   const limit = Number.isFinite(rawLimit) && rawLimit >= 1
