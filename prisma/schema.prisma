@@ -67,6 +67,7 @@ model PlatformUser {
   createdOrganizations  Organization[] @relation("CreatedOrganizations")
   resellerOrganizations Organization[] @relation("ResellerOrganizations")
   assignedSubscriptions Subscription[] @relation("AssignedSubscriptions")
+  createdTenants        Tenant[]       @relation("CreatedTenants")
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -395,6 +396,7 @@ model Tenant {
   createdByPlatformUserId String
 
   organization Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  createdBy    PlatformUser  @relation("CreatedTenants", fields: [createdByPlatformUserId], references: [id], onDelete: Restrict)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

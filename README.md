@@ -137,6 +137,8 @@ src/
   enrollments/            # enrolments
   exams/                  # exams, schedules, marks, summaries, results engine
   examinations/           # grading scales
+  attendance/             # daily attendance registers and summaries
+  timetable/              # the weekly timetable
   fees/                   # fiscal years, fee heads, class fee structures, scholarships
   fee-billing/            # fee invoices, items, payments, credit notes, fee engine
   hr/                     # teacher allocations, payroll runs, salary slips, payroll engine
@@ -181,6 +183,18 @@ POST /tenants/:tenantId/exams/:id/generate-results
 
 Marks are validated against the schedule (bounds, absent-versus-scored, class and academic year) and the letter grades are derived from the tenant's grading scale. Result generation computes the marks, percentage, credit-weighted GPA, final grade, section and grade ranks, and the attendance counters.
 
+### Attendance
+
+A section register is marked in one request; students with no entry are
+recorded absent, so a day's register is always complete. A student can only
+have one record per day.
+
+### Timetable
+
+A section cannot have two lessons in the same period, a teacher cannot be in
+two places at once, and a teacher must actually be allocated to teach that
+subject to that section.
+
 ### Payroll
 
 `POST /tenants/:tenantId/payroll-runs/generate` computes every salary slip from the staff member's configured package:
@@ -206,8 +220,16 @@ The net is derived; deductions larger than the gross are rejected.
 | `pnpm test:cov` | Run the unit tests with coverage |
 | `pnpm seed` | Seed the development data (idempotent) |
 | `pnpm prisma studio` | Open Prisma Studio |
-| `pnpm lint` | Lint with oxlint |
-| `./scripts/verify-security.sh` | Live security regression check against a running instance |
+| `pnpm lint` | Lint with oxlint and audit the DTO decorators |
+| `pnpm verify` | Run every live verification script |
+
+### Verification scripts
+
+| Script | What it proves |
+| --- | --- |
+| `pnpm verify:security` | 22 assertions: domain separation, tenant isolation, authentication, boolean parameters, the audit trail and credential hygiene, against a running instance |
+| `pnpm verify:domain` | 34 assertions: the fee engine, the result engine, the payroll rules, attendance and timetable, end to end against a running instance |
+| `pnpm verify:migrations` | The migration chain replays cleanly against an empty database and the result matches the Prisma schema |
 
 ---
 

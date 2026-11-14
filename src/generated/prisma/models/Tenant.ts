@@ -497,6 +497,7 @@ export type TenantWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+  createdBy?: Prisma.XOR<Prisma.PlatformUserScalarRelationFilter, Prisma.PlatformUserWhereInput>
   roles?: Prisma.RoleListRelationFilter
   tenantUsers?: Prisma.TenantUserListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
@@ -583,6 +584,7 @@ export type TenantOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
+  createdBy?: Prisma.PlatformUserOrderByWithRelationInput
   roles?: Prisma.RoleOrderByRelationAggregateInput
   tenantUsers?: Prisma.TenantUserOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
@@ -672,6 +674,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
+  createdBy?: Prisma.XOR<Prisma.PlatformUserScalarRelationFilter, Prisma.PlatformUserWhereInput>
   roles?: Prisma.RoleListRelationFilter
   tenantUsers?: Prisma.TenantUserListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
@@ -844,11 +847,11 @@ export type TenantCreateInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -1014,11 +1017,11 @@ export type TenantUpdateInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -1226,7 +1229,6 @@ export type TenantUpdateManyMutationInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1430,6 +1432,48 @@ export type TenantScalarRelationFilter = {
 export type TenantNullableScalarRelationFilter = {
   is?: Prisma.TenantWhereInput | null
   isNot?: Prisma.TenantWhereInput | null
+}
+
+export type TenantCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutCreatedByInput, Prisma.TenantUncheckedCreateWithoutCreatedByInput> | Prisma.TenantCreateWithoutCreatedByInput[] | Prisma.TenantUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutCreatedByInput | Prisma.TenantCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.TenantCreateManyCreatedByInputEnvelope
+  connect?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+}
+
+export type TenantUncheckedCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutCreatedByInput, Prisma.TenantUncheckedCreateWithoutCreatedByInput> | Prisma.TenantCreateWithoutCreatedByInput[] | Prisma.TenantUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutCreatedByInput | Prisma.TenantCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.TenantCreateManyCreatedByInputEnvelope
+  connect?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+}
+
+export type TenantUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutCreatedByInput, Prisma.TenantUncheckedCreateWithoutCreatedByInput> | Prisma.TenantCreateWithoutCreatedByInput[] | Prisma.TenantUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutCreatedByInput | Prisma.TenantCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.TenantUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.TenantUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.TenantCreateManyCreatedByInputEnvelope
+  set?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  disconnect?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  delete?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  connect?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  update?: Prisma.TenantUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.TenantUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.TenantUpdateManyWithWhereWithoutCreatedByInput | Prisma.TenantUpdateManyWithWhereWithoutCreatedByInput[]
+  deleteMany?: Prisma.TenantScalarWhereInput | Prisma.TenantScalarWhereInput[]
+}
+
+export type TenantUncheckedUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutCreatedByInput, Prisma.TenantUncheckedCreateWithoutCreatedByInput> | Prisma.TenantCreateWithoutCreatedByInput[] | Prisma.TenantUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutCreatedByInput | Prisma.TenantCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.TenantUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.TenantUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.TenantCreateManyCreatedByInputEnvelope
+  set?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  disconnect?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  delete?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  connect?: Prisma.TenantWhereUniqueInput | Prisma.TenantWhereUniqueInput[]
+  update?: Prisma.TenantUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.TenantUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.TenantUpdateManyWithWhereWithoutCreatedByInput | Prisma.TenantUpdateManyWithWhereWithoutCreatedByInput[]
+  deleteMany?: Prisma.TenantScalarWhereInput | Prisma.TenantScalarWhereInput[]
 }
 
 export type TenantCreateNestedManyWithoutOrganizationInput = {
@@ -2094,6 +2138,245 @@ export type TenantUpdateOneWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutNotificationsInput, Prisma.TenantUpdateWithoutNotificationsInput>, Prisma.TenantUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type TenantCreateWithoutCreatedByInput = {
+  id?: string
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutCreatedByInput = {
+  id?: string
+  organizationId?: string | null
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserUncheckedCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamUncheckedCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelUncheckedCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionUncheckedCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileUncheckedCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianUncheckedCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleUncheckedCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearUncheckedCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadUncheckedCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteUncheckedCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopUncheckedCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportUncheckedCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookUncheckedCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueUncheckedCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutCreatedByInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutCreatedByInput, Prisma.TenantUncheckedCreateWithoutCreatedByInput>
+}
+
+export type TenantCreateManyCreatedByInputEnvelope = {
+  data: Prisma.TenantCreateManyCreatedByInput | Prisma.TenantCreateManyCreatedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type TenantUpsertWithWhereUniqueWithoutCreatedByInput = {
+  where: Prisma.TenantWhereUniqueInput
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutCreatedByInput, Prisma.TenantUncheckedUpdateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutCreatedByInput, Prisma.TenantUncheckedCreateWithoutCreatedByInput>
+}
+
+export type TenantUpdateWithWhereUniqueWithoutCreatedByInput = {
+  where: Prisma.TenantWhereUniqueInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutCreatedByInput, Prisma.TenantUncheckedUpdateWithoutCreatedByInput>
+}
+
+export type TenantUpdateManyWithWhereWithoutCreatedByInput = {
+  where: Prisma.TenantScalarWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateManyMutationInput, Prisma.TenantUncheckedUpdateManyWithoutCreatedByInput>
+}
+
+export type TenantScalarWhereInput = {
+  AND?: Prisma.TenantScalarWhereInput | Prisma.TenantScalarWhereInput[]
+  OR?: Prisma.TenantScalarWhereInput[]
+  NOT?: Prisma.TenantScalarWhereInput | Prisma.TenantScalarWhereInput[]
+  id?: Prisma.StringFilter<"Tenant"> | string
+  organizationId?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  nameEn?: Prisma.StringFilter<"Tenant"> | string
+  nameNe?: Prisma.StringFilter<"Tenant"> | string
+  subdomain?: Prisma.StringFilter<"Tenant"> | string
+  iemisCode?: Prisma.StringFilter<"Tenant"> | string
+  schoolCode?: Prisma.StringFilter<"Tenant"> | string
+  registrationNumber?: Prisma.StringFilter<"Tenant"> | string
+  panVatNumber?: Prisma.StringFilter<"Tenant"> | string
+  schoolType?: Prisma.EnumSchoolTypeFilter<"Tenant"> | $Enums.SchoolType
+  provinceCode?: Prisma.StringFilter<"Tenant"> | string
+  provinceNe?: Prisma.StringFilter<"Tenant"> | string
+  provinceEn?: Prisma.StringFilter<"Tenant"> | string
+  districtCode?: Prisma.StringFilter<"Tenant"> | string
+  districtNe?: Prisma.StringFilter<"Tenant"> | string
+  districtEn?: Prisma.StringFilter<"Tenant"> | string
+  municipalityCode?: Prisma.StringFilter<"Tenant"> | string
+  municipalityNe?: Prisma.StringFilter<"Tenant"> | string
+  municipalityEn?: Prisma.StringFilter<"Tenant"> | string
+  wardNumber?: Prisma.IntFilter<"Tenant"> | number
+  toleEn?: Prisma.StringFilter<"Tenant"> | string
+  toleNe?: Prisma.StringFilter<"Tenant"> | string
+  addressEn?: Prisma.StringFilter<"Tenant"> | string
+  addressNe?: Prisma.StringFilter<"Tenant"> | string
+  phone?: Prisma.StringFilter<"Tenant"> | string
+  email?: Prisma.StringFilter<"Tenant"> | string
+  website?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  logoUrl?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  establishedDateAd?: Prisma.DateTimeFilter<"Tenant"> | Date | string
+  establishedDateBs?: Prisma.StringFilter<"Tenant"> | string
+  motoEn?: Prisma.StringFilter<"Tenant"> | string
+  motoNe?: Prisma.StringFilter<"Tenant"> | string
+  latitude?: Prisma.FloatFilter<"Tenant"> | number
+  longitude?: Prisma.FloatFilter<"Tenant"> | number
+  status?: Prisma.EnumTenantStatusFilter<"Tenant"> | $Enums.TenantStatus
+  createdByPlatformUserId?: Prisma.StringFilter<"Tenant"> | string
+  createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+}
+
 export type TenantCreateWithoutOrganizationInput = {
   id?: string
   nameEn: string
@@ -2129,10 +2412,10 @@ export type TenantCreateWithoutOrganizationInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -2288,51 +2571,6 @@ export type TenantUpdateManyWithWhereWithoutOrganizationInput = {
   data: Prisma.XOR<Prisma.TenantUpdateManyMutationInput, Prisma.TenantUncheckedUpdateManyWithoutOrganizationInput>
 }
 
-export type TenantScalarWhereInput = {
-  AND?: Prisma.TenantScalarWhereInput | Prisma.TenantScalarWhereInput[]
-  OR?: Prisma.TenantScalarWhereInput[]
-  NOT?: Prisma.TenantScalarWhereInput | Prisma.TenantScalarWhereInput[]
-  id?: Prisma.StringFilter<"Tenant"> | string
-  organizationId?: Prisma.StringNullableFilter<"Tenant"> | string | null
-  nameEn?: Prisma.StringFilter<"Tenant"> | string
-  nameNe?: Prisma.StringFilter<"Tenant"> | string
-  subdomain?: Prisma.StringFilter<"Tenant"> | string
-  iemisCode?: Prisma.StringFilter<"Tenant"> | string
-  schoolCode?: Prisma.StringFilter<"Tenant"> | string
-  registrationNumber?: Prisma.StringFilter<"Tenant"> | string
-  panVatNumber?: Prisma.StringFilter<"Tenant"> | string
-  schoolType?: Prisma.EnumSchoolTypeFilter<"Tenant"> | $Enums.SchoolType
-  provinceCode?: Prisma.StringFilter<"Tenant"> | string
-  provinceNe?: Prisma.StringFilter<"Tenant"> | string
-  provinceEn?: Prisma.StringFilter<"Tenant"> | string
-  districtCode?: Prisma.StringFilter<"Tenant"> | string
-  districtNe?: Prisma.StringFilter<"Tenant"> | string
-  districtEn?: Prisma.StringFilter<"Tenant"> | string
-  municipalityCode?: Prisma.StringFilter<"Tenant"> | string
-  municipalityNe?: Prisma.StringFilter<"Tenant"> | string
-  municipalityEn?: Prisma.StringFilter<"Tenant"> | string
-  wardNumber?: Prisma.IntFilter<"Tenant"> | number
-  toleEn?: Prisma.StringFilter<"Tenant"> | string
-  toleNe?: Prisma.StringFilter<"Tenant"> | string
-  addressEn?: Prisma.StringFilter<"Tenant"> | string
-  addressNe?: Prisma.StringFilter<"Tenant"> | string
-  phone?: Prisma.StringFilter<"Tenant"> | string
-  email?: Prisma.StringFilter<"Tenant"> | string
-  website?: Prisma.StringNullableFilter<"Tenant"> | string | null
-  logoUrl?: Prisma.StringNullableFilter<"Tenant"> | string | null
-  establishedDateAd?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  establishedDateBs?: Prisma.StringFilter<"Tenant"> | string
-  motoEn?: Prisma.StringFilter<"Tenant"> | string
-  motoNe?: Prisma.StringFilter<"Tenant"> | string
-  latitude?: Prisma.FloatFilter<"Tenant"> | number
-  longitude?: Prisma.FloatFilter<"Tenant"> | number
-  status?: Prisma.EnumTenantStatusFilter<"Tenant"> | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFilter<"Tenant"> | string
-  createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
-}
-
 export type TenantCreateWithoutRolesInput = {
   id?: string
   nameEn: string
@@ -2368,11 +2606,11 @@ export type TenantCreateWithoutRolesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
@@ -2552,11 +2790,11 @@ export type TenantUpdateWithoutRolesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
@@ -2720,11 +2958,11 @@ export type TenantCreateWithoutTenantUsersInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
@@ -2904,11 +3142,11 @@ export type TenantUpdateWithoutTenantUsersInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
@@ -3072,11 +3310,11 @@ export type TenantCreateWithoutSubscriptionsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
@@ -3256,11 +3494,11 @@ export type TenantUpdateWithoutSubscriptionsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
@@ -3424,11 +3662,11 @@ export type TenantCreateWithoutInvoicesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -3608,11 +3846,11 @@ export type TenantUpdateWithoutInvoicesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -3776,11 +4014,11 @@ export type TenantCreateWithoutAcademicYearsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -3960,11 +4198,11 @@ export type TenantUpdateWithoutAcademicYearsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -4128,11 +4366,11 @@ export type TenantCreateWithoutStreamsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -4312,11 +4550,11 @@ export type TenantUpdateWithoutStreamsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -4480,11 +4718,11 @@ export type TenantCreateWithoutGradeLevelsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -4664,11 +4902,11 @@ export type TenantUpdateWithoutGradeLevelsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -4832,11 +5070,11 @@ export type TenantCreateWithoutSectionsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -5016,11 +5254,11 @@ export type TenantUpdateWithoutSectionsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -5184,11 +5422,11 @@ export type TenantCreateWithoutStaffProfilesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -5368,11 +5606,11 @@ export type TenantUpdateWithoutStaffProfilesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -5536,11 +5774,11 @@ export type TenantCreateWithoutSubjectsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -5720,11 +5958,11 @@ export type TenantUpdateWithoutSubjectsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -5888,11 +6126,11 @@ export type TenantCreateWithoutGradeSubjectsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -6072,11 +6310,11 @@ export type TenantUpdateWithoutGradeSubjectsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -6240,11 +6478,11 @@ export type TenantCreateWithoutStudentsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -6424,11 +6662,11 @@ export type TenantUpdateWithoutStudentsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -6592,11 +6830,11 @@ export type TenantCreateWithoutAddressesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -6776,11 +7014,11 @@ export type TenantUpdateWithoutAddressesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -6944,11 +7182,11 @@ export type TenantCreateWithoutGuardiansInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -7128,11 +7366,11 @@ export type TenantUpdateWithoutGuardiansInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -7296,11 +7534,11 @@ export type TenantCreateWithoutStudentEnrollmentsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -7480,11 +7718,11 @@ export type TenantUpdateWithoutStudentEnrollmentsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -7648,11 +7886,11 @@ export type TenantCreateWithoutTransferCertificatesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -7832,11 +8070,11 @@ export type TenantUpdateWithoutTransferCertificatesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -8000,11 +8238,11 @@ export type TenantCreateWithoutGradingScalesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -8184,11 +8422,11 @@ export type TenantUpdateWithoutGradingScalesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -8352,11 +8590,11 @@ export type TenantCreateWithoutExamsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -8536,11 +8774,11 @@ export type TenantUpdateWithoutExamsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -8704,11 +8942,11 @@ export type TenantCreateWithoutFiscalYearsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -8888,11 +9126,11 @@ export type TenantUpdateWithoutFiscalYearsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -9056,11 +9294,11 @@ export type TenantCreateWithoutFeeHeadsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -9240,11 +9478,11 @@ export type TenantUpdateWithoutFeeHeadsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -9408,11 +9646,11 @@ export type TenantCreateWithoutClassFeeStructuresInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -9592,11 +9830,11 @@ export type TenantUpdateWithoutClassFeeStructuresInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -9760,11 +9998,11 @@ export type TenantCreateWithoutScholarshipSchemesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -9944,11 +10182,11 @@ export type TenantUpdateWithoutScholarshipSchemesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -10112,11 +10350,11 @@ export type TenantCreateWithoutStudentScholarshipsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -10296,11 +10534,11 @@ export type TenantUpdateWithoutStudentScholarshipsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -10464,11 +10702,11 @@ export type TenantCreateWithoutFeeInvoicesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -10648,11 +10886,11 @@ export type TenantUpdateWithoutFeeInvoicesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -10816,11 +11054,11 @@ export type TenantCreateWithoutFeeInvoiceItemsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -11000,11 +11238,11 @@ export type TenantUpdateWithoutFeeInvoiceItemsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -11168,11 +11406,11 @@ export type TenantCreateWithoutFeePaymentsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -11352,11 +11590,11 @@ export type TenantUpdateWithoutFeePaymentsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -11520,11 +11758,11 @@ export type TenantCreateWithoutCreditNotesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -11704,11 +11942,11 @@ export type TenantUpdateWithoutCreditNotesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -11872,11 +12110,11 @@ export type TenantCreateWithoutTeacherSubjectAllocationsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -12056,11 +12294,11 @@ export type TenantUpdateWithoutTeacherSubjectAllocationsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -12224,11 +12462,11 @@ export type TenantCreateWithoutPayrollRunsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -12408,11 +12646,11 @@ export type TenantUpdateWithoutPayrollRunsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -12576,11 +12814,11 @@ export type TenantCreateWithoutSalarySlipsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -12760,11 +12998,11 @@ export type TenantUpdateWithoutSalarySlipsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -12928,11 +13166,11 @@ export type TenantCreateWithoutAcademicCalendarEventsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -13112,11 +13350,11 @@ export type TenantUpdateWithoutAcademicCalendarEventsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -13280,11 +13518,11 @@ export type TenantCreateWithoutStudentDailyAttendancesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -13464,11 +13702,11 @@ export type TenantUpdateWithoutStudentDailyAttendancesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -13632,11 +13870,11 @@ export type TenantCreateWithoutTimetableSlotsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -13816,11 +14054,11 @@ export type TenantUpdateWithoutTimetableSlotsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -13984,11 +14222,11 @@ export type TenantCreateWithoutTransportVehiclesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -14168,11 +14406,11 @@ export type TenantUpdateWithoutTransportVehiclesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -14336,11 +14574,11 @@ export type TenantCreateWithoutTransportRoutesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -14520,11 +14758,11 @@ export type TenantUpdateWithoutTransportRoutesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -14688,11 +14926,11 @@ export type TenantCreateWithoutTransportStopsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -14872,11 +15110,11 @@ export type TenantUpdateWithoutTransportStopsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -15040,11 +15278,11 @@ export type TenantCreateWithoutStudentTransportsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -15224,11 +15462,11 @@ export type TenantUpdateWithoutStudentTransportsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -15392,11 +15630,11 @@ export type TenantCreateWithoutLibraryBooksInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -15576,11 +15814,11 @@ export type TenantUpdateWithoutLibraryBooksInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -15744,11 +15982,11 @@ export type TenantCreateWithoutBookIssuesInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -15928,11 +16166,11 @@ export type TenantUpdateWithoutBookIssuesInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -16096,11 +16334,11 @@ export type TenantCreateWithoutHostelsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -16280,11 +16518,11 @@ export type TenantUpdateWithoutHostelsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -16448,11 +16686,11 @@ export type TenantCreateWithoutHostelRoomsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -16632,11 +16870,11 @@ export type TenantUpdateWithoutHostelRoomsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -16800,11 +17038,11 @@ export type TenantCreateWithoutHostelAllocationsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -16984,11 +17222,11 @@ export type TenantUpdateWithoutHostelAllocationsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -17152,11 +17390,11 @@ export type TenantCreateWithoutNotificationsInput = {
   latitude: number
   longitude: number
   status?: $Enums.TenantStatus
-  createdByPlatformUserId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
@@ -17336,11 +17574,11 @@ export type TenantUpdateWithoutNotificationsInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -17469,6 +17707,256 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
 }
 
+export type TenantCreateManyCreatedByInput = {
+  id?: string
+  organizationId?: string | null
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type TenantUpdateWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUncheckedUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUncheckedUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUncheckedUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUncheckedUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUncheckedUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUncheckedUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUncheckedUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUncheckedUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUncheckedUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUncheckedUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUncheckedUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUncheckedUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUncheckedUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateManyWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
 export type TenantCreateManyOrganizationInput = {
   id?: string
   nameEn: string
@@ -17545,10 +18033,10 @@ export type TenantUpdateWithoutOrganizationInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
-  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
@@ -18169,6 +18657,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   updatedAt?: boolean
   deletedAt?: boolean
   organization?: boolean | Prisma.Tenant$organizationArgs<ExtArgs>
+  createdBy?: boolean | Prisma.PlatformUserDefaultArgs<ExtArgs>
   roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
   tenantUsers?: boolean | Prisma.Tenant$tenantUsersArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Tenant$subscriptionsArgs<ExtArgs>
@@ -18256,6 +18745,7 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   deletedAt?: boolean
   organization?: boolean | Prisma.Tenant$organizationArgs<ExtArgs>
+  createdBy?: boolean | Prisma.PlatformUserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
 export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -18299,6 +18789,7 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   deletedAt?: boolean
   organization?: boolean | Prisma.Tenant$organizationArgs<ExtArgs>
+  createdBy?: boolean | Prisma.PlatformUserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
 export type TenantSelectScalar = {
@@ -18346,6 +18837,7 @@ export type TenantSelectScalar = {
 export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "nameEn" | "nameNe" | "subdomain" | "iemisCode" | "schoolCode" | "registrationNumber" | "panVatNumber" | "schoolType" | "provinceCode" | "provinceNe" | "provinceEn" | "districtCode" | "districtNe" | "districtEn" | "municipalityCode" | "municipalityNe" | "municipalityEn" | "wardNumber" | "toleEn" | "toleNe" | "addressEn" | "addressNe" | "phone" | "email" | "website" | "logoUrl" | "establishedDateAd" | "establishedDateBs" | "motoEn" | "motoNe" | "latitude" | "longitude" | "status" | "createdByPlatformUserId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.Tenant$organizationArgs<ExtArgs>
+  createdBy?: boolean | Prisma.PlatformUserDefaultArgs<ExtArgs>
   roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
   tenantUsers?: boolean | Prisma.Tenant$tenantUsersArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Tenant$subscriptionsArgs<ExtArgs>
@@ -18393,15 +18885,18 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.Tenant$organizationArgs<ExtArgs>
+  createdBy?: boolean | Prisma.PlatformUserDefaultArgs<ExtArgs>
 }
 export type TenantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.Tenant$organizationArgs<ExtArgs>
+  createdBy?: boolean | Prisma.PlatformUserDefaultArgs<ExtArgs>
 }
 
 export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tenant"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs> | null
+    createdBy: Prisma.$PlatformUserPayload<ExtArgs>
     roles: Prisma.$RolePayload<ExtArgs>[]
     tenantUsers: Prisma.$TenantUserPayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
@@ -18881,6 +19376,7 @@ readonly fields: TenantFieldRefs;
 export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.Tenant$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  createdBy<T extends Prisma.PlatformUserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUserDefaultArgs<ExtArgs>>): Prisma.Prisma__PlatformUserClient<runtime.Types.Result.GetResult<Prisma.$PlatformUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   roles<T extends Prisma.Tenant$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenantUsers<T extends Prisma.Tenant$tenantUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$tenantUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenantUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.Tenant$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
