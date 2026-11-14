@@ -1,0 +1,36 @@
+# Dependencies and build output
+node_modules
+dist
+build
+*.tsbuildinfo
+
+# Secrets — never bake these into an image layer
+.env
+.env.*
+!.env.example
+
+# Tests and coverage
+coverage
+.nyc_output
+test
+*.spec.ts
+
+# Tooling caches
+.npm
+.pnpm-store
+.vscode
+.idea
+
+# Runtime artefacts
+logs
+*.log
+pids
+*.pid
+*.seed
+.DS_Store
+
+# Local database backups
+.backups
+
+# The archived migration history is kept in the repository for reference only
+prisma/_migrations_archive

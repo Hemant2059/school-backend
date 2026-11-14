@@ -4,15 +4,17 @@ services:
     container_name: school-backend-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: johndoe
-      POSTGRES_PASSWORD: randompassword
-      POSTGRES_DB: mydb
+      # These defaults match the pre-existing local volume. Override them in
+      # a .env file (and recreate the volume) to change them.
+      POSTGRES_USER: ${POSTGRES_USER:-johndoe}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-randompassword}
+      POSTGRES_DB: ${POSTGRES_DB:-mydb}
     ports:
-      - "5433:5432"
+      - "${POSTGRES_PORT:-5433}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U johndoe -d mydb"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-johndoe} -d ${POSTGRES_DB:-mydb}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -27,14 +29,21 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: "postgresql://johndoe:randompassword@postgres:5432/mydb?schema=public"
+      NODE_ENV: ${NODE_ENV:-production}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-johndoe}:${POSTGRES_PASSWORD:-randompassword}@postgres:5432/${POSTGRES_DB:-mydb}?schema=public
       PORT: "3000"
-      JWT_SECRET: "dev-access-secret-change-in-production"
-      JWT_REFRESH_SECRET: "dev-refresh-secret-change-in-production"
-      JWT_EXPIRES_IN: "2h"
-      JWT_REFRESH_EXPIRES_IN: "7d"
+      # These must be supplied; the application refuses to start without them.
+      # Generate with: openssl rand -base64 48
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?JWT_REFRESH_SECRET must be set}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-15m}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      SWAGGER_ENABLED: ${SWAGGER_ENABLED:-false}
+      THROTTLE_TTL: ${THROTTLE_TTL:-60000}
+      THROTTLE_LIMIT: ${THROTTLE_LIMIT:-300}
     ports:
-      - "3000:3000"
+      - "${APP_PORT:-3000}:3000"
 
 volumes:
   postgres_data:
