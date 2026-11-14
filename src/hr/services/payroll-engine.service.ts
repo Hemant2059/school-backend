@@ -1,7 +1,7 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { MaritalStatusForTax, PayrollRunStatus, Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
-import { money, toDecimal } from '../../common/utils/money.js';
+import { money } from '../../common/utils/money.js';
 
 /**
  * Nepal's statutory payroll rules.

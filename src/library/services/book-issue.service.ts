@@ -100,7 +100,7 @@ export class BookIssueService {
   }
 
   async update(tenantId: string, id: string, dto: any) {
-    const issue = await this.findOne(tenantId, id);
+    await this.findOne(tenantId, id);
     return this.prisma.bookIssue.update({
       where: { id },
       data: dto,

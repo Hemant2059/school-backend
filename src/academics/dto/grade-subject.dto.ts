@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsNumber, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
+import { IsBoolean, IsInt, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
 import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateGradeSubjectDto {

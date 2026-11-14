@@ -9,7 +9,10 @@ import type { AuthenticatedPrincipal } from '../types/principal.js';
  * any type safety).
  */
 export const CurrentUser = createParamDecorator(
-  (data: keyof AuthenticatedPrincipal | undefined, ctx: ExecutionContext): AuthenticatedPrincipal | any => {
+  (
+    data: keyof AuthenticatedPrincipal | undefined,
+    ctx: ExecutionContext,
+  ): AuthenticatedPrincipal | AuthenticatedPrincipal[keyof AuthenticatedPrincipal] => {
     const request = ctx.switchToHttp().getRequest();
     const user = request.user as AuthenticatedPrincipal;
     return data ? user?.[data] : user;

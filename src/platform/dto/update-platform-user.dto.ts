@@ -1,16 +1,5 @@
 import { PlatformUserStatus } from '../../generated/prisma/client.js';
-import {
-  IsArray,
-  IsBoolean,
-  IsEmail,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsString,
-  Matches,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsEnum, IsOptional, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class UpdatePlatformUserDto {

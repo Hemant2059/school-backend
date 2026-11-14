@@ -1,5 +1,5 @@
 import { SubscriptionStatus } from '../../generated/prisma/client.js';
-import { IsBoolean, IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsDate, IsEnum, IsOptional, IsUUID } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PaginationQueryDto } from '../../platform/dto/pagination.dto.js';
 import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';

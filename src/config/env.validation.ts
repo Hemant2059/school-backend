@@ -30,6 +30,13 @@ class EnvValidationError extends Error {
   }
 }
 
+/** Reads an environment value as a string, or undefined. */
+function asString(value: unknown): string | undefined {
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  return undefined;
+}
+
 function requireString(raw: Record<string, unknown>, key: string, problems: string[]): string {
   const value = raw[key];
   if (typeof value !== 'string' || value.trim().length === 0) {
@@ -41,7 +48,7 @@ function requireString(raw: Record<string, unknown>, key: string, problems: stri
 
 export function validateEnv(raw: Record<string, unknown>): AppEnv {
   const problems: string[] = [];
-  const nodeEnv = (raw.NODE_ENV ?? 'development').toString();
+  const nodeEnv = asString(raw['NODE_ENV']) ?? 'development';
   const isProduction = nodeEnv === 'production';
 
   const databaseUrl = requireString(raw, 'DATABASE_URL', problems);
@@ -84,10 +91,10 @@ export function validateEnv(raw: Record<string, unknown>): AppEnv {
     DATABASE_URL: databaseUrl,
     JWT_SECRET: jwtSecret,
     JWT_REFRESH_SECRET: jwtRefreshSecret,
-    JWT_EXPIRES_IN: (raw.JWT_EXPIRES_IN ?? '15m').toString(),
-    JWT_REFRESH_EXPIRES_IN: (raw.JWT_REFRESH_EXPIRES_IN ?? '7d').toString(),
-    CORS_ORIGINS: raw.CORS_ORIGINS?.toString(),
-    SWAGGER_ENABLED: raw.SWAGGER_ENABLED?.toString(),
+    JWT_EXPIRES_IN: asString(raw['JWT_EXPIRES_IN']) ?? '15m',
+    JWT_REFRESH_EXPIRES_IN: asString(raw['JWT_REFRESH_EXPIRES_IN']) ?? '7d',
+    CORS_ORIGINS: asString(raw['CORS_ORIGINS']),
+    SWAGGER_ENABLED: asString(raw['SWAGGER_ENABLED']),
     THROTTLE_TTL: Number(raw.THROTTLE_TTL ?? 60000),
     THROTTLE_LIMIT: Number(raw.THROTTLE_LIMIT ?? 100),
     ...(isProduction ? {} : {}),

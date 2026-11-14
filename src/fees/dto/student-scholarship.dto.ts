@@ -1,5 +1,5 @@
 import { DiscountType } from '../../generated/prisma/client.js';
-import { IsEnum, IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
 
 export class CreateStudentScholarshipDto {
   @IsUUID() enrollmentId!: string;

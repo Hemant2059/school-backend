@@ -1,5 +1,5 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { Prisma } from '../../generated/prisma/client.js';
+
 import { PrismaService } from '../../prisma.service.js';
 import { paginatedQuery } from '../../common/utils/paginated-query.js';
 

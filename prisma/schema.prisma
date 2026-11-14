@@ -317,6 +317,12 @@ model User {
   refreshTokenHash      String?
   refreshTokenExpiresAt DateTime?
 
+  /// Brute-force protection for the school login. The platform account
+  /// already had these; the school account did not, so `/tenant/auth/login`
+  /// was an unlimited guessing oracle.
+  failedLoginAttempts Int       @default(0)
+  lockedUntil         DateTime?
+
   createdAt               DateTime                 @default(now())
   updatedAt               DateTime                 @updatedAt
   deletedAt               DateTime?

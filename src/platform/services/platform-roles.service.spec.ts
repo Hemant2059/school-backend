@@ -1,7 +1,7 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { PlatformRolesService } from './platform-roles.service.js';
-import { Prisma } from '../../generated/prisma/client.js';
+
 
 function makePrisma() {
   return {

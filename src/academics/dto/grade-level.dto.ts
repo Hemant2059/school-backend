@@ -1,5 +1,5 @@
 import { EvaluationType } from '../../generated/prisma/client.js';
-import { IsEnum, IsInt, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { IsEnum, IsInt, IsOptional, IsString, IsUUID, MaxLength, Min, MinLength } from 'class-validator';
 
 export class CreateGradeLevelDto {
   @IsOptional() @IsUUID() streamId?: string;

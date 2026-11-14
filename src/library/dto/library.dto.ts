@@ -1,5 +1,5 @@
 import { BookIssueStatus } from '../../generated/prisma/client.js';
-import { IsDate, IsEnum, IsInt, IsNumber, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { IsDate, IsEnum, IsInt, IsNumber, IsOptional, IsString, IsUUID, MaxLength, Min, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateLibraryBookDto {

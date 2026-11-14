@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { PrismaService } from '../../prisma.service.js';
 import { ExamResultService } from './exam-result.service.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
+import type { UpdateStudentExamSummaryDto } from '../dto/student-exam-summary.dto.js';
 
 @Injectable()
 export class StudentExamSummaryService {
@@ -17,11 +18,11 @@ export class StudentExamSummaryService {
    * `rankInSection`, `rankInGrade` and the attendance counters directly.
    * Those fields are now derived from the recorded marks.
    */
-  async create(tenantId: string, dto: any) {
-    if (!dto.examId || !dto.enrollmentId) {
+  async create(tenantId: string, _dto: any) {
+    if (!_dto.examId || !_dto.enrollmentId) {
       throw new BadRequestException('examId and enrollmentId are required');
     }
-    return this.results.persistSummary(tenantId, dto.examId, dto.enrollmentId);
+    return this.results.persistSummary(tenantId, _dto.examId, _dto.enrollmentId);
   }
 
   async findAll(tenantId: string, query: Record<string, any> = {}) {
@@ -58,11 +59,21 @@ export class StudentExamSummaryService {
    * Recomputes a summary. The stored values are always overwritten with the
    * computed ones — they are never edited by hand.
    */
-  async update(tenantId: string, id: string, dto: any) {
+  async update(tenantId: string, id: string, dto: UpdateStudentExamSummaryDto) {
     const summary = await this.prisma.studentExamSummary.findFirst({
       where: { id, tenantId },
     });
     if (!summary) throw new NotFoundException('Student exam summary not found');
+
+    // The class teacher's remark is the only field that may be edited by
+    // hand; every computed value is refreshed from the marks.
+    if (dto.classTeacherRemarks !== undefined) {
+      await this.prisma.studentExamSummary.update({
+        where: { id },
+        data: { classTeacherRemarks: dto.classTeacherRemarks },
+      });
+    }
+
     return this.results.persistSummary(tenantId, summary.examId, summary.enrollmentId);
   }
 

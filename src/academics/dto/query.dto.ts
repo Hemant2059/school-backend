@@ -1,5 +1,5 @@
 import { IsOptional, IsString } from 'class-validator';
-import { Type } from 'class-transformer';
+
 import { PaginationQueryDto } from '../../platform/dto/pagination.dto.js';
 
 export class QueryStreamsDto extends PaginationQueryDto {

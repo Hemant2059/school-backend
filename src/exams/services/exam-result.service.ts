@@ -273,7 +273,6 @@ export class ExamResultService {
     const results = [];
     for (const enrollment of enrollments) {
       const persisted = await this.persistSummary(tenantId, examId, enrollment.id);
-      const rank = computed.find((c) => c.enrollmentId === enrollment.id)!;
       const updated = await this.prisma.studentExamSummary.update({
         where: { examId_enrollmentId: { examId, enrollmentId: enrollment.id } },
         data: {

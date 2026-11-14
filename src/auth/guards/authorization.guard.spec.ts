@@ -17,7 +17,7 @@ function makeContext(options: {
 }): ExecutionContext {
   const handler = () => undefined;
   const cls = class {};
-  const reflector = new Reflector();
+  const _reflector = new Reflector();
   const metadata = (key: string, value: unknown) =>
     (Reflect as any).defineMetadata
       ? (Reflect as any).defineMetadata(key, value, handler)

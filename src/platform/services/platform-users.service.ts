@@ -63,6 +63,11 @@ export class PlatformUsersService {
     }
   }
 
+  /** Generates a strong temporary password, for handing over to a user. */
+  generateTemporaryPassword(): string {
+    return generateTemporaryPassword();
+  }
+
   async findAll(query: any) {
     const { page, limit, skip, take } = resolvePagination(query);
     const where: Prisma.PlatformUserWhereInput = {};
@@ -316,11 +321,11 @@ export class PlatformUsersService {
 }
 
 /**
- * Generates a strong temporary password for a newly invited platform user.
+ * Generates a strong temporary password for an invited user.
  * It contains upper case, lower case, digits and symbols so it satisfies
  * any reasonable password policy.
  */
-function generateTemporaryPassword(): string {
+export function generateTemporaryPassword(): string {
   const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
   const lower = 'abcdefghijkmnopqrstuvwxyz';
   const digits = '23456789';

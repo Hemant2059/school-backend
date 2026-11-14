@@ -1,5 +1,5 @@
 import { AddressEntityType, AddressFormat, AddressType } from '../../generated/prisma/client.js';
-import { IsBoolean, IsEnum, IsInt, IsOptional, IsString, IsUUID, Max, MaxLength, Min } from 'class-validator';
+import { IsEnum, IsInt, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
 
 export class CreateAddressDto {
   @IsEnum(AddressEntityType) entityType!: AddressEntityType;

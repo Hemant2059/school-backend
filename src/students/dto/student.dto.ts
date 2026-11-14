@@ -1,5 +1,5 @@
 import { DisabilityType, Gender } from '../../generated/prisma/client.js';
-import { IsBoolean, IsDate, IsEnum, IsInt, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsDate, IsEnum, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
 import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 

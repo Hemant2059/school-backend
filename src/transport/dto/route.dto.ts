@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { IsNumber, IsOptional, IsString, IsUUID, MaxLength, Min, MinLength } from 'class-validator';
 
 export class CreateRouteDto {
   @IsOptional() @IsUUID() vehicleId?: string;

@@ -28,9 +28,15 @@ export class TenantAuthService {
     const hash = user?.passwordHash ?? DUMMY_HASH;
     const valid = await bcrypt.compare(password, hash);
     if (!user || !user.passwordHash || !valid) {
+      if (user) {
+        await this.registerFailedAttempt(user.id, user.failedLoginAttempts, user.lockedUntil);
+      }
       throw new UnauthorizedException('Invalid credentials');
     }
     if (user.status !== 'ACTIVE') throw new UnauthorizedException('User is not active');
+    if (user.lockedUntil && user.lockedUntil > new Date()) {
+      throw new UnauthorizedException('Account is temporarily locked. Try again later.');
+    }
 
     let membership;
     if (tenantId) {
@@ -57,7 +63,10 @@ export class TenantAuthService {
       );
     }
 
-    await this.prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } });
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: { lastLoginAt: new Date(), failedLoginAttempts: 0, lockedUntil: null },
+    });
 
     return this.issueTokens(user, membership);
   }
@@ -150,6 +159,29 @@ export class TenantAuthService {
       roles: membership.roles.map((r) => r.role.name),
       permissions: Array.from(permissionSet),
     };
+  }
+
+  /**
+   * Counts a failed attempt and locks the account once the threshold is
+   * reached, so the tenant login is not an unlimited guessing oracle.
+   */
+  private async registerFailedAttempt(
+    userId: string,
+    currentAttempts: number,
+    lockedUntil: Date | null,
+  ): Promise<void> {
+    const attempts = (currentAttempts ?? 0) + 1;
+    const shouldLock = attempts >= MAX_FAILED_LOGIN_ATTEMPTS;
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        failedLoginAttempts: attempts,
+        lockedUntil: shouldLock ? new Date(Date.now() + LOCK_DURATION_MS) : lockedUntil,
+      },
+    });
+    if (shouldLock) {
+      this.logger.warn(`Locked school account ${userId} after ${attempts} failed attempts`);
+    }
   }
 
   private async issueTokens(user: any, membership: any) {

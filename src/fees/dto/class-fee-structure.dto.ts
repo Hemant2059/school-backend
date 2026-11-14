@@ -1,4 +1,4 @@
-import { IsArray, IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
+import { IsArray, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
 
 export class CreateClassFeeStructureDto {
   @IsUUID() academicYearId!: string;

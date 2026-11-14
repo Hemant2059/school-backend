@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Query } from '@nestjs/common';
 import { PlatformUsersService } from '../services/platform-users.service.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
 import { CreatePlatformUserDto } from '../dto/create-platform-user.dto.js';

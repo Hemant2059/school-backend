@@ -148,6 +148,27 @@ export class TenantUserService {
     });
   }
 
+  /**
+   * Sets a new password for the linked global identity and invalidates the
+   * existing sessions.
+   *
+   * Only the platform may call this: `User` is shared between tenants, so a
+   * tenant-scoped password reset would be a cross-tenant account takeover.
+   */
+  async resetPassword(userId: string, password: string) {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        passwordHash: await bcrypt.hash(password, 12),
+        refreshTokenHash: null,
+        refreshTokenExpiresAt: null,
+        failedLoginAttempts: 0,
+        lockedUntil: null,
+      },
+    });
+    return { reset: true };
+  }
+
   async assignRoles(tenantId: string, id: string, roleNames: string[]) {
     await this.findOne(tenantId, id);
     const roleIds = await this.resolveRoleIds(tenantId, roleNames);

@@ -96,7 +96,18 @@ export class TimetableService {
     }
 
     return this.prisma.timetableSlot.create({
-      data: { ...dto, tenantId },
+      // Written out explicitly rather than spread: the DTO is a class
+      // instance, and Prisma needs a plain object.
+      data: {
+        sectionId: dto.sectionId,
+        dayOfWeek: dto.dayOfWeek,
+        periodNo: dto.periodNo,
+        startTime: dto.startTime,
+        endTime: dto.endTime,
+        subjectId: dto.subjectId,
+        staffId: dto.staffId,
+        tenantId,
+      },
       include: { subject: true, staff: true, section: true },
     });
   }
