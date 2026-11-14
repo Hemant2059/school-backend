@@ -20,8 +20,22 @@ export type StaffProfileModel = runtime.Types.Result.DefaultSelection<Prisma.$St
 
 export type AggregateStaffProfile = {
   _count: StaffProfileCountAggregateOutputType | null
+  _avg: StaffProfileAvgAggregateOutputType | null
+  _sum: StaffProfileSumAggregateOutputType | null
   _min: StaffProfileMinAggregateOutputType | null
   _max: StaffProfileMaxAggregateOutputType | null
+}
+
+export type StaffProfileAvgAggregateOutputType = {
+  basicSalary: runtime.Decimal | null
+  gradeAllowance: runtime.Decimal | null
+  dearnessAllowance: runtime.Decimal | null
+}
+
+export type StaffProfileSumAggregateOutputType = {
+  basicSalary: runtime.Decimal | null
+  gradeAllowance: runtime.Decimal | null
+  dearnessAllowance: runtime.Decimal | null
 }
 
 export type StaffProfileMinAggregateOutputType = {
@@ -49,6 +63,9 @@ export type StaffProfileMinAggregateOutputType = {
   citNumber: string | null
   ssfNumber: string | null
   bankAccountNo: string | null
+  basicSalary: runtime.Decimal | null
+  gradeAllowance: runtime.Decimal | null
+  dearnessAllowance: runtime.Decimal | null
   maritalStatusForTax: $Enums.MaritalStatusForTax | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -80,6 +97,9 @@ export type StaffProfileMaxAggregateOutputType = {
   citNumber: string | null
   ssfNumber: string | null
   bankAccountNo: string | null
+  basicSalary: runtime.Decimal | null
+  gradeAllowance: runtime.Decimal | null
+  dearnessAllowance: runtime.Decimal | null
   maritalStatusForTax: $Enums.MaritalStatusForTax | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -111,6 +131,9 @@ export type StaffProfileCountAggregateOutputType = {
   citNumber: number
   ssfNumber: number
   bankAccountNo: number
+  basicSalary: number
+  gradeAllowance: number
+  dearnessAllowance: number
   maritalStatusForTax: number
   createdAt: number
   updatedAt: number
@@ -118,6 +141,18 @@ export type StaffProfileCountAggregateOutputType = {
   _all: number
 }
 
+
+export type StaffProfileAvgAggregateInputType = {
+  basicSalary?: true
+  gradeAllowance?: true
+  dearnessAllowance?: true
+}
+
+export type StaffProfileSumAggregateInputType = {
+  basicSalary?: true
+  gradeAllowance?: true
+  dearnessAllowance?: true
+}
 
 export type StaffProfileMinAggregateInputType = {
   id?: true
@@ -144,6 +179,9 @@ export type StaffProfileMinAggregateInputType = {
   citNumber?: true
   ssfNumber?: true
   bankAccountNo?: true
+  basicSalary?: true
+  gradeAllowance?: true
+  dearnessAllowance?: true
   maritalStatusForTax?: true
   createdAt?: true
   updatedAt?: true
@@ -175,6 +213,9 @@ export type StaffProfileMaxAggregateInputType = {
   citNumber?: true
   ssfNumber?: true
   bankAccountNo?: true
+  basicSalary?: true
+  gradeAllowance?: true
+  dearnessAllowance?: true
   maritalStatusForTax?: true
   createdAt?: true
   updatedAt?: true
@@ -206,6 +247,9 @@ export type StaffProfileCountAggregateInputType = {
   citNumber?: true
   ssfNumber?: true
   bankAccountNo?: true
+  basicSalary?: true
+  gradeAllowance?: true
+  dearnessAllowance?: true
   maritalStatusForTax?: true
   createdAt?: true
   updatedAt?: true
@@ -251,6 +295,18 @@ export type StaffProfileAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: StaffProfileAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: StaffProfileSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: StaffProfileMinAggregateInputType
@@ -281,6 +337,8 @@ export type StaffProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: StaffProfileCountAggregateInputType | true
+  _avg?: StaffProfileAvgAggregateInputType
+  _sum?: StaffProfileSumAggregateInputType
   _min?: StaffProfileMinAggregateInputType
   _max?: StaffProfileMaxAggregateInputType
 }
@@ -310,11 +368,16 @@ export type StaffProfileGroupByOutputType = {
   citNumber: string | null
   ssfNumber: string | null
   bankAccountNo: string | null
+  basicSalary: runtime.Decimal | null
+  gradeAllowance: runtime.Decimal | null
+  dearnessAllowance: runtime.Decimal | null
   maritalStatusForTax: $Enums.MaritalStatusForTax | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   _count: StaffProfileCountAggregateOutputType | null
+  _avg: StaffProfileAvgAggregateOutputType | null
+  _sum: StaffProfileSumAggregateOutputType | null
   _min: StaffProfileMinAggregateOutputType | null
   _max: StaffProfileMaxAggregateOutputType | null
 }
@@ -362,6 +425,9 @@ export type StaffProfileWhereInput = {
   citNumber?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
   ssfNumber?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
   bankAccountNo?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
+  basicSalary?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.EnumMaritalStatusForTaxNullableFilter<"StaffProfile"> | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFilter<"StaffProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StaffProfile"> | Date | string
@@ -400,6 +466,9 @@ export type StaffProfileOrderByWithRelationInput = {
   citNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   ssfNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   bankAccountNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  basicSalary?: Prisma.SortOrderInput | Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrderInput | Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrderInput | Prisma.SortOrder
   maritalStatusForTax?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -441,6 +510,9 @@ export type StaffProfileWhereUniqueInput = Prisma.AtLeast<{
   citNumber?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
   ssfNumber?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
   bankAccountNo?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
+  basicSalary?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.EnumMaritalStatusForTaxNullableFilter<"StaffProfile"> | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFilter<"StaffProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StaffProfile"> | Date | string
@@ -479,13 +551,18 @@ export type StaffProfileOrderByWithAggregationInput = {
   citNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   ssfNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   bankAccountNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  basicSalary?: Prisma.SortOrderInput | Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrderInput | Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrderInput | Prisma.SortOrder
   maritalStatusForTax?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StaffProfileCountOrderByAggregateInput
+  _avg?: Prisma.StaffProfileAvgOrderByAggregateInput
   _max?: Prisma.StaffProfileMaxOrderByAggregateInput
   _min?: Prisma.StaffProfileMinOrderByAggregateInput
+  _sum?: Prisma.StaffProfileSumOrderByAggregateInput
 }
 
 export type StaffProfileScalarWhereWithAggregatesInput = {
@@ -516,6 +593,9 @@ export type StaffProfileScalarWhereWithAggregatesInput = {
   citNumber?: Prisma.StringNullableWithAggregatesFilter<"StaffProfile"> | string | null
   ssfNumber?: Prisma.StringNullableWithAggregatesFilter<"StaffProfile"> | string | null
   bankAccountNo?: Prisma.StringNullableWithAggregatesFilter<"StaffProfile"> | string | null
+  basicSalary?: Prisma.DecimalNullableWithAggregatesFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.DecimalNullableWithAggregatesFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.DecimalNullableWithAggregatesFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.EnumMaritalStatusForTaxNullableWithAggregatesFilter<"StaffProfile"> | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StaffProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StaffProfile"> | Date | string
@@ -546,6 +626,9 @@ export type StaffProfileCreateInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -584,6 +667,9 @@ export type StaffProfileUncheckedCreateInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -620,6 +706,9 @@ export type StaffProfileUpdateInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -658,6 +747,9 @@ export type StaffProfileUncheckedUpdateInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -695,6 +787,9 @@ export type StaffProfileCreateManyInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -725,6 +820,9 @@ export type StaffProfileUpdateManyMutationInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -756,6 +854,9 @@ export type StaffProfileUncheckedUpdateManyInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -802,10 +903,19 @@ export type StaffProfileCountOrderByAggregateInput = {
   citNumber?: Prisma.SortOrder
   ssfNumber?: Prisma.SortOrder
   bankAccountNo?: Prisma.SortOrder
+  basicSalary?: Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrder
   maritalStatusForTax?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type StaffProfileAvgOrderByAggregateInput = {
+  basicSalary?: Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrder
 }
 
 export type StaffProfileMaxOrderByAggregateInput = {
@@ -833,6 +943,9 @@ export type StaffProfileMaxOrderByAggregateInput = {
   citNumber?: Prisma.SortOrder
   ssfNumber?: Prisma.SortOrder
   bankAccountNo?: Prisma.SortOrder
+  basicSalary?: Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrder
   maritalStatusForTax?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -864,10 +977,19 @@ export type StaffProfileMinOrderByAggregateInput = {
   citNumber?: Prisma.SortOrder
   ssfNumber?: Prisma.SortOrder
   bankAccountNo?: Prisma.SortOrder
+  basicSalary?: Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrder
   maritalStatusForTax?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type StaffProfileSumOrderByAggregateInput = {
+  basicSalary?: Prisma.SortOrder
+  gradeAllowance?: Prisma.SortOrder
+  dearnessAllowance?: Prisma.SortOrder
 }
 
 export type StaffProfileScalarRelationFilter = {
@@ -947,6 +1069,14 @@ export type NullableEnumEmploymentTypeFieldUpdateOperationsInput = {
 
 export type NullableEnumTeacherTrainingStatusFieldUpdateOperationsInput = {
   set?: $Enums.TeacherTrainingStatus | null
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput = {
@@ -1051,6 +1181,9 @@ export type StaffProfileCreateWithoutTenantInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1087,6 +1220,9 @@ export type StaffProfileUncheckedCreateWithoutTenantInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1153,6 +1289,9 @@ export type StaffProfileScalarWhereInput = {
   citNumber?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
   ssfNumber?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
   bankAccountNo?: Prisma.StringNullableFilter<"StaffProfile"> | string | null
+  basicSalary?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.DecimalNullableFilter<"StaffProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.EnumMaritalStatusForTaxNullableFilter<"StaffProfile"> | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFilter<"StaffProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StaffProfile"> | Date | string
@@ -1183,6 +1322,9 @@ export type StaffProfileCreateWithoutSectionsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1220,6 +1362,9 @@ export type StaffProfileUncheckedCreateWithoutSectionsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1271,6 +1416,9 @@ export type StaffProfileUpdateWithoutSectionsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1308,6 +1456,9 @@ export type StaffProfileUncheckedUpdateWithoutSectionsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1343,6 +1494,9 @@ export type StaffProfileCreateWithoutTeacherSubjectAllocationsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1380,6 +1534,9 @@ export type StaffProfileUncheckedCreateWithoutTeacherSubjectAllocationsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1431,6 +1588,9 @@ export type StaffProfileUpdateWithoutTeacherSubjectAllocationsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1468,6 +1628,9 @@ export type StaffProfileUncheckedUpdateWithoutTeacherSubjectAllocationsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1503,6 +1666,9 @@ export type StaffProfileCreateWithoutSalarySlipsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1540,6 +1706,9 @@ export type StaffProfileUncheckedCreateWithoutSalarySlipsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1591,6 +1760,9 @@ export type StaffProfileUpdateWithoutSalarySlipsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1628,6 +1800,9 @@ export type StaffProfileUncheckedUpdateWithoutSalarySlipsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1663,6 +1838,9 @@ export type StaffProfileCreateWithoutTimetableSlotsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1700,6 +1878,9 @@ export type StaffProfileUncheckedCreateWithoutTimetableSlotsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1751,6 +1932,9 @@ export type StaffProfileUpdateWithoutTimetableSlotsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1788,6 +1972,9 @@ export type StaffProfileUncheckedUpdateWithoutTimetableSlotsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1823,6 +2010,9 @@ export type StaffProfileCreateWithoutTransportVehiclesInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1860,6 +2050,9 @@ export type StaffProfileUncheckedCreateWithoutTransportVehiclesInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1911,6 +2104,9 @@ export type StaffProfileUpdateWithoutTransportVehiclesInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1948,6 +2144,9 @@ export type StaffProfileUncheckedUpdateWithoutTransportVehiclesInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1983,6 +2182,9 @@ export type StaffProfileCreateWithoutHostelsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2020,6 +2222,9 @@ export type StaffProfileUncheckedCreateWithoutHostelsInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2071,6 +2276,9 @@ export type StaffProfileUpdateWithoutHostelsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2108,6 +2316,9 @@ export type StaffProfileUncheckedUpdateWithoutHostelsInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2143,6 +2354,9 @@ export type StaffProfileCreateManyTenantInput = {
   citNumber?: string | null
   ssfNumber?: string | null
   bankAccountNo?: string | null
+  basicSalary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: $Enums.MaritalStatusForTax | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2173,6 +2387,9 @@ export type StaffProfileUpdateWithoutTenantInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2209,6 +2426,9 @@ export type StaffProfileUncheckedUpdateWithoutTenantInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2245,6 +2465,9 @@ export type StaffProfileUncheckedUpdateManyWithoutTenantInput = {
   citNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ssfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  basicSalary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gradeAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dearnessAllowance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maritalStatusForTax?: Prisma.NullableEnumMaritalStatusForTaxFieldUpdateOperationsInput | $Enums.MaritalStatusForTax | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2352,6 +2575,9 @@ export type StaffProfileSelect<ExtArgs extends runtime.Types.Extensions.Internal
   citNumber?: boolean
   ssfNumber?: boolean
   bankAccountNo?: boolean
+  basicSalary?: boolean
+  gradeAllowance?: boolean
+  dearnessAllowance?: boolean
   maritalStatusForTax?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -2391,6 +2617,9 @@ export type StaffProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   citNumber?: boolean
   ssfNumber?: boolean
   bankAccountNo?: boolean
+  basicSalary?: boolean
+  gradeAllowance?: boolean
+  dearnessAllowance?: boolean
   maritalStatusForTax?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -2423,6 +2652,9 @@ export type StaffProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   citNumber?: boolean
   ssfNumber?: boolean
   bankAccountNo?: boolean
+  basicSalary?: boolean
+  gradeAllowance?: boolean
+  dearnessAllowance?: boolean
   maritalStatusForTax?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -2455,13 +2687,16 @@ export type StaffProfileSelectScalar = {
   citNumber?: boolean
   ssfNumber?: boolean
   bankAccountNo?: boolean
+  basicSalary?: boolean
+  gradeAllowance?: boolean
+  dearnessAllowance?: boolean
   maritalStatusForTax?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type StaffProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "userId" | "employeeCode" | "iemisTeacherId" | "firstNameEn" | "firstNameNe" | "middleNameEn" | "middleNameNe" | "lastNameEn" | "lastNameNe" | "gender" | "casteEthnicityCode" | "casteEthnicity" | "staffCategory" | "employmentType" | "teachingLicenseNo" | "highestQualification" | "teacherTrainingStatus" | "panNumber" | "pfNumber" | "citNumber" | "ssfNumber" | "bankAccountNo" | "maritalStatusForTax" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["staffProfile"]>
+export type StaffProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "userId" | "employeeCode" | "iemisTeacherId" | "firstNameEn" | "firstNameNe" | "middleNameEn" | "middleNameNe" | "lastNameEn" | "lastNameNe" | "gender" | "casteEthnicityCode" | "casteEthnicity" | "staffCategory" | "employmentType" | "teachingLicenseNo" | "highestQualification" | "teacherTrainingStatus" | "panNumber" | "pfNumber" | "citNumber" | "ssfNumber" | "bankAccountNo" | "basicSalary" | "gradeAllowance" | "dearnessAllowance" | "maritalStatusForTax" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["staffProfile"]>
 export type StaffProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   sections?: boolean | Prisma.StaffProfile$sectionsArgs<ExtArgs>
@@ -2515,6 +2750,13 @@ export type $StaffProfilePayload<ExtArgs extends runtime.Types.Extensions.Intern
     citNumber: string | null
     ssfNumber: string | null
     bankAccountNo: string | null
+    /**
+     * The staff member's agreed monthly package. The payroll engine reads
+     * these to compute the gross, the statutory deductions and the net.
+     */
+    basicSalary: runtime.Decimal | null
+    gradeAllowance: runtime.Decimal | null
+    dearnessAllowance: runtime.Decimal | null
     maritalStatusForTax: $Enums.MaritalStatusForTax | null
     createdAt: Date
     updatedAt: Date
@@ -2973,6 +3215,9 @@ export interface StaffProfileFieldRefs {
   readonly citNumber: Prisma.FieldRef<"StaffProfile", 'String'>
   readonly ssfNumber: Prisma.FieldRef<"StaffProfile", 'String'>
   readonly bankAccountNo: Prisma.FieldRef<"StaffProfile", 'String'>
+  readonly basicSalary: Prisma.FieldRef<"StaffProfile", 'Decimal'>
+  readonly gradeAllowance: Prisma.FieldRef<"StaffProfile", 'Decimal'>
+  readonly dearnessAllowance: Prisma.FieldRef<"StaffProfile", 'Decimal'>
   readonly maritalStatusForTax: Prisma.FieldRef<"StaffProfile", 'MaritalStatusForTax'>
   readonly createdAt: Prisma.FieldRef<"StaffProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StaffProfile", 'DateTime'>

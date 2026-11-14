@@ -796,6 +796,12 @@ model StaffProfile {
   ssfNumber     String?
   bankAccountNo String?
 
+  /// The staff member's agreed monthly package. The payroll engine reads
+  /// these to compute the gross, the statutory deductions and the net.
+  basicSalary       Decimal? @db.Decimal(12, 2)
+  gradeAllowance    Decimal? @db.Decimal(12, 2)
+  dearnessAllowance Decimal? @db.Decimal(12, 2)
+
   maritalStatusForTax MaritalStatusForTax?
 
   tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
@@ -1491,9 +1497,9 @@ model StudentScholarship {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([enrollmentId, feeHeadId])
   @@index([tenantId])
   @@index([enrollmentId])
-  @@unique([enrollmentId, feeHeadId])
 }
 
 enum FeeInvoiceStatus {
@@ -1645,9 +1651,9 @@ model CreditNote {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([tenantId, creditNoteNumber])
   @@index([tenantId])
   @@index([invoiceId])
-  @@unique([tenantId, creditNoteNumber])
 }
 
 enum PayrollRunStatus {

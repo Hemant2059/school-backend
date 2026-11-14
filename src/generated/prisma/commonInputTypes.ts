@@ -556,6 +556,17 @@ export type EnumTeacherTrainingStatusNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTeacherTrainingStatusNullableFilter<$PrismaModel> | $Enums.TeacherTrainingStatus | null
 }
 
+export type DecimalNullableFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+}
+
 export type EnumMaritalStatusForTaxNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.MaritalStatusForTax | Prisma.EnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
   in?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
@@ -603,27 +614,6 @@ export type EnumTeacherTrainingStatusNullableWithAggregatesFilter<$PrismaModel =
   _max?: Prisma.NestedEnumTeacherTrainingStatusNullableFilter<$PrismaModel>
 }
 
-export type EnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.MaritalStatusForTax | Prisma.EnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
-  in?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaritalStatusForTax | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
-}
-
-export type DecimalNullableFilter<$PrismaModel = never> = {
-  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
-  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
-  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
-  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-}
-
 export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
   in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
@@ -638,6 +628,16 @@ export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+}
+
+export type EnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MaritalStatusForTax | Prisma.EnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
+  in?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaritalStatusForTax | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
 }
 
 export type EnumGenderFilter<$PrismaModel = never> = {
@@ -1524,6 +1524,17 @@ export type NestedEnumTeacherTrainingStatusNullableFilter<$PrismaModel = never> 
   not?: Prisma.NestedEnumTeacherTrainingStatusNullableFilter<$PrismaModel> | $Enums.TeacherTrainingStatus | null
 }
 
+export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+}
+
 export type NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.MaritalStatusForTax | Prisma.EnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
   in?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
@@ -1571,27 +1582,6 @@ export type NestedEnumTeacherTrainingStatusNullableWithAggregatesFilter<$PrismaM
   _max?: Prisma.NestedEnumTeacherTrainingStatusNullableFilter<$PrismaModel>
 }
 
-export type NestedEnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.MaritalStatusForTax | Prisma.EnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
-  in?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaritalStatusForTax | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
-}
-
-export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
-  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
-  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
-  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-}
-
 export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
   in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
@@ -1606,6 +1596,16 @@ export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MaritalStatusForTax | Prisma.EnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
+  in?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.MaritalStatusForTax[] | Prisma.ListEnumMaritalStatusForTaxFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumMaritalStatusForTaxNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaritalStatusForTax | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMaritalStatusForTaxNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumGenderFilter<$PrismaModel = never> = {
