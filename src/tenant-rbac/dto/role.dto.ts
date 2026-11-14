@@ -89,8 +89,13 @@ export class UpdateTenantUserDto {
   @IsOptional() @IsString() @MaxLength(120)
   lastNameNe?: string;
 
-  @IsOptional() @IsString() @MinLength(8)
-  password?: string;
+  /**
+   * The password of the linked global identity is deliberately NOT settable
+   * here. `User` is shared between tenants, so resetting it from a
+   * tenant-scoped endpoint would let one school take over an account that
+   * also belongs to another school. Users change their own password through
+   * `POST /tenant/auth/change-password`.
+   */
 }
 
 export class AssignTenantUserRolesDto {

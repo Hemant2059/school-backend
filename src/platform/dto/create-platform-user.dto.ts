@@ -80,4 +80,16 @@ export class CreatePlatformUserDto {
   @IsArray()
   @IsString({ each: true })
   permissionCodes?: string[] = [];
+
+  /**
+   * Initial password. When omitted a strong temporary password is generated
+   * and returned exactly once in the creation response, together with
+   * `mustChangePassword` set. Previously no password was ever set, so a
+   * newly created platform user could not log in at all.
+   */
+  @IsOptional()
+  @IsString()
+  @MinLength(12)
+  @MaxLength(128)
+  password?: string;
 }

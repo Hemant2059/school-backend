@@ -1,6 +1,9 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import * as bcrypt from 'bcryptjs';
+import { randomBytes, randomInt } from 'node:crypto';
 import { PlatformUserStatus, Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
+import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
 import { PlatformPermissionsService } from './platform-permissions.service.js';
 import { PlatformRolesService } from './platform-roles.service.js';
 
@@ -18,6 +21,12 @@ export class PlatformUsersService {
     const roleIds = await this.resolveRoleIds(dto.roleNames ?? []);
     const permissionIds = await this.resolvePermissionIds(dto.permissionCodes ?? []);
 
+    // A platform user must be able to log in. Previously no password was
+    // ever set, so every account created through the API was unusable.
+    const temporaryPassword = dto.password ?? generateTemporaryPassword();
+    const passwordHash = await bcrypt.hash(temporaryPassword, 12);
+    const isTemporary = !dto.password;
+
     try {
       const user = await this.prisma.platformUser.create({
         data: {
@@ -28,9 +37,12 @@ export class PlatformUsersService {
           lastNameNe: dto.lastNameNe,
           phone: dto.phone,
           address: dto.address,
+          passwordHash,
           status: dto.status ?? PlatformUserStatus.INVITED,
           twoFactorEnabled: dto.twoFactorEnabled ?? false,
-          mustChangePassword: dto.mustChangePassword ?? false,
+          mustChangePassword: isTemporary ? true : (dto.mustChangePassword ?? false),
+          invitationToken: isTemporary ? randomToken() : null,
+          invitationExpiresAt: isTemporary ? new Date(Date.now() + 7 * 86_400_000) : null,
           roles: {
             create: roleIds.map((roleId) => ({ roleId })),
           },
@@ -38,9 +50,13 @@ export class PlatformUsersService {
             create: permissionIds.map((permissionId) => ({ permissionId, granted: true })),
           },
         },
-        include: this.defaultInclude(),
+        select: this.defaultSelect(),
       });
-      return user;
+      return {
+        ...user,
+        // Returned exactly once, so the administrator can hand it over.
+        ...(isTemporary ? { temporaryPassword } : {}),
+      };
     } catch (error) {
       this.handleUniqueViolation(error);
       throw error;
@@ -48,6 +64,7 @@ export class PlatformUsersService {
   }
 
   async findAll(query: any) {
+    const { page, limit, skip, take } = resolvePagination(query);
     const where: Prisma.PlatformUserWhereInput = {};
     if (!query.includeDeleted) where.deletedAt = null;
     if (query.status) where.status = query.status;
@@ -65,20 +82,20 @@ export class PlatformUsersService {
     const [data, total] = await Promise.all([
       this.prisma.platformUser.findMany({
         where,
-        include: this.defaultInclude(),
+        select: this.defaultSelect(),
         orderBy: { createdAt: 'desc' },
-        skip: (query.page - 1) * query.limit,
-        take: query.limit,
+        skip,
+        take,
       }),
       this.prisma.platformUser.count({ where }),
     ]);
-    return { data, meta: this.meta(total, query.page, query.limit) };
+    return { data, meta: this.meta(total, page, limit) };
   }
 
   async findOne(id: string, includeDeleted = false) {
     const user = await this.prisma.platformUser.findFirst({
       where: includeDeleted ? { id } : { id, deletedAt: null },
-      include: this.defaultInclude(),
+      select: this.defaultSelect(),
     });
     if (!user) throw new NotFoundException('Platform user not found');
     return user;
@@ -128,7 +145,7 @@ export class PlatformUsersService {
               }
             : {}),
         },
-        include: this.defaultInclude(),
+        select: this.defaultSelect(),
       });
       return updated;
     } catch (error) {
@@ -159,7 +176,7 @@ export class PlatformUsersService {
     return this.prisma.platformUser.update({
       where: { id },
       data: { deletedAt: null, status: PlatformUserStatus.ACTIVE },
-      include: this.defaultInclude(),
+      select: this.defaultSelect(),
     });
   }
 
@@ -251,15 +268,43 @@ export class PlatformUsersService {
     return permissions.map((p) => p.id);
   }
 
-  private defaultInclude() {
+  /**
+   * The platform user projection.
+   *
+   * The previous implementation used `include` for the relations, which
+   * returned *every* scalar column of the user - including `passwordHash`,
+   * `twoFactorSecret` (the TOTP seed) and `refreshTokenHash` - to anyone
+   * with `platform_users.read`.
+   */
+  private defaultSelect() {
     return {
+      id: true,
+      email: true,
+      phone: true,
+      status: true,
+      firstNameEn: true,
+      firstNameNe: true,
+      middleNameEn: true,
+      middleNameNe: true,
+      lastNameEn: true,
+      lastNameNe: true,
+      address: true,
+      emailVerifiedAt: true,
+      phoneVerifiedAt: true,
+      twoFactorEnabled: true,
+      lastLoginAt: true,
+      mustChangePassword: true,
+      passwordChangedAt: true,
+      deletedAt: true,
+      createdAt: true,
+      updatedAt: true,
       roles: { include: { role: { include: { permissions: { include: { permission: true } } } } } },
       permissions: { include: { permission: true } },
     } as const;
   }
 
   private meta(total: number, page: number, limit: number) {
-    return { total, page, limit, totalPages: Math.ceil(total / limit) || 1 };
+    return buildMeta(total, page, limit);
   }
 
   private handleUniqueViolation(error: unknown): void {
@@ -268,4 +313,32 @@ export class PlatformUsersService {
       throw new ConflictException(`Unique constraint violated: ${target ?? 'field'}`);
     }
   }
+}
+
+/**
+ * Generates a strong temporary password for a newly invited platform user.
+ * It contains upper case, lower case, digits and symbols so it satisfies
+ * any reasonable password policy.
+ */
+function generateTemporaryPassword(): string {
+  const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const lower = 'abcdefghijkmnopqrstuvwxyz';
+  const digits = '23456789';
+  const symbols = '!@#$%^&*()-_=+';
+  const all = upper + lower + digits + symbols;
+
+  const pick = (set: string) => set[randomInt(set.length)];
+  const chars = [pick(upper), pick(lower), pick(digits), pick(symbols)];
+  for (let i = chars.length; i < 20; i++) chars.push(pick(all));
+
+  // Fisher-Yates so the guaranteed characters are not always in front.
+  for (let i = chars.length - 1; i > 0; i--) {
+    const j = randomInt(i + 1);
+    [chars[i], chars[j]] = [chars[j], chars[i]];
+  }
+  return chars.join('');
+}
+
+function randomToken(): string {
+  return randomBytes(32).toString('hex');
 }
