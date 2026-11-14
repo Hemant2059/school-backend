@@ -1,61 +1,24 @@
 # School SaaS Backend
 
-Multi-tenant school management system backend for Nepali schools, built with **NestJS**, **Prisma 7**, and **PostgreSQL**.
+Multi-tenant school-management system for Nepali schools, built with **NestJS 12**, **Prisma 7** and **PostgreSQL 17**.
 
-## Tech Stack
+The schema models the Nepali school domain in depth — bilingual `*En`/`*Ne` fields, Bikram Sambat / Gregorian date pairs, the NEB `Stream → GradeLevel → Section` hierarchy, theory + internal assessment splits, `EvaluationType { PERCENTAGE, GPA, LETTER, CGPA }`, IEMIS scholarship types, provincial and zonal address formats, Shrawan–Ashadh fiscal years, PAN/VAT and IEMIS codes, and the Nepali statutory payroll deductions (PF, SSF, CIT, TDS, SST).
 
-- **Runtime**: Node.js 22, TypeScript (ESM)
-- **Framework**: NestJS 12
-- **ORM**: Prisma 7 with `@prisma/adapter-pg`
-- **Database**: PostgreSQL 17
-- **Auth**: JWT (access + refresh), Passport, bcrypt
-- **Validation**: class-validator / class-transformer
-- **Docs**: Swagger (`/api-docs`)
-- **Testing**: Vitest (unit + e2e)
+## Tech stack
 
-## Project Structure
+| | |
+|---|---|
+| Runtime | Node.js 22, TypeScript 6 (ESM) |
+| Framework | NestJS 12 |
+| ORM | Prisma 7 with `@prisma/adapter-pg` |
+| Database | PostgreSQL 17 |
+| Auth | JWT (access + refresh), Passport, bcrypt |
+| Validation | class-validator / class-transformer |
+| Docs | Swagger at `/api-docs` (auto-generated from the DTOs) |
+| Security | helmet, `@nestjs/throttler`, audit log |
+| Testing | Vitest (unit + e2e) |
 
-```
-src/
-  app.module.ts
-  main.ts
-  prisma.service.ts / prisma.module.ts
-  auth/                 # Platform + tenant authentication, guards, decorators
-  platform/             # Platform users, roles, permissions
-  organizations/        # Educational foundations / parent entities
-  tenants/              # Individual schools / campuses
-  subscriptions/        # Subscription plans & dynamic features
-  tenant-rbac/          # Tenant roles, permissions, tenant users
-  billing/              # Tenant subscriptions, invoices, payments
-  academics/            # Academic years, streams, grade levels, sections, staff, subjects
-  students/             # Students, addresses, guardians, enrollments, transfer certificates
-  exams/                # Exams, schedules, marks, summaries, grading scales
-  fees/                 # Fiscal years, fee heads, class fee structures, scholarships
-  fee-billing/          # IRD-compliant fee invoices, items, payments, credit notes
-  hr/                   # Teacher allocations, payroll runs, salary slips
-  transport/            # Vehicles, routes, stops, student transport
-  hostel/               # Hostels, rooms, allocations
-  library/              # Library books & book issues
-  notifications/        # In-app notifications
-prisma/
-  schema.prisma
-  migrations/
-  seed.ts
-postman/
-  platform-rbac.postman_collection.json
-```
-
-## Environment Variables
-
-Copy `.env.example` to `.env` and update values:
-
-```bash
-cp .env.example .env
-```
-
-See `.env.example` for all required variables.
-
-## Getting Started
+## Getting started
 
 ### 1. Install dependencies
 
@@ -63,123 +26,209 @@ See `.env.example` for all required variables.
 pnpm install
 ```
 
-### 2. Start PostgreSQL (Docker)
+### 2. Configure the environment
+
+```bash
+cp .env.example .env
+```
+
+`JWT_SECRET` and `JWT_REFRESH_SECRET` are **required** and must be at least 32 characters, different from each other, and not one of the well-known development placeholders. The application refuses to start otherwise — it will never silently sign tokens with a fallback key.
+
+```bash
+openssl rand -base64 48   # use for each secret
+```
+
+### 3. Start PostgreSQL
 
 ```bash
 docker compose up -d postgres
 ```
 
-### 3. Run migrations & seed
+### 4. Run the migrations and seed
 
 ```bash
 pnpm prisma migrate deploy
 pnpm seed
 ```
 
-### 4. Start the server
+### 5. Start the server
 
 ```bash
 pnpm start:dev
 ```
 
-Server: `http://localhost:3000`  
-Swagger: `http://localhost:3000/api-docs`  
-Postman collection: `postman/platform-rbac.postman_collection.json`
+- API: <http://localhost:3000>
+- Swagger: <http://localhost:3000/api-docs>
+- Health: <http://localhost:3000/health>
 
-## Docker (Full Stack)
-
-Run both Postgres and the backend:
+### Docker (full stack)
 
 ```bash
 docker compose up -d --build
 ```
 
-## Key Concepts
+The image applies the migrations on start-up, runs as a non-root user and has a health check. `JWT_SECRET` and `JWT_REFRESH_SECRET` must be present in the environment (a `.env` file is picked up automatically).
 
-### Authentication & Authorization
+---
 
-- **Platform auth** (`/auth/*`): SaaS staff (super admin, support, sales partners)
-- **Tenant auth** (`/tenant/auth/*`): School users (admin, teachers, students, parents)
-- Global `JwtAuthGuard` + `PermissionsGuard` enforce authentication and permission-based authorization
-- Route-level `@Permissions('code')` decorators
+## Security model
 
-### Multi-Tenancy
+### Two RBAC domains
 
-- `Tenant` represents an individual school/campus
-- `Organization` groups multiple campuses under a parent entity
-- All tenant-scoped tables include `tenantId` as the leading column in composite indexes
+Platform and tenant RBAC share the same permission *code* vocabulary (`roles.manage`, `students.read`, …). The boundary between the domains is enforced by a **domain marker**, not by the codes:
 
-### Global Identity
-
-- `User` is a global identity (one phone/email across tenants)
-- `TenantUser` links a global user to a tenant with roles
-
-### Soft Deletes & Restore
-
-- Most entities support soft delete (`deletedAt`) and restore endpoints
-- Unique constraints use partial indexes (`WHERE deletedAt IS NULL`) so records can be recreated after deletion
-
-### Nepal-Specific Features
-
-- Bilingual fields (`*En` / `*Ne`)
-- BS/AD date pairs (`*Ad` / `*Bs`)
-- PAN/VAT, IEMIS codes, fiscal year (Shrawan–Ashadh)
-- Provincial & zonal address formats
-- IRD-compliant fee invoices with print count and sync flag
-- Nepali payroll components (PF, CIT, SSF, TDS, SST)
-
-## Database & Prisma
-
-```bash
-# Validate schema
-pnpm prisma validate
-
-# Create migration (dev)
-pnpm prisma migrate dev --name <name>
-
-# Apply migrations (prod)
-pnpm prisma migrate deploy
-
-# Generate client
-pnpm prisma generate
-
-# Open Prisma Studio
-pnpm prisma studio
-
-# Seed data
-pnpm seed
+```ts
+@PlatformOnly()   // only a SaaS company principal may reach this route
+@Controller('platform/roles')
 ```
 
-## Testing
+The `AuthorizationGuard` (`src/auth/guards/authorization.guard.ts`) enforces, in order:
 
-```bash
-# Unit tests
-pnpm test
+1. `@Public()` routes are open.
+2. A principal must exist.
+3. **Domain check** — `@PlatformOnly()` requires a platform principal, `@TenantOnly()` a school principal.
+4. **Tenant scope** — a school principal may only address the tenant in its token. The `:tenantId` route segment is attacker-controlled and is never trusted.
+5. **Permission check** — every `@Permissions('code')` entry must be held.
 
-# E2E tests
-pnpm test:e2e
+### Tenant isolation
 
-# Coverage
-pnpm test:cov
+The tenant is taken from the token, not from the URL. A school administrator who changes `:tenantId` in the URL gets a 403.
+
+### What the server owns
+
+The client states intent; the server decides the arithmetic.
+
+| Concern | Where it is enforced |
+|---|---|
+| Invoice totals, payable amount, balance | `FeeEngineService` |
+| Invoice generation from the fee structure | `FeeEngineService` (per-month expansion, scholarships, brought-forward dues) |
+| Invoice and receipt numbering | `DocumentSequenceService` (server-side, gap-free) |
+| Payment → invoice allocation | `FeeEngineService` (one transaction) |
+| Credit note effect on the invoice | `FeeEngineService` |
+| Percentage, GPA, grade, ranks, attendance | `ExamResultService` |
+| Letter grades and grade points | `ExamResultService` (from the grading scale) |
+| Gross, PF/SSF, CIT, TDS, SST, net | `PayrollEngineService` |
+| Capacity (section, hostel, room, vehicle, book copies) | the relevant service |
+| Plan limits and subscription status | `TenantEntitlementService` |
+| Audit trail | `AuditLogInterceptor` → `GET /platform/audit-logs` |
+
+### Credential hygiene
+
+Every query against `User` and `PlatformUser` uses an explicit projection. `passwordHash`, `refreshTokenHash`, `twoFactorSecret` and `invitationToken` are never serialised.
+
+---
+
+## Project structure
+
 ```
+src/
+  app.module.ts / main.ts
+  config/                 # fail-fast environment validation
+  common/                 # filters, interceptors, decorators, selectors, utils
+  auth/                   # platform + tenant authentication, guards, decorators
+  platform/               # platform users, roles, permissions, audit log
+  organizations/          # educational foundations / parent entities
+  tenants/                # individual schools / campuses
+  subscriptions/          # subscription plans & dynamic features
+  tenant-rbac/            # tenant roles, permissions, tenant users
+  billing/                # tenant subscriptions, invoices, payments, entitlements
+  academics/              # academic years, streams, grade levels, sections, staff, subjects
+  students/               # students, addresses, guardians
+  enrollments/            # enrolments
+  exams/                  # exams, schedules, marks, summaries, results engine
+  examinations/           # grading scales
+  fees/                   # fiscal years, fee heads, class fee structures, scholarships
+  fee-billing/            # fee invoices, items, payments, credit notes, fee engine
+  hr/                     # teacher allocations, payroll runs, salary slips, payroll engine
+  transport/              # vehicles, routes, stops, student transport
+  hostel/                 # hostels, rooms, allocations
+  library/                # library books & book issues
+  notifications/          # per-principal in-app notifications
+  transfer-certificates/  # transfer certificates
+prisma/
+  schema.prisma
+  migrations/             # a replayable baseline + incremental migrations
+  sql/                    # the partial unique indexes and check constraints
+  seed.ts                 # idempotent development seed
+scripts/
+  verify-security.sh      # live security regression check
+```
+
+---
+
+## Key domain behaviours
+
+### Fees
+
+`POST /tenants/:tenantId/fee-invoices/generate` builds an invoice from the tenant's class fee structure:
+
+- `MONTHLY_BS` fee heads expand into one line per applicable Bikram Sambat month.
+- Scholarships apply per fee head (percentage or flat amount, capped so a line can never go negative).
+- Outstanding dues from earlier invoices are brought forward.
+- The invoice number comes from a server-side, gap-free sequence.
+
+`POST /tenants/:tenantId/fee-payments` records a receipt and applies it to the invoice in the same transaction. Receipts can be reversed; they are never erased. Credit notes reduce the balance and can never exceed it.
+
+### Exams
+
+An exam moves through `draft → published → locked`:
+
+```
+POST /tenants/:tenantId/exams/:id/publish
+POST /tenants/:tenantId/exams/:id/lock
+POST /tenants/:tenantId/exams/:id/generate-results
+```
+
+Marks are validated against the schedule (bounds, absent-versus-scored, class and academic year) and the letter grades are derived from the tenant's grading scale. Result generation computes the marks, percentage, credit-weighted GPA, final grade, section and grade ranks, and the attendance counters.
+
+### Payroll
+
+`POST /tenants/:tenantId/payroll-runs/generate` computes every salary slip from the staff member's configured package:
+
+- Provident Fund and Social Security Fund at 10% each, employee and employer, on the basic salary plus the grade allowance.
+- One third of the employee's PF contribution reported as CIT.
+- Monthly TDS withheld against the annual slab, with the 50% relief for an unmarried female taxpayer.
+- 1% services tax.
+
+The net is derived; deductions larger than the gross are rejected.
+
+---
 
 ## Scripts
 
-| Script               | Description             |
-| -------------------- | ----------------------- |
-| `pnpm start`         | Start production server |
-| `pnpm start:dev`     | Start in watch mode     |
-| `pnpm build`         | Compile TypeScript      |
-| `pnpm test`          | Run unit tests          |
-| `pnpm test:e2e`      | Run e2e tests           |
-| `pnpm seed`          | Seed database           |
-| `pnpm prisma studio` | Open Prisma Studio      |
+| Script | Description |
+| --- | --- |
+| `pnpm start` | Start the production server |
+| `pnpm start:dev` | Start in watch mode |
+| `pnpm build` | Compile TypeScript |
+| `pnpm test` | Run the unit tests |
+| `pnpm test:e2e` | Run the end-to-end tests (needs a seeded database) |
+| `pnpm test:cov` | Run the unit tests with coverage |
+| `pnpm seed` | Seed the development data (idempotent) |
+| `pnpm prisma studio` | Open Prisma Studio |
+| `pnpm lint` | Lint with oxlint |
+| `./scripts/verify-security.sh` | Live security regression check against a running instance |
 
-## Default Credentials (after seed)
+---
+
+## Database notes
+
+Soft delete is used throughout. Unique constraints are therefore **partial** (`WHERE deletedAt IS NULL`), so a record that has been soft-deleted does not block a new record with the same natural key. Prisma's schema language cannot express partial indexes, so they live in `prisma/sql/partial-unique-indexes.sql` and are applied by the migration.
+
+Business rules that a schema language cannot express — non-negative amounts, marks within bounds, `min <= max` grade bands, a single current academic year — are enforced with `CHECK` constraints in the same file.
+
+The migration history was squashed into a replayable baseline after a hand-edited migration made the previous chain impossible to replay against a fresh database. The old migrations are kept in `prisma/_migrations_archive` for reference.
+
+---
+
+## Default credentials (after seeding)
 
 - **Platform super admin**: `superadmin@platform.local` / `ChangeMe123!`
 - **Tenant school admin**: `tenantadmin@example.com` / `ChangeMe123!`
-- **Demo tenant ID**: `c1bcb482-346d-41c2-952e-815e45722e63`
+
+The seed refuses to invent these in production — set `SUPER_ADMIN_PASSWORD` and `TENANT_USER_PASSWORD` there.
+
+---
 
 ## License
 

@@ -26,11 +26,6 @@ function dedupe<T extends { code: string }>(entries: T[]): T[] {
 }
 
 const PLATFORM_PERMISSIONS = dedupe([
-  { code: "schools.read", name: "Read schools", category: "schools" },
-  { code: "schools.create", name: "Create schools", category: "schools" },
-  { code: "schools.update", name: "Update schools", category: "schools" },
-  { code: "schools.suspend", name: "Suspend schools", category: "schools" },
-  { code: "schools.delete", name: "Delete schools", category: "schools" },
   { code: "subscriptions.read", name: "Read subscriptions", category: "subscriptions" },
   { code: "subscriptions.manage", name: "Manage subscriptions", category: "subscriptions" },
   { code: "subscriptions.cancel", name: "Cancel subscriptions", category: "subscriptions" },
@@ -42,14 +37,9 @@ const PLATFORM_PERMISSIONS = dedupe([
   { code: "roles.manage", name: "Manage roles", category: "roles" },
   { code: "permissions.read", name: "Read permissions", category: "permissions" },
   { code: "permissions.manage", name: "Manage permissions", category: "permissions" },
-  { code: "support.read", name: "Read support cases", category: "support" },
-  { code: "support.manage", name: "Manage support cases", category: "support" },
-  { code: "support.impersonate", name: "Impersonate tenant users", category: "support" },
   { code: "billing.read", name: "Read billing", category: "billing" },
   { code: "billing.manage", name: "Manage billing", category: "billing" },
   { code: "audit.read", name: "Read audit logs", category: "audit" },
-  { code: "settings.read", name: "Read settings", category: "settings" },
-  { code: "settings.manage", name: "Manage settings", category: "settings" },
   { code: "organizations.read", name: "Read organizations", category: "organizations" },
   { code: "organizations.manage", name: "Manage organizations", category: "organizations" },
   { code: "tenants.read", name: "Read tenants", category: "tenants" },
@@ -132,21 +122,15 @@ const PLATFORM_ROLES = [
     name: "Platform Admin",
     description: "Manages schools, subscriptions and platform users.",
     isSystem: true,
-    permissions: PLATFORM_PERMISSIONS.filter(
-      (p) => p.code !== "schools.delete" && p.code !== "audit.write",
-    ).map((p) => p.code),
+    permissions: PLATFORM_PERMISSIONS.filter((p) => p.code !== "audit.write").map(
+      (p) => p.code,
+    ),
   },
   {
     name: "Support Engineer",
     description: "Handles support cases and can impersonate tenant users.",
     isSystem: true,
-    permissions: [
-      "schools.read",
-      "support.read",
-      "support.manage",
-      "support.impersonate",
-      "audit.read",
-    ],
+    permissions: ["tenants.read", "audit.read"],
   },
   {
     name: "Billing Admin",
@@ -165,7 +149,7 @@ const PLATFORM_ROLES = [
     name: "Sales Partner",
     description: "Onboards schools in an assigned region.",
     isSystem: true,
-    permissions: ["schools.read", "schools.create", "subscriptions.read"],
+    permissions: ["tenants.read", "tenants.manage", "subscriptions.read"],
   },
   {
     name: "Auditor",

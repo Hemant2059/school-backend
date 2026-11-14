@@ -2,11 +2,13 @@ import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common
 import { TenantInvoiceService } from '../services/invoice.service.js';
 import { CreateInvoiceDto, UpdateInvoiceDto, QueryInvoicesDto } from '../dto/invoice.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
 @Controller('tenants/:tenantId/invoices')
 export class InvoiceController {
   constructor(private readonly service: TenantInvoiceService) {}
 
+  @PlatformOnly()
   @Permissions('billing.manage')
   @Post()
   create(@Param('tenantId') tenantId: string, @Body() dto: CreateInvoiceDto) { return this.service.create(tenantId, dto); }
@@ -19,6 +21,7 @@ export class InvoiceController {
   @Get(':id')
   findOne(@Param('tenantId') tenantId: string, @Param('id') id: string) { return this.service.findOne(tenantId, id); }
 
+  @PlatformOnly()
   @Permissions('billing.manage')
   @Patch(':id')
   update(@Param('tenantId') tenantId: string, @Param('id') id: string, @Body() dto: UpdateInvoiceDto) { return this.service.update(tenantId, id, dto); }
