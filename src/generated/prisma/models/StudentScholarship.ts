@@ -272,6 +272,7 @@ export type StudentScholarshipOrderByWithRelationInput = {
 
 export type StudentScholarshipWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  enrollmentId_feeHeadId?: Prisma.StudentScholarshipEnrollmentIdFeeHeadIdCompoundUniqueInput
   AND?: Prisma.StudentScholarshipWhereInput | Prisma.StudentScholarshipWhereInput[]
   OR?: Prisma.StudentScholarshipWhereInput[]
   NOT?: Prisma.StudentScholarshipWhereInput | Prisma.StudentScholarshipWhereInput[]
@@ -287,7 +288,7 @@ export type StudentScholarshipWhereUniqueInput = Prisma.AtLeast<{
   enrollment?: Prisma.XOR<Prisma.StudentEnrollmentScalarRelationFilter, Prisma.StudentEnrollmentWhereInput>
   scholarshipScheme?: Prisma.XOR<Prisma.ScholarshipSchemeScalarRelationFilter, Prisma.ScholarshipSchemeWhereInput>
   feeHead?: Prisma.XOR<Prisma.FeeHeadScalarRelationFilter, Prisma.FeeHeadWhereInput>
-}, "id">
+}, "id" | "enrollmentId_feeHeadId">
 
 export type StudentScholarshipOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -409,6 +410,11 @@ export type StudentScholarshipListRelationFilter = {
 
 export type StudentScholarshipOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type StudentScholarshipEnrollmentIdFeeHeadIdCompoundUniqueInput = {
+  enrollmentId: string
+  feeHeadId: string
 }
 
 export type StudentScholarshipCountOrderByAggregateInput = {

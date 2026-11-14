@@ -1,6 +1,7 @@
 import { FeeInvoiceStatus } from '../../generated/prisma/client.js';
 import { IsBoolean, IsDate, IsEnum, IsInt, IsNumber, IsOptional, IsString, IsUUID, Max, Min, MaxLength, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateFeeInvoiceDto {
   @IsUUID() fiscalYearId!: string;
@@ -19,6 +20,7 @@ export class CreateFeeInvoiceDto {
   @IsNumber() @Min(0) balanceDue!: number;
   @IsOptional() @IsEnum(FeeInvoiceStatus) status?: FeeInvoiceStatus = FeeInvoiceStatus.UNPAID;
   @IsOptional() @IsInt() @Min(0) printCount?: number = 0;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isSyncedToIrd?: boolean = false;
 }
 
@@ -27,5 +29,6 @@ export class UpdateFeeInvoiceDto {
   @IsOptional() @IsNumber() @Min(0) paidAmount?: number;
   @IsOptional() @IsNumber() @Min(0) balanceDue?: number;
   @IsOptional() @IsInt() @Min(0) printCount?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isSyncedToIrd?: boolean;
 }

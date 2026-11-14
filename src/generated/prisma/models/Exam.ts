@@ -40,6 +40,7 @@ export type ExamMinAggregateOutputType = {
   academicYearId: string | null
   gradingScaleId: string | null
   name: string | null
+  examType: $Enums.ExamType | null
   termWeightage: runtime.Decimal | null
   startDateAd: Date | null
   endDateAd: Date | null
@@ -60,6 +61,7 @@ export type ExamMaxAggregateOutputType = {
   academicYearId: string | null
   gradingScaleId: string | null
   name: string | null
+  examType: $Enums.ExamType | null
   termWeightage: runtime.Decimal | null
   startDateAd: Date | null
   endDateAd: Date | null
@@ -80,6 +82,7 @@ export type ExamCountAggregateOutputType = {
   academicYearId: number
   gradingScaleId: number
   name: number
+  examType: number
   termWeightage: number
   startDateAd: number
   endDateAd: number
@@ -110,6 +113,7 @@ export type ExamMinAggregateInputType = {
   academicYearId?: true
   gradingScaleId?: true
   name?: true
+  examType?: true
   termWeightage?: true
   startDateAd?: true
   endDateAd?: true
@@ -130,6 +134,7 @@ export type ExamMaxAggregateInputType = {
   academicYearId?: true
   gradingScaleId?: true
   name?: true
+  examType?: true
   termWeightage?: true
   startDateAd?: true
   endDateAd?: true
@@ -150,6 +155,7 @@ export type ExamCountAggregateInputType = {
   academicYearId?: true
   gradingScaleId?: true
   name?: true
+  examType?: true
   termWeightage?: true
   startDateAd?: true
   endDateAd?: true
@@ -257,6 +263,7 @@ export type ExamGroupByOutputType = {
   academicYearId: string
   gradingScaleId: string | null
   name: string
+  examType: $Enums.ExamType
   termWeightage: runtime.Decimal | null
   startDateAd: Date
   endDateAd: Date
@@ -300,6 +307,7 @@ export type ExamWhereInput = {
   academicYearId?: Prisma.StringFilter<"Exam"> | string
   gradingScaleId?: Prisma.StringNullableFilter<"Exam"> | string | null
   name?: Prisma.StringFilter<"Exam"> | string
+  examType?: Prisma.EnumExamTypeFilter<"Exam"> | $Enums.ExamType
   termWeightage?: Prisma.DecimalNullableFilter<"Exam"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFilter<"Exam"> | Date | string
   endDateAd?: Prisma.DateTimeFilter<"Exam"> | Date | string
@@ -325,6 +333,7 @@ export type ExamOrderByWithRelationInput = {
   academicYearId?: Prisma.SortOrder
   gradingScaleId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
+  examType?: Prisma.SortOrder
   termWeightage?: Prisma.SortOrderInput | Prisma.SortOrder
   startDateAd?: Prisma.SortOrder
   endDateAd?: Prisma.SortOrder
@@ -353,6 +362,7 @@ export type ExamWhereUniqueInput = Prisma.AtLeast<{
   academicYearId?: Prisma.StringFilter<"Exam"> | string
   gradingScaleId?: Prisma.StringNullableFilter<"Exam"> | string | null
   name?: Prisma.StringFilter<"Exam"> | string
+  examType?: Prisma.EnumExamTypeFilter<"Exam"> | $Enums.ExamType
   termWeightage?: Prisma.DecimalNullableFilter<"Exam"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFilter<"Exam"> | Date | string
   endDateAd?: Prisma.DateTimeFilter<"Exam"> | Date | string
@@ -378,6 +388,7 @@ export type ExamOrderByWithAggregationInput = {
   academicYearId?: Prisma.SortOrder
   gradingScaleId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
+  examType?: Prisma.SortOrder
   termWeightage?: Prisma.SortOrderInput | Prisma.SortOrder
   startDateAd?: Prisma.SortOrder
   endDateAd?: Prisma.SortOrder
@@ -406,6 +417,7 @@ export type ExamScalarWhereWithAggregatesInput = {
   academicYearId?: Prisma.StringWithAggregatesFilter<"Exam"> | string
   gradingScaleId?: Prisma.StringNullableWithAggregatesFilter<"Exam"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"Exam"> | string
+  examType?: Prisma.EnumExamTypeWithAggregatesFilter<"Exam"> | $Enums.ExamType
   termWeightage?: Prisma.DecimalNullableWithAggregatesFilter<"Exam"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
   endDateAd?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
@@ -423,6 +435,7 @@ export type ExamScalarWhereWithAggregatesInput = {
 export type ExamCreateInput = {
   id?: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -448,6 +461,7 @@ export type ExamUncheckedCreateInput = {
   academicYearId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -467,6 +481,7 @@ export type ExamUncheckedCreateInput = {
 export type ExamUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -492,6 +507,7 @@ export type ExamUncheckedUpdateInput = {
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -514,6 +530,7 @@ export type ExamCreateManyInput = {
   academicYearId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -531,6 +548,7 @@ export type ExamCreateManyInput = {
 export type ExamUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -551,6 +569,7 @@ export type ExamUncheckedUpdateManyInput = {
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -581,6 +600,7 @@ export type ExamCountOrderByAggregateInput = {
   academicYearId?: Prisma.SortOrder
   gradingScaleId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  examType?: Prisma.SortOrder
   termWeightage?: Prisma.SortOrder
   startDateAd?: Prisma.SortOrder
   endDateAd?: Prisma.SortOrder
@@ -605,6 +625,7 @@ export type ExamMaxOrderByAggregateInput = {
   academicYearId?: Prisma.SortOrder
   gradingScaleId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  examType?: Prisma.SortOrder
   termWeightage?: Prisma.SortOrder
   startDateAd?: Prisma.SortOrder
   endDateAd?: Prisma.SortOrder
@@ -625,6 +646,7 @@ export type ExamMinOrderByAggregateInput = {
   academicYearId?: Prisma.SortOrder
   gradingScaleId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  examType?: Prisma.SortOrder
   termWeightage?: Prisma.SortOrder
   startDateAd?: Prisma.SortOrder
   endDateAd?: Prisma.SortOrder
@@ -774,6 +796,10 @@ export type ExamUncheckedUpdateManyWithoutGradingScaleNestedInput = {
   deleteMany?: Prisma.ExamScalarWhereInput | Prisma.ExamScalarWhereInput[]
 }
 
+export type EnumExamTypeFieldUpdateOperationsInput = {
+  set?: $Enums.ExamType
+}
+
 export type ExamCreateNestedOneWithoutSchedulesInput = {
   create?: Prisma.XOR<Prisma.ExamCreateWithoutSchedulesInput, Prisma.ExamUncheckedCreateWithoutSchedulesInput>
   connectOrCreate?: Prisma.ExamCreateOrConnectWithoutSchedulesInput
@@ -805,6 +831,7 @@ export type ExamUpdateOneRequiredWithoutSummariesNestedInput = {
 export type ExamCreateWithoutTenantInput = {
   id?: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -828,6 +855,7 @@ export type ExamUncheckedCreateWithoutTenantInput = {
   academicYearId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -879,6 +907,7 @@ export type ExamScalarWhereInput = {
   academicYearId?: Prisma.StringFilter<"Exam"> | string
   gradingScaleId?: Prisma.StringNullableFilter<"Exam"> | string | null
   name?: Prisma.StringFilter<"Exam"> | string
+  examType?: Prisma.EnumExamTypeFilter<"Exam"> | $Enums.ExamType
   termWeightage?: Prisma.DecimalNullableFilter<"Exam"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFilter<"Exam"> | Date | string
   endDateAd?: Prisma.DateTimeFilter<"Exam"> | Date | string
@@ -896,6 +925,7 @@ export type ExamScalarWhereInput = {
 export type ExamCreateWithoutAcademicYearInput = {
   id?: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -919,6 +949,7 @@ export type ExamUncheckedCreateWithoutAcademicYearInput = {
   tenantId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -964,6 +995,7 @@ export type ExamUpdateManyWithWhereWithoutAcademicYearInput = {
 export type ExamCreateWithoutGradingScaleInput = {
   id?: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -987,6 +1019,7 @@ export type ExamUncheckedCreateWithoutGradingScaleInput = {
   tenantId: string
   academicYearId: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1032,6 +1065,7 @@ export type ExamUpdateManyWithWhereWithoutGradingScaleInput = {
 export type ExamCreateWithoutSchedulesInput = {
   id?: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1056,6 +1090,7 @@ export type ExamUncheckedCreateWithoutSchedulesInput = {
   academicYearId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1090,6 +1125,7 @@ export type ExamUpdateToOneWithWhereWithoutSchedulesInput = {
 export type ExamUpdateWithoutSchedulesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1114,6 +1150,7 @@ export type ExamUncheckedUpdateWithoutSchedulesInput = {
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1132,6 +1169,7 @@ export type ExamUncheckedUpdateWithoutSchedulesInput = {
 export type ExamCreateWithoutSummariesInput = {
   id?: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1156,6 +1194,7 @@ export type ExamUncheckedCreateWithoutSummariesInput = {
   academicYearId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1190,6 +1229,7 @@ export type ExamUpdateToOneWithWhereWithoutSummariesInput = {
 export type ExamUpdateWithoutSummariesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1214,6 +1254,7 @@ export type ExamUncheckedUpdateWithoutSummariesInput = {
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1234,6 +1275,7 @@ export type ExamCreateManyTenantInput = {
   academicYearId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1251,6 +1293,7 @@ export type ExamCreateManyTenantInput = {
 export type ExamUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1274,6 +1317,7 @@ export type ExamUncheckedUpdateWithoutTenantInput = {
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1295,6 +1339,7 @@ export type ExamUncheckedUpdateManyWithoutTenantInput = {
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1314,6 +1359,7 @@ export type ExamCreateManyAcademicYearInput = {
   tenantId: string
   gradingScaleId?: string | null
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1331,6 +1377,7 @@ export type ExamCreateManyAcademicYearInput = {
 export type ExamUpdateWithoutAcademicYearInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1354,6 +1401,7 @@ export type ExamUncheckedUpdateWithoutAcademicYearInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1375,6 +1423,7 @@ export type ExamUncheckedUpdateManyWithoutAcademicYearInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   gradingScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1394,6 +1443,7 @@ export type ExamCreateManyGradingScaleInput = {
   tenantId: string
   academicYearId: string
   name: string
+  examType?: $Enums.ExamType
   termWeightage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd: Date | string
   endDateAd: Date | string
@@ -1411,6 +1461,7 @@ export type ExamCreateManyGradingScaleInput = {
 export type ExamUpdateWithoutGradingScaleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1434,6 +1485,7 @@ export type ExamUncheckedUpdateWithoutGradingScaleInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1455,6 +1507,7 @@ export type ExamUncheckedUpdateManyWithoutGradingScaleInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  examType?: Prisma.EnumExamTypeFieldUpdateOperationsInput | $Enums.ExamType
   termWeightage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   startDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1515,6 +1568,7 @@ export type ExamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   academicYearId?: boolean
   gradingScaleId?: boolean
   name?: boolean
+  examType?: boolean
   termWeightage?: boolean
   startDateAd?: boolean
   endDateAd?: boolean
@@ -1541,6 +1595,7 @@ export type ExamSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   academicYearId?: boolean
   gradingScaleId?: boolean
   name?: boolean
+  examType?: boolean
   termWeightage?: boolean
   startDateAd?: boolean
   endDateAd?: boolean
@@ -1564,6 +1619,7 @@ export type ExamSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   academicYearId?: boolean
   gradingScaleId?: boolean
   name?: boolean
+  examType?: boolean
   termWeightage?: boolean
   startDateAd?: boolean
   endDateAd?: boolean
@@ -1587,6 +1643,7 @@ export type ExamSelectScalar = {
   academicYearId?: boolean
   gradingScaleId?: boolean
   name?: boolean
+  examType?: boolean
   termWeightage?: boolean
   startDateAd?: boolean
   endDateAd?: boolean
@@ -1601,7 +1658,7 @@ export type ExamSelectScalar = {
   deletedAt?: boolean
 }
 
-export type ExamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "academicYearId" | "gradingScaleId" | "name" | "termWeightage" | "startDateAd" | "endDateAd" | "startDateBs" | "endDateBs" | "resultPublishDateAd" | "resultPublishDateBs" | "isPublished" | "isLocked" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["exam"]>
+export type ExamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "academicYearId" | "gradingScaleId" | "name" | "examType" | "termWeightage" | "startDateAd" | "endDateAd" | "startDateBs" | "endDateBs" | "resultPublishDateAd" | "resultPublishDateBs" | "isPublished" | "isLocked" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["exam"]>
 export type ExamInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   academicYear?: boolean | Prisma.AcademicYearDefaultArgs<ExtArgs>
@@ -1636,6 +1693,7 @@ export type $ExamPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     academicYearId: string
     gradingScaleId: string | null
     name: string
+    examType: $Enums.ExamType
     termWeightage: runtime.Decimal | null
     startDateAd: Date
     endDateAd: Date
@@ -2081,6 +2139,7 @@ export interface ExamFieldRefs {
   readonly academicYearId: Prisma.FieldRef<"Exam", 'String'>
   readonly gradingScaleId: Prisma.FieldRef<"Exam", 'String'>
   readonly name: Prisma.FieldRef<"Exam", 'String'>
+  readonly examType: Prisma.FieldRef<"Exam", 'ExamType'>
   readonly termWeightage: Prisma.FieldRef<"Exam", 'Decimal'>
   readonly startDateAd: Prisma.FieldRef<"Exam", 'DateTime'>
   readonly endDateAd: Prisma.FieldRef<"Exam", 'DateTime'>

@@ -2,8 +2,9 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { PlatformUserStatus } from '../../generated/prisma/client.js';
+import { PlatformUserStatus, TenantStatus } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
+import type { AuthenticatedPrincipal } from '../types/principal.js';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -11,24 +12,37 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get<string>('JWT_SECRET') ?? 'dev-access-secret',
+      secretOrKey: configService.getOrThrow<string>('JWT_SECRET'),
     });
   }
 
-  async validate(payload: any) {
+  async validate(payload: any): Promise<AuthenticatedPrincipal> {
     if (payload.tenantId) {
       const user = await this.prisma.user.findFirst({
         where: { id: payload.sub, deletedAt: null },
         include: {
           tenantUsers: {
             where: { tenantId: payload.tenantId },
-            include: { roles: { include: { role: { include: { permissions: { include: { permission: true } } } } } } },
+            include: {
+              tenant: true,
+              roles: { include: { role: { include: { permissions: { include: { permission: true } } } } } },
+            },
           },
         },
       });
       const membership = user?.tenantUsers?.[0];
       if (!user || !membership || membership.status !== 'ACTIVE') {
         throw new UnauthorizedException('Invalid tenant token');
+      }
+      // A suspended or deactivated account must lose access immediately, even
+      // if it still holds a valid (unexpired) access token.
+      if (user.status !== 'ACTIVE') {
+        throw new UnauthorizedException('User is not active');
+      }
+      // Likewise for the school itself: suspending a tenant must lock out its
+      // staff.
+      if (membership.tenant.status !== TenantStatus.ACTIVE) {
+        throw new UnauthorizedException('School access is not available');
       }
 
       const permissionSet = new Set<string>();

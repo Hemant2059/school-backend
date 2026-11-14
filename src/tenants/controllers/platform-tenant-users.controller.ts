@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
 import { TenantUserService } from '../../tenant-rbac/services/tenant-user.service.js';
 import { TenantRoleService } from '../../tenant-rbac/services/role.service.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('platform/tenants/:tenantId/users')
 export class PlatformTenantUsersController {
   constructor(private readonly service: TenantUserService, private readonly roleService: TenantRoleService) {}
@@ -17,6 +19,12 @@ export class PlatformTenantUsersController {
   @Post()
   create(@Param('tenantId') tenantId: string, @Body() dto: any) {
     return this.service.create(tenantId, dto);
+  }
+
+  @Permissions('tenants.manage')
+  @Patch(':id')
+  update(@Param('tenantId') tenantId: string, @Param('id') id: string, @Body() dto: any) {
+    return this.service.update(tenantId, id, dto);
   }
 
   @Permissions('tenants.manage')

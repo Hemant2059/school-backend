@@ -5,7 +5,9 @@ import { CreatePlatformRoleDto } from '../dto/create-platform-role.dto.js';
 import { UpdatePlatformRoleDto } from '../dto/update-platform-role.dto.js';
 import { QueryPlatformRolesDto } from '../dto/query-platform-roles.dto.js';
 import { AssignRolePermissionsDto } from '../dto/assign-role-permissions.dto.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('platform/roles')
 export class PlatformRolesController {
   constructor(private readonly service: PlatformRolesService) {}

@@ -1,6 +1,7 @@
 import { SchoolType, TenantStatus } from '../../generated/prisma/client.js';
 import { IsBoolean, IsDate, IsEmail, IsEnum, IsInt, Matches, IsNumber, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateTenantDto {
   @IsOptional() @IsUUID() organizationId?: string;
@@ -81,6 +82,7 @@ export class QueryTenantsDto {
   @IsOptional() @IsEnum(SchoolType) schoolType?: SchoolType;
   @IsOptional() @IsEnum(TenantStatus) status?: TenantStatus;
   @IsOptional() @IsString() search?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() includeDeleted?: boolean = false;
   @IsOptional() @Type(() => Number) @IsInt() @Min(1) page?: number = 1;
   @IsOptional() @Type(() => Number) @IsInt() @Min(1) @Max(100) limit?: number = 20;

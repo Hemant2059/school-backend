@@ -82,6 +82,15 @@ export const TenantStatus = {
 export type TenantStatus = (typeof TenantStatus)[keyof typeof TenantStatus]
 
 
+export const TenantUserStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type TenantUserStatus = (typeof TenantUserStatus)[keyof typeof TenantUserStatus]
+
+
 export const SubscriptionStatus = {
   TRIAL: 'TRIAL',
   ACTIVE: 'ACTIVE',
@@ -256,13 +265,15 @@ export const EnrollmentStatus = {
 export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]
 
 
-export const ExamStatus = {
-  DRAFT: 'DRAFT',
-  PUBLISHED: 'PUBLISHED',
-  LOCKED: 'LOCKED'
+export const ExamType = {
+  TERMINAL: 'TERMINAL',
+  PERIODIC: 'PERIODIC',
+  UNIT: 'UNIT',
+  PRACTICAL: 'PRACTICAL',
+  INTERNAL: 'INTERNAL'
 } as const
 
-export type ExamStatus = (typeof ExamStatus)[keyof typeof ExamStatus]
+export type ExamType = (typeof ExamType)[keyof typeof ExamType]
 
 
 export const FeeFrequency = {
@@ -319,6 +330,16 @@ export const FeePaymentMethod = {
 } as const
 
 export type FeePaymentMethod = (typeof FeePaymentMethod)[keyof typeof FeePaymentMethod]
+
+
+export const FeePaymentStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  REVERSED: 'REVERSED'
+} as const
+
+export type FeePaymentStatus = (typeof FeePaymentStatus)[keyof typeof FeePaymentStatus]
 
 
 export const PayrollRunStatus = {

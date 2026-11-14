@@ -363,6 +363,20 @@ export type HostelAllocation = Prisma.HostelAllocationModel
 export type Notification = Prisma.NotificationModel
 /**
  * Model AuditLog
+ * Append-only audit trail for privileged and mutating actions.
  * 
+ * `userId` is intentionally a plain string rather than a foreign key: the
+ * principal may be a `PlatformUser` (SaaS staff) or a `User` (school staff).
+ * `principalType` disambiguates the two id spaces.
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model DocumentSequence
+ * Server-side, gap-free document numbering.
+ * 
+ * Invoice and receipt numbers used to be supplied by the client, which meant
+ * two concurrent requests could collide and the sequence was never
+ * contiguous. The counter is now owned by the server and advanced inside a
+ * transaction.
+ */
+export type DocumentSequence = Prisma.DocumentSequenceModel

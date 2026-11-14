@@ -1,5 +1,6 @@
 import { IsBoolean, IsDate, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateFiscalYearDto {
   @IsString() @MinLength(2) @MaxLength(20) name!: string;
@@ -7,6 +8,7 @@ export class CreateFiscalYearDto {
   @IsString() @MaxLength(10) startDateBs!: string;
   @IsDate() @Type(() => Date) endDateAd!: Date;
   @IsString() @MaxLength(10) endDateBs!: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isActive?: boolean = false;
 }
 
@@ -16,5 +18,6 @@ export class UpdateFiscalYearDto {
   @IsOptional() @IsString() @MaxLength(10) startDateBs?: string;
   @IsOptional() @IsDate() @Type(() => Date) endDateAd?: Date;
   @IsOptional() @IsString() @MaxLength(10) endDateBs?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isActive?: boolean;
 }

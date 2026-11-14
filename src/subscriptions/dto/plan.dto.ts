@@ -1,6 +1,7 @@
 import { BillingCycle } from '../../generated/prisma/client.js';
 import { IsBoolean, IsEnum, IsInt, IsNumber, IsOptional, IsString, Max, Min, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreatePlanDto {
   @IsString() @MinLength(2) code!: string;
@@ -10,6 +11,7 @@ export class CreatePlanDto {
   @IsOptional() @IsString() currency?: string = 'NPR';
   @IsEnum(BillingCycle) billingCycle!: BillingCycle;
   @IsOptional() @IsInt() @Min(0) trialDays?: number = 0;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isActive?: boolean = true;
   @IsOptional() @IsInt() sortOrder?: number = 0;
 }
@@ -21,11 +23,13 @@ export class UpdatePlanDto {
   @IsOptional() @IsString() currency?: string;
   @IsOptional() @IsEnum(BillingCycle) billingCycle?: BillingCycle;
   @IsOptional() @IsInt() @Min(0) trialDays?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isActive?: boolean;
   @IsOptional() @IsInt() sortOrder?: number;
 }
 
 export class QueryPlansDto {
+  @BooleanParam()
   @IsOptional() @IsBoolean() isActive?: boolean;
   @IsOptional() @Type(() => Number) @IsInt() @Min(1) page?: number = 1;
   @IsOptional() @Type(() => Number) @IsInt() @Min(1) @Max(100) limit?: number = 20;

@@ -42,7 +42,25 @@ export class TenantUserService {
     const membership = await this.prisma.tenantUser.findUnique({ where: { tenantId_userId: { tenantId, userId } } });
     if (membership) throw new ConflictException('User is already a member of this tenant');
 
-    const roleIds = await this.resolveRoleIds(tenantId, dto.roleNames ?? []);
+    let roleNames = dto.roleNames ?? [];
+    if (roleNames.length === 0) roleNames = ['SCHOOLADMIN'];
+    // ensure "School Admin" role exists with all tenant permissions
+    if (roleNames.includes('SCHOOLADMIN')) {
+      const existing = await this.prisma.role.findFirst({ where: { tenantId, name: 'SCHOOLADMIN' } });
+      if (!existing) {
+        const perms = await this.prisma.permission.findMany();
+        const role = await this.prisma.role.create({
+          data: {
+            tenantId,
+            name: 'SCHOOLADMIN',
+            description: 'Default school administrator role',
+            isSystem: true,
+            permissions: { create: perms.map((p) => ({ permissionId: p.id })) },
+          },
+        });
+      }
+    }
+    const roleIds = await this.resolveRoleIds(tenantId, roleNames);
     const tu = await this.prisma.tenantUser.create({
       data: {
         tenantId,
@@ -73,7 +91,18 @@ export class TenantUserService {
   }
 
   async update(tenantId: string, id: string, dto: any) {
-    await this.findOne(tenantId, id);
+    const tu = await this.findOne(tenantId, id);
+    if (dto.email || dto.firstNameEn || dto.lastNameEn || dto.password || dto.phone) {
+      const userData: any = {};
+      if (dto.email) userData.email = dto.email;
+      if (dto.firstNameEn) userData.firstNameEn = dto.firstNameEn;
+      if (dto.firstNameNe) userData.firstNameNe = dto.firstNameNe;
+      if (dto.lastNameEn) userData.lastNameEn = dto.lastNameEn;
+      if (dto.lastNameNe) userData.lastNameNe = dto.lastNameNe;
+      if (dto.phone) userData.phone = dto.phone;
+      if (dto.password) userData.passwordHash = await bcrypt.hash(dto.password, 10);
+      await this.prisma.user.update({ where: { id: tu.userId }, data: userData });
+    }
     return this.prisma.tenantUser.update({
       where: { id },
       data: { isPrimary: dto.isPrimary, status: dto.status },

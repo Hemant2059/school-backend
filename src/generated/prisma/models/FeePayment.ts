@@ -45,6 +45,7 @@ export type FeePaymentMinAggregateOutputType = {
   paymentDateBs: string | null
   amountPaid: runtime.Decimal | null
   paymentMethod: $Enums.FeePaymentMethod | null
+  status: $Enums.FeePaymentStatus | null
   gatewayTransactionId: string | null
   collectedByUserId: string | null
   createdAt: Date | null
@@ -63,6 +64,7 @@ export type FeePaymentMaxAggregateOutputType = {
   paymentDateBs: string | null
   amountPaid: runtime.Decimal | null
   paymentMethod: $Enums.FeePaymentMethod | null
+  status: $Enums.FeePaymentStatus | null
   gatewayTransactionId: string | null
   collectedByUserId: string | null
   createdAt: Date | null
@@ -81,6 +83,7 @@ export type FeePaymentCountAggregateOutputType = {
   paymentDateBs: number
   amountPaid: number
   paymentMethod: number
+  status: number
   gatewayTransactionId: number
   gatewayResponsePayload: number
   collectedByUserId: number
@@ -110,6 +113,7 @@ export type FeePaymentMinAggregateInputType = {
   paymentDateBs?: true
   amountPaid?: true
   paymentMethod?: true
+  status?: true
   gatewayTransactionId?: true
   collectedByUserId?: true
   createdAt?: true
@@ -128,6 +132,7 @@ export type FeePaymentMaxAggregateInputType = {
   paymentDateBs?: true
   amountPaid?: true
   paymentMethod?: true
+  status?: true
   gatewayTransactionId?: true
   collectedByUserId?: true
   createdAt?: true
@@ -146,6 +151,7 @@ export type FeePaymentCountAggregateInputType = {
   paymentDateBs?: true
   amountPaid?: true
   paymentMethod?: true
+  status?: true
   gatewayTransactionId?: true
   gatewayResponsePayload?: true
   collectedByUserId?: true
@@ -252,6 +258,7 @@ export type FeePaymentGroupByOutputType = {
   paymentDateBs: string
   amountPaid: runtime.Decimal
   paymentMethod: $Enums.FeePaymentMethod
+  status: $Enums.FeePaymentStatus
   gatewayTransactionId: string | null
   gatewayResponsePayload: runtime.JsonValue | null
   collectedByUserId: string | null
@@ -294,6 +301,7 @@ export type FeePaymentWhereInput = {
   paymentDateBs?: Prisma.StringFilter<"FeePayment"> | string
   amountPaid?: Prisma.DecimalFilter<"FeePayment"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFilter<"FeePayment"> | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFilter<"FeePayment"> | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.StringNullableFilter<"FeePayment"> | string | null
   gatewayResponsePayload?: Prisma.JsonNullableFilter<"FeePayment">
   collectedByUserId?: Prisma.StringNullableFilter<"FeePayment"> | string | null
@@ -318,6 +326,7 @@ export type FeePaymentOrderByWithRelationInput = {
   paymentDateBs?: Prisma.SortOrder
   amountPaid?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   gatewayTransactionId?: Prisma.SortOrderInput | Prisma.SortOrder
   gatewayResponsePayload?: Prisma.SortOrderInput | Prisma.SortOrder
   collectedByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -345,6 +354,7 @@ export type FeePaymentWhereUniqueInput = Prisma.AtLeast<{
   paymentDateBs?: Prisma.StringFilter<"FeePayment"> | string
   amountPaid?: Prisma.DecimalFilter<"FeePayment"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFilter<"FeePayment"> | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFilter<"FeePayment"> | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.StringNullableFilter<"FeePayment"> | string | null
   gatewayResponsePayload?: Prisma.JsonNullableFilter<"FeePayment">
   collectedByUserId?: Prisma.StringNullableFilter<"FeePayment"> | string | null
@@ -369,6 +379,7 @@ export type FeePaymentOrderByWithAggregationInput = {
   paymentDateBs?: Prisma.SortOrder
   amountPaid?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   gatewayTransactionId?: Prisma.SortOrderInput | Prisma.SortOrder
   gatewayResponsePayload?: Prisma.SortOrderInput | Prisma.SortOrder
   collectedByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -396,6 +407,7 @@ export type FeePaymentScalarWhereWithAggregatesInput = {
   paymentDateBs?: Prisma.StringWithAggregatesFilter<"FeePayment"> | string
   amountPaid?: Prisma.DecimalWithAggregatesFilter<"FeePayment"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodWithAggregatesFilter<"FeePayment"> | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusWithAggregatesFilter<"FeePayment"> | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.StringNullableWithAggregatesFilter<"FeePayment"> | string | null
   gatewayResponsePayload?: Prisma.JsonNullableWithAggregatesFilter<"FeePayment">
   collectedByUserId?: Prisma.StringNullableWithAggregatesFilter<"FeePayment"> | string | null
@@ -411,6 +423,7 @@ export type FeePaymentCreateInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -434,6 +447,7 @@ export type FeePaymentUncheckedCreateInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -449,6 +463,7 @@ export type FeePaymentUpdateInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -472,6 +487,7 @@ export type FeePaymentUncheckedUpdateInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -491,6 +507,7 @@ export type FeePaymentCreateManyInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -506,6 +523,7 @@ export type FeePaymentUpdateManyMutationInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -524,6 +542,7 @@ export type FeePaymentUncheckedUpdateManyInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -553,6 +572,7 @@ export type FeePaymentCountOrderByAggregateInput = {
   paymentDateBs?: Prisma.SortOrder
   amountPaid?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   gatewayTransactionId?: Prisma.SortOrder
   gatewayResponsePayload?: Prisma.SortOrder
   collectedByUserId?: Prisma.SortOrder
@@ -576,6 +596,7 @@ export type FeePaymentMaxOrderByAggregateInput = {
   paymentDateBs?: Prisma.SortOrder
   amountPaid?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   gatewayTransactionId?: Prisma.SortOrder
   collectedByUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -594,6 +615,7 @@ export type FeePaymentMinOrderByAggregateInput = {
   paymentDateBs?: Prisma.SortOrder
   amountPaid?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   gatewayTransactionId?: Prisma.SortOrder
   collectedByUserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -819,6 +841,10 @@ export type EnumFeePaymentMethodFieldUpdateOperationsInput = {
   set?: $Enums.FeePaymentMethod
 }
 
+export type EnumFeePaymentStatusFieldUpdateOperationsInput = {
+  set?: $Enums.FeePaymentStatus
+}
+
 export type FeePaymentCreateWithoutCollectedByInput = {
   id?: string
   receiptNumber: string
@@ -826,6 +852,7 @@ export type FeePaymentCreateWithoutCollectedByInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -848,6 +875,7 @@ export type FeePaymentUncheckedCreateWithoutCollectedByInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -895,6 +923,7 @@ export type FeePaymentScalarWhereInput = {
   paymentDateBs?: Prisma.StringFilter<"FeePayment"> | string
   amountPaid?: Prisma.DecimalFilter<"FeePayment"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFilter<"FeePayment"> | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFilter<"FeePayment"> | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.StringNullableFilter<"FeePayment"> | string | null
   gatewayResponsePayload?: Prisma.JsonNullableFilter<"FeePayment">
   collectedByUserId?: Prisma.StringNullableFilter<"FeePayment"> | string | null
@@ -910,6 +939,7 @@ export type FeePaymentCreateWithoutTenantInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -931,6 +961,7 @@ export type FeePaymentUncheckedCreateWithoutTenantInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -972,6 +1003,7 @@ export type FeePaymentCreateWithoutEnrollmentInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -993,6 +1025,7 @@ export type FeePaymentUncheckedCreateWithoutEnrollmentInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1034,6 +1067,7 @@ export type FeePaymentCreateWithoutFiscalYearInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -1055,6 +1089,7 @@ export type FeePaymentUncheckedCreateWithoutFiscalYearInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1096,6 +1131,7 @@ export type FeePaymentCreateWithoutInvoiceInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -1117,6 +1153,7 @@ export type FeePaymentUncheckedCreateWithoutInvoiceInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1162,6 +1199,7 @@ export type FeePaymentCreateManyCollectedByInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -1176,6 +1214,7 @@ export type FeePaymentUpdateWithoutCollectedByInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1198,6 +1237,7 @@ export type FeePaymentUncheckedUpdateWithoutCollectedByInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1216,6 +1256,7 @@ export type FeePaymentUncheckedUpdateManyWithoutCollectedByInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1233,6 +1274,7 @@ export type FeePaymentCreateManyTenantInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1248,6 +1290,7 @@ export type FeePaymentUpdateWithoutTenantInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1269,6 +1312,7 @@ export type FeePaymentUncheckedUpdateWithoutTenantInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1287,6 +1331,7 @@ export type FeePaymentUncheckedUpdateManyWithoutTenantInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1305,6 +1350,7 @@ export type FeePaymentCreateManyEnrollmentInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1320,6 +1366,7 @@ export type FeePaymentUpdateWithoutEnrollmentInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1341,6 +1388,7 @@ export type FeePaymentUncheckedUpdateWithoutEnrollmentInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1359,6 +1407,7 @@ export type FeePaymentUncheckedUpdateManyWithoutEnrollmentInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1377,6 +1426,7 @@ export type FeePaymentCreateManyFiscalYearInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1392,6 +1442,7 @@ export type FeePaymentUpdateWithoutFiscalYearInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1413,6 +1464,7 @@ export type FeePaymentUncheckedUpdateWithoutFiscalYearInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1431,6 +1483,7 @@ export type FeePaymentUncheckedUpdateManyWithoutFiscalYearInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1449,6 +1502,7 @@ export type FeePaymentCreateManyInvoiceInput = {
   paymentDateBs: string
   amountPaid: runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod: $Enums.FeePaymentMethod
+  status?: $Enums.FeePaymentStatus
   gatewayTransactionId?: string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: string | null
@@ -1464,6 +1518,7 @@ export type FeePaymentUpdateWithoutInvoiceInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1485,6 +1540,7 @@ export type FeePaymentUncheckedUpdateWithoutInvoiceInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1503,6 +1559,7 @@ export type FeePaymentUncheckedUpdateManyWithoutInvoiceInput = {
   paymentDateBs?: Prisma.StringFieldUpdateOperationsInput | string
   amountPaid?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   paymentMethod?: Prisma.EnumFeePaymentMethodFieldUpdateOperationsInput | $Enums.FeePaymentMethod
+  status?: Prisma.EnumFeePaymentStatusFieldUpdateOperationsInput | $Enums.FeePaymentStatus
   gatewayTransactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gatewayResponsePayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   collectedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1524,6 +1581,7 @@ export type FeePaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   paymentDateBs?: boolean
   amountPaid?: boolean
   paymentMethod?: boolean
+  status?: boolean
   gatewayTransactionId?: boolean
   gatewayResponsePayload?: boolean
   collectedByUserId?: boolean
@@ -1548,6 +1606,7 @@ export type FeePaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   paymentDateBs?: boolean
   amountPaid?: boolean
   paymentMethod?: boolean
+  status?: boolean
   gatewayTransactionId?: boolean
   gatewayResponsePayload?: boolean
   collectedByUserId?: boolean
@@ -1572,6 +1631,7 @@ export type FeePaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   paymentDateBs?: boolean
   amountPaid?: boolean
   paymentMethod?: boolean
+  status?: boolean
   gatewayTransactionId?: boolean
   gatewayResponsePayload?: boolean
   collectedByUserId?: boolean
@@ -1596,6 +1656,7 @@ export type FeePaymentSelectScalar = {
   paymentDateBs?: boolean
   amountPaid?: boolean
   paymentMethod?: boolean
+  status?: boolean
   gatewayTransactionId?: boolean
   gatewayResponsePayload?: boolean
   collectedByUserId?: boolean
@@ -1604,7 +1665,7 @@ export type FeePaymentSelectScalar = {
   deletedAt?: boolean
 }
 
-export type FeePaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "fiscalYearId" | "enrollmentId" | "invoiceId" | "receiptNumber" | "paymentDateAd" | "paymentDateBs" | "amountPaid" | "paymentMethod" | "gatewayTransactionId" | "gatewayResponsePayload" | "collectedByUserId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["feePayment"]>
+export type FeePaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "fiscalYearId" | "enrollmentId" | "invoiceId" | "receiptNumber" | "paymentDateAd" | "paymentDateBs" | "amountPaid" | "paymentMethod" | "status" | "gatewayTransactionId" | "gatewayResponsePayload" | "collectedByUserId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["feePayment"]>
 export type FeePaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   fiscalYear?: boolean | Prisma.FiscalYearDefaultArgs<ExtArgs>
@@ -1647,6 +1708,7 @@ export type $FeePaymentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     paymentDateBs: string
     amountPaid: runtime.Decimal
     paymentMethod: $Enums.FeePaymentMethod
+    status: $Enums.FeePaymentStatus
     gatewayTransactionId: string | null
     gatewayResponsePayload: runtime.JsonValue | null
     collectedByUserId: string | null
@@ -2091,6 +2153,7 @@ export interface FeePaymentFieldRefs {
   readonly paymentDateBs: Prisma.FieldRef<"FeePayment", 'String'>
   readonly amountPaid: Prisma.FieldRef<"FeePayment", 'Decimal'>
   readonly paymentMethod: Prisma.FieldRef<"FeePayment", 'FeePaymentMethod'>
+  readonly status: Prisma.FieldRef<"FeePayment", 'FeePaymentStatus'>
   readonly gatewayTransactionId: Prisma.FieldRef<"FeePayment", 'String'>
   readonly gatewayResponsePayload: Prisma.FieldRef<"FeePayment", 'Json'>
   readonly collectedByUserId: Prisma.FieldRef<"FeePayment", 'String'>

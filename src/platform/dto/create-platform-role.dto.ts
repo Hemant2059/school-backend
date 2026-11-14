@@ -1,4 +1,5 @@
 import { ArrayUnique, IsArray, IsBoolean, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreatePlatformRoleDto {
   @IsString()
@@ -12,6 +13,7 @@ export class CreatePlatformRoleDto {
   description?: string;
 
   @IsOptional()
+  @BooleanParam()
   @IsBoolean()
   isSystem?: boolean = false;
 

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service.js';
@@ -11,9 +11,17 @@ import { JwtStrategy } from './strategies/jwt.strategy.js';
 @Module({
   imports: [
     PassportModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET ?? 'dev-access-secret',
-      signOptions: { expiresIn: (process.env.JWT_EXPIRES_IN ?? '15m') as any },
+    // The secret is resolved lazily from the validated configuration. The
+    // previous version read `process.env.JWT_SECRET` at import time — which is
+    // *before* ConfigModule loads `.env` — and fell back to a publicly known
+    // development string.
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.getOrThrow<string>('JWT_SECRET'),
+        signOptions: { expiresIn: config.get<string>('JWT_EXPIRES_IN') ?? '15m' } as any,
+      }),
     }),
   ],
   controllers: [AuthController, TenantAuthController],

@@ -2,6 +2,7 @@ import { SubscriptionStatus } from '../../generated/prisma/client.js';
 import { IsBoolean, IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PaginationQueryDto } from '../../platform/dto/pagination.dto.js';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateSubscriptionDto {
   @IsUUID() planId!: string;
@@ -9,6 +10,7 @@ export class CreateSubscriptionDto {
   @IsDate() @Type(() => Date) startDate!: Date;
   @IsDate() @Type(() => Date) endDate!: Date;
   @IsOptional() @IsDate() @Type(() => Date) trialEndsAt?: Date;
+  @BooleanParam()
   @IsOptional() @IsBoolean() autoRenew?: boolean = true;
   @IsOptional() metadata?: any;
 }
@@ -21,6 +23,7 @@ export class UpdateSubscriptionDto {
   @IsOptional() @IsEnum(SubscriptionStatus) status?: SubscriptionStatus;
   @IsOptional() @IsDate() @Type(() => Date) endDate?: Date;
   @IsOptional() @IsDate() @Type(() => Date) trialEndsAt?: Date;
+  @BooleanParam()
   @IsOptional() @IsBoolean() autoRenew?: boolean;
   @IsOptional() metadata?: any;
 }

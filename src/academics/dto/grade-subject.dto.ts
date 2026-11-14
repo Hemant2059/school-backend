@@ -1,4 +1,5 @@
 import { IsBoolean, IsInt, IsNumber, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateGradeSubjectDto {
   @IsUUID() gradeLevelId!: string;
@@ -10,6 +11,7 @@ export class CreateGradeSubjectDto {
   @IsOptional() @IsNumber() @Min(0) theoryPassMarks?: number;
   @IsOptional() @IsNumber() @Min(0) internalFullMarks?: number;
   @IsOptional() @IsNumber() @Min(0) internalPassMarks?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isOptional?: boolean = false;
   @IsOptional() @IsInt() @Min(0) sortOrder?: number = 0;
 }
@@ -24,6 +26,7 @@ export class UpdateGradeSubjectDto {
   @IsOptional() @IsNumber() @Min(0) theoryPassMarks?: number;
   @IsOptional() @IsNumber() @Min(0) internalFullMarks?: number;
   @IsOptional() @IsNumber() @Min(0) internalPassMarks?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isOptional?: boolean;
   @IsOptional() @IsInt() @Min(0) sortOrder?: number;
 }

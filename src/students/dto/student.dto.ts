@@ -1,6 +1,7 @@
 import { DisabilityType, Gender } from '../../generated/prisma/client.js';
 import { IsBoolean, IsDate, IsEnum, IsInt, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateStudentDto {
   @IsOptional() @IsUUID() userId?: string;
@@ -24,6 +25,7 @@ export class CreateStudentDto {
   @IsOptional() @IsString() @MaxLength(10) bloodGroup?: string;
   @IsString() @MinLength(2) @MaxLength(40) birthCertificateNo!: string;
   @IsString() @MinLength(2) @MaxLength(40) nationalIdNin!: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() hadEcdExperience?: boolean = false;
   @IsOptional() @IsString() @MaxLength(500) photoUrl?: string;
 }
@@ -50,6 +52,7 @@ export class UpdateStudentDto {
   @IsOptional() @IsString() @MaxLength(10) bloodGroup?: string;
   @IsOptional() @IsString() @MinLength(2) @MaxLength(40) birthCertificateNo?: string;
   @IsOptional() @IsString() @MinLength(2) @MaxLength(40) nationalIdNin?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() hadEcdExperience?: boolean;
   @IsOptional() @IsString() @MaxLength(500) photoUrl?: string;
 }

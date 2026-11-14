@@ -433,7 +433,6 @@ export type PlatformUserWhereInput = {
   createdOrganizations?: Prisma.OrganizationListRelationFilter
   resellerOrganizations?: Prisma.OrganizationListRelationFilter
   assignedSubscriptions?: Prisma.SubscriptionListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
 }
 
 export type PlatformUserOrderByWithRelationInput = {
@@ -477,7 +476,6 @@ export type PlatformUserOrderByWithRelationInput = {
   createdOrganizations?: Prisma.OrganizationOrderByRelationAggregateInput
   resellerOrganizations?: Prisma.OrganizationOrderByRelationAggregateInput
   assignedSubscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
 }
 
 export type PlatformUserWhereUniqueInput = Prisma.AtLeast<{
@@ -524,7 +522,6 @@ export type PlatformUserWhereUniqueInput = Prisma.AtLeast<{
   createdOrganizations?: Prisma.OrganizationListRelationFilter
   resellerOrganizations?: Prisma.OrganizationListRelationFilter
   assignedSubscriptions?: Prisma.SubscriptionListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
 }, "id" | "email" | "phone" | "invitationToken">
 
 export type PlatformUserOrderByWithAggregationInput = {
@@ -643,7 +640,6 @@ export type PlatformUserCreateInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateInput = {
@@ -686,7 +682,6 @@ export type PlatformUserUncheckedCreateInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUpdateInput = {
@@ -729,7 +724,6 @@ export type PlatformUserUpdateInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateInput = {
@@ -772,7 +766,6 @@ export type PlatformUserUncheckedUpdateInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateManyInput = {
@@ -1202,22 +1195,6 @@ export type PlatformUserUpdateOneWithoutAssignedSubscriptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlatformUserUpdateToOneWithWhereWithoutAssignedSubscriptionsInput, Prisma.PlatformUserUpdateWithoutAssignedSubscriptionsInput>, Prisma.PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput>
 }
 
-export type PlatformUserCreateNestedOneWithoutAuditLogsInput = {
-  create?: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
-  connectOrCreate?: Prisma.PlatformUserCreateOrConnectWithoutAuditLogsInput
-  connect?: Prisma.PlatformUserWhereUniqueInput
-}
-
-export type PlatformUserUpdateOneWithoutAuditLogsNestedInput = {
-  create?: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
-  connectOrCreate?: Prisma.PlatformUserCreateOrConnectWithoutAuditLogsInput
-  upsert?: Prisma.PlatformUserUpsertWithoutAuditLogsInput
-  disconnect?: Prisma.PlatformUserWhereInput | boolean
-  delete?: Prisma.PlatformUserWhereInput | boolean
-  connect?: Prisma.PlatformUserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlatformUserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.PlatformUserUpdateWithoutAuditLogsInput>, Prisma.PlatformUserUncheckedUpdateWithoutAuditLogsInput>
-}
-
 export type PlatformUserCreateWithoutInvitedUsersInput = {
   id?: string
   email: string
@@ -1257,7 +1234,6 @@ export type PlatformUserCreateWithoutInvitedUsersInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutInvitedUsersInput = {
@@ -1299,7 +1275,6 @@ export type PlatformUserUncheckedCreateWithoutInvitedUsersInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutInvitedUsersInput = {
@@ -1346,7 +1321,6 @@ export type PlatformUserCreateWithoutInvitedByInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutInvitedByInput = {
@@ -1388,7 +1362,6 @@ export type PlatformUserUncheckedCreateWithoutInvitedByInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutInvitedByInput = {
@@ -1451,7 +1424,6 @@ export type PlatformUserUpdateWithoutInvitedUsersInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutInvitedUsersInput = {
@@ -1493,7 +1465,6 @@ export type PlatformUserUncheckedUpdateWithoutInvitedUsersInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithWhereUniqueWithoutInvitedByInput = {
@@ -1588,7 +1559,6 @@ export type PlatformUserCreateWithoutRolesInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutRolesInput = {
@@ -1630,7 +1600,6 @@ export type PlatformUserUncheckedCreateWithoutRolesInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutRolesInput = {
@@ -1677,7 +1646,6 @@ export type PlatformUserCreateWithoutAssignedRolesInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutAssignedRolesInput = {
@@ -1719,7 +1687,6 @@ export type PlatformUserUncheckedCreateWithoutAssignedRolesInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutAssignedRolesInput = {
@@ -1777,7 +1744,6 @@ export type PlatformUserUpdateWithoutRolesInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutRolesInput = {
@@ -1819,7 +1785,6 @@ export type PlatformUserUncheckedUpdateWithoutRolesInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithoutAssignedRolesInput = {
@@ -1872,7 +1837,6 @@ export type PlatformUserUpdateWithoutAssignedRolesInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutAssignedRolesInput = {
@@ -1914,7 +1878,6 @@ export type PlatformUserUncheckedUpdateWithoutAssignedRolesInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateWithoutPermissionsInput = {
@@ -1956,7 +1919,6 @@ export type PlatformUserCreateWithoutPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutPermissionsInput = {
@@ -1998,7 +1960,6 @@ export type PlatformUserUncheckedCreateWithoutPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutPermissionsInput = {
@@ -2045,7 +2006,6 @@ export type PlatformUserCreateWithoutGrantedPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutGrantedPermissionsInput = {
@@ -2087,7 +2047,6 @@ export type PlatformUserUncheckedCreateWithoutGrantedPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutGrantedPermissionsInput = {
@@ -2145,7 +2104,6 @@ export type PlatformUserUpdateWithoutPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutPermissionsInput = {
@@ -2187,7 +2145,6 @@ export type PlatformUserUncheckedUpdateWithoutPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithoutGrantedPermissionsInput = {
@@ -2240,7 +2197,6 @@ export type PlatformUserUpdateWithoutGrantedPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutGrantedPermissionsInput = {
@@ -2282,7 +2238,6 @@ export type PlatformUserUncheckedUpdateWithoutGrantedPermissionsInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateWithoutCreatedOrganizationsInput = {
@@ -2324,7 +2279,6 @@ export type PlatformUserCreateWithoutCreatedOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutCreatedOrganizationsInput = {
@@ -2366,7 +2320,6 @@ export type PlatformUserUncheckedCreateWithoutCreatedOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutCreatedOrganizationsInput = {
@@ -2413,7 +2366,6 @@ export type PlatformUserCreateWithoutResellerOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutResellerOrganizationsInput = {
@@ -2455,7 +2407,6 @@ export type PlatformUserUncheckedCreateWithoutResellerOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutResellerOrganizationsInput = {
@@ -2513,7 +2464,6 @@ export type PlatformUserUpdateWithoutCreatedOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutCreatedOrganizationsInput = {
@@ -2555,7 +2505,6 @@ export type PlatformUserUncheckedUpdateWithoutCreatedOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUpsertWithoutResellerOrganizationsInput = {
@@ -2608,7 +2557,6 @@ export type PlatformUserUpdateWithoutResellerOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutResellerOrganizationsInput = {
@@ -2650,7 +2598,6 @@ export type PlatformUserUncheckedUpdateWithoutResellerOrganizationsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserCreateWithoutAssignedSubscriptionsInput = {
@@ -2692,7 +2639,6 @@ export type PlatformUserCreateWithoutAssignedSubscriptionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput = {
@@ -2734,7 +2680,6 @@ export type PlatformUserUncheckedCreateWithoutAssignedSubscriptionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
   createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
   resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type PlatformUserCreateOrConnectWithoutAssignedSubscriptionsInput = {
@@ -2792,7 +2737,6 @@ export type PlatformUserUpdateWithoutAssignedSubscriptionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput = {
@@ -2834,191 +2778,6 @@ export type PlatformUserUncheckedUpdateWithoutAssignedSubscriptionsInput = {
   grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type PlatformUserCreateWithoutAuditLogsInput = {
-  id?: string
-  email: string
-  firstNameEn: string
-  firstNameNe: string
-  middleNameEn?: string | null
-  middleNameNe?: string | null
-  lastNameEn: string
-  lastNameNe: string
-  phone?: string | null
-  passwordHash?: string | null
-  status?: $Enums.PlatformUserStatus
-  address?: string | null
-  emailVerifiedAt?: Date | string | null
-  phoneVerifiedAt?: Date | string | null
-  twoFactorEnabled?: boolean
-  twoFactorSecret?: string | null
-  lastLoginAt?: Date | string | null
-  lastLoginIp?: string | null
-  failedLoginAttempts?: number
-  lockedUntil?: Date | string | null
-  passwordChangedAt?: Date | string | null
-  mustChangePassword?: boolean
-  invitationToken?: string | null
-  invitationExpiresAt?: Date | string | null
-  invitationAcceptedAt?: Date | string | null
-  refreshTokenHash?: string | null
-  refreshTokenExpiresAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  roles?: Prisma.PlatformUserRoleCreateNestedManyWithoutUserInput
-  permissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutUserInput
-  invitedBy?: Prisma.PlatformUserCreateNestedOneWithoutInvitedUsersInput
-  invitedUsers?: Prisma.PlatformUserCreateNestedManyWithoutInvitedByInput
-  assignedRoles?: Prisma.PlatformUserRoleCreateNestedManyWithoutAssignedByInput
-  grantedPermissions?: Prisma.PlatformUserPermissionCreateNestedManyWithoutGrantedByInput
-  createdOrganizations?: Prisma.OrganizationCreateNestedManyWithoutCreatedByInput
-  resellerOrganizations?: Prisma.OrganizationCreateNestedManyWithoutResellerPartnerInput
-  assignedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutAssignedByPlatformUserInput
-}
-
-export type PlatformUserUncheckedCreateWithoutAuditLogsInput = {
-  id?: string
-  email: string
-  firstNameEn: string
-  firstNameNe: string
-  middleNameEn?: string | null
-  middleNameNe?: string | null
-  lastNameEn: string
-  lastNameNe: string
-  phone?: string | null
-  passwordHash?: string | null
-  status?: $Enums.PlatformUserStatus
-  address?: string | null
-  emailVerifiedAt?: Date | string | null
-  phoneVerifiedAt?: Date | string | null
-  twoFactorEnabled?: boolean
-  twoFactorSecret?: string | null
-  lastLoginAt?: Date | string | null
-  lastLoginIp?: string | null
-  failedLoginAttempts?: number
-  lockedUntil?: Date | string | null
-  passwordChangedAt?: Date | string | null
-  mustChangePassword?: boolean
-  invitationToken?: string | null
-  invitationExpiresAt?: Date | string | null
-  invitationAcceptedAt?: Date | string | null
-  refreshTokenHash?: string | null
-  refreshTokenExpiresAt?: Date | string | null
-  invitedById?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  roles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutUserInput
-  permissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutUserInput
-  invitedUsers?: Prisma.PlatformUserUncheckedCreateNestedManyWithoutInvitedByInput
-  assignedRoles?: Prisma.PlatformUserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  grantedPermissions?: Prisma.PlatformUserPermissionUncheckedCreateNestedManyWithoutGrantedByInput
-  createdOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutCreatedByInput
-  resellerOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutResellerPartnerInput
-  assignedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutAssignedByPlatformUserInput
-}
-
-export type PlatformUserCreateOrConnectWithoutAuditLogsInput = {
-  where: Prisma.PlatformUserWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
-}
-
-export type PlatformUserUpsertWithoutAuditLogsInput = {
-  update: Prisma.XOR<Prisma.PlatformUserUpdateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedUpdateWithoutAuditLogsInput>
-  create: Prisma.XOR<Prisma.PlatformUserCreateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedCreateWithoutAuditLogsInput>
-  where?: Prisma.PlatformUserWhereInput
-}
-
-export type PlatformUserUpdateToOneWithWhereWithoutAuditLogsInput = {
-  where?: Prisma.PlatformUserWhereInput
-  data: Prisma.XOR<Prisma.PlatformUserUpdateWithoutAuditLogsInput, Prisma.PlatformUserUncheckedUpdateWithoutAuditLogsInput>
-}
-
-export type PlatformUserUpdateWithoutAuditLogsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
-  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginIp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
-  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  passwordChangedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  invitationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  invitationExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  invitationAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  refreshTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  refreshTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roles?: Prisma.PlatformUserRoleUpdateManyWithoutUserNestedInput
-  permissions?: Prisma.PlatformUserPermissionUpdateManyWithoutUserNestedInput
-  invitedBy?: Prisma.PlatformUserUpdateOneWithoutInvitedUsersNestedInput
-  invitedUsers?: Prisma.PlatformUserUpdateManyWithoutInvitedByNestedInput
-  assignedRoles?: Prisma.PlatformUserRoleUpdateManyWithoutAssignedByNestedInput
-  grantedPermissions?: Prisma.PlatformUserPermissionUpdateManyWithoutGrantedByNestedInput
-  createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
-  resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
-  assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-}
-
-export type PlatformUserUncheckedUpdateWithoutAuditLogsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  firstNameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  firstNameNe?: Prisma.StringFieldUpdateOperationsInput | string
-  middleNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  middleNameNe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameNe?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumPlatformUserStatusFieldUpdateOperationsInput | $Enums.PlatformUserStatus
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  twoFactorSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginIp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
-  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  passwordChangedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  invitationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  invitationExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  invitationAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  refreshTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  refreshTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutUserNestedInput
-  permissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutUserNestedInput
-  invitedUsers?: Prisma.PlatformUserUncheckedUpdateManyWithoutInvitedByNestedInput
-  assignedRoles?: Prisma.PlatformUserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  grantedPermissions?: Prisma.PlatformUserPermissionUncheckedUpdateManyWithoutGrantedByNestedInput
-  createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
-  resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
-  assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
 }
 
 export type PlatformUserCreateManyInvitedByInput = {
@@ -3093,7 +2852,6 @@ export type PlatformUserUpdateWithoutInvitedByInput = {
   createdOrganizations?: Prisma.OrganizationUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateWithoutInvitedByInput = {
@@ -3135,7 +2893,6 @@ export type PlatformUserUncheckedUpdateWithoutInvitedByInput = {
   createdOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutCreatedByNestedInput
   resellerOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutResellerPartnerNestedInput
   assignedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutAssignedByPlatformUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type PlatformUserUncheckedUpdateManyWithoutInvitedByInput = {
@@ -3185,7 +2942,6 @@ export type PlatformUserCountOutputType = {
   createdOrganizations: number
   resellerOrganizations: number
   assignedSubscriptions: number
-  auditLogs: number
 }
 
 export type PlatformUserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3197,7 +2953,6 @@ export type PlatformUserCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   createdOrganizations?: boolean | PlatformUserCountOutputTypeCountCreatedOrganizationsArgs
   resellerOrganizations?: boolean | PlatformUserCountOutputTypeCountResellerOrganizationsArgs
   assignedSubscriptions?: boolean | PlatformUserCountOutputTypeCountAssignedSubscriptionsArgs
-  auditLogs?: boolean | PlatformUserCountOutputTypeCountAuditLogsArgs
 }
 
 /**
@@ -3266,13 +3021,6 @@ export type PlatformUserCountOutputTypeCountAssignedSubscriptionsArgs<ExtArgs ex
   where?: Prisma.SubscriptionWhereInput
 }
 
-/**
- * PlatformUserCountOutputType without action
- */
-export type PlatformUserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuditLogWhereInput
-}
-
 
 export type PlatformUserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3315,7 +3063,6 @@ export type PlatformUserSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdOrganizations?: boolean | Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs>
   resellerOrganizations?: boolean | Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs>
   assignedSubscriptions?: boolean | Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.PlatformUser$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.PlatformUserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["platformUser"]>
 
@@ -3434,7 +3181,6 @@ export type PlatformUserInclude<ExtArgs extends runtime.Types.Extensions.Interna
   createdOrganizations?: boolean | Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs>
   resellerOrganizations?: boolean | Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs>
   assignedSubscriptions?: boolean | Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.PlatformUser$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.PlatformUserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlatformUserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3456,7 +3202,6 @@ export type $PlatformUserPayload<ExtArgs extends runtime.Types.Extensions.Intern
     createdOrganizations: Prisma.$OrganizationPayload<ExtArgs>[]
     resellerOrganizations: Prisma.$OrganizationPayload<ExtArgs>[]
     assignedSubscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3893,7 +3638,6 @@ export interface Prisma__PlatformUserClient<T, Null = never, ExtArgs extends run
   createdOrganizations<T extends Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$createdOrganizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resellerOrganizations<T extends Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$resellerOrganizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignedSubscriptions<T extends Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$assignedSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  auditLogs<T extends Prisma.PlatformUser$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlatformUser$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4563,30 +4307,6 @@ export type PlatformUser$assignedSubscriptionsArgs<ExtArgs extends runtime.Types
   take?: number
   skip?: number
   distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
-}
-
-/**
- * PlatformUser.auditLogs
- */
-export type PlatformUser$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AuditLog
-   */
-  select?: Prisma.AuditLogSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AuditLog
-   */
-  omit?: Prisma.AuditLogOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AuditLogInclude<ExtArgs> | null
-  where?: Prisma.AuditLogWhereInput
-  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
-  cursor?: Prisma.AuditLogWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

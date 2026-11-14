@@ -1,4 +1,5 @@
 import { IsBoolean, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class UpdatePlatformRoleDto {
   @IsOptional()
@@ -13,6 +14,7 @@ export class UpdatePlatformRoleDto {
   description?: string;
 
   @IsOptional()
+  @BooleanParam()
   @IsBoolean()
   isSystem?: boolean;
 }

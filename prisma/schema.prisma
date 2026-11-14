@@ -20,8 +20,8 @@ enum PlatformUserStatus {
 }
 
 model PlatformUser {
-  id          String  @id @default(uuid())
-  email       String  @unique
+  id           String  @id @default(uuid())
+  email        String  @unique
   firstNameEn  String
   firstNameNe  String
   middleNameEn String?
@@ -34,7 +34,7 @@ model PlatformUser {
 
   status PlatformUserStatus @default(INVITED)
 
-  address  String?
+  address String?
 
   emailVerifiedAt     DateTime?
   phoneVerifiedAt     DateTime?
@@ -64,10 +64,9 @@ model PlatformUser {
   assignedRoles      PlatformUserRole[]       @relation("AssignedRoles")
   grantedPermissions PlatformUserPermission[] @relation("GrantedPermissions")
 
-  createdOrganizations     Organization[] @relation("CreatedOrganizations")
-  resellerOrganizations    Organization[] @relation("ResellerOrganizations")
-  assignedSubscriptions   Subscription[] @relation("AssignedSubscriptions")
-  auditLogs              AuditLog[]
+  createdOrganizations  Organization[] @relation("CreatedOrganizations")
+  resellerOrganizations Organization[] @relation("ResellerOrganizations")
+  assignedSubscriptions Subscription[] @relation("AssignedSubscriptions")
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -496,13 +495,19 @@ model RolePermission {
   @@index([permissionId])
 }
 
+enum TenantUserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
 model TenantUser {
-  id        String    @id @default(uuid())
+  id        String           @id @default(uuid())
   tenantId  String
   userId    String
-  isPrimary Boolean   @default(false)
-  status    String    @default("ACTIVE")
-  joinedAt  DateTime  @default(now())
+  isPrimary Boolean          @default(false)
+  status    TenantUserStatus @default(ACTIVE)
+  joinedAt  DateTime         @default(now())
   leftAt    DateTime?
 
   tenant Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
@@ -536,25 +541,25 @@ enum SubscriptionStatus {
 }
 
 model Subscription {
-  id          String             @id @default(uuid())
-  tenantId    String
-  planId      String
-  status      SubscriptionStatus @default(TRIAL)
-  startDate   DateTime
-  endDate     DateTime
-  trialEndsAt DateTime?
-  cancelledAt DateTime?
-  autoRenew              Boolean            @default(true)
-  metadata               Json?
+  id                       String             @id @default(uuid())
+  tenantId                 String
+  planId                   String
+  status                   SubscriptionStatus @default(TRIAL)
+  startDate                DateTime
+  endDate                  DateTime
+  trialEndsAt              DateTime?
+  cancelledAt              DateTime?
+  autoRenew                Boolean            @default(true)
+  metadata                 Json?
   assignedByPlatformUserId String?
 
-  tenant                  Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  plan                    SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
-  assignedByPlatformUser  PlatformUser?    @relation("AssignedSubscriptions", fields: [assignedByPlatformUserId], references: [id], onDelete: SetNull)
-  invoices                Invoice[]
+  tenant                 Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  plan                   SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
+  assignedByPlatformUser PlatformUser?    @relation("AssignedSubscriptions", fields: [assignedByPlatformUserId], references: [id], onDelete: SetNull)
+  invoices               Invoice[]
 
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([tenantId])
   @@index([planId])
@@ -699,6 +704,8 @@ model GradeLevel {
   nameEn         String
   nameNe         String
   iemisGradeCode String?
+  /// Numeric grade (1-12) used for ordering and NEB reporting.
+  gradeNumber    Int?
   evaluationType EvaluationType @default(PERCENTAGE)
   sortOrder      Int            @default(0)
 
@@ -716,6 +723,8 @@ model GradeLevel {
   @@index([tenantId])
   @@index([streamId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, gradeNumber])
 }
 
 model Section {
@@ -750,6 +759,8 @@ model Section {
   @@index([academicYearId])
   @@index([classTeacherId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, gradeLevelId, academicYearId, nameEn])
 }
 
 model StaffProfile {
@@ -802,6 +813,8 @@ model StaffProfile {
 
   @@index([tenantId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, employeeCode])
 }
 
 enum StaffCategory {
@@ -850,6 +863,8 @@ model Subject {
 
   @@index([tenantId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, code])
 }
 
 model GradeSubject {
@@ -881,6 +896,8 @@ model GradeSubject {
   @@index([gradeLevelId])
   @@index([subjectId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, gradeLevelId, subjectId])
 }
 
 enum Gender {
@@ -951,6 +968,8 @@ model Student {
   @@index([tenantId])
   @@index([userId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, admissionNo])
 }
 
 enum AddressEntityType {
@@ -1123,6 +1142,7 @@ model StudentEnrollment {
   @@index([tenantId, gradeLevelId])
   @@index([tenantId, sectionId])
   @@index([tenantId, deletedAt])
+  @@index([tenantId, sectionId, rollNo])
 }
 
 model TransferCertificate {
@@ -1147,6 +1167,8 @@ model TransferCertificate {
   @@index([tenantId])
   @@index([studentId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, tcNumber])
 }
 
 model GradingScale {
@@ -1182,13 +1204,18 @@ model GradingScaleItem {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([gradingScaleId, letterGrade])
   @@index([gradingScaleId])
 }
 
-enum ExamStatus {
-  DRAFT
-  PUBLISHED
-  LOCKED
+/// Nepal classifies exams as terminal (annual) or periodic (unit test,
+/// quarterly, practical). The distinction drives weighting and reporting.
+enum ExamType {
+  TERMINAL
+  PERIODIC
+  UNIT
+  PRACTICAL
+  INTERNAL
 }
 
 model Exam {
@@ -1198,6 +1225,7 @@ model Exam {
   gradingScaleId String?
 
   name          String
+  examType      ExamType @default(TERMINAL)
   termWeightage Decimal? @db.Decimal(5, 2)
 
   startDateAd DateTime
@@ -1225,6 +1253,7 @@ model Exam {
   @@index([tenantId])
   @@index([academicYearId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
 }
 
 model ExamSchedule {
@@ -1259,6 +1288,8 @@ model ExamSchedule {
   @@index([examId])
   @@index([gradeSubjectId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([examId, examDateAd])
 }
 
 model ExamMark {
@@ -1391,6 +1422,8 @@ model FeeHead {
 
   @@index([tenantId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, nameEn])
 }
 
 model ClassFeeStructure {
@@ -1419,6 +1452,8 @@ model ClassFeeStructure {
   @@index([gradeLevelId])
   @@index([feeHeadId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([academicYearId, gradeLevelId, feeHeadId])
 }
 
 model ScholarshipScheme {
@@ -1458,6 +1493,7 @@ model StudentScholarship {
 
   @@index([tenantId])
   @@index([enrollmentId])
+  @@unique([enrollmentId, feeHeadId])
 }
 
 enum FeeInvoiceStatus {
@@ -1475,6 +1511,16 @@ enum FeePaymentMethod {
   CONNECT_IPS
   BANK_VOUCHER
   CHEQUE
+}
+
+/// Lifecycle of a fee receipt.
+enum FeePaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  /// A receipt that was voided out (e.g. an entry mistake). The amount is
+  /// added back to the invoice balance but the row is retained for audit.
+  REVERSED
 }
 
 model FeeInvoice {
@@ -1518,6 +1564,8 @@ model FeeInvoice {
   @@index([tenantId])
   @@index([tenantId, enrollmentId])
   @@index([tenantId, deletedAt])
+  @@index([tenantId, status])
+  @@index([tenantId, fiscalYearId, enrollmentId])
 }
 
 model FeeInvoiceItem {
@@ -1541,6 +1589,7 @@ model FeeInvoiceItem {
 
   @@index([tenantId])
   @@index([invoiceId])
+  @@index([tenantId, invoiceId])
 }
 
 model FeePayment {
@@ -1553,8 +1602,9 @@ model FeePayment {
   receiptNumber          String
   paymentDateAd          DateTime
   paymentDateBs          String           @db.VarChar(10)
-  amountPaid             Decimal          @db.Decimal(10, 2)
+  amountPaid             Decimal          @db.Decimal(12, 2)
   paymentMethod          FeePaymentMethod
+  status                 FeePaymentStatus @default(SUCCESS)
   gatewayTransactionId   String?
   gatewayResponsePayload Json?
   collectedByUserId      String?
@@ -1574,6 +1624,8 @@ model FeePayment {
   @@index([enrollmentId])
   @@index([invoiceId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, status])
 }
 
 model CreditNote {
@@ -1595,6 +1647,7 @@ model CreditNote {
 
   @@index([tenantId])
   @@index([invoiceId])
+  @@unique([tenantId, creditNoteNumber])
 }
 
 enum PayrollRunStatus {
@@ -1627,6 +1680,8 @@ model TeacherSubjectAllocation {
   @@index([sectionId])
   @@index([subjectId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([academicYearId, staffId, sectionId, subjectId])
 }
 
 model PayrollRun {
@@ -1648,6 +1703,8 @@ model PayrollRun {
   @@index([tenantId])
   @@index([fiscalYearId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, fiscalYearId, bsYear, bsMonth])
 }
 
 model SalarySlip {
@@ -1679,6 +1736,8 @@ model SalarySlip {
   @@index([payrollRunId])
   @@index([staffId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([payrollRunId, staffId])
 }
 
 model AcademicCalendarEvent {
@@ -1765,6 +1824,8 @@ model TimetableSlot {
   @@index([sectionId])
   @@index([staffId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, staffId, dayOfWeek, periodNo])
 }
 
 enum TransportVehicleType {
@@ -1795,6 +1856,8 @@ model TransportVehicle {
 
   @@index([tenantId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, vehicleNumber])
 }
 
 model TransportRoute {
@@ -1844,6 +1907,8 @@ model TransportStop {
   @@index([tenantId])
   @@index([routeId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([routeId, sequence])
 }
 
 model StudentTransport {
@@ -1870,6 +1935,7 @@ model StudentTransport {
   @@index([tenantId])
   @@index([enrollmentId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
 }
 
 enum BookIssueStatus {
@@ -1901,6 +1967,8 @@ model LibraryBook {
 
   @@index([tenantId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, isbn])
 }
 
 model BookIssue {
@@ -1984,6 +2052,8 @@ model HostelRoom {
   @@index([tenantId])
   @@index([hostelId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
+  @@index([tenantId, hostelId, roomNumber])
 }
 
 model HostelAllocation {
@@ -2011,6 +2081,7 @@ model HostelAllocation {
   @@index([roomId])
   @@index([enrollmentId])
   @@index([deletedAt])
+  @@index([tenantId, deletedAt])
 }
 
 enum NotificationRecipientType {
@@ -2042,24 +2113,57 @@ model Notification {
   @@index([recipientType, recipientId])
   @@index([isRead])
   @@index([deletedAt])
+  @@index([recipientType, recipientId, isRead])
+  @@index([tenantId, deletedAt])
 }
 
-
+/// Append-only audit trail for privileged and mutating actions.
+///
+/// `userId` is intentionally a plain string rather than a foreign key: the
+/// principal may be a `PlatformUser` (SaaS staff) or a `User` (school staff).
+/// `principalType` disambiguates the two id spaces.
 model AuditLog {
-  id        String   @id @default(uuid())
-  userId    String?
-  method    String
-  path      String
-  action    String?
-  resource  String?
+  id            String  @id @default(uuid())
+  userId        String?
+  principalType String  @default("platform")
+  tenantId      String?
+
+  method     String
+  path       String
+  action     String?
+  resource   String?
   resourceId String?
   statusCode Int?
   ipAddress  String?
-  createdAt  DateTime @default(now())
+  metadata   Json?
 
-  user PlatformUser? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
 
   @@index([userId])
+  @@index([tenantId])
   @@index([createdAt])
   @@index([method])
+  @@index([action])
+}
+
+/// Server-side, gap-free document numbering.
+///
+/// Invoice and receipt numbers used to be supplied by the client, which meant
+/// two concurrent requests could collide and the sequence was never
+/// contiguous. The counter is now owned by the server and advanced inside a
+/// transaction.
+model DocumentSequence {
+  id           String @id @default(uuid())
+  tenantId     String
+  fiscalYearId String
+  /// FEE_INVOICE | FEE_RECEIPT | TRANSFER_CERTIFICATE | TEACHER_SUBJECT_ALLOCATION
+  kind         String
+  prefix       String @default("")
+  padding      Int    @default(5)
+  lastNumber   Int    @default(0)
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([tenantId, fiscalYearId, kind])
+  @@index([tenantId])
 }

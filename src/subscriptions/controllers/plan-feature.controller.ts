@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/
 import { PlanFeatureService } from '../services/plan-feature.service.js';
 import { AssignPlanFeatureDto, ReplacePlanFeaturesDto, UpdatePlanFeatureDto } from '../dto/plan-feature.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('subscription-plans/:planId/features')
 export class PlanFeatureController {
   constructor(private readonly service: PlanFeatureService) {}

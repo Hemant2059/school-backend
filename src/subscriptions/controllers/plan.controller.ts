@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { PlanService } from '../services/plan.service.js';
 import { CreatePlanDto, UpdatePlanDto, QueryPlansDto } from '../dto/plan.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('subscription-plans')
 export class PlanController {
   constructor(private readonly service: PlanService) {}

@@ -2,6 +2,7 @@ import { PlatformUserStatus } from '../../generated/prisma/client.js';
 import { Type } from 'class-transformer';
 import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
 import { PaginationQueryDto } from './pagination.dto.js';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class QueryPlatformUsersDto extends PaginationQueryDto {
   @IsOptional()
@@ -14,6 +15,7 @@ export class QueryPlatformUsersDto extends PaginationQueryDto {
 
   @IsOptional()
   @Type(() => Boolean)
+  @BooleanParam()
   @IsBoolean()
   includeDeleted?: boolean = false;
 }

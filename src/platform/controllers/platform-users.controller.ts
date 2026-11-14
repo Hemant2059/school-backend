@@ -6,7 +6,9 @@ import { UpdatePlatformUserDto } from '../dto/update-platform-user.dto.js';
 import { QueryPlatformUsersDto } from '../dto/query-platform-users.dto.js';
 import { AssignUserRolesDto, RevokeUserRolesDto } from '../dto/assign-user-roles.dto.js';
 import { OverrideUserPermissionsDto } from '../dto/override-user-permissions.dto.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('platform/users')
 export class PlatformUsersController {
   constructor(private readonly service: PlatformUsersService) {}

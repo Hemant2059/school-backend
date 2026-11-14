@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { FeatureService } from '../services/feature.service.js';
 import { CreateFeatureDto, UpdateFeatureDto, QueryFeaturesDto } from '../dto/feature.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('features')
 export class FeatureController {
   constructor(private readonly service: FeatureService) {}

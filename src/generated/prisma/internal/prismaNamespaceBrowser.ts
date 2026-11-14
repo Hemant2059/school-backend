@@ -115,7 +115,8 @@ export const ModelName = {
   HostelRoom: 'HostelRoom',
   HostelAllocation: 'HostelAllocation',
   Notification: 'Notification',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  DocumentSequence: 'DocumentSequence'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -534,6 +535,7 @@ export const GradeLevelScalarFieldEnum = {
   nameEn: 'nameEn',
   nameNe: 'nameNe',
   iemisGradeCode: 'iemisGradeCode',
+  gradeNumber: 'gradeNumber',
   evaluationType: 'evaluationType',
   sortOrder: 'sortOrder',
   createdAt: 'createdAt',
@@ -808,6 +810,7 @@ export const ExamScalarFieldEnum = {
   academicYearId: 'academicYearId',
   gradingScaleId: 'gradingScaleId',
   name: 'name',
+  examType: 'examType',
   termWeightage: 'termWeightage',
   startDateAd: 'startDateAd',
   endDateAd: 'endDateAd',
@@ -1027,6 +1030,7 @@ export const FeePaymentScalarFieldEnum = {
   paymentDateBs: 'paymentDateBs',
   amountPaid: 'amountPaid',
   paymentMethod: 'paymentMethod',
+  status: 'status',
   gatewayTransactionId: 'gatewayTransactionId',
   gatewayResponsePayload: 'gatewayResponsePayload',
   collectedByUserId: 'collectedByUserId',
@@ -1340,6 +1344,8 @@ export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[k
 export const AuditLogScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  principalType: 'principalType',
+  tenantId: 'tenantId',
   method: 'method',
   path: 'path',
   action: 'action',
@@ -1347,10 +1353,25 @@ export const AuditLogScalarFieldEnum = {
   resourceId: 'resourceId',
   statusCode: 'statusCode',
   ipAddress: 'ipAddress',
+  metadata: 'metadata',
   createdAt: 'createdAt'
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const DocumentSequenceScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  fiscalYearId: 'fiscalYearId',
+  kind: 'kind',
+  prefix: 'prefix',
+  padding: 'padding',
+  lastNumber: 'lastNumber',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentSequenceScalarFieldEnum = (typeof DocumentSequenceScalarFieldEnum)[keyof typeof DocumentSequenceScalarFieldEnum]
 
 
 export const SortOrder = {

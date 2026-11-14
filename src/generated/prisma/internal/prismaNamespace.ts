@@ -461,7 +461,8 @@ export const ModelName = {
   HostelRoom: 'HostelRoom',
   HostelAllocation: 'HostelAllocation',
   Notification: 'Notification',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  DocumentSequence: 'DocumentSequence'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -477,7 +478,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog"
+    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog" | "documentSequence"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5291,6 +5292,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DocumentSequence: {
+      payload: Prisma.$DocumentSequencePayload<ExtArgs>
+      fields: Prisma.DocumentSequenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DocumentSequenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DocumentSequenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>
+        }
+        findFirst: {
+          args: Prisma.DocumentSequenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DocumentSequenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>
+        }
+        findMany: {
+          args: Prisma.DocumentSequenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>[]
+        }
+        create: {
+          args: Prisma.DocumentSequenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>
+        }
+        createMany: {
+          args: Prisma.DocumentSequenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DocumentSequenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>[]
+        }
+        delete: {
+          args: Prisma.DocumentSequenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>
+        }
+        update: {
+          args: Prisma.DocumentSequenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>
+        }
+        deleteMany: {
+          args: Prisma.DocumentSequenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DocumentSequenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DocumentSequenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>[]
+        }
+        upsert: {
+          args: Prisma.DocumentSequenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentSequencePayload>
+        }
+        aggregate: {
+          args: Prisma.DocumentSequenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDocumentSequence>
+        }
+        groupBy: {
+          args: Prisma.DocumentSequenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DocumentSequenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DocumentSequenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DocumentSequenceCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -5730,6 +5805,7 @@ export const GradeLevelScalarFieldEnum = {
   nameEn: 'nameEn',
   nameNe: 'nameNe',
   iemisGradeCode: 'iemisGradeCode',
+  gradeNumber: 'gradeNumber',
   evaluationType: 'evaluationType',
   sortOrder: 'sortOrder',
   createdAt: 'createdAt',
@@ -6004,6 +6080,7 @@ export const ExamScalarFieldEnum = {
   academicYearId: 'academicYearId',
   gradingScaleId: 'gradingScaleId',
   name: 'name',
+  examType: 'examType',
   termWeightage: 'termWeightage',
   startDateAd: 'startDateAd',
   endDateAd: 'endDateAd',
@@ -6223,6 +6300,7 @@ export const FeePaymentScalarFieldEnum = {
   paymentDateBs: 'paymentDateBs',
   amountPaid: 'amountPaid',
   paymentMethod: 'paymentMethod',
+  status: 'status',
   gatewayTransactionId: 'gatewayTransactionId',
   gatewayResponsePayload: 'gatewayResponsePayload',
   collectedByUserId: 'collectedByUserId',
@@ -6536,6 +6614,8 @@ export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[k
 export const AuditLogScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  principalType: 'principalType',
+  tenantId: 'tenantId',
   method: 'method',
   path: 'path',
   action: 'action',
@@ -6543,10 +6623,25 @@ export const AuditLogScalarFieldEnum = {
   resourceId: 'resourceId',
   statusCode: 'statusCode',
   ipAddress: 'ipAddress',
+  metadata: 'metadata',
   createdAt: 'createdAt'
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const DocumentSequenceScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  fiscalYearId: 'fiscalYearId',
+  kind: 'kind',
+  prefix: 'prefix',
+  padding: 'padding',
+  lastNumber: 'lastNumber',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentSequenceScalarFieldEnum = (typeof DocumentSequenceScalarFieldEnum)[keyof typeof DocumentSequenceScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -6786,6 +6881,20 @@ export type ListEnumTenantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'TenantUserStatus'
+ */
+export type EnumTenantUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TenantUserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TenantUserStatus[]'
+ */
+export type ListEnumTenantUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TenantUserStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'SubscriptionStatus'
  */
 export type EnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus'>
@@ -7010,6 +7119,20 @@ export type ListEnumEnrollmentStatusFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
+ * Reference to a field of type 'ExamType'
+ */
+export type EnumExamTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExamType'>
+    
+
+
+/**
+ * Reference to a field of type 'ExamType[]'
+ */
+export type ListEnumExamTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExamType[]'>
+    
+
+
+/**
  * Reference to a field of type 'FeeFrequency'
  */
 export type EnumFeeFrequencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeeFrequency'>
@@ -7076,6 +7199,20 @@ export type EnumFeePaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'FeePaymentMethod[]'
  */
 export type ListEnumFeePaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeePaymentMethod[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FeePaymentStatus'
+ */
+export type EnumFeePaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeePaymentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FeePaymentStatus[]'
+ */
+export type ListEnumFeePaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeePaymentStatus[]'>
     
 
 
@@ -7378,6 +7515,7 @@ export type GlobalOmitConfig = {
   hostelAllocation?: Prisma.HostelAllocationOmit
   notification?: Prisma.NotificationOmit
   auditLog?: Prisma.AuditLogOmit
+  documentSequence?: Prisma.DocumentSequenceOmit
 }
 
 /* Types for Logging */

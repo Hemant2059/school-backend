@@ -1,4 +1,5 @@
 import { IsArray, IsBoolean, IsEmail, IsOptional, IsString, IsUUID, MaxLength, MinLength, ArrayUnique, ArrayMinSize } from 'class-validator';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateRoleDto {
   @IsString() @MinLength(2) @MaxLength(80)
@@ -7,6 +8,7 @@ export class CreateRoleDto {
   @IsOptional() @IsString() @MaxLength(500)
   description?: string;
 
+  @BooleanParam()
   @IsOptional() @IsBoolean()
   isSystem?: boolean = false;
 
@@ -21,6 +23,7 @@ export class UpdateRoleDto {
   @IsOptional() @IsString() @MaxLength(500)
   description?: string;
 
+  @BooleanParam()
   @IsOptional() @IsBoolean()
   isSystem?: boolean;
 }
@@ -55,6 +58,7 @@ export class CreateTenantUserDto {
   @IsOptional() @IsString() @MinLength(6)
   password?: string;
 
+  @BooleanParam()
   @IsOptional() @IsBoolean()
   isPrimary?: boolean = false;
 
@@ -63,11 +67,30 @@ export class CreateTenantUserDto {
 }
 
 export class UpdateTenantUserDto {
+  @BooleanParam()
   @IsOptional() @IsBoolean()
   isPrimary?: boolean;
 
   @IsOptional() @IsString()
   status?: string;
+
+  @IsOptional() @IsEmail()
+  email?: string;
+
+  @IsOptional() @IsString() @MinLength(2) @MaxLength(120)
+  firstNameEn?: string;
+
+  @IsOptional() @IsString() @MaxLength(120)
+  firstNameNe?: string;
+
+  @IsOptional() @IsString() @MinLength(2) @MaxLength(120)
+  lastNameEn?: string;
+
+  @IsOptional() @IsString() @MaxLength(120)
+  lastNameNe?: string;
+
+  @IsOptional() @IsString() @MinLength(8)
+  password?: string;
 }
 
 export class AssignTenantUserRolesDto {

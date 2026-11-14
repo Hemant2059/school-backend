@@ -1,5 +1,6 @@
 import { IsBoolean, IsDate, IsNumber, IsOptional, IsString, IsUUID, MaxLength, Min, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateExamDto {
   @IsUUID() academicYearId!: string;
@@ -12,7 +13,9 @@ export class CreateExamDto {
   @IsString() @MaxLength(10) endDateBs!: string;
   @IsOptional() @IsDate() @Type(() => Date) resultPublishDateAd?: Date;
   @IsOptional() @IsString() @MaxLength(10) resultPublishDateBs?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isPublished?: boolean = false;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isLocked?: boolean = false;
 }
 
@@ -27,6 +30,8 @@ export class UpdateExamDto {
   @IsOptional() @IsString() @MaxLength(10) endDateBs?: string;
   @IsOptional() @IsDate() @Type(() => Date) resultPublishDateAd?: Date;
   @IsOptional() @IsString() @MaxLength(10) resultPublishDateBs?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isPublished?: boolean;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isLocked?: boolean;
 }

@@ -1,40 +1,47 @@
-import { Body, Controller, Get, HttpCode, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 import { AuthService } from './auth.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { RefreshTokenDto } from './dto/refresh-token.dto.js';
 import { ChangePasswordDto } from './dto/change-password.dto.js';
 import { Public } from './decorators/public.decorator.js';
+import { PlatformOnly } from './decorators/platform-only.decorator.js';
+import { CurrentUser } from './decorators/current-user.decorator.js';
+import type { AuthenticatedPrincipal } from './types/principal.js';
 
+@PlatformOnly()
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
+  @Throttle({ default: { limit: 10, ttl: 60_000 } })
   @Post('login')
   login(@Body() dto: LoginDto) {
     return this.authService.login(dto.email, dto.password);
   }
 
   @Public()
+  @Throttle({ default: { limit: 30, ttl: 60_000 } })
   @Post('refresh')
   refresh(@Body() dto: RefreshTokenDto) {
     return this.authService.refresh(dto.refreshToken);
   }
 
-  @Post('logout')
   @HttpCode(200)
-  logout(@Req() req: any) {
-    return this.authService.logout(req.user.id);
+  @Post('logout')
+  logout(@CurrentUser('id') userId: string) {
+    return this.authService.logout(userId);
   }
 
-  @Post('change-password')
   @HttpCode(200)
-  changePassword(@Body() dto: ChangePasswordDto, @Req() req: any) {
-    return this.authService.changePassword(req.user.id, dto.currentPassword, dto.newPassword);
+  @Post('change-password')
+  changePassword(@Body() dto: ChangePasswordDto, @CurrentUser('id') userId: string) {
+    return this.authService.changePassword(userId, dto.currentPassword, dto.newPassword);
   }
 
   @Get('me')
-  me(@Req() req: any) {
-    return this.authService.getMe(req.user.id);
+  me(@CurrentUser() user: AuthenticatedPrincipal) {
+    return this.authService.getMe(user.id);
   }
 }

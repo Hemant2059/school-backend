@@ -1,6 +1,7 @@
 import { OrganizationStatus, OrganizationType } from '../../generated/prisma/client.js';
 import { IsBoolean, IsDate, IsEmail, IsEnum, IsInt, IsOptional, Matches, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateOrganizationDto {
   @IsString() @MinLength(2) @MaxLength(160) nameEn!: string;
@@ -11,6 +12,7 @@ export class CreateOrganizationDto {
   @IsOptional() @IsString() @MaxLength(40) panVatNumber?: string;
   @IsOptional() @IsDate() @Type(() => Date) establishedDateAd?: Date;
   @IsOptional() @IsString() @MaxLength(10) @Matches(/^\d{4}-\d{2}-\d{2}$/) establishedDateBs?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isTaxExempt?: boolean = false;
   @IsString() @MaxLength(20) provinceCode!: string;
   @IsString() @MaxLength(80) provinceNe!: string;
@@ -49,6 +51,7 @@ export class UpdateOrganizationDto {
   @IsOptional() @IsString() @MaxLength(40) panVatNumber?: string;
   @IsOptional() @IsDate() @Type(() => Date) establishedDateAd?: Date;
   @IsOptional() @IsString() @MaxLength(10) @Matches(/^\d{4}-\d{2}-\d{2}$/) establishedDateBs?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isTaxExempt?: boolean;
   @IsOptional() @IsString() @MaxLength(20) provinceCode?: string;
   @IsOptional() @IsString() @MaxLength(80) provinceNe?: string;
@@ -82,6 +85,7 @@ export class QueryOrganizationsDto {
   @IsOptional() @IsString() search?: string;
   @IsOptional() @IsUUID() createdByPlatformUserId?: string;
   @IsOptional() @IsUUID() resellerPartnerId?: string;
+  @BooleanParam()
   @IsOptional() @IsBoolean() includeDeleted?: boolean = false;
   @IsOptional() @Type(() => Number) @IsInt() @Min(1) page?: number = 1;
   @IsOptional() @Type(() => Number) @IsInt() @Min(1) @Max(100) limit?: number = 20;

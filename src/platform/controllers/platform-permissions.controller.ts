@@ -4,7 +4,9 @@ import { Permissions } from '../../auth/decorators/permissions.decorator.js';
 import { CreatePlatformPermissionDto } from '../dto/create-platform-permission.dto.js';
 import { UpdatePlatformPermissionDto } from '../dto/update-platform-permission.dto.js';
 import { QueryPlatformPermissionsDto } from '../dto/query-platform-permissions.dto.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('platform/permissions')
 export class PlatformPermissionsController {
   constructor(private readonly service: PlatformPermissionsService) {}

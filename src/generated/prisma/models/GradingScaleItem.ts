@@ -283,6 +283,7 @@ export type GradingScaleItemOrderByWithRelationInput = {
 
 export type GradingScaleItemWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  gradingScaleId_letterGrade?: Prisma.GradingScaleItemGradingScaleIdLetterGradeCompoundUniqueInput
   AND?: Prisma.GradingScaleItemWhereInput | Prisma.GradingScaleItemWhereInput[]
   OR?: Prisma.GradingScaleItemWhereInput[]
   NOT?: Prisma.GradingScaleItemWhereInput | Prisma.GradingScaleItemWhereInput[]
@@ -296,7 +297,7 @@ export type GradingScaleItemWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"GradingScaleItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GradingScaleItem"> | Date | string
   gradingScale?: Prisma.XOR<Prisma.GradingScaleScalarRelationFilter, Prisma.GradingScaleWhereInput>
-}, "id">
+}, "id" | "gradingScaleId_letterGrade">
 
 export type GradingScaleItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -430,6 +431,11 @@ export type GradingScaleItemListRelationFilter = {
 
 export type GradingScaleItemOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type GradingScaleItemGradingScaleIdLetterGradeCompoundUniqueInput = {
+  gradingScaleId: string
+  letterGrade: string
 }
 
 export type GradingScaleItemCountOrderByAggregateInput = {

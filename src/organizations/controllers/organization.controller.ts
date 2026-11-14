@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@
 import { OrganizationService } from '../services/organization.service.js';
 import { CreateOrganizationDto, UpdateOrganizationDto, QueryOrganizationsDto } from '../dto/organization.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('organizations')
 export class OrganizationController {
   constructor(private readonly service: OrganizationService) {}

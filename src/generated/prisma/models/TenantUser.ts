@@ -29,7 +29,7 @@ export type TenantUserMinAggregateOutputType = {
   tenantId: string | null
   userId: string | null
   isPrimary: boolean | null
-  status: string | null
+  status: $Enums.TenantUserStatus | null
   joinedAt: Date | null
   leftAt: Date | null
 }
@@ -39,7 +39,7 @@ export type TenantUserMaxAggregateOutputType = {
   tenantId: string | null
   userId: string | null
   isPrimary: boolean | null
-  status: string | null
+  status: $Enums.TenantUserStatus | null
   joinedAt: Date | null
   leftAt: Date | null
 }
@@ -164,7 +164,7 @@ export type TenantUserGroupByOutputType = {
   tenantId: string
   userId: string
   isPrimary: boolean
-  status: string
+  status: $Enums.TenantUserStatus
   joinedAt: Date
   leftAt: Date | null
   _count: TenantUserCountAggregateOutputType | null
@@ -195,7 +195,7 @@ export type TenantUserWhereInput = {
   tenantId?: Prisma.StringFilter<"TenantUser"> | string
   userId?: Prisma.StringFilter<"TenantUser"> | string
   isPrimary?: Prisma.BoolFilter<"TenantUser"> | boolean
-  status?: Prisma.StringFilter<"TenantUser"> | string
+  status?: Prisma.EnumTenantUserStatusFilter<"TenantUser"> | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFilter<"TenantUser"> | Date | string
   leftAt?: Prisma.DateTimeNullableFilter<"TenantUser"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -225,7 +225,7 @@ export type TenantUserWhereUniqueInput = Prisma.AtLeast<{
   tenantId?: Prisma.StringFilter<"TenantUser"> | string
   userId?: Prisma.StringFilter<"TenantUser"> | string
   isPrimary?: Prisma.BoolFilter<"TenantUser"> | boolean
-  status?: Prisma.StringFilter<"TenantUser"> | string
+  status?: Prisma.EnumTenantUserStatusFilter<"TenantUser"> | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFilter<"TenantUser"> | Date | string
   leftAt?: Prisma.DateTimeNullableFilter<"TenantUser"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -254,7 +254,7 @@ export type TenantUserScalarWhereWithAggregatesInput = {
   tenantId?: Prisma.StringWithAggregatesFilter<"TenantUser"> | string
   userId?: Prisma.StringWithAggregatesFilter<"TenantUser"> | string
   isPrimary?: Prisma.BoolWithAggregatesFilter<"TenantUser"> | boolean
-  status?: Prisma.StringWithAggregatesFilter<"TenantUser"> | string
+  status?: Prisma.EnumTenantUserStatusWithAggregatesFilter<"TenantUser"> | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeWithAggregatesFilter<"TenantUser"> | Date | string
   leftAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TenantUser"> | Date | string | null
 }
@@ -262,7 +262,7 @@ export type TenantUserScalarWhereWithAggregatesInput = {
 export type TenantUserCreateInput = {
   id?: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutTenantUsersInput
@@ -275,7 +275,7 @@ export type TenantUserUncheckedCreateInput = {
   tenantId: string
   userId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   roles?: Prisma.TenantUserRoleUncheckedCreateNestedManyWithoutTenantUserInput
@@ -284,7 +284,7 @@ export type TenantUserUncheckedCreateInput = {
 export type TenantUserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutTenantUsersNestedInput
@@ -297,7 +297,7 @@ export type TenantUserUncheckedUpdateInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.TenantUserRoleUncheckedUpdateManyWithoutTenantUserNestedInput
@@ -308,7 +308,7 @@ export type TenantUserCreateManyInput = {
   tenantId: string
   userId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
 }
@@ -316,7 +316,7 @@ export type TenantUserCreateManyInput = {
 export type TenantUserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -326,7 +326,7 @@ export type TenantUserUncheckedUpdateManyInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -465,6 +465,10 @@ export type TenantUserUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.TenantUserScalarWhereInput | Prisma.TenantUserScalarWhereInput[]
 }
 
+export type EnumTenantUserStatusFieldUpdateOperationsInput = {
+  set?: $Enums.TenantUserStatus
+}
+
 export type TenantUserCreateNestedOneWithoutRolesInput = {
   create?: Prisma.XOR<Prisma.TenantUserCreateWithoutRolesInput, Prisma.TenantUserUncheckedCreateWithoutRolesInput>
   connectOrCreate?: Prisma.TenantUserCreateOrConnectWithoutRolesInput
@@ -482,7 +486,7 @@ export type TenantUserUpdateOneRequiredWithoutRolesNestedInput = {
 export type TenantUserCreateWithoutUserInput = {
   id?: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutTenantUsersInput
@@ -493,7 +497,7 @@ export type TenantUserUncheckedCreateWithoutUserInput = {
   id?: string
   tenantId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   roles?: Prisma.TenantUserRoleUncheckedCreateNestedManyWithoutTenantUserInput
@@ -533,7 +537,7 @@ export type TenantUserScalarWhereInput = {
   tenantId?: Prisma.StringFilter<"TenantUser"> | string
   userId?: Prisma.StringFilter<"TenantUser"> | string
   isPrimary?: Prisma.BoolFilter<"TenantUser"> | boolean
-  status?: Prisma.StringFilter<"TenantUser"> | string
+  status?: Prisma.EnumTenantUserStatusFilter<"TenantUser"> | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFilter<"TenantUser"> | Date | string
   leftAt?: Prisma.DateTimeNullableFilter<"TenantUser"> | Date | string | null
 }
@@ -541,7 +545,7 @@ export type TenantUserScalarWhereInput = {
 export type TenantUserCreateWithoutTenantInput = {
   id?: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutTenantUsersInput
@@ -552,7 +556,7 @@ export type TenantUserUncheckedCreateWithoutTenantInput = {
   id?: string
   userId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   roles?: Prisma.TenantUserRoleUncheckedCreateNestedManyWithoutTenantUserInput
@@ -587,7 +591,7 @@ export type TenantUserUpdateManyWithWhereWithoutTenantInput = {
 export type TenantUserCreateWithoutRolesInput = {
   id?: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutTenantUsersInput
@@ -599,7 +603,7 @@ export type TenantUserUncheckedCreateWithoutRolesInput = {
   tenantId: string
   userId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
 }
@@ -623,7 +627,7 @@ export type TenantUserUpdateToOneWithWhereWithoutRolesInput = {
 export type TenantUserUpdateWithoutRolesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutTenantUsersNestedInput
@@ -635,7 +639,7 @@ export type TenantUserUncheckedUpdateWithoutRolesInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -644,7 +648,7 @@ export type TenantUserCreateManyUserInput = {
   id?: string
   tenantId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
 }
@@ -652,7 +656,7 @@ export type TenantUserCreateManyUserInput = {
 export type TenantUserUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutTenantUsersNestedInput
@@ -663,7 +667,7 @@ export type TenantUserUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.TenantUserRoleUncheckedUpdateManyWithoutTenantUserNestedInput
@@ -673,7 +677,7 @@ export type TenantUserUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -682,7 +686,7 @@ export type TenantUserCreateManyTenantInput = {
   id?: string
   userId: string
   isPrimary?: boolean
-  status?: string
+  status?: $Enums.TenantUserStatus
   joinedAt?: Date | string
   leftAt?: Date | string | null
 }
@@ -690,7 +694,7 @@ export type TenantUserCreateManyTenantInput = {
 export type TenantUserUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutTenantUsersNestedInput
@@ -701,7 +705,7 @@ export type TenantUserUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.TenantUserRoleUncheckedUpdateManyWithoutTenantUserNestedInput
@@ -711,7 +715,7 @@ export type TenantUserUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTenantUserStatusFieldUpdateOperationsInput | $Enums.TenantUserStatus
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -823,7 +827,7 @@ export type $TenantUserPayload<ExtArgs extends runtime.Types.Extensions.Internal
     tenantId: string
     userId: string
     isPrimary: boolean
-    status: string
+    status: $Enums.TenantUserStatus
     joinedAt: Date
     leftAt: Date | null
   }, ExtArgs["result"]["tenantUser"]>
@@ -1256,7 +1260,7 @@ export interface TenantUserFieldRefs {
   readonly tenantId: Prisma.FieldRef<"TenantUser", 'String'>
   readonly userId: Prisma.FieldRef<"TenantUser", 'String'>
   readonly isPrimary: Prisma.FieldRef<"TenantUser", 'Boolean'>
-  readonly status: Prisma.FieldRef<"TenantUser", 'String'>
+  readonly status: Prisma.FieldRef<"TenantUser", 'TenantUserStatus'>
   readonly joinedAt: Prisma.FieldRef<"TenantUser", 'DateTime'>
   readonly leftAt: Prisma.FieldRef<"TenantUser", 'DateTime'>
 }

@@ -1,11 +1,14 @@
 import { IsBoolean, IsNumber, IsOptional, IsString, IsUUID, MaxLength } from 'class-validator';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class CreateExamMarkDto {
   @IsUUID() examScheduleId!: string;
   @IsUUID() enrollmentId!: string;
   @IsOptional() @IsNumber() theoryMarksObtained?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isTheoryAbsent?: boolean = false;
   @IsOptional() @IsNumber() internalMarksObtained?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isInternalAbsent?: boolean = false;
   @IsOptional() internalBreakdown?: any;
   @IsOptional() @IsString() @MaxLength(3) theoryGrade?: string;
@@ -19,8 +22,10 @@ export class CreateExamMarkDto {
 
 export class UpdateExamMarkDto {
   @IsOptional() @IsNumber() theoryMarksObtained?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isTheoryAbsent?: boolean;
   @IsOptional() @IsNumber() internalMarksObtained?: number;
+  @BooleanParam()
   @IsOptional() @IsBoolean() isInternalAbsent?: boolean;
   @IsOptional() internalBreakdown?: any;
   @IsOptional() @IsString() @MaxLength(3) theoryGrade?: string;

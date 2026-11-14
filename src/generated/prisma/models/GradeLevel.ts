@@ -27,10 +27,12 @@ export type AggregateGradeLevel = {
 }
 
 export type GradeLevelAvgAggregateOutputType = {
+  gradeNumber: number | null
   sortOrder: number | null
 }
 
 export type GradeLevelSumAggregateOutputType = {
+  gradeNumber: number | null
   sortOrder: number | null
 }
 
@@ -41,6 +43,7 @@ export type GradeLevelMinAggregateOutputType = {
   nameEn: string | null
   nameNe: string | null
   iemisGradeCode: string | null
+  gradeNumber: number | null
   evaluationType: $Enums.EvaluationType | null
   sortOrder: number | null
   createdAt: Date | null
@@ -55,6 +58,7 @@ export type GradeLevelMaxAggregateOutputType = {
   nameEn: string | null
   nameNe: string | null
   iemisGradeCode: string | null
+  gradeNumber: number | null
   evaluationType: $Enums.EvaluationType | null
   sortOrder: number | null
   createdAt: Date | null
@@ -69,6 +73,7 @@ export type GradeLevelCountAggregateOutputType = {
   nameEn: number
   nameNe: number
   iemisGradeCode: number
+  gradeNumber: number
   evaluationType: number
   sortOrder: number
   createdAt: number
@@ -79,10 +84,12 @@ export type GradeLevelCountAggregateOutputType = {
 
 
 export type GradeLevelAvgAggregateInputType = {
+  gradeNumber?: true
   sortOrder?: true
 }
 
 export type GradeLevelSumAggregateInputType = {
+  gradeNumber?: true
   sortOrder?: true
 }
 
@@ -93,6 +100,7 @@ export type GradeLevelMinAggregateInputType = {
   nameEn?: true
   nameNe?: true
   iemisGradeCode?: true
+  gradeNumber?: true
   evaluationType?: true
   sortOrder?: true
   createdAt?: true
@@ -107,6 +115,7 @@ export type GradeLevelMaxAggregateInputType = {
   nameEn?: true
   nameNe?: true
   iemisGradeCode?: true
+  gradeNumber?: true
   evaluationType?: true
   sortOrder?: true
   createdAt?: true
@@ -121,6 +130,7 @@ export type GradeLevelCountAggregateInputType = {
   nameEn?: true
   nameNe?: true
   iemisGradeCode?: true
+  gradeNumber?: true
   evaluationType?: true
   sortOrder?: true
   createdAt?: true
@@ -222,6 +232,7 @@ export type GradeLevelGroupByOutputType = {
   nameEn: string
   nameNe: string
   iemisGradeCode: string | null
+  gradeNumber: number | null
   evaluationType: $Enums.EvaluationType
   sortOrder: number
   createdAt: Date
@@ -259,6 +270,7 @@ export type GradeLevelWhereInput = {
   nameEn?: Prisma.StringFilter<"GradeLevel"> | string
   nameNe?: Prisma.StringFilter<"GradeLevel"> | string
   iemisGradeCode?: Prisma.StringNullableFilter<"GradeLevel"> | string | null
+  gradeNumber?: Prisma.IntNullableFilter<"GradeLevel"> | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFilter<"GradeLevel"> | $Enums.EvaluationType
   sortOrder?: Prisma.IntFilter<"GradeLevel"> | number
   createdAt?: Prisma.DateTimeFilter<"GradeLevel"> | Date | string
@@ -279,6 +291,7 @@ export type GradeLevelOrderByWithRelationInput = {
   nameEn?: Prisma.SortOrder
   nameNe?: Prisma.SortOrder
   iemisGradeCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  gradeNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   evaluationType?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -302,6 +315,7 @@ export type GradeLevelWhereUniqueInput = Prisma.AtLeast<{
   nameEn?: Prisma.StringFilter<"GradeLevel"> | string
   nameNe?: Prisma.StringFilter<"GradeLevel"> | string
   iemisGradeCode?: Prisma.StringNullableFilter<"GradeLevel"> | string | null
+  gradeNumber?: Prisma.IntNullableFilter<"GradeLevel"> | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFilter<"GradeLevel"> | $Enums.EvaluationType
   sortOrder?: Prisma.IntFilter<"GradeLevel"> | number
   createdAt?: Prisma.DateTimeFilter<"GradeLevel"> | Date | string
@@ -322,6 +336,7 @@ export type GradeLevelOrderByWithAggregationInput = {
   nameEn?: Prisma.SortOrder
   nameNe?: Prisma.SortOrder
   iemisGradeCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  gradeNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   evaluationType?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -344,6 +359,7 @@ export type GradeLevelScalarWhereWithAggregatesInput = {
   nameEn?: Prisma.StringWithAggregatesFilter<"GradeLevel"> | string
   nameNe?: Prisma.StringWithAggregatesFilter<"GradeLevel"> | string
   iemisGradeCode?: Prisma.StringNullableWithAggregatesFilter<"GradeLevel"> | string | null
+  gradeNumber?: Prisma.IntNullableWithAggregatesFilter<"GradeLevel"> | number | null
   evaluationType?: Prisma.EnumEvaluationTypeWithAggregatesFilter<"GradeLevel"> | $Enums.EvaluationType
   sortOrder?: Prisma.IntWithAggregatesFilter<"GradeLevel"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"GradeLevel"> | Date | string
@@ -356,6 +372,7 @@ export type GradeLevelCreateInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -376,6 +393,7 @@ export type GradeLevelUncheckedCreateInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -392,6 +410,7 @@ export type GradeLevelUpdateInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -412,6 +431,7 @@ export type GradeLevelUncheckedUpdateInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -430,6 +450,7 @@ export type GradeLevelCreateManyInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -442,6 +463,7 @@ export type GradeLevelUpdateManyMutationInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -456,6 +478,7 @@ export type GradeLevelUncheckedUpdateManyInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -480,6 +503,7 @@ export type GradeLevelCountOrderByAggregateInput = {
   nameEn?: Prisma.SortOrder
   nameNe?: Prisma.SortOrder
   iemisGradeCode?: Prisma.SortOrder
+  gradeNumber?: Prisma.SortOrder
   evaluationType?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -488,6 +512,7 @@ export type GradeLevelCountOrderByAggregateInput = {
 }
 
 export type GradeLevelAvgOrderByAggregateInput = {
+  gradeNumber?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
 }
 
@@ -498,6 +523,7 @@ export type GradeLevelMaxOrderByAggregateInput = {
   nameEn?: Prisma.SortOrder
   nameNe?: Prisma.SortOrder
   iemisGradeCode?: Prisma.SortOrder
+  gradeNumber?: Prisma.SortOrder
   evaluationType?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -512,6 +538,7 @@ export type GradeLevelMinOrderByAggregateInput = {
   nameEn?: Prisma.SortOrder
   nameNe?: Prisma.SortOrder
   iemisGradeCode?: Prisma.SortOrder
+  gradeNumber?: Prisma.SortOrder
   evaluationType?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -520,6 +547,7 @@ export type GradeLevelMinOrderByAggregateInput = {
 }
 
 export type GradeLevelSumOrderByAggregateInput = {
+  gradeNumber?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
 }
 
@@ -677,6 +705,7 @@ export type GradeLevelCreateWithoutTenantInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -695,6 +724,7 @@ export type GradeLevelUncheckedCreateWithoutTenantInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -742,6 +772,7 @@ export type GradeLevelScalarWhereInput = {
   nameEn?: Prisma.StringFilter<"GradeLevel"> | string
   nameNe?: Prisma.StringFilter<"GradeLevel"> | string
   iemisGradeCode?: Prisma.StringNullableFilter<"GradeLevel"> | string | null
+  gradeNumber?: Prisma.IntNullableFilter<"GradeLevel"> | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFilter<"GradeLevel"> | $Enums.EvaluationType
   sortOrder?: Prisma.IntFilter<"GradeLevel"> | number
   createdAt?: Prisma.DateTimeFilter<"GradeLevel"> | Date | string
@@ -754,6 +785,7 @@ export type GradeLevelCreateWithoutStreamInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -772,6 +804,7 @@ export type GradeLevelUncheckedCreateWithoutStreamInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -814,6 +847,7 @@ export type GradeLevelCreateWithoutSectionsInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -833,6 +867,7 @@ export type GradeLevelUncheckedCreateWithoutSectionsInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -864,6 +899,7 @@ export type GradeLevelUpdateWithoutSectionsInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -883,6 +919,7 @@ export type GradeLevelUncheckedUpdateWithoutSectionsInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -898,6 +935,7 @@ export type GradeLevelCreateWithoutGradeSubjectsInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -917,6 +955,7 @@ export type GradeLevelUncheckedCreateWithoutGradeSubjectsInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -948,6 +987,7 @@ export type GradeLevelUpdateWithoutGradeSubjectsInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -967,6 +1007,7 @@ export type GradeLevelUncheckedUpdateWithoutGradeSubjectsInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -982,6 +1023,7 @@ export type GradeLevelCreateWithoutStudentEnrollmentsInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -1001,6 +1043,7 @@ export type GradeLevelUncheckedCreateWithoutStudentEnrollmentsInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -1032,6 +1075,7 @@ export type GradeLevelUpdateWithoutStudentEnrollmentsInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1051,6 +1095,7 @@ export type GradeLevelUncheckedUpdateWithoutStudentEnrollmentsInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1066,6 +1111,7 @@ export type GradeLevelCreateWithoutClassFeeStructuresInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -1085,6 +1131,7 @@ export type GradeLevelUncheckedCreateWithoutClassFeeStructuresInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -1116,6 +1163,7 @@ export type GradeLevelUpdateWithoutClassFeeStructuresInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1135,6 +1183,7 @@ export type GradeLevelUncheckedUpdateWithoutClassFeeStructuresInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1151,6 +1200,7 @@ export type GradeLevelCreateManyTenantInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -1163,6 +1213,7 @@ export type GradeLevelUpdateWithoutTenantInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1181,6 +1232,7 @@ export type GradeLevelUncheckedUpdateWithoutTenantInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1198,6 +1250,7 @@ export type GradeLevelUncheckedUpdateManyWithoutTenantInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1211,6 +1264,7 @@ export type GradeLevelCreateManyStreamInput = {
   nameEn: string
   nameNe: string
   iemisGradeCode?: string | null
+  gradeNumber?: number | null
   evaluationType?: $Enums.EvaluationType
   sortOrder?: number
   createdAt?: Date | string
@@ -1223,6 +1277,7 @@ export type GradeLevelUpdateWithoutStreamInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1241,6 +1296,7 @@ export type GradeLevelUncheckedUpdateWithoutStreamInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1258,6 +1314,7 @@ export type GradeLevelUncheckedUpdateManyWithoutStreamInput = {
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   nameNe?: Prisma.StringFieldUpdateOperationsInput | string
   iemisGradeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradeNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   evaluationType?: Prisma.EnumEvaluationTypeFieldUpdateOperationsInput | $Enums.EvaluationType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1330,6 +1387,7 @@ export type GradeLevelSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   nameEn?: boolean
   nameNe?: boolean
   iemisGradeCode?: boolean
+  gradeNumber?: boolean
   evaluationType?: boolean
   sortOrder?: boolean
   createdAt?: boolean
@@ -1351,6 +1409,7 @@ export type GradeLevelSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   nameEn?: boolean
   nameNe?: boolean
   iemisGradeCode?: boolean
+  gradeNumber?: boolean
   evaluationType?: boolean
   sortOrder?: boolean
   createdAt?: boolean
@@ -1367,6 +1426,7 @@ export type GradeLevelSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   nameEn?: boolean
   nameNe?: boolean
   iemisGradeCode?: boolean
+  gradeNumber?: boolean
   evaluationType?: boolean
   sortOrder?: boolean
   createdAt?: boolean
@@ -1383,6 +1443,7 @@ export type GradeLevelSelectScalar = {
   nameEn?: boolean
   nameNe?: boolean
   iemisGradeCode?: boolean
+  gradeNumber?: boolean
   evaluationType?: boolean
   sortOrder?: boolean
   createdAt?: boolean
@@ -1390,7 +1451,7 @@ export type GradeLevelSelectScalar = {
   deletedAt?: boolean
 }
 
-export type GradeLevelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "streamId" | "nameEn" | "nameNe" | "iemisGradeCode" | "evaluationType" | "sortOrder" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["gradeLevel"]>
+export type GradeLevelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "streamId" | "nameEn" | "nameNe" | "iemisGradeCode" | "gradeNumber" | "evaluationType" | "sortOrder" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["gradeLevel"]>
 export type GradeLevelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   stream?: boolean | Prisma.GradeLevel$streamArgs<ExtArgs>
@@ -1426,6 +1487,10 @@ export type $GradeLevelPayload<ExtArgs extends runtime.Types.Extensions.Internal
     nameEn: string
     nameNe: string
     iemisGradeCode: string | null
+    /**
+     * Numeric grade (1-12) used for ordering and NEB reporting.
+     */
+    gradeNumber: number | null
     evaluationType: $Enums.EvaluationType
     sortOrder: number
     createdAt: Date
@@ -1866,6 +1931,7 @@ export interface GradeLevelFieldRefs {
   readonly nameEn: Prisma.FieldRef<"GradeLevel", 'String'>
   readonly nameNe: Prisma.FieldRef<"GradeLevel", 'String'>
   readonly iemisGradeCode: Prisma.FieldRef<"GradeLevel", 'String'>
+  readonly gradeNumber: Prisma.FieldRef<"GradeLevel", 'Int'>
   readonly evaluationType: Prisma.FieldRef<"GradeLevel", 'EvaluationType'>
   readonly sortOrder: Prisma.FieldRef<"GradeLevel", 'Int'>
   readonly createdAt: Prisma.FieldRef<"GradeLevel", 'DateTime'>

@@ -11,6 +11,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { BooleanParam } from '../../common/decorators/boolean-param.decorator.js';
 
 export class UpdatePlatformUserDto {
   @IsOptional()
@@ -64,10 +65,12 @@ export class UpdatePlatformUserDto {
   address?: string;
 
   @IsOptional()
+  @BooleanParam()
   @IsBoolean()
   twoFactorEnabled?: boolean;
 
   @IsOptional()
+  @BooleanParam()
   @IsBoolean()
   mustChangePassword?: boolean;
 

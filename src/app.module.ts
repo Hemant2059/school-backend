@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
-import { ConfigModule } from '@nestjs/config';
+import { validateEnv } from './config/env.validation.js';
 import { PrismaModule } from './prisma.module.js';
 import { PlatformModule } from './platform/platform.module.js';
 import { AuthModule } from './auth/auth.module.js';
@@ -20,19 +22,60 @@ import { FeeBillingModule } from './fee-billing/fee-billing.module.js';
 import { HrModule } from './hr/hr.module.js';
 import { TransportModule } from './transport/transport.module.js';
 import { HostelModule } from './hostel/hostel.module.js';
+import { LibraryModule } from './library/library.module.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
+import { CommonModule } from './common/common.module.js';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
-import { PermissionsGuard } from './auth/guards/permissions.guard.js';
+import { AuthorizationGuard } from './auth/guards/authorization.guard.js';
+import { AuditLogInterceptor } from './common/interceptors/audit-log.interceptor.js';
+import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, PlatformModule, AuthModule, SubscriptionsModule, OrganizationsModule, TenantsModule, TenantRbacModule, BillingModule, AcademicsModule, StudentsModule, EnrollmentsModule, TransferCertificatesModule, ExaminationsModule, ExamsModule, FeesModule, FeeBillingModule, HrModule, TransportModule, HostelModule, NotificationsModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true, validate: validateEnv }),
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => [
+        {
+          ttl: config.get<number>('THROTTLE_TTL') ?? 60_000,
+          limit: config.get<number>('THROTTLE_LIMIT') ?? 300,
+        },
+      ],
+    }),
+    PrismaModule,
+    CommonModule,
+    PlatformModule,
+    AuthModule,
+    SubscriptionsModule,
+    OrganizationsModule,
+    TenantsModule,
+    TenantRbacModule,
+    BillingModule,
+    AcademicsModule,
+    StudentsModule,
+    EnrollmentsModule,
+    TransferCertificatesModule,
+    ExaminationsModule,
+    ExamsModule,
+    FeesModule,
+    FeeBillingModule,
+    HrModule,
+    TransportModule,
+    HostelModule,
+    LibraryModule,
+    NotificationsModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
+    { provide: APP_GUARD, useClass: ThrottlerGuard },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
-    { provide: APP_GUARD, useClass: PermissionsGuard },
+    { provide: APP_GUARD, useClass: AuthorizationGuard },
+    { provide: APP_FILTER, useClass: PrismaExceptionFilter },
+    { provide: APP_INTERCEPTOR, useClass: AuditLogInterceptor },
   ],
 })
 export class AppModule {}

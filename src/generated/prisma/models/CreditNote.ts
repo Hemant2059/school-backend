@@ -270,6 +270,7 @@ export type CreditNoteOrderByWithRelationInput = {
 
 export type CreditNoteWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  tenantId_creditNoteNumber?: Prisma.CreditNoteTenantIdCreditNoteNumberCompoundUniqueInput
   AND?: Prisma.CreditNoteWhereInput | Prisma.CreditNoteWhereInput[]
   OR?: Prisma.CreditNoteWhereInput[]
   NOT?: Prisma.CreditNoteWhereInput | Prisma.CreditNoteWhereInput[]
@@ -284,7 +285,7 @@ export type CreditNoteWhereUniqueInput = Prisma.AtLeast<{
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   invoice?: Prisma.XOR<Prisma.FeeInvoiceScalarRelationFilter, Prisma.FeeInvoiceWhereInput>
   approvedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-}, "id">
+}, "id" | "tenantId_creditNoteNumber">
 
 export type CreditNoteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -407,6 +408,11 @@ export type CreditNoteListRelationFilter = {
 
 export type CreditNoteOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type CreditNoteTenantIdCreditNoteNumberCompoundUniqueInput = {
+  tenantId: string
+  creditNoteNumber: string
 }
 
 export type CreditNoteCountOrderByAggregateInput = {

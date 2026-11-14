@@ -3,7 +3,9 @@ import { TenantService } from '../services/tenant.service.js';
 import { CreateTenantDto, UpdateTenantDto, QueryTenantsDto } from '../dto/tenant.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
 import { Public } from '../../auth/decorators/public.decorator.js';
+import { PlatformOnly } from '../../auth/decorators/platform-only.decorator.js';
 
+@PlatformOnly()
 @Controller('tenants')
 export class TenantController {
   constructor(private readonly service: TenantService) {}
