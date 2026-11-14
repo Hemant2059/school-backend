@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
 import { TenantUserService } from '../../tenant-rbac/services/tenant-user.service.js';
 import { TenantRoleService } from '../../tenant-rbac/services/role.service.js';

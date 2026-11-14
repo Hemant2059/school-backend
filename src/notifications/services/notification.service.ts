@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
 import type { AuthenticatedPrincipal } from '../../auth/types/principal.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
+import type { QueryNotificationsDto } from '../dto/notification.dto.js';
 
 @Injectable()
 export class NotificationService {
@@ -54,7 +55,7 @@ export class NotificationService {
    * in the system — including the SaaS company's own platform notifications.
    * Notifications are now always scoped to the principal's own recipient id.
    */
-  async findAll(query: Record<string, any>, principal: AuthenticatedPrincipal) {
+  async findAll(query: QueryNotificationsDto, principal: AuthenticatedPrincipal) {
     const { page, limit, skip, take } = resolvePagination(query);
     const where: Record<string, any> = {
       recipientType: principal.type === 'platform' ? 'PLATFORM_USER' : 'USER',

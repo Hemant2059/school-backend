@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { HostelRoomService } from '../services/hostel-room.service.js';
 import { CreateHostelRoomDto, UpdateHostelRoomDto } from '../dto/hostel.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
@@ -13,7 +13,9 @@ export class HostelRoomController {
 
   @Permissions('hostel.read')
   @Get()
-  findAll(@Param('tenantId') tenantId: string) { return this.service.findAll(tenantId); }
+  findAll(@Param('tenantId') tenantId: string, @Query() query: Record<string, any>) {
+    return this.service.findAll(tenantId, query);
+  }
 
   @Permissions('hostel.read')
   @Get(':id')

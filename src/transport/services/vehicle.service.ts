@@ -1,5 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
+import { paginatedQuery } from '../../common/utils/paginated-query.js';
 
 @Injectable()
 export class VehicleService {
@@ -15,8 +16,12 @@ export class VehicleService {
     return this.prisma.transportVehicle.create({ data: { ...dto, tenantId } });
   }
 
-  async findAll(tenantId: string) {
-    return this.prisma.transportVehicle.findMany({ where: { tenantId, deletedAt: null }, include: { driver: true }, orderBy: { createdAt: 'desc' } });
+  async findAll(tenantId: string, query: Record<string, any> = {}) {
+    return paginatedQuery(
+      this.prisma.transportVehicle,
+      { where: { tenantId, deletedAt: null }, include: { driver: true }, orderBy: { createdAt: 'desc' } },
+      query,
+    );
   }
 
   async findOne(tenantId: string, id: string) {

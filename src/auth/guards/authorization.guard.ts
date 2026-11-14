@@ -55,6 +55,12 @@ export class AuthorizationGuard implements CanActivate {
       throw new ForbiddenException('This resource is restricted to school accounts');
     }
 
+    // A school whose subscription has lapsed loses access entirely. The
+    // status is resolved once per request by the JWT strategy.
+    if (user.type === 'tenant' && user.subscriptionStatus) {
+      this.assertSubscriptionUsable(user.subscriptionStatus);
+    }
+
     this.assertTenantScope(user, request.params);
 
     const required = this.reflector.getAllAndOverride<string[]>(PERMISSIONS_KEY, [
@@ -81,6 +87,21 @@ export class AuthorizationGuard implements CanActivate {
     if (!requested) return;
     if (requested !== user.tenantId) {
       throw new ForbiddenException('Access to another tenant is not permitted');
+    }
+  }
+
+  /**
+   * A school whose subscription has been cancelled, suspended or expired
+   * must not be able to use the API.
+   *
+   * `NONE` (no subscription at all) is allowed so that a school can be
+   * onboarded before its plan is assigned.
+   */
+  private assertSubscriptionUsable(status: string): void {
+    if (['CANCELLED', 'SUSPENDED', 'EXPIRED'].includes(status)) {
+      throw new ForbiddenException(
+        `This school's subscription is ${status.toLowerCase()}. Please contact the platform administrator.`,
+      );
     }
   }
 }

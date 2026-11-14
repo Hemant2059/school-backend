@@ -1,5 +1,5 @@
 import { EmploymentType, Gender, MaritalStatusForTax, StaffCategory, TeacherTrainingStatus } from '../../generated/prisma/client.js';
-import { IsEmail, IsEnum, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString, IsUUID, MaxLength, Min, MinLength } from 'class-validator';
 
 export class CreateStaffProfileDto {
   @IsOptional() @IsUUID() userId?: string;
@@ -25,6 +25,12 @@ export class CreateStaffProfileDto {
   @IsOptional() @IsString() @MaxLength(40) ssfNumber?: string;
   @IsOptional() @IsString() @MaxLength(40) bankAccountNo?: string;
   @IsOptional() @IsEnum(MaritalStatusForTax) maritalStatusForTax?: MaritalStatusForTax;
+
+  /// The agreed monthly package. The payroll engine reads these to compute
+  /// the gross, the statutory deductions and the net.
+  @IsOptional() @IsNumber() @Min(0) basicSalary?: number;
+  @IsOptional() @IsNumber() @Min(0) gradeAllowance?: number;
+  @IsOptional() @IsNumber() @Min(0) dearnessAllowance?: number;
 }
 
 export class UpdateStaffProfileDto {
@@ -51,4 +57,10 @@ export class UpdateStaffProfileDto {
   @IsOptional() @IsString() @MaxLength(40) ssfNumber?: string;
   @IsOptional() @IsString() @MaxLength(40) bankAccountNo?: string;
   @IsOptional() @IsEnum(MaritalStatusForTax) maritalStatusForTax?: MaritalStatusForTax;
+
+  /// The agreed monthly package. The payroll engine reads these to compute
+  /// the gross, the statutory deductions and the net.
+  @IsOptional() @IsNumber() @Min(0) basicSalary?: number;
+  @IsOptional() @IsNumber() @Min(0) gradeAllowance?: number;
+  @IsOptional() @IsNumber() @Min(0) dearnessAllowance?: number;
 }

@@ -5,10 +5,21 @@ import { PaymentController } from './controllers/payment.controller.js';
 import { TenantSubscriptionService } from './services/subscription.service.js';
 import { TenantInvoiceService } from './services/invoice.service.js';
 import { TenantPaymentService } from './services/payment.service.js';
+import { TenantEntitlementService } from './services/tenant-entitlement.service.js';
 
 @Module({
   controllers: [SubscriptionController, InvoiceController, PaymentController],
-  providers: [TenantSubscriptionService, TenantInvoiceService, TenantPaymentService],
-  exports: [TenantSubscriptionService, TenantInvoiceService, TenantPaymentService],
+  providers: [
+    TenantEntitlementService,
+    TenantSubscriptionService,
+    TenantInvoiceService,
+    TenantPaymentService,
+  ],
+  exports: [
+    TenantEntitlementService,
+    TenantSubscriptionService,
+    TenantInvoiceService,
+    TenantPaymentService,
+  ],
 })
 export class BillingModule {}

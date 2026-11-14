@@ -1,6 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { NotificationService } from '../services/notification.service.js';
-import { CreateNotificationDto, UpdateNotificationDto } from '../dto/notification.dto.js';
+import {
+  CreateNotificationDto,
+  QueryNotificationsDto,
+  UpdateNotificationDto,
+} from '../dto/notification.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator.js';
 import type { AuthenticatedPrincipal } from '../../auth/types/principal.js';
@@ -23,7 +27,7 @@ export class NotificationController {
 
   @Permissions('notifications.read')
   @Get()
-  findAll(@Query() q: Record<string, any>, @CurrentUser() principal: AuthenticatedPrincipal) {
+  findAll(@Query() q: QueryNotificationsDto, @CurrentUser() principal: AuthenticatedPrincipal) {
     return this.service.findAll(q, principal);
   }
 

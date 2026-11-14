@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { BillingModule } from '../billing/billing.module.js';
 import { AcademicYearController } from './controllers/academic-year.controller.js';
 import { AcademicYearService } from './services/academic-year.service.js';
 import { StreamController } from './controllers/stream.controller.js';
@@ -17,6 +18,7 @@ import { AcademicCalendarEventController } from './controllers/academic-calendar
 import { AcademicCalendarEventService } from './services/academic-calendar-event.service.js';
 
 @Module({
+  imports: [BillingModule],
   controllers: [AcademicYearController, StreamController, GradeLevelController, SectionController, StaffProfileController, SubjectController, GradeSubjectController, AcademicCalendarEventController],
   providers: [AcademicYearService, StreamService, GradeLevelService, SectionService, StaffProfileService, SubjectService, GradeSubjectService, AcademicCalendarEventService],
   exports: [AcademicYearService, StreamService, GradeLevelService, SectionService, StaffProfileService, SubjectService, GradeSubjectService, AcademicCalendarEventService],

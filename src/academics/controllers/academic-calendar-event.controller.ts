@@ -15,7 +15,9 @@ export class AcademicCalendarEventController {
 
   @Permissions('academic_calendar.read')
   @Get()
-  findAll(@Param('tenantId') tenantId: string) { return this.service.findAll(tenantId); }
+  findAll(@Param('tenantId') tenantId: string, @Query() query: Record<string, any>) {
+    return this.service.findAll(tenantId, query);
+  }
 
   @Permissions('academic_calendar.read')
   @Get(':id')

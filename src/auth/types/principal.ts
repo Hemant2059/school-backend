@@ -18,4 +18,10 @@ export interface AuthenticatedPrincipal {
   firstNameEn?: string;
   lastNameEn?: string;
   status?: string;
+  /**
+   * The tenant's subscription status (TRIAL, ACTIVE, PAST_DUE, CANCELLED,
+   * SUSPENDED, EXPIRED or NONE). Used to lock out a school whose
+   * subscription has lapsed.
+   */
+  subscriptionStatus?: string;
 }

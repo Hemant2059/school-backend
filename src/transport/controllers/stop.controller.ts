@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { StopService } from '../services/stop.service.js';
 import { CreateStopDto, UpdateStopDto } from '../dto/stop.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
@@ -13,7 +13,9 @@ export class StopController {
 
   @Permissions('transport.read')
   @Get()
-  findAll(@Param('tenantId') tenantId: string) { return this.service.findAll(tenantId); }
+  findAll(@Param('tenantId') tenantId: string, @Query() query: Record<string, any>) {
+    return this.service.findAll(tenantId, query);
+  }
 
   @Permissions('transport.read')
   @Get(':id')

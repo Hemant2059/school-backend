@@ -58,6 +58,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         tenantUserId: membership.id,
         roles: membership.roles.map((r) => r.role.name),
         permissions: Array.from(permissionSet),
+        subscriptionStatus: await this.subscriptionStatus(payload.tenantId),
       };
     }
 
@@ -91,5 +92,22 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       roles,
       permissions: Array.from(permissionSet),
     };
+  }
+
+  /**
+   * The tenant's current subscription status. A school whose subscription has
+   * been cancelled, suspended or expired must lose access.
+   */
+  private async subscriptionStatus(tenantId: string): Promise<string> {
+    const subscription = await this.prisma.subscription.findFirst({
+      where: { tenantId },
+      orderBy: { createdAt: 'desc' },
+      select: { status: true, endDate: true },
+    });
+    if (!subscription) return 'NONE';
+    if (subscription.status !== 'EXPIRED' && subscription.endDate < new Date()) {
+      return 'EXPIRED';
+    }
+    return subscription.status;
   }
 }
