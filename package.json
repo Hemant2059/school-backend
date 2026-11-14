@@ -14,14 +14,16 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "oxlint --type-aware src/ test/",
+    "lint": "oxlint --type-aware src/ test/ && python3 scripts/check-dto-decorators.py",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
     "seed": "npx tsx prisma/seed.ts",
-    "postinstall": "prisma generate || exit 0"
+    "postinstall": "prisma generate || exit 0",
+    "verify:security": "./scripts/verify-security.sh",
+    "verify:domain": "./scripts/verify-domain.sh"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",
