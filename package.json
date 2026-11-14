@@ -25,7 +25,8 @@
     "verify:security": "./scripts/verify-security.sh",
     "verify:domain": "./scripts/verify-domain.sh",
     "verify:migrations": "./scripts/verify-migrations.sh",
-    "verify": "./scripts/verify-security.sh && ./scripts/verify-domain.sh && ./scripts/verify-migrations.sh"
+    "verify": "./scripts/audit-findings.sh && ./scripts/verify-security.sh && ./scripts/verify-domain.sh && ./scripts/verify-migrations.sh",
+    "verify:audit": "./scripts/audit-findings.sh"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",

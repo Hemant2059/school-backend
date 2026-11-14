@@ -230,6 +230,7 @@ The net is derived; deductions larger than the gross are rejected.
 | `pnpm verify:security` | 22 assertions: domain separation, tenant isolation, authentication, boolean parameters, the audit trail and credential hygiene, against a running instance |
 | `pnpm verify:domain` | 34 assertions: the fee engine, the result engine, the payroll rules, attendance and timetable, end to end against a running instance |
 | `pnpm verify:migrations` | The migration chain replays cleanly against an empty database and the result matches the Prisma schema |
+| `pnpm verify:audit` | 38 static assertions that the findings of the original review stay fixed |
 
 ---
 
