@@ -1,37 +1,76 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
+import { ExamResultService } from './exam-result.service.js';
+import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
 
 @Injectable()
 export class StudentExamSummaryService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly results: ExamResultService,
+  ) {}
 
+  /**
+   * Computes and stores a summary.
+   *
+   * The client used to be able to post `percentage`, `gpa`, `finalGrade`,
+   * `rankInSection`, `rankInGrade` and the attendance counters directly.
+   * Those fields are now derived from the recorded marks.
+   */
   async create(tenantId: string, dto: any) {
-    const tenant = await this.prisma.tenant.findUnique({ where: { id: tenantId } });
-    if (!tenant) throw new NotFoundException('Tenant not found');
-    const exam = await this.prisma.exam.findFirst({ where: { id: dto.examId, tenantId } });
-    if (!exam) throw new NotFoundException('Exam not found');
-    const enrollment = await this.prisma.studentEnrollment.findFirst({ where: { id: dto.enrollmentId, tenantId } });
-    if (!enrollment) throw new NotFoundException('Enrollment not found');
-    return this.prisma.studentExamSummary.create({ data: { ...dto, tenantId } });
+    if (!dto.examId || !dto.enrollmentId) {
+      throw new BadRequestException('examId and enrollmentId are required');
+    }
+    return this.results.persistSummary(tenantId, dto.examId, dto.enrollmentId);
   }
 
-  async findAll(tenantId: string) {
-    return this.prisma.studentExamSummary.findMany({ where: { tenantId }, include: { exam: true, student: true }, orderBy: { createdAt: 'desc' } });
+  async findAll(tenantId: string, query: Record<string, any> = {}) {
+    const { page, limit, skip, take } = resolvePagination(query);
+    const where: Record<string, any> = { tenantId };
+    if (query.examId) where.examId = query.examId;
+    if (query.enrollmentId) where.enrollmentId = query.enrollmentId;
+
+    const [data, total] = await Promise.all([
+      // `StudentExamSummary` relates to an enrolment, not directly to a
+      // student — including `student` here was a hard runtime error.
+      this.prisma.studentExamSummary.findMany({
+        where,
+        include: { exam: true, enrollment: { include: { student: true } } },
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take,
+      }),
+      this.prisma.studentExamSummary.count({ where }),
+    ]);
+    return { data, meta: buildMeta(total, page, limit) };
   }
 
   async findOne(tenantId: string, id: string) {
-    const s = await this.prisma.studentExamSummary.findFirst({ where: { id, tenantId }, include: { exam: true, student: true } });
+    const s = await this.prisma.studentExamSummary.findFirst({
+      where: { id, tenantId },
+      include: { exam: true, enrollment: { include: { student: true } } },
+    });
     if (!s) throw new NotFoundException('Student exam summary not found');
     return s;
   }
 
+  /**
+   * Recomputes a summary. The stored values are always overwritten with the
+   * computed ones — they are never edited by hand.
+   */
   async update(tenantId: string, id: string, dto: any) {
-    await this.findOne(tenantId, id);
-    return this.prisma.studentExamSummary.update({ where: { id }, data: dto, include: { exam: true, student: true } });
+    const summary = await this.prisma.studentExamSummary.findFirst({
+      where: { id, tenantId },
+    });
+    if (!summary) throw new NotFoundException('Student exam summary not found');
+    return this.results.persistSummary(tenantId, summary.examId, summary.enrollmentId);
   }
 
   async remove(tenantId: string, id: string) {
-    await this.findOne(tenantId, id);
+    const summary = await this.prisma.studentExamSummary.findFirst({
+      where: { id, tenantId },
+    });
+    if (!summary) throw new NotFoundException('Student exam summary not found');
     await this.prisma.studentExamSummary.delete({ where: { id } });
     return { deleted: true };
   }

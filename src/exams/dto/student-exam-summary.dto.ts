@@ -1,27 +1,19 @@
-import { IsInt, IsNumber, IsOptional, IsString, IsUUID, MaxLength } from 'class-validator';
+import { IsInt, IsOptional, IsString, IsUUID, MaxLength } from 'class-validator';
 
 export class CreateStudentExamSummaryDto {
   @IsUUID() examId!: string;
   @IsUUID() enrollmentId!: string;
-  @IsOptional() @IsNumber() totalMarksObtained?: number;
-  @IsOptional() @IsNumber() percentage?: number;
-  @IsOptional() @IsNumber() gpa?: number;
-  @IsOptional() @IsString() @MaxLength(3) finalGrade?: string;
-  @IsOptional() @IsInt() rankInSection?: number;
-  @IsOptional() @IsInt() rankInGrade?: number;
-  @IsOptional() @IsInt() totalAttendanceDays?: number;
-  @IsOptional() @IsInt() presentDays?: number;
+
+  /**
+   * `totalMarksObtained`, `percentage`, `gpa`, `finalGrade`, `rankInSection`,
+   * `rankInGrade` and the attendance counters are computed by the server from
+   * the recorded marks and the grading scale. They are no longer accepted
+   * from the client.
+   */
   @IsOptional() @IsString() @MaxLength(500) classTeacherRemarks?: string;
 }
 
 export class UpdateStudentExamSummaryDto {
-  @IsOptional() @IsNumber() totalMarksObtained?: number;
-  @IsOptional() @IsNumber() percentage?: number;
-  @IsOptional() @IsNumber() gpa?: number;
-  @IsOptional() @IsString() @MaxLength(3) finalGrade?: string;
-  @IsOptional() @IsInt() rankInSection?: number;
-  @IsOptional() @IsInt() rankInGrade?: number;
-  @IsOptional() @IsInt() totalAttendanceDays?: number;
-  @IsOptional() @IsInt() presentDays?: number;
+  /** Only the class teacher's remark may be edited by hand. */
   @IsOptional() @IsString() @MaxLength(500) classTeacherRemarks?: string;
 }

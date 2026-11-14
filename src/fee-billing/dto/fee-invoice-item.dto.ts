@@ -7,12 +7,16 @@ export class CreateFeeInvoiceItemDto {
   @IsString() @MinLength(2) @MaxLength(255) description!: string;
   @IsNumber() @Min(0) grossAmount!: number;
   @IsOptional() @IsNumber() @Min(0) discountAmount?: number = 0;
-  @IsNumber() @Min(0) netAmount!: number;
+  /**
+   * The net amount is always derived by the server as
+   * `grossAmount - discountAmount`; it is no longer accepted from the client
+   * so a line item can never contradict itself.
+   */
 }
 
 export class UpdateFeeInvoiceItemDto {
   @IsOptional() @IsString() @MinLength(2) @MaxLength(255) description?: string;
   @IsOptional() @IsNumber() @Min(0) grossAmount?: number;
   @IsOptional() @IsNumber() @Min(0) discountAmount?: number;
-  @IsOptional() @IsNumber() @Min(0) netAmount?: number;
+  @IsOptional() @IsInt() @Min(1) @Max(12) bsMonth?: number;
 }
