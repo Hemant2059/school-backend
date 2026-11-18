@@ -1,18 +1,33 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
+import { TenantProvisioningService } from './tenant-provisioning.service.js';
 
 @Injectable()
 export class TenantService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly provisioning: TenantProvisioningService,
+  ) {}
 
   async create(dto: any, createdByPlatformUserId: string) {
     if (dto.organizationId) {
-      const org = await this.prisma.organization.findFirst({ where: { id: dto.organizationId, deletedAt: null } });
+      const org = await this.prisma.organization.findFirst({
+        where: { id: dto.organizationId, deletedAt: null },
+      });
       if (!org) throw new NotFoundException('Organization not found');
     }
     try {
-      return await this.prisma.tenant.create({ data: { ...dto, createdByPlatformUserId } });
+      const tenant = await this.prisma.tenant.create({
+        data: { ...dto, createdByPlatformUserId },
+      });
+
+      // Every school needs a ready-to-use role set. Creating them here
+      // (rather than in the seed) means a school created through the
+      // platform API is immediately usable.
+      await this.provisioning.provisionDefaultRoles(tenant.id);
+
+      return tenant;
     } catch (e) {
       if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {
         throw new ConflictException('Subdomain or IEMIS code already exists');
