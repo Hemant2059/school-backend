@@ -66,6 +66,8 @@ const PLATFORM_PERMISSIONS = dedupe([
   { code: "fee_invoices.manage", name: "Manage fee invoices", category: "billing" },
   { code: "fee_payments.read", name: "Read fee payments", category: "billing" },
   { code: "fee_payments.manage", name: "Manage fee payments", category: "billing" },
+  { code: "payment_gateways.read", name: "Read payment gateway configuration", category: "billing" },
+  { code: "payment_gateways.manage", name: "Manage payment gateway configuration", category: "billing" },
   { code: "credit_notes.read", name: "Read credit notes", category: "billing" },
   { code: "credit_notes.manage", name: "Manage credit notes", category: "billing" },
   { code: "scholarships.read", name: "Read scholarships", category: "scholarships" },
@@ -187,6 +189,8 @@ const TENANT_PERMISSIONS = dedupe([
   { code: "fee_invoices.manage", name: "Manage fee invoices", category: "billing" },
   { code: "fee_payments.read", name: "Read fee payments", category: "billing" },
   { code: "fee_payments.manage", name: "Manage fee payments", category: "billing" },
+  { code: "payment_gateways.read", name: "Read payment gateway configuration", category: "billing" },
+  { code: "payment_gateways.manage", name: "Manage payment gateway configuration", category: "billing" },
   { code: "credit_notes.read", name: "Read credit notes", category: "billing" },
   { code: "credit_notes.manage", name: "Manage credit notes", category: "billing" },
   { code: "exams.read", name: "Read exams", category: "exams" },
@@ -831,7 +835,7 @@ async function main() {
   const tenantRoleSpecs = [
     { name: "School Admin", description: "Full access for the school administrator", codes: TENANT_PERMISSIONS.map((p) => p.code) },
     { name: "Teacher", description: "Teaching staff", codes: ["students.read", "attendance.read", "attendance.manage", "exams.read", "exams.manage", "sections.read", "grade_levels.read", "subjects.read", "grade_subjects.read", "staff.read", "academic_years.read", "notifications.read"] },
-    { name: "Accountant", description: "Fee collection", codes: ["students.read", "enrollments.read", "fees.read", "fees.manage", "fee_invoices.read", "fee_invoices.manage", "fee_payments.read", "fee_payments.manage", "credit_notes.read", "scholarships.read", "guardians.read", "notifications.read"] },
+    { name: "Accountant", description: "Fee collection", codes: ["students.read", "enrollments.read", "fees.read", "fees.manage", "fee_invoices.read", "fee_invoices.manage", "fee_payments.read", "fee_payments.manage", "payment_gateways.read", "payment_gateways.manage", "credit_notes.read", "scholarships.read", "guardians.read", "notifications.read"] },
     { name: "Parent", description: "Parent portal access", codes: ["students.read", "notifications.read", "fee_invoices.read"] },
   ];
 

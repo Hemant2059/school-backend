@@ -435,6 +435,8 @@ model Tenant {
   feeInvoiceItems           FeeInvoiceItem[]
   feePayments               FeePayment[]
   creditNotes               CreditNote[]
+  paymentIntents            PaymentIntent[]
+  paymentGatewayConfigs     TenantPaymentGatewayConfig[]
   teacherSubjectAllocations TeacherSubjectAllocation[]
   payrollRuns               PayrollRun[]
   salarySlips               SalarySlip[]
@@ -1525,6 +1527,7 @@ enum FeePaymentMethod {
   CONNECT_IPS
   BANK_VOUCHER
   CHEQUE
+  DEMO
 }
 
 /// Lifecycle of a fee receipt.
@@ -1566,9 +1569,10 @@ model FeeInvoice {
   academicYear AcademicYear      @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
   enrollment   StudentEnrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
 
-  items       FeeInvoiceItem[]
-  payments    FeePayment[]
-  creditNotes CreditNote[]
+  items          FeeInvoiceItem[]
+  payments       FeePayment[]
+  creditNotes    CreditNote[]
+  paymentIntents PaymentIntent[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -2179,5 +2183,95 @@ model DocumentSequence {
   updatedAt DateTime @updatedAt
 
   @@unique([tenantId, fiscalYearId, kind])
+  @@index([tenantId])
+}
+
+enum OnlinePaymentGateway {
+  DEMO
+  ESEWA
+  KHALTI
+  CONNECTIPS
+}
+
+enum PaymentIntentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  EXPIRED
+}
+
+/// A pending online payment against a fee invoice. The gateway is the only
+/// writer of the callback; the server verifies every callback against the
+/// gateway before a receipt is issued.
+model PaymentIntent {
+  id       String @id @default(uuid())
+  tenantId String
+
+  invoiceId    String
+  fiscalYearId String
+  enrollmentId String
+
+  gateway OnlinePaymentGateway
+  status  PaymentIntentStatus  @default(PENDING)
+
+  amount            Decimal @db.Decimal(12, 2)
+  /// Client-supplied BS calendar date for the receipt (YYYY-MM-DD).
+  paymentDateBs     String  @db.VarChar(10)
+  /// transaction_uuid (eSewa) / pidx (Khalti) / TXNID (ConnectIPS) / DEMO-<uuid>
+  gatewayRef        String?
+  /// What the browser needs to reach the gateway (redirect URL / form fields).
+  initiationPayload Json?
+  callbackPayload   Json?
+  createdByUserId   String?
+
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  tenant  Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  invoice FeeInvoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([tenantId, status])
+  @@index([invoiceId])
+  @@index([gatewayRef])
+}
+
+/// Per-tenant online payment gateway credentials.
+///
+/// Secrets are AES-256-GCM encrypted with the platform master key
+/// (PAYMENT_CONFIG_MASTER_KEY, base64 32 bytes) before they touch the
+/// database, and are never serialized back to clients — the API returns
+/// masked hints (last 4 characters / "configured") only.
+model TenantPaymentGatewayConfig {
+  id       String @id @default(uuid())
+  tenantId String
+
+  gateway OnlinePaymentGateway
+
+  environment String  @default("sandbox") @db.VarChar(20)
+  isEnabled   Boolean @default(true)
+
+  /// eSewa product_code · ConnectIPS MERCHANTID · unused for Khalti (key-only)
+  merchantIdEncrypted    String?
+  /// ConnectIPS APPID (separate identifier from MERCHANTID)
+  appIdEncrypted         String?
+  /// eSewa secret · Khalti live_secret_key · ConnectIPS APP password
+  secretKeyEncrypted     String?
+  /// ConnectIPS APPNAME (not secret)
+  appName                String? @db.VarChar(60)
+  /// ConnectIPS creditor private key PEM (large, encrypted)
+  privateKeyPemEncrypted String? @db.Text
+  /// Optional override for the gateway host (proxies / UAT vs prod)
+  baseUrl                String? @db.VarChar(300)
+
+  configuredByUserId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, gateway])
   @@index([tenantId])
 }

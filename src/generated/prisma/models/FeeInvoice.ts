@@ -387,6 +387,7 @@ export type FeeInvoiceWhereInput = {
   items?: Prisma.FeeInvoiceItemListRelationFilter
   payments?: Prisma.FeePaymentListRelationFilter
   creditNotes?: Prisma.CreditNoteListRelationFilter
+  paymentIntents?: Prisma.PaymentIntentListRelationFilter
 }
 
 export type FeeInvoiceOrderByWithRelationInput = {
@@ -419,6 +420,7 @@ export type FeeInvoiceOrderByWithRelationInput = {
   items?: Prisma.FeeInvoiceItemOrderByRelationAggregateInput
   payments?: Prisma.FeePaymentOrderByRelationAggregateInput
   creditNotes?: Prisma.CreditNoteOrderByRelationAggregateInput
+  paymentIntents?: Prisma.PaymentIntentOrderByRelationAggregateInput
 }
 
 export type FeeInvoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -455,6 +457,7 @@ export type FeeInvoiceWhereUniqueInput = Prisma.AtLeast<{
   items?: Prisma.FeeInvoiceItemListRelationFilter
   payments?: Prisma.FeePaymentListRelationFilter
   creditNotes?: Prisma.CreditNoteListRelationFilter
+  paymentIntents?: Prisma.PaymentIntentListRelationFilter
 }, "id" | "tenantId_fiscalYearId_invoiceNumber">
 
 export type FeeInvoiceOrderByWithAggregationInput = {
@@ -541,6 +544,7 @@ export type FeeInvoiceCreateInput = {
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateInput = {
@@ -569,6 +573,7 @@ export type FeeInvoiceUncheckedCreateInput = {
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUpdateInput = {
@@ -597,6 +602,7 @@ export type FeeInvoiceUpdateInput = {
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateInput = {
@@ -625,6 +631,7 @@ export type FeeInvoiceUncheckedUpdateInput = {
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceCreateManyInput = {
@@ -1037,6 +1044,20 @@ export type FeeInvoiceUpdateOneRequiredWithoutCreditNotesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FeeInvoiceUpdateToOneWithWhereWithoutCreditNotesInput, Prisma.FeeInvoiceUpdateWithoutCreditNotesInput>, Prisma.FeeInvoiceUncheckedUpdateWithoutCreditNotesInput>
 }
 
+export type FeeInvoiceCreateNestedOneWithoutPaymentIntentsInput = {
+  create?: Prisma.XOR<Prisma.FeeInvoiceCreateWithoutPaymentIntentsInput, Prisma.FeeInvoiceUncheckedCreateWithoutPaymentIntentsInput>
+  connectOrCreate?: Prisma.FeeInvoiceCreateOrConnectWithoutPaymentIntentsInput
+  connect?: Prisma.FeeInvoiceWhereUniqueInput
+}
+
+export type FeeInvoiceUpdateOneRequiredWithoutPaymentIntentsNestedInput = {
+  create?: Prisma.XOR<Prisma.FeeInvoiceCreateWithoutPaymentIntentsInput, Prisma.FeeInvoiceUncheckedCreateWithoutPaymentIntentsInput>
+  connectOrCreate?: Prisma.FeeInvoiceCreateOrConnectWithoutPaymentIntentsInput
+  upsert?: Prisma.FeeInvoiceUpsertWithoutPaymentIntentsInput
+  connect?: Prisma.FeeInvoiceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FeeInvoiceUpdateToOneWithWhereWithoutPaymentIntentsInput, Prisma.FeeInvoiceUpdateWithoutPaymentIntentsInput>, Prisma.FeeInvoiceUncheckedUpdateWithoutPaymentIntentsInput>
+}
+
 export type FeeInvoiceCreateWithoutTenantInput = {
   id?: string
   invoiceNumber: string
@@ -1062,6 +1083,7 @@ export type FeeInvoiceCreateWithoutTenantInput = {
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutTenantInput = {
@@ -1089,6 +1111,7 @@ export type FeeInvoiceUncheckedCreateWithoutTenantInput = {
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutTenantInput = {
@@ -1170,6 +1193,7 @@ export type FeeInvoiceCreateWithoutAcademicYearInput = {
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutAcademicYearInput = {
@@ -1197,6 +1221,7 @@ export type FeeInvoiceUncheckedCreateWithoutAcademicYearInput = {
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutAcademicYearInput = {
@@ -1250,6 +1275,7 @@ export type FeeInvoiceCreateWithoutEnrollmentInput = {
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutEnrollmentInput = {
@@ -1277,6 +1303,7 @@ export type FeeInvoiceUncheckedCreateWithoutEnrollmentInput = {
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutEnrollmentInput = {
@@ -1330,6 +1357,7 @@ export type FeeInvoiceCreateWithoutFiscalYearInput = {
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutFiscalYearInput = {
@@ -1357,6 +1385,7 @@ export type FeeInvoiceUncheckedCreateWithoutFiscalYearInput = {
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutFiscalYearInput = {
@@ -1410,6 +1439,7 @@ export type FeeInvoiceCreateWithoutItemsInput = {
   enrollment: Prisma.StudentEnrollmentCreateNestedOneWithoutFeeInvoicesInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutItemsInput = {
@@ -1437,6 +1467,7 @@ export type FeeInvoiceUncheckedCreateWithoutItemsInput = {
   deletedAt?: Date | string | null
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutItemsInput = {
@@ -1480,6 +1511,7 @@ export type FeeInvoiceUpdateWithoutItemsInput = {
   enrollment?: Prisma.StudentEnrollmentUpdateOneRequiredWithoutFeeInvoicesNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutItemsInput = {
@@ -1507,6 +1539,7 @@ export type FeeInvoiceUncheckedUpdateWithoutItemsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceCreateWithoutPaymentsInput = {
@@ -1534,6 +1567,7 @@ export type FeeInvoiceCreateWithoutPaymentsInput = {
   enrollment: Prisma.StudentEnrollmentCreateNestedOneWithoutFeeInvoicesInput
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutPaymentsInput = {
@@ -1561,6 +1595,7 @@ export type FeeInvoiceUncheckedCreateWithoutPaymentsInput = {
   deletedAt?: Date | string | null
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutPaymentsInput = {
@@ -1604,6 +1639,7 @@ export type FeeInvoiceUpdateWithoutPaymentsInput = {
   enrollment?: Prisma.StudentEnrollmentUpdateOneRequiredWithoutFeeInvoicesNestedInput
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutPaymentsInput = {
@@ -1631,6 +1667,7 @@ export type FeeInvoiceUncheckedUpdateWithoutPaymentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceCreateWithoutCreditNotesInput = {
@@ -1658,6 +1695,7 @@ export type FeeInvoiceCreateWithoutCreditNotesInput = {
   enrollment: Prisma.StudentEnrollmentCreateNestedOneWithoutFeeInvoicesInput
   items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceUncheckedCreateWithoutCreditNotesInput = {
@@ -1685,6 +1723,7 @@ export type FeeInvoiceUncheckedCreateWithoutCreditNotesInput = {
   deletedAt?: Date | string | null
   items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type FeeInvoiceCreateOrConnectWithoutCreditNotesInput = {
@@ -1728,6 +1767,7 @@ export type FeeInvoiceUpdateWithoutCreditNotesInput = {
   enrollment?: Prisma.StudentEnrollmentUpdateOneRequiredWithoutFeeInvoicesNestedInput
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutCreditNotesInput = {
@@ -1755,6 +1795,135 @@ export type FeeInvoiceUncheckedUpdateWithoutCreditNotesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
+}
+
+export type FeeInvoiceCreateWithoutPaymentIntentsInput = {
+  id?: string
+  invoiceNumber: string
+  issueDateAd: Date | string
+  issueDateBs: string
+  dueDateBs: string
+  billedUpToBsMonth?: number | null
+  subtotalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  previousDuesBroughtForward: runtime.Decimal | runtime.DecimalJsLike | number | string
+  netPayableAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paidAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceDue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.FeeInvoiceStatus
+  printCount?: number
+  isSyncedToIrd?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutFeeInvoicesInput
+  fiscalYear: Prisma.FiscalYearCreateNestedOneWithoutFeeInvoicesInput
+  academicYear: Prisma.AcademicYearCreateNestedOneWithoutFeeInvoicesInput
+  enrollment: Prisma.StudentEnrollmentCreateNestedOneWithoutFeeInvoicesInput
+  items?: Prisma.FeeInvoiceItemCreateNestedManyWithoutInvoiceInput
+  payments?: Prisma.FeePaymentCreateNestedManyWithoutInvoiceInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutInvoiceInput
+}
+
+export type FeeInvoiceUncheckedCreateWithoutPaymentIntentsInput = {
+  id?: string
+  tenantId: string
+  fiscalYearId: string
+  academicYearId: string
+  enrollmentId: string
+  invoiceNumber: string
+  issueDateAd: Date | string
+  issueDateBs: string
+  dueDateBs: string
+  billedUpToBsMonth?: number | null
+  subtotalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  previousDuesBroughtForward: runtime.Decimal | runtime.DecimalJsLike | number | string
+  netPayableAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  paidAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceDue: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.FeeInvoiceStatus
+  printCount?: number
+  isSyncedToIrd?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  items?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
+  payments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutInvoiceInput
+}
+
+export type FeeInvoiceCreateOrConnectWithoutPaymentIntentsInput = {
+  where: Prisma.FeeInvoiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.FeeInvoiceCreateWithoutPaymentIntentsInput, Prisma.FeeInvoiceUncheckedCreateWithoutPaymentIntentsInput>
+}
+
+export type FeeInvoiceUpsertWithoutPaymentIntentsInput = {
+  update: Prisma.XOR<Prisma.FeeInvoiceUpdateWithoutPaymentIntentsInput, Prisma.FeeInvoiceUncheckedUpdateWithoutPaymentIntentsInput>
+  create: Prisma.XOR<Prisma.FeeInvoiceCreateWithoutPaymentIntentsInput, Prisma.FeeInvoiceUncheckedCreateWithoutPaymentIntentsInput>
+  where?: Prisma.FeeInvoiceWhereInput
+}
+
+export type FeeInvoiceUpdateToOneWithWhereWithoutPaymentIntentsInput = {
+  where?: Prisma.FeeInvoiceWhereInput
+  data: Prisma.XOR<Prisma.FeeInvoiceUpdateWithoutPaymentIntentsInput, Prisma.FeeInvoiceUncheckedUpdateWithoutPaymentIntentsInput>
+}
+
+export type FeeInvoiceUpdateWithoutPaymentIntentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  issueDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  issueDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  dueDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  billedUpToBsMonth?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  subtotalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  previousDuesBroughtForward?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  netPayableAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paidAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceDue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumFeeInvoiceStatusFieldUpdateOperationsInput | $Enums.FeeInvoiceStatus
+  printCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isSyncedToIrd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutFeeInvoicesNestedInput
+  fiscalYear?: Prisma.FiscalYearUpdateOneRequiredWithoutFeeInvoicesNestedInput
+  academicYear?: Prisma.AcademicYearUpdateOneRequiredWithoutFeeInvoicesNestedInput
+  enrollment?: Prisma.StudentEnrollmentUpdateOneRequiredWithoutFeeInvoicesNestedInput
+  items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
+  payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+}
+
+export type FeeInvoiceUncheckedUpdateWithoutPaymentIntentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  fiscalYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  academicYearId?: Prisma.StringFieldUpdateOperationsInput | string
+  enrollmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  issueDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  issueDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  dueDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  billedUpToBsMonth?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  subtotalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  discountAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  previousDuesBroughtForward?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  netPayableAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  paidAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceDue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumFeeInvoiceStatusFieldUpdateOperationsInput | $Enums.FeeInvoiceStatus
+  printCount?: Prisma.IntFieldUpdateOperationsInput | number
+  isSyncedToIrd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
+  payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceCreateManyTenantInput = {
@@ -1806,6 +1975,7 @@ export type FeeInvoiceUpdateWithoutTenantInput = {
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutTenantInput = {
@@ -1833,6 +2003,7 @@ export type FeeInvoiceUncheckedUpdateWithoutTenantInput = {
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateManyWithoutTenantInput = {
@@ -1908,6 +2079,7 @@ export type FeeInvoiceUpdateWithoutAcademicYearInput = {
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutAcademicYearInput = {
@@ -1935,6 +2107,7 @@ export type FeeInvoiceUncheckedUpdateWithoutAcademicYearInput = {
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateManyWithoutAcademicYearInput = {
@@ -2010,6 +2183,7 @@ export type FeeInvoiceUpdateWithoutEnrollmentInput = {
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutEnrollmentInput = {
@@ -2037,6 +2211,7 @@ export type FeeInvoiceUncheckedUpdateWithoutEnrollmentInput = {
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateManyWithoutEnrollmentInput = {
@@ -2112,6 +2287,7 @@ export type FeeInvoiceUpdateWithoutFiscalYearInput = {
   items?: Prisma.FeeInvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateWithoutFiscalYearInput = {
@@ -2139,6 +2315,7 @@ export type FeeInvoiceUncheckedUpdateWithoutFiscalYearInput = {
   items?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.FeePaymentUncheckedUpdateManyWithoutInvoiceNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutInvoiceNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type FeeInvoiceUncheckedUpdateManyWithoutFiscalYearInput = {
@@ -2174,12 +2351,14 @@ export type FeeInvoiceCountOutputType = {
   items: number
   payments: number
   creditNotes: number
+  paymentIntents: number
 }
 
 export type FeeInvoiceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | FeeInvoiceCountOutputTypeCountItemsArgs
   payments?: boolean | FeeInvoiceCountOutputTypeCountPaymentsArgs
   creditNotes?: boolean | FeeInvoiceCountOutputTypeCountCreditNotesArgs
+  paymentIntents?: boolean | FeeInvoiceCountOutputTypeCountPaymentIntentsArgs
 }
 
 /**
@@ -2213,6 +2392,13 @@ export type FeeInvoiceCountOutputTypeCountCreditNotesArgs<ExtArgs extends runtim
   where?: Prisma.CreditNoteWhereInput
 }
 
+/**
+ * FeeInvoiceCountOutputType without action
+ */
+export type FeeInvoiceCountOutputTypeCountPaymentIntentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentIntentWhereInput
+}
+
 
 export type FeeInvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2244,6 +2430,7 @@ export type FeeInvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   items?: boolean | Prisma.FeeInvoice$itemsArgs<ExtArgs>
   payments?: boolean | Prisma.FeeInvoice$paymentsArgs<ExtArgs>
   creditNotes?: boolean | Prisma.FeeInvoice$creditNotesArgs<ExtArgs>
+  paymentIntents?: boolean | Prisma.FeeInvoice$paymentIntentsArgs<ExtArgs>
   _count?: boolean | Prisma.FeeInvoiceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["feeInvoice"]>
 
@@ -2339,6 +2526,7 @@ export type FeeInvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   items?: boolean | Prisma.FeeInvoice$itemsArgs<ExtArgs>
   payments?: boolean | Prisma.FeeInvoice$paymentsArgs<ExtArgs>
   creditNotes?: boolean | Prisma.FeeInvoice$creditNotesArgs<ExtArgs>
+  paymentIntents?: boolean | Prisma.FeeInvoice$paymentIntentsArgs<ExtArgs>
   _count?: boolean | Prisma.FeeInvoiceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FeeInvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2364,6 +2552,7 @@ export type $FeeInvoicePayload<ExtArgs extends runtime.Types.Extensions.Internal
     items: Prisma.$FeeInvoiceItemPayload<ExtArgs>[]
     payments: Prisma.$FeePaymentPayload<ExtArgs>[]
     creditNotes: Prisma.$CreditNotePayload<ExtArgs>[]
+    paymentIntents: Prisma.$PaymentIntentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2789,6 +2978,7 @@ export interface Prisma__FeeInvoiceClient<T, Null = never, ExtArgs extends runti
   items<T extends Prisma.FeeInvoice$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FeeInvoice$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeeInvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.FeeInvoice$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FeeInvoice$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeePaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   creditNotes<T extends Prisma.FeeInvoice$creditNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FeeInvoice$creditNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreditNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentIntents<T extends Prisma.FeeInvoice$paymentIntentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FeeInvoice$paymentIntentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentIntentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3310,6 +3500,30 @@ export type FeeInvoice$creditNotesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.CreditNoteScalarFieldEnum | Prisma.CreditNoteScalarFieldEnum[]
+}
+
+/**
+ * FeeInvoice.paymentIntents
+ */
+export type FeeInvoice$paymentIntentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PaymentIntent
+   */
+  select?: Prisma.PaymentIntentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PaymentIntent
+   */
+  omit?: Prisma.PaymentIntentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentIntentInclude<ExtArgs> | null
+  where?: Prisma.PaymentIntentWhereInput
+  orderBy?: Prisma.PaymentIntentOrderByWithRelationInput | Prisma.PaymentIntentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentIntentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentIntentScalarFieldEnum | Prisma.PaymentIntentScalarFieldEnum[]
 }
 
 /**

@@ -5,10 +5,13 @@ import { FeeEngineService } from './fee-engine.service.js';
 
 function makePrisma() {
   const tx = {
-    feeInvoice: { create: vi.fn(), update: vi.fn() },
+    feeInvoice: { create: vi.fn(), update: vi.fn(), findUnique: vi.fn() },
     feeInvoiceItem: { create: vi.fn(), delete: vi.fn() },
     feePayment: { create: vi.fn(), update: vi.fn() },
-    creditNote: { create: vi.fn() },
+    creditNote: {
+      create: vi.fn(),
+      aggregate: vi.fn(async () => ({ _sum: { amount: null } })),
+    },
     libraryBook: { update: vi.fn() },
   };
   return {
@@ -60,7 +63,12 @@ describe('FeeEngineService', () => {
           feeHeadId: 'fh1',
           amount: new Prisma.Decimal('1000.00'),
           applicableBsMonths: [],
-          feeHead: { id: 'fh1', nameEn: 'Tuition', nameNe: 'शिक्षण', frequency: 'ANNUAL' },
+          feeHead: {
+            id: 'fh1',
+            nameEn: 'Tuition',
+            nameNe: 'शिक्षण',
+            frequency: 'ANNUAL',
+          },
         },
       ]);
       prisma.studentScholarship.findMany.mockResolvedValue([]);
@@ -119,6 +127,46 @@ describe('FeeEngineService', () => {
           paymentMethod: 'CASH',
         }),
       ).rejects.toThrow(/exceeds the outstanding balance/);
+    });
+
+    it('a payment after a credit note settles the balance including the credit', async () => {
+      prisma.fiscalYear.findFirst.mockResolvedValue({ id: 'f1' });
+      prisma.studentEnrollment.findFirst.mockResolvedValue({ id: 'e1' });
+      // Validation reads balanceDue (8000 = 10000 net − 2000 credit note).
+      prisma.feeInvoice.findFirst.mockResolvedValue({
+        id: 'inv1',
+        balanceDue: new Prisma.Decimal('8000.00'),
+      });
+      prisma.__tx.feeInvoice.findUnique.mockResolvedValue({
+        id: 'inv1',
+        paidAmount: new Prisma.Decimal('0'),
+        netPayableAmount: new Prisma.Decimal('10000.00'),
+        balanceDue: new Prisma.Decimal('8000.00'),
+        status: 'PARTIALLY_PAID',
+      });
+      prisma.__tx.creditNote.aggregate.mockResolvedValue({
+        _sum: { amount: new Prisma.Decimal('2000.00') },
+      });
+      prisma.__tx.feePayment.create.mockResolvedValue({ id: 'p1' });
+
+      await engine.recordPayment('t1', {
+        fiscalYearId: 'f1',
+        enrollmentId: 'e1',
+        invoiceId: 'inv1',
+        paymentDateAd: new Date(),
+        paymentDateBs: '2081-01-01',
+        amountPaid: 8000,
+        paymentMethod: 'CASH',
+      });
+
+      expect(prisma.__tx.feeInvoice.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            balanceDue: new Prisma.Decimal('0'),
+            status: 'PAID',
+          }),
+        }),
+      );
     });
 
     it('rejects a replayed gateway transaction', async () => {

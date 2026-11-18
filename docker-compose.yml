@@ -44,6 +44,10 @@ services:
       THROTTLE_LIMIT: ${THROTTLE_LIMIT:-300}
     ports:
       - "${APP_PORT:-3000}:3000"
+    volumes:
+      # Local, gitignored secrets (e.g. payment_master_key) — mounted as
+      # files, never passed through environment variables.
+      - ./.local-secrets:/run/secrets
 
 volumes:
   postgres_data:

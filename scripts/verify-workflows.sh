@@ -502,6 +502,24 @@ step "5.9 The outstanding balance is reported"
 OUT=$(req GET "/tenants/$TID/fee-invoices/outstanding?enrollmentId=$ENRID" "" "$TH")
 ok "the outstanding balance is reported" "$(echo "$OUT" | j "d.get('outstandingAmount','?')")" 7500
 
+step "5.10 An online payment through the DEMO gateway settles the invoice"
+ECALL=$(req POST "/tenants/$TID/payment-intents" \
+  "{\"invoiceId\":\"$INVID\",\"gateway\":\"ESEWA\",\"paymentDateBs\":\"2083-04-07\"}" "$TH")
+ok "a real gateway without per-school credentials is refused" \
+  "$(echo "$ECALL" | j "d.get('statusCode',200)")" 400
+DINIT=$(req POST "/tenants/$TID/payment-intents" \
+  "{\"invoiceId\":\"$INVID\",\"gateway\":\"DEMO\",\"paymentDateBs\":\"2083-04-07\"}" "$TH")
+DINTENT=$(echo "$DINIT" | j "d.get('intentId','')")
+ok "the demo intent was created" "$([ -n "$DINTENT" ] && echo yes || echo no)" yes
+DONE=$(req POST "/payments/gateways/demo/complete" "{\"intentId\":\"$DINTENT\"}" "")
+ok "the demo payment settled" "$(echo "$DONE" | j "d.get('settled',False)")" True
+ok "a receipt was issued for the gateway payment" "$(echo "$DONE" | j "d.get('receipt',{}).get('receiptNumber','') != ''")" True
+DAFTER=$(req GET "/tenants/$TID/fee-invoices/$INVID" "" "$TH")
+ok "the invoice is now fully paid" "$(echo "$DAFTER" | j "d.get('status','')")" PAID
+ok "the balance is zero" "$(echo "$DAFTER" | j "d.get('balanceDue','?')")" 0
+ok "a gateway retry does not double-record" \
+  "$(req POST "/payments/gateways/demo/complete" "{\"intentId\":\"$DINTENT\"}" "" | j "d.get('alreadyRecorded',False)")" True
+
 ###############################################################################
 head1 "Workflow 6 - Exams: scale -> exam -> publish -> marks -> results"
 ###############################################################################

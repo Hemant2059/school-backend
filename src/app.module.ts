@@ -30,6 +30,7 @@ import { IemisModule } from './iemis/iemis.module.js';
 import { ReportCardsModule } from './report-cards/report-cards.module.js';
 import { SmsModule } from './sms/sms.module.js';
 import { AnalyticsModule } from './analytics/analytics.module.js';
+import { PaymentsModule } from './payments/payments.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
 import { CommonModule } from './common/common.module.js';
@@ -80,6 +81,7 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.
     ReportCardsModule,
     SmsModule,
     AnalyticsModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [

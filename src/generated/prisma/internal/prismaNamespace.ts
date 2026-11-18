@@ -462,7 +462,9 @@ export const ModelName = {
   HostelAllocation: 'HostelAllocation',
   Notification: 'Notification',
   AuditLog: 'AuditLog',
-  DocumentSequence: 'DocumentSequence'
+  DocumentSequence: 'DocumentSequence',
+  PaymentIntent: 'PaymentIntent',
+  TenantPaymentGatewayConfig: 'TenantPaymentGatewayConfig'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -478,7 +480,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog" | "documentSequence"
+    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog" | "documentSequence" | "paymentIntent" | "tenantPaymentGatewayConfig"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5366,6 +5368,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PaymentIntent: {
+      payload: Prisma.$PaymentIntentPayload<ExtArgs>
+      fields: Prisma.PaymentIntentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PaymentIntentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PaymentIntentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>
+        }
+        findFirst: {
+          args: Prisma.PaymentIntentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PaymentIntentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>
+        }
+        findMany: {
+          args: Prisma.PaymentIntentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>[]
+        }
+        create: {
+          args: Prisma.PaymentIntentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>
+        }
+        createMany: {
+          args: Prisma.PaymentIntentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PaymentIntentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>[]
+        }
+        delete: {
+          args: Prisma.PaymentIntentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>
+        }
+        update: {
+          args: Prisma.PaymentIntentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>
+        }
+        deleteMany: {
+          args: Prisma.PaymentIntentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PaymentIntentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PaymentIntentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>[]
+        }
+        upsert: {
+          args: Prisma.PaymentIntentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentIntentPayload>
+        }
+        aggregate: {
+          args: Prisma.PaymentIntentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePaymentIntent>
+        }
+        groupBy: {
+          args: Prisma.PaymentIntentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PaymentIntentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PaymentIntentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PaymentIntentCountAggregateOutputType> | number
+        }
+      }
+    }
+    TenantPaymentGatewayConfig: {
+      payload: Prisma.$TenantPaymentGatewayConfigPayload<ExtArgs>
+      fields: Prisma.TenantPaymentGatewayConfigFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TenantPaymentGatewayConfigFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TenantPaymentGatewayConfigFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>
+        }
+        findFirst: {
+          args: Prisma.TenantPaymentGatewayConfigFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TenantPaymentGatewayConfigFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>
+        }
+        findMany: {
+          args: Prisma.TenantPaymentGatewayConfigFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>[]
+        }
+        create: {
+          args: Prisma.TenantPaymentGatewayConfigCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>
+        }
+        createMany: {
+          args: Prisma.TenantPaymentGatewayConfigCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TenantPaymentGatewayConfigCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>[]
+        }
+        delete: {
+          args: Prisma.TenantPaymentGatewayConfigDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>
+        }
+        update: {
+          args: Prisma.TenantPaymentGatewayConfigUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>
+        }
+        deleteMany: {
+          args: Prisma.TenantPaymentGatewayConfigDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TenantPaymentGatewayConfigUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TenantPaymentGatewayConfigUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>[]
+        }
+        upsert: {
+          args: Prisma.TenantPaymentGatewayConfigUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantPaymentGatewayConfigPayload>
+        }
+        aggregate: {
+          args: Prisma.TenantPaymentGatewayConfigAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTenantPaymentGatewayConfig>
+        }
+        groupBy: {
+          args: Prisma.TenantPaymentGatewayConfigGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TenantPaymentGatewayConfigGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TenantPaymentGatewayConfigCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TenantPaymentGatewayConfigCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6649,6 +6799,48 @@ export const DocumentSequenceScalarFieldEnum = {
 export type DocumentSequenceScalarFieldEnum = (typeof DocumentSequenceScalarFieldEnum)[keyof typeof DocumentSequenceScalarFieldEnum]
 
 
+export const PaymentIntentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  invoiceId: 'invoiceId',
+  fiscalYearId: 'fiscalYearId',
+  enrollmentId: 'enrollmentId',
+  gateway: 'gateway',
+  status: 'status',
+  amount: 'amount',
+  paymentDateBs: 'paymentDateBs',
+  gatewayRef: 'gatewayRef',
+  initiationPayload: 'initiationPayload',
+  callbackPayload: 'callbackPayload',
+  createdByUserId: 'createdByUserId',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentIntentScalarFieldEnum = (typeof PaymentIntentScalarFieldEnum)[keyof typeof PaymentIntentScalarFieldEnum]
+
+
+export const TenantPaymentGatewayConfigScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  gateway: 'gateway',
+  environment: 'environment',
+  isEnabled: 'isEnabled',
+  merchantIdEncrypted: 'merchantIdEncrypted',
+  appIdEncrypted: 'appIdEncrypted',
+  secretKeyEncrypted: 'secretKeyEncrypted',
+  appName: 'appName',
+  privateKeyPemEncrypted: 'privateKeyPemEncrypted',
+  baseUrl: 'baseUrl',
+  configuredByUserId: 'configuredByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenantPaymentGatewayConfigScalarFieldEnum = (typeof TenantPaymentGatewayConfigScalarFieldEnum)[keyof typeof TenantPaymentGatewayConfigScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7304,6 +7496,34 @@ export type EnumNotificationRecipientTypeFieldRefInput<$PrismaModel> = FieldRefI
 export type ListEnumNotificationRecipientTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationRecipientType[]'>
     
 
+
+/**
+ * Reference to a field of type 'OnlinePaymentGateway'
+ */
+export type EnumOnlinePaymentGatewayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnlinePaymentGateway'>
+    
+
+
+/**
+ * Reference to a field of type 'OnlinePaymentGateway[]'
+ */
+export type ListEnumOnlinePaymentGatewayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnlinePaymentGateway[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentIntentStatus'
+ */
+export type EnumPaymentIntentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentIntentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentIntentStatus[]'
+ */
+export type ListEnumPaymentIntentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentIntentStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -7521,6 +7741,8 @@ export type GlobalOmitConfig = {
   notification?: Prisma.NotificationOmit
   auditLog?: Prisma.AuditLogOmit
   documentSequence?: Prisma.DocumentSequenceOmit
+  paymentIntent?: Prisma.PaymentIntentOmit
+  tenantPaymentGatewayConfig?: Prisma.TenantPaymentGatewayConfigOmit
 }
 
 /* Types for Logging */

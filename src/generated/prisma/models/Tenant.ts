@@ -525,6 +525,8 @@ export type TenantWhereInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemListRelationFilter
   feePayments?: Prisma.FeePaymentListRelationFilter
   creditNotes?: Prisma.CreditNoteListRelationFilter
+  paymentIntents?: Prisma.PaymentIntentListRelationFilter
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigListRelationFilter
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationListRelationFilter
   payrollRuns?: Prisma.PayrollRunListRelationFilter
   salarySlips?: Prisma.SalarySlipListRelationFilter
@@ -612,6 +614,8 @@ export type TenantOrderByWithRelationInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemOrderByRelationAggregateInput
   feePayments?: Prisma.FeePaymentOrderByRelationAggregateInput
   creditNotes?: Prisma.CreditNoteOrderByRelationAggregateInput
+  paymentIntents?: Prisma.PaymentIntentOrderByRelationAggregateInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigOrderByRelationAggregateInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationOrderByRelationAggregateInput
   payrollRuns?: Prisma.PayrollRunOrderByRelationAggregateInput
   salarySlips?: Prisma.SalarySlipOrderByRelationAggregateInput
@@ -702,6 +706,8 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   feeInvoiceItems?: Prisma.FeeInvoiceItemListRelationFilter
   feePayments?: Prisma.FeePaymentListRelationFilter
   creditNotes?: Prisma.CreditNoteListRelationFilter
+  paymentIntents?: Prisma.PaymentIntentListRelationFilter
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigListRelationFilter
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationListRelationFilter
   payrollRuns?: Prisma.PayrollRunListRelationFilter
   salarySlips?: Prisma.SalarySlipListRelationFilter
@@ -879,6 +885,8 @@ export type TenantCreateInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -964,6 +972,8 @@ export type TenantUncheckedCreateInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -1049,6 +1059,8 @@ export type TenantUpdateInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -1134,6 +1146,8 @@ export type TenantUncheckedUpdateInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -2138,6 +2152,34 @@ export type TenantUpdateOneWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutNotificationsInput, Prisma.TenantUpdateWithoutNotificationsInput>, Prisma.TenantUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type TenantCreateNestedOneWithoutPaymentIntentsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPaymentIntentsInput, Prisma.TenantUncheckedCreateWithoutPaymentIntentsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPaymentIntentsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutPaymentIntentsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPaymentIntentsInput, Prisma.TenantUncheckedCreateWithoutPaymentIntentsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPaymentIntentsInput
+  upsert?: Prisma.TenantUpsertWithoutPaymentIntentsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPaymentIntentsInput, Prisma.TenantUpdateWithoutPaymentIntentsInput>, Prisma.TenantUncheckedUpdateWithoutPaymentIntentsInput>
+}
+
+export type TenantCreateNestedOneWithoutPaymentGatewayConfigsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPaymentGatewayConfigsInput, Prisma.TenantUncheckedCreateWithoutPaymentGatewayConfigsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPaymentGatewayConfigsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutPaymentGatewayConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPaymentGatewayConfigsInput, Prisma.TenantUncheckedCreateWithoutPaymentGatewayConfigsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPaymentGatewayConfigsInput
+  upsert?: Prisma.TenantUpsertWithoutPaymentGatewayConfigsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPaymentGatewayConfigsInput, Prisma.TenantUpdateWithoutPaymentGatewayConfigsInput>, Prisma.TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput>
+}
+
 export type TenantCreateWithoutCreatedByInput = {
   id?: string
   nameEn: string
@@ -2204,6 +2246,8 @@ export type TenantCreateWithoutCreatedByInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -2288,6 +2332,8 @@ export type TenantUncheckedCreateWithoutCreatedByInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -2443,6 +2489,8 @@ export type TenantCreateWithoutOrganizationInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -2527,6 +2575,8 @@ export type TenantUncheckedCreateWithoutOrganizationInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -2637,6 +2687,8 @@ export type TenantCreateWithoutRolesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -2721,6 +2773,8 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -2821,6 +2875,8 @@ export type TenantUpdateWithoutRolesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -2905,6 +2961,8 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -2989,6 +3047,8 @@ export type TenantCreateWithoutTenantUsersInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -3073,6 +3133,8 @@ export type TenantUncheckedCreateWithoutTenantUsersInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -3173,6 +3235,8 @@ export type TenantUpdateWithoutTenantUsersInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -3257,6 +3321,8 @@ export type TenantUncheckedUpdateWithoutTenantUsersInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -3341,6 +3407,8 @@ export type TenantCreateWithoutSubscriptionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -3425,6 +3493,8 @@ export type TenantUncheckedCreateWithoutSubscriptionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -3525,6 +3595,8 @@ export type TenantUpdateWithoutSubscriptionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -3609,6 +3681,8 @@ export type TenantUncheckedUpdateWithoutSubscriptionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -3693,6 +3767,8 @@ export type TenantCreateWithoutInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -3777,6 +3853,8 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -3877,6 +3955,8 @@ export type TenantUpdateWithoutInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -3961,6 +4041,8 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -4045,6 +4127,8 @@ export type TenantCreateWithoutAcademicYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -4129,6 +4213,8 @@ export type TenantUncheckedCreateWithoutAcademicYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -4229,6 +4315,8 @@ export type TenantUpdateWithoutAcademicYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -4313,6 +4401,8 @@ export type TenantUncheckedUpdateWithoutAcademicYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -4397,6 +4487,8 @@ export type TenantCreateWithoutStreamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -4481,6 +4573,8 @@ export type TenantUncheckedCreateWithoutStreamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -4581,6 +4675,8 @@ export type TenantUpdateWithoutStreamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -4665,6 +4761,8 @@ export type TenantUncheckedUpdateWithoutStreamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -4749,6 +4847,8 @@ export type TenantCreateWithoutGradeLevelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -4833,6 +4933,8 @@ export type TenantUncheckedCreateWithoutGradeLevelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -4933,6 +5035,8 @@ export type TenantUpdateWithoutGradeLevelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -5017,6 +5121,8 @@ export type TenantUncheckedUpdateWithoutGradeLevelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -5101,6 +5207,8 @@ export type TenantCreateWithoutSectionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -5185,6 +5293,8 @@ export type TenantUncheckedCreateWithoutSectionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -5285,6 +5395,8 @@ export type TenantUpdateWithoutSectionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -5369,6 +5481,8 @@ export type TenantUncheckedUpdateWithoutSectionsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -5453,6 +5567,8 @@ export type TenantCreateWithoutStaffProfilesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -5537,6 +5653,8 @@ export type TenantUncheckedCreateWithoutStaffProfilesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -5637,6 +5755,8 @@ export type TenantUpdateWithoutStaffProfilesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -5721,6 +5841,8 @@ export type TenantUncheckedUpdateWithoutStaffProfilesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -5805,6 +5927,8 @@ export type TenantCreateWithoutSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -5889,6 +6013,8 @@ export type TenantUncheckedCreateWithoutSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -5989,6 +6115,8 @@ export type TenantUpdateWithoutSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -6073,6 +6201,8 @@ export type TenantUncheckedUpdateWithoutSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -6157,6 +6287,8 @@ export type TenantCreateWithoutGradeSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -6241,6 +6373,8 @@ export type TenantUncheckedCreateWithoutGradeSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -6341,6 +6475,8 @@ export type TenantUpdateWithoutGradeSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -6425,6 +6561,8 @@ export type TenantUncheckedUpdateWithoutGradeSubjectsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -6509,6 +6647,8 @@ export type TenantCreateWithoutStudentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -6593,6 +6733,8 @@ export type TenantUncheckedCreateWithoutStudentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -6693,6 +6835,8 @@ export type TenantUpdateWithoutStudentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -6777,6 +6921,8 @@ export type TenantUncheckedUpdateWithoutStudentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -6861,6 +7007,8 @@ export type TenantCreateWithoutAddressesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -6945,6 +7093,8 @@ export type TenantUncheckedCreateWithoutAddressesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -7045,6 +7195,8 @@ export type TenantUpdateWithoutAddressesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -7129,6 +7281,8 @@ export type TenantUncheckedUpdateWithoutAddressesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -7213,6 +7367,8 @@ export type TenantCreateWithoutGuardiansInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -7297,6 +7453,8 @@ export type TenantUncheckedCreateWithoutGuardiansInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -7397,6 +7555,8 @@ export type TenantUpdateWithoutGuardiansInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -7481,6 +7641,8 @@ export type TenantUncheckedUpdateWithoutGuardiansInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -7565,6 +7727,8 @@ export type TenantCreateWithoutStudentEnrollmentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -7649,6 +7813,8 @@ export type TenantUncheckedCreateWithoutStudentEnrollmentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -7749,6 +7915,8 @@ export type TenantUpdateWithoutStudentEnrollmentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -7833,6 +8001,8 @@ export type TenantUncheckedUpdateWithoutStudentEnrollmentsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -7917,6 +8087,8 @@ export type TenantCreateWithoutTransferCertificatesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -8001,6 +8173,8 @@ export type TenantUncheckedCreateWithoutTransferCertificatesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -8101,6 +8275,8 @@ export type TenantUpdateWithoutTransferCertificatesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -8185,6 +8361,8 @@ export type TenantUncheckedUpdateWithoutTransferCertificatesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -8269,6 +8447,8 @@ export type TenantCreateWithoutGradingScalesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -8353,6 +8533,8 @@ export type TenantUncheckedCreateWithoutGradingScalesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -8453,6 +8635,8 @@ export type TenantUpdateWithoutGradingScalesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -8537,6 +8721,8 @@ export type TenantUncheckedUpdateWithoutGradingScalesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -8621,6 +8807,8 @@ export type TenantCreateWithoutExamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -8705,6 +8893,8 @@ export type TenantUncheckedCreateWithoutExamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -8805,6 +8995,8 @@ export type TenantUpdateWithoutExamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -8889,6 +9081,8 @@ export type TenantUncheckedUpdateWithoutExamsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -8973,6 +9167,8 @@ export type TenantCreateWithoutFiscalYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -9057,6 +9253,8 @@ export type TenantUncheckedCreateWithoutFiscalYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -9157,6 +9355,8 @@ export type TenantUpdateWithoutFiscalYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -9241,6 +9441,8 @@ export type TenantUncheckedUpdateWithoutFiscalYearsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -9325,6 +9527,8 @@ export type TenantCreateWithoutFeeHeadsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -9409,6 +9613,8 @@ export type TenantUncheckedCreateWithoutFeeHeadsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -9509,6 +9715,8 @@ export type TenantUpdateWithoutFeeHeadsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -9593,6 +9801,8 @@ export type TenantUncheckedUpdateWithoutFeeHeadsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -9677,6 +9887,8 @@ export type TenantCreateWithoutClassFeeStructuresInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -9761,6 +9973,8 @@ export type TenantUncheckedCreateWithoutClassFeeStructuresInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -9861,6 +10075,8 @@ export type TenantUpdateWithoutClassFeeStructuresInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -9945,6 +10161,8 @@ export type TenantUncheckedUpdateWithoutClassFeeStructuresInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -10029,6 +10247,8 @@ export type TenantCreateWithoutScholarshipSchemesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -10113,6 +10333,8 @@ export type TenantUncheckedCreateWithoutScholarshipSchemesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -10213,6 +10435,8 @@ export type TenantUpdateWithoutScholarshipSchemesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -10297,6 +10521,8 @@ export type TenantUncheckedUpdateWithoutScholarshipSchemesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -10381,6 +10607,8 @@ export type TenantCreateWithoutStudentScholarshipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -10465,6 +10693,8 @@ export type TenantUncheckedCreateWithoutStudentScholarshipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -10565,6 +10795,8 @@ export type TenantUpdateWithoutStudentScholarshipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -10649,6 +10881,8 @@ export type TenantUncheckedUpdateWithoutStudentScholarshipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -10733,6 +10967,8 @@ export type TenantCreateWithoutFeeInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -10817,6 +11053,8 @@ export type TenantUncheckedCreateWithoutFeeInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -10917,6 +11155,8 @@ export type TenantUpdateWithoutFeeInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -11001,6 +11241,8 @@ export type TenantUncheckedUpdateWithoutFeeInvoicesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -11085,6 +11327,8 @@ export type TenantCreateWithoutFeeInvoiceItemsInput = {
   feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -11169,6 +11413,8 @@ export type TenantUncheckedCreateWithoutFeeInvoiceItemsInput = {
   feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -11269,6 +11515,8 @@ export type TenantUpdateWithoutFeeInvoiceItemsInput = {
   feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -11353,6 +11601,8 @@ export type TenantUncheckedUpdateWithoutFeeInvoiceItemsInput = {
   feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -11437,6 +11687,8 @@ export type TenantCreateWithoutFeePaymentsInput = {
   feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -11521,6 +11773,8 @@ export type TenantUncheckedCreateWithoutFeePaymentsInput = {
   feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -11621,6 +11875,8 @@ export type TenantUpdateWithoutFeePaymentsInput = {
   feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -11705,6 +11961,8 @@ export type TenantUncheckedUpdateWithoutFeePaymentsInput = {
   feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -11789,6 +12047,8 @@ export type TenantCreateWithoutCreditNotesInput = {
   feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -11873,6 +12133,8 @@ export type TenantUncheckedCreateWithoutCreditNotesInput = {
   feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -11973,6 +12235,8 @@ export type TenantUpdateWithoutCreditNotesInput = {
   feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -12057,6 +12321,8 @@ export type TenantUncheckedUpdateWithoutCreditNotesInput = {
   feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -12142,6 +12408,8 @@ export type TenantCreateWithoutTeacherSubjectAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
@@ -12226,6 +12494,8 @@ export type TenantUncheckedCreateWithoutTeacherSubjectAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
@@ -12326,6 +12596,8 @@ export type TenantUpdateWithoutTeacherSubjectAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
@@ -12410,6 +12682,8 @@ export type TenantUncheckedUpdateWithoutTeacherSubjectAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
@@ -12494,6 +12768,8 @@ export type TenantCreateWithoutPayrollRunsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
@@ -12578,6 +12854,8 @@ export type TenantUncheckedCreateWithoutPayrollRunsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
@@ -12678,6 +12956,8 @@ export type TenantUpdateWithoutPayrollRunsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
@@ -12762,6 +13042,8 @@ export type TenantUncheckedUpdateWithoutPayrollRunsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
@@ -12846,6 +13128,8 @@ export type TenantCreateWithoutSalarySlipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
@@ -12930,6 +13214,8 @@ export type TenantUncheckedCreateWithoutSalarySlipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
@@ -13030,6 +13316,8 @@ export type TenantUpdateWithoutSalarySlipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
@@ -13114,6 +13402,8 @@ export type TenantUncheckedUpdateWithoutSalarySlipsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
@@ -13198,6 +13488,8 @@ export type TenantCreateWithoutAcademicCalendarEventsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -13282,6 +13574,8 @@ export type TenantUncheckedCreateWithoutAcademicCalendarEventsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -13382,6 +13676,8 @@ export type TenantUpdateWithoutAcademicCalendarEventsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -13466,6 +13762,8 @@ export type TenantUncheckedUpdateWithoutAcademicCalendarEventsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -13550,6 +13848,8 @@ export type TenantCreateWithoutStudentDailyAttendancesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -13634,6 +13934,8 @@ export type TenantUncheckedCreateWithoutStudentDailyAttendancesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -13734,6 +14036,8 @@ export type TenantUpdateWithoutStudentDailyAttendancesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -13818,6 +14122,8 @@ export type TenantUncheckedUpdateWithoutStudentDailyAttendancesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -13902,6 +14208,8 @@ export type TenantCreateWithoutTimetableSlotsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -13986,6 +14294,8 @@ export type TenantUncheckedCreateWithoutTimetableSlotsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -14086,6 +14396,8 @@ export type TenantUpdateWithoutTimetableSlotsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -14170,6 +14482,8 @@ export type TenantUncheckedUpdateWithoutTimetableSlotsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -14254,6 +14568,8 @@ export type TenantCreateWithoutTransportVehiclesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -14338,6 +14654,8 @@ export type TenantUncheckedCreateWithoutTransportVehiclesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -14438,6 +14756,8 @@ export type TenantUpdateWithoutTransportVehiclesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -14522,6 +14842,8 @@ export type TenantUncheckedUpdateWithoutTransportVehiclesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -14606,6 +14928,8 @@ export type TenantCreateWithoutTransportRoutesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -14690,6 +15014,8 @@ export type TenantUncheckedCreateWithoutTransportRoutesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -14790,6 +15116,8 @@ export type TenantUpdateWithoutTransportRoutesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -14874,6 +15202,8 @@ export type TenantUncheckedUpdateWithoutTransportRoutesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -14958,6 +15288,8 @@ export type TenantCreateWithoutTransportStopsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -15042,6 +15374,8 @@ export type TenantUncheckedCreateWithoutTransportStopsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -15142,6 +15476,8 @@ export type TenantUpdateWithoutTransportStopsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -15226,6 +15562,8 @@ export type TenantUncheckedUpdateWithoutTransportStopsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -15310,6 +15648,8 @@ export type TenantCreateWithoutStudentTransportsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -15394,6 +15734,8 @@ export type TenantUncheckedCreateWithoutStudentTransportsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -15494,6 +15836,8 @@ export type TenantUpdateWithoutStudentTransportsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -15578,6 +15922,8 @@ export type TenantUncheckedUpdateWithoutStudentTransportsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -15662,6 +16008,8 @@ export type TenantCreateWithoutLibraryBooksInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -15746,6 +16094,8 @@ export type TenantUncheckedCreateWithoutLibraryBooksInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -15846,6 +16196,8 @@ export type TenantUpdateWithoutLibraryBooksInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -15930,6 +16282,8 @@ export type TenantUncheckedUpdateWithoutLibraryBooksInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -16014,6 +16368,8 @@ export type TenantCreateWithoutBookIssuesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -16098,6 +16454,8 @@ export type TenantUncheckedCreateWithoutBookIssuesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -16198,6 +16556,8 @@ export type TenantUpdateWithoutBookIssuesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -16282,6 +16642,8 @@ export type TenantUncheckedUpdateWithoutBookIssuesInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -16366,6 +16728,8 @@ export type TenantCreateWithoutHostelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -16450,6 +16814,8 @@ export type TenantUncheckedCreateWithoutHostelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -16550,6 +16916,8 @@ export type TenantUpdateWithoutHostelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -16634,6 +17002,8 @@ export type TenantUncheckedUpdateWithoutHostelsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -16718,6 +17088,8 @@ export type TenantCreateWithoutHostelRoomsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -16802,6 +17174,8 @@ export type TenantUncheckedCreateWithoutHostelRoomsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -16902,6 +17276,8 @@ export type TenantUpdateWithoutHostelRoomsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -16986,6 +17362,8 @@ export type TenantUncheckedUpdateWithoutHostelRoomsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -17070,6 +17448,8 @@ export type TenantCreateWithoutHostelAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -17154,6 +17534,8 @@ export type TenantUncheckedCreateWithoutHostelAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -17254,6 +17636,8 @@ export type TenantUpdateWithoutHostelAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -17338,6 +17722,8 @@ export type TenantUncheckedUpdateWithoutHostelAllocationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -17422,6 +17808,8 @@ export type TenantCreateWithoutNotificationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
@@ -17506,6 +17894,8 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
   feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
   creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
   payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
   salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
@@ -17606,6 +17996,8 @@ export type TenantUpdateWithoutNotificationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -17690,6 +18082,8 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -17705,6 +18099,726 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPaymentIntentsInput = {
+  id?: string
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPaymentIntentsInput = {
+  id?: string
+  organizationId?: string | null
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdByPlatformUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserUncheckedCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamUncheckedCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelUncheckedCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionUncheckedCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileUncheckedCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianUncheckedCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleUncheckedCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearUncheckedCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadUncheckedCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteUncheckedCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopUncheckedCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportUncheckedCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookUncheckedCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueUncheckedCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutPaymentIntentsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPaymentIntentsInput, Prisma.TenantUncheckedCreateWithoutPaymentIntentsInput>
+}
+
+export type TenantUpsertWithoutPaymentIntentsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutPaymentIntentsInput, Prisma.TenantUncheckedUpdateWithoutPaymentIntentsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPaymentIntentsInput, Prisma.TenantUncheckedCreateWithoutPaymentIntentsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutPaymentIntentsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutPaymentIntentsInput, Prisma.TenantUncheckedUpdateWithoutPaymentIntentsInput>
+}
+
+export type TenantUpdateWithoutPaymentIntentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutPaymentIntentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUncheckedUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUncheckedUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUncheckedUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUncheckedUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUncheckedUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUncheckedUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUncheckedUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUncheckedUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUncheckedUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUncheckedUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUncheckedUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUncheckedUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUncheckedUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPaymentGatewayConfigsInput = {
+  id?: string
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPaymentGatewayConfigsInput = {
+  id?: string
+  organizationId?: string | null
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdByPlatformUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserUncheckedCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamUncheckedCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelUncheckedCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionUncheckedCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileUncheckedCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianUncheckedCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleUncheckedCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearUncheckedCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadUncheckedCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteUncheckedCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopUncheckedCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportUncheckedCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookUncheckedCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueUncheckedCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutPaymentGatewayConfigsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPaymentGatewayConfigsInput, Prisma.TenantUncheckedCreateWithoutPaymentGatewayConfigsInput>
+}
+
+export type TenantUpsertWithoutPaymentGatewayConfigsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutPaymentGatewayConfigsInput, Prisma.TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPaymentGatewayConfigsInput, Prisma.TenantUncheckedCreateWithoutPaymentGatewayConfigsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutPaymentGatewayConfigsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutPaymentGatewayConfigsInput, Prisma.TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput>
+}
+
+export type TenantUpdateWithoutPaymentGatewayConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUncheckedUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUncheckedUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUncheckedUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUncheckedUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUncheckedUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUncheckedUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUncheckedUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUncheckedUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUncheckedUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUncheckedUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUncheckedUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUncheckedUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUncheckedUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyCreatedByInput = {
@@ -17814,6 +18928,8 @@ export type TenantUpdateWithoutCreatedByInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -17898,6 +19014,8 @@ export type TenantUncheckedUpdateWithoutCreatedByInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -18064,6 +19182,8 @@ export type TenantUpdateWithoutOrganizationInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
@@ -18148,6 +19268,8 @@ export type TenantUncheckedUpdateWithoutOrganizationInput = {
   feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -18240,6 +19362,8 @@ export type TenantCountOutputType = {
   feeInvoiceItems: number
   feePayments: number
   creditNotes: number
+  paymentIntents: number
+  paymentGatewayConfigs: number
   teacherSubjectAllocations: number
   payrollRuns: number
   salarySlips: number
@@ -18286,6 +19410,8 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   feeInvoiceItems?: boolean | TenantCountOutputTypeCountFeeInvoiceItemsArgs
   feePayments?: boolean | TenantCountOutputTypeCountFeePaymentsArgs
   creditNotes?: boolean | TenantCountOutputTypeCountCreditNotesArgs
+  paymentIntents?: boolean | TenantCountOutputTypeCountPaymentIntentsArgs
+  paymentGatewayConfigs?: boolean | TenantCountOutputTypeCountPaymentGatewayConfigsArgs
   teacherSubjectAllocations?: boolean | TenantCountOutputTypeCountTeacherSubjectAllocationsArgs
   payrollRuns?: boolean | TenantCountOutputTypeCountPayrollRunsArgs
   salarySlips?: boolean | TenantCountOutputTypeCountSalarySlipsArgs
@@ -18506,6 +19632,20 @@ export type TenantCountOutputTypeCountCreditNotesArgs<ExtArgs extends runtime.Ty
 /**
  * TenantCountOutputType without action
  */
+export type TenantCountOutputTypeCountPaymentIntentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentIntentWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountPaymentGatewayConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TenantPaymentGatewayConfigWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
 export type TenantCountOutputTypeCountTeacherSubjectAllocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TeacherSubjectAllocationWhereInput
 }
@@ -18685,6 +19825,8 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   feeInvoiceItems?: boolean | Prisma.Tenant$feeInvoiceItemsArgs<ExtArgs>
   feePayments?: boolean | Prisma.Tenant$feePaymentsArgs<ExtArgs>
   creditNotes?: boolean | Prisma.Tenant$creditNotesArgs<ExtArgs>
+  paymentIntents?: boolean | Prisma.Tenant$paymentIntentsArgs<ExtArgs>
+  paymentGatewayConfigs?: boolean | Prisma.Tenant$paymentGatewayConfigsArgs<ExtArgs>
   teacherSubjectAllocations?: boolean | Prisma.Tenant$teacherSubjectAllocationsArgs<ExtArgs>
   payrollRuns?: boolean | Prisma.Tenant$payrollRunsArgs<ExtArgs>
   salarySlips?: boolean | Prisma.Tenant$salarySlipsArgs<ExtArgs>
@@ -18865,6 +20007,8 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   feeInvoiceItems?: boolean | Prisma.Tenant$feeInvoiceItemsArgs<ExtArgs>
   feePayments?: boolean | Prisma.Tenant$feePaymentsArgs<ExtArgs>
   creditNotes?: boolean | Prisma.Tenant$creditNotesArgs<ExtArgs>
+  paymentIntents?: boolean | Prisma.Tenant$paymentIntentsArgs<ExtArgs>
+  paymentGatewayConfigs?: boolean | Prisma.Tenant$paymentGatewayConfigsArgs<ExtArgs>
   teacherSubjectAllocations?: boolean | Prisma.Tenant$teacherSubjectAllocationsArgs<ExtArgs>
   payrollRuns?: boolean | Prisma.Tenant$payrollRunsArgs<ExtArgs>
   salarySlips?: boolean | Prisma.Tenant$salarySlipsArgs<ExtArgs>
@@ -18924,6 +20068,8 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     feeInvoiceItems: Prisma.$FeeInvoiceItemPayload<ExtArgs>[]
     feePayments: Prisma.$FeePaymentPayload<ExtArgs>[]
     creditNotes: Prisma.$CreditNotePayload<ExtArgs>[]
+    paymentIntents: Prisma.$PaymentIntentPayload<ExtArgs>[]
+    paymentGatewayConfigs: Prisma.$TenantPaymentGatewayConfigPayload<ExtArgs>[]
     teacherSubjectAllocations: Prisma.$TeacherSubjectAllocationPayload<ExtArgs>[]
     payrollRuns: Prisma.$PayrollRunPayload<ExtArgs>[]
     salarySlips: Prisma.$SalarySlipPayload<ExtArgs>[]
@@ -19404,6 +20550,8 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   feeInvoiceItems<T extends Prisma.Tenant$feeInvoiceItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$feeInvoiceItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeeInvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   feePayments<T extends Prisma.Tenant$feePaymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$feePaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeePaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   creditNotes<T extends Prisma.Tenant$creditNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$creditNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreditNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentIntents<T extends Prisma.Tenant$paymentIntentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$paymentIntentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentIntentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentGatewayConfigs<T extends Prisma.Tenant$paymentGatewayConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$paymentGatewayConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenantPaymentGatewayConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teacherSubjectAllocations<T extends Prisma.Tenant$teacherSubjectAllocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$teacherSubjectAllocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherSubjectAllocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payrollRuns<T extends Prisma.Tenant$payrollRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$payrollRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayrollRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   salarySlips<T extends Prisma.Tenant$salarySlipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$salarySlipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalarySlipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -20553,6 +21701,54 @@ export type Tenant$creditNotesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.CreditNoteScalarFieldEnum | Prisma.CreditNoteScalarFieldEnum[]
+}
+
+/**
+ * Tenant.paymentIntents
+ */
+export type Tenant$paymentIntentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PaymentIntent
+   */
+  select?: Prisma.PaymentIntentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PaymentIntent
+   */
+  omit?: Prisma.PaymentIntentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentIntentInclude<ExtArgs> | null
+  where?: Prisma.PaymentIntentWhereInput
+  orderBy?: Prisma.PaymentIntentOrderByWithRelationInput | Prisma.PaymentIntentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentIntentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentIntentScalarFieldEnum | Prisma.PaymentIntentScalarFieldEnum[]
+}
+
+/**
+ * Tenant.paymentGatewayConfigs
+ */
+export type Tenant$paymentGatewayConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TenantPaymentGatewayConfig
+   */
+  select?: Prisma.TenantPaymentGatewayConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TenantPaymentGatewayConfig
+   */
+  omit?: Prisma.TenantPaymentGatewayConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenantPaymentGatewayConfigInclude<ExtArgs> | null
+  where?: Prisma.TenantPaymentGatewayConfigWhereInput
+  orderBy?: Prisma.TenantPaymentGatewayConfigOrderByWithRelationInput | Prisma.TenantPaymentGatewayConfigOrderByWithRelationInput[]
+  cursor?: Prisma.TenantPaymentGatewayConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TenantPaymentGatewayConfigScalarFieldEnum | Prisma.TenantPaymentGatewayConfigScalarFieldEnum[]
 }
 
 /**

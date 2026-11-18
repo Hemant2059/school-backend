@@ -2,7 +2,11 @@
 set -e
 
 echo "==> Applying database migrations"
-if ! pnpm prisma migrate deploy; then
+# Run the Prisma CLI directly rather than through `pnpm`: pnpm's
+# dependency-status check refuses to run non-interactively against an
+# image whose install intentionally ignored build scripts (prisma engines
+# are built into the image already), and fails the boot.
+if ! ./node_modules/.bin/prisma migrate deploy; then
   echo ""
   echo "############################################################"
   echo "# MIGRATION FAILED"

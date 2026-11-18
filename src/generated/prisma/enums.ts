@@ -326,7 +326,8 @@ export const FeePaymentMethod = {
   FONEPAY_QR: 'FONEPAY_QR',
   CONNECT_IPS: 'CONNECT_IPS',
   BANK_VOUCHER: 'BANK_VOUCHER',
-  CHEQUE: 'CHEQUE'
+  CHEQUE: 'CHEQUE',
+  DEMO: 'DEMO'
 } as const
 
 export type FeePaymentMethod = (typeof FeePaymentMethod)[keyof typeof FeePaymentMethod]
@@ -396,3 +397,23 @@ export const NotificationRecipientType = {
 } as const
 
 export type NotificationRecipientType = (typeof NotificationRecipientType)[keyof typeof NotificationRecipientType]
+
+
+export const OnlinePaymentGateway = {
+  DEMO: 'DEMO',
+  ESEWA: 'ESEWA',
+  KHALTI: 'KHALTI',
+  CONNECTIPS: 'CONNECTIPS'
+} as const
+
+export type OnlinePaymentGateway = (typeof OnlinePaymentGateway)[keyof typeof OnlinePaymentGateway]
+
+
+export const PaymentIntentStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type PaymentIntentStatus = (typeof PaymentIntentStatus)[keyof typeof PaymentIntentStatus]

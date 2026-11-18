@@ -5,10 +5,19 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { FeeFrequency, FeeInvoiceStatus, Prisma } from '../../generated/prisma/client.js';
+import {
+  FeeFrequency,
+  FeeInvoiceStatus,
+  Prisma,
+} from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
 import { DocumentSequenceService } from '../../common/services/document-sequence.service.js';
-import { applyDiscount, money, sum, toDecimal } from '../../common/utils/money.js';
+import {
+  applyDiscount,
+  money,
+  sum,
+  toDecimal,
+} from '../../common/utils/money.js';
 import type { GenerateFeeInvoiceDto } from '../dto/fee-invoice.dto.js';
 import type { CreateFeePaymentDto } from '../dto/fee-payment.dto.js';
 
@@ -115,12 +124,17 @@ export class FeeEngineService {
 
     const lines = this.expandLines(structures, scholarshipByFeeHead);
     if (lines.length === 0) {
-      throw new BadRequestException('The fee structure produced no billable lines');
+      throw new BadRequestException(
+        'The fee structure produced no billable lines',
+      );
     }
 
     const subtotal = money(sum(lines.map((l) => l.grossAmount)));
     const discount = money(sum(lines.map((l) => l.discountAmount)));
-    const previousDues = await this.outstandingBalance(tenantId, dto.enrollmentId);
+    const previousDues = await this.outstandingBalance(
+      tenantId,
+      dto.enrollmentId,
+    );
     const netPayable = money(subtotal.minus(discount).plus(previousDues));
 
     const invoiceNumber = await this.sequences.next(
@@ -148,7 +162,9 @@ export class FeeEngineService {
           netPayableAmount: netPayable,
           paidAmount: new Prisma.Decimal(0),
           balanceDue: netPayable,
-          status: netPayable.isZero() ? FeeInvoiceStatus.PAID : FeeInvoiceStatus.UNPAID,
+          status: netPayable.isZero()
+            ? FeeInvoiceStatus.PAID
+            : FeeInvoiceStatus.UNPAID,
           notes: dto.notes,
           items: {
             create: lines.map((l) => ({
@@ -225,18 +241,27 @@ export class FeeEngineService {
     gross: Prisma.Decimal,
   ): Prisma.Decimal {
     if (!scholarship) return new Prisma.Decimal(0);
-    const net = applyDiscount(gross, scholarship.discountType, scholarship.discountValue);
+    const net = applyDiscount(
+      gross,
+      scholarship.discountType,
+      scholarship.discountValue,
+    );
     return money(gross.minus(net));
   }
 
   /** Outstanding balance across every earlier invoice of the enrolment. */
-  private async outstandingBalance(tenantId: string, enrollmentId: string): Promise<Prisma.Decimal> {
+  private async outstandingBalance(
+    tenantId: string,
+    enrollmentId: string,
+  ): Promise<Prisma.Decimal> {
     const invoices = await this.prisma.feeInvoice.findMany({
       where: {
         tenantId,
         enrollmentId,
         deletedAt: null,
-        status: { in: [FeeInvoiceStatus.UNPAID, FeeInvoiceStatus.PARTIALLY_PAID] },
+        status: {
+          in: [FeeInvoiceStatus.UNPAID, FeeInvoiceStatus.PARTIALLY_PAID],
+        },
       },
       select: { balanceDue: true },
     });
@@ -267,7 +292,11 @@ export class FeeEngineService {
 
     if (dto.gatewayTransactionId) {
       const duplicate = await this.prisma.feePayment.findFirst({
-        where: { tenantId, gatewayTransactionId: dto.gatewayTransactionId, deletedAt: null },
+        where: {
+          tenantId,
+          gatewayTransactionId: dto.gatewayTransactionId,
+          deletedAt: null,
+        },
         select: { id: true, receiptNumber: true },
       });
       if (duplicate) {
@@ -277,7 +306,12 @@ export class FeeEngineService {
       }
     }
 
-    let invoice: { id: string; netPayableAmount: Prisma.Decimal; balanceDue: Prisma.Decimal; paidAmount: Prisma.Decimal } | null = null;
+    let invoice: {
+      id: string;
+      netPayableAmount: Prisma.Decimal;
+      balanceDue: Prisma.Decimal;
+      paidAmount: Prisma.Decimal;
+    } | null = null;
     if (dto.invoiceId) {
       invoice = await this.prisma.feeInvoice.findFirst({
         where: { id: dto.invoiceId, tenantId, deletedAt: null },
@@ -309,7 +343,8 @@ export class FeeEngineService {
           amountPaid: money(dto.amountPaid),
           paymentMethod: dto.paymentMethod,
           gatewayTransactionId: dto.gatewayTransactionId,
-          gatewayResponsePayload: dto.gatewayResponsePayload as Prisma.InputJsonValue | undefined,
+          gatewayResponsePayload: dto.gatewayResponsePayload as
+            Prisma.InputJsonValue | undefined,
         },
         include: { invoice: true, enrollment: true, fiscalYear: true },
       });
@@ -338,10 +373,17 @@ export class FeeEngineService {
     return this.prisma.$transaction(async (tx) => {
       const reversed = await tx.feePayment.update({
         where: { id: payment.id },
-        data: { status: 'REVERSED', gatewayResponsePayload: { reversalReason: reason } },
+        data: {
+          status: 'REVERSED',
+          gatewayResponsePayload: { reversalReason: reason },
+        },
       });
       if (payment.invoiceId) {
-        await this.applyToInvoice(tx, payment.invoiceId, money(payment.amountPaid).negated());
+        await this.applyToInvoice(
+          tx,
+          payment.invoiceId,
+          money(payment.amountPaid).negated(),
+        );
       }
       return reversed;
     });
@@ -360,7 +402,13 @@ export class FeeEngineService {
    */
   async applyCreditNote(
     tenantId: string,
-    dto: { invoiceId: string; creditNoteNumber: string; reason: string; amount: number; approvedByUserId?: string },
+    dto: {
+      invoiceId: string;
+      creditNoteNumber: string;
+      reason: string;
+      amount: number;
+      approvedByUserId?: string;
+    },
   ) {
     const invoice = await this.prisma.feeInvoice.findFirst({
       where: { id: dto.invoiceId, tenantId, deletedAt: null },
@@ -368,7 +416,8 @@ export class FeeEngineService {
     if (!invoice) throw new NotFoundException('Fee invoice not found');
 
     const amount = money(dto.amount);
-    if (amount.lte(0)) throw new BadRequestException('Credit note amount must be positive');
+    if (amount.lte(0))
+      throw new BadRequestException('Credit note amount must be positive');
     if (amount.greaterThan(invoice.balanceDue)) {
       throw new BadRequestException(
         `Credit note of ${amount.toFixed(2)} exceeds the outstanding balance of ${invoice.balanceDue.toFixed(2)}`,
@@ -423,8 +472,16 @@ export class FeeEngineService {
 
     const subtotal = money(sum(invoice.items.map((i) => i.grossAmount)));
     const discount = money(sum(invoice.items.map((i) => i.discountAmount)));
-    const netPayable = money(subtotal.minus(discount).plus(invoice.previousDuesBroughtForward));
-    const balanceDue = money(netPayable.minus(invoice.paidAmount));
+    const netPayable = money(
+      subtotal.minus(discount).plus(invoice.previousDuesBroughtForward),
+    );
+    const creditTotal = await this.creditNoteTotal(
+      this.prisma as any,
+      invoice.id,
+    );
+    const balanceDue = money(
+      netPayable.minus(invoice.paidAmount).minus(creditTotal),
+    );
 
     return this.prisma.feeInvoice.update({
       where: { id: invoice.id },
@@ -432,11 +489,16 @@ export class FeeEngineService {
         subtotalAmount: subtotal,
         discountAmount: discount,
         netPayableAmount: netPayable,
-        balanceDue: balanceDue.isNegative() ? new Prisma.Decimal(0) : balanceDue,
+        balanceDue: balanceDue.isNegative()
+          ? new Prisma.Decimal(0)
+          : balanceDue,
         status:
           invoice.status === FeeInvoiceStatus.VOIDED_BY_CREDIT_NOTE
             ? invoice.status
-            : this.statusFor(invoice.paidAmount, netPayable),
+            : this.statusFor(
+                balanceDue.isNegative() ? new Prisma.Decimal(0) : balanceDue,
+                invoice.paidAmount,
+              ),
       },
       include: { items: true, payments: true, creditNotes: true },
     });
@@ -451,31 +513,50 @@ export class FeeEngineService {
     invoiceId: string,
     amount: Prisma.Decimal,
   ): Promise<void> {
-    const invoice = await tx.feeInvoice.findUnique({ where: { id: invoiceId } });
+    const invoice = await tx.feeInvoice.findUnique({
+      where: { id: invoiceId },
+    });
     if (!invoice) return;
 
+    const creditTotal = await this.creditNoteTotal(tx, invoiceId);
     const paid = money(invoice.paidAmount.plus(amount));
-    const balance = money(invoice.netPayableAmount.minus(paid));
-    const nonNegativeBalance = balance.isNegative() ? new Prisma.Decimal(0) : balance;
+    const balance = money(
+      invoice.netPayableAmount.minus(paid).minus(creditTotal),
+    );
+    const nonNegativeBalance = balance.isNegative()
+      ? new Prisma.Decimal(0)
+      : balance;
 
     await tx.feeInvoice.update({
       where: { id: invoiceId },
       data: {
         paidAmount: paid,
         balanceDue: nonNegativeBalance,
-        status: this.statusFor(paid, invoice.netPayableAmount, invoice.status),
+        status: this.statusFor(nonNegativeBalance, paid, invoice.status),
       },
     });
   }
 
+  /** Sum of credit notes on an invoice — the ledger truth for discounts. */
+  private async creditNoteTotal(
+    tx: Prisma.TransactionClient,
+    invoiceId: string,
+  ): Promise<Prisma.Decimal> {
+    const agg = await tx.creditNote.aggregate({
+      where: { invoiceId },
+      _sum: { amount: true },
+    });
+    return money(agg._sum.amount ?? 0);
+  }
+
   private statusFor(
+    balance: Prisma.Decimal,
     paid: Prisma.Decimal,
-    netPayable: Prisma.Decimal,
     current?: FeeInvoiceStatus,
   ): FeeInvoiceStatus {
     if (current === FeeInvoiceStatus.VOIDED_BY_CREDIT_NOTE) return current;
+    if (balance.isZero() || balance.isNegative()) return FeeInvoiceStatus.PAID;
     if (paid.isZero()) return FeeInvoiceStatus.UNPAID;
-    if (paid.greaterThanOrEqualTo(netPayable)) return FeeInvoiceStatus.PAID;
     return FeeInvoiceStatus.PARTIALLY_PAID;
   }
 

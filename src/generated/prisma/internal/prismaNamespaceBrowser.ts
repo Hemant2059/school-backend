@@ -116,7 +116,9 @@ export const ModelName = {
   HostelAllocation: 'HostelAllocation',
   Notification: 'Notification',
   AuditLog: 'AuditLog',
-  DocumentSequence: 'DocumentSequence'
+  DocumentSequence: 'DocumentSequence',
+  PaymentIntent: 'PaymentIntent',
+  TenantPaymentGatewayConfig: 'TenantPaymentGatewayConfig'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1377,6 +1379,48 @@ export const DocumentSequenceScalarFieldEnum = {
 } as const
 
 export type DocumentSequenceScalarFieldEnum = (typeof DocumentSequenceScalarFieldEnum)[keyof typeof DocumentSequenceScalarFieldEnum]
+
+
+export const PaymentIntentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  invoiceId: 'invoiceId',
+  fiscalYearId: 'fiscalYearId',
+  enrollmentId: 'enrollmentId',
+  gateway: 'gateway',
+  status: 'status',
+  amount: 'amount',
+  paymentDateBs: 'paymentDateBs',
+  gatewayRef: 'gatewayRef',
+  initiationPayload: 'initiationPayload',
+  callbackPayload: 'callbackPayload',
+  createdByUserId: 'createdByUserId',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentIntentScalarFieldEnum = (typeof PaymentIntentScalarFieldEnum)[keyof typeof PaymentIntentScalarFieldEnum]
+
+
+export const TenantPaymentGatewayConfigScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  gateway: 'gateway',
+  environment: 'environment',
+  isEnabled: 'isEnabled',
+  merchantIdEncrypted: 'merchantIdEncrypted',
+  appIdEncrypted: 'appIdEncrypted',
+  secretKeyEncrypted: 'secretKeyEncrypted',
+  appName: 'appName',
+  privateKeyPemEncrypted: 'privateKeyPemEncrypted',
+  baseUrl: 'baseUrl',
+  configuredByUserId: 'configuredByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenantPaymentGatewayConfigScalarFieldEnum = (typeof TenantPaymentGatewayConfigScalarFieldEnum)[keyof typeof TenantPaymentGatewayConfigScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -83,6 +83,8 @@ export class TenantProvisioningService {
           'fee_invoices.manage',
           'fee_payments.read',
           'fee_payments.manage',
+          'payment_gateways.read',
+          'payment_gateways.manage',
           'credit_notes.read',
           'credit_notes.manage',
           'scholarships.read',

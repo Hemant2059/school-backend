@@ -380,3 +380,20 @@ export type AuditLog = Prisma.AuditLogModel
  * transaction.
  */
 export type DocumentSequence = Prisma.DocumentSequenceModel
+/**
+ * Model PaymentIntent
+ * A pending online payment against a fee invoice. The gateway is the only
+ * writer of the callback; the server verifies every callback against the
+ * gateway before a receipt is issued.
+ */
+export type PaymentIntent = Prisma.PaymentIntentModel
+/**
+ * Model TenantPaymentGatewayConfig
+ * Per-tenant online payment gateway credentials.
+ * 
+ * Secrets are AES-256-GCM encrypted with the platform master key
+ * (PAYMENT_CONFIG_MASTER_KEY, base64 32 bytes) before they touch the
+ * database, and are never serialized back to clients — the API returns
+ * masked hints (last 4 characters / "configured") only.
+ */
+export type TenantPaymentGatewayConfig = Prisma.TenantPaymentGatewayConfigModel
