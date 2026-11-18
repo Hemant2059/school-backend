@@ -23,16 +23,14 @@ export class TenantProvisioningService {
   constructor(private readonly prisma: PrismaService) {}
 
   /**
-   * Creates the default roles for a newly created tenant, if they do not
-   * already exist.
+   * Ensures the default roles exist for a tenant.
+   *
+   * Strictly additive and idempotent: missing roles are created and
+   * missing spec permissions are granted; existing roles and permissions
+   * are never changed or removed. Safe to run for tenants created before
+   * automatic provisioning and safe to re-run.
    */
   async provisionDefaultRoles(tenantId: string): Promise<void> {
-    const existing = await this.prisma.role.findMany({
-      where: { tenantId, isSystem: true },
-      select: { name: true },
-    });
-    if (existing.length > 0) return;
-
     const allPermissions = await this.prisma.permission.findMany({
       select: { id: true, code: true },
     });
@@ -54,32 +52,52 @@ export class TenantProvisioningService {
         name: 'Teacher',
         description: 'Classroom teaching staff',
         codes: [
-          'students.read', 'attendance.read', 'attendance.manage',
-          'exams.read', 'exams.manage',
-          'sections.read', 'grade_levels.read', 'subjects.read', 'grade_subjects.read',
-          'staff.read', 'academic_years.read', 'academic_calendar.read',
-          'hostel.read', 'library.read', 'transport.read',
-          'notifications.read', 'notifications.manage',
+          'students.read',
+          'attendance.read',
+          'attendance.manage',
+          'exams.read',
+          'exams.manage',
+          'sections.read',
+          'grade_levels.read',
+          'subjects.read',
+          'grade_subjects.read',
+          'staff.read',
+          'academic_years.read',
+          'academic_calendar.read',
+          'hostel.read',
+          'library.read',
+          'transport.read',
+          'notifications.read',
+          'notifications.manage',
         ],
       },
       {
         name: 'Accountant',
         description: 'Fee collection and financial administration',
         codes: [
-          'students.read', 'enrollments.read',
-          'fees.read', 'fees.manage',
-          'fee_invoices.read', 'fee_invoices.manage',
-          'fee_payments.read', 'fee_payments.manage',
-          'credit_notes.read', 'credit_notes.manage',
-          'scholarships.read', 'scholarships.manage',
-          'guardians.read', 'notifications.read',
+          'students.read',
+          'enrollments.read',
+          'fees.read',
+          'fees.manage',
+          'fee_invoices.read',
+          'fee_invoices.manage',
+          'fee_payments.read',
+          'fee_payments.manage',
+          'credit_notes.read',
+          'credit_notes.manage',
+          'scholarships.read',
+          'scholarships.manage',
+          'guardians.read',
+          'notifications.read',
         ],
       },
       {
         name: 'Librarian',
         description: 'Library management',
         codes: [
-          'students.read', 'library.read', 'library.manage',
+          'students.read',
+          'library.read',
+          'library.manage',
           'notifications.read',
         ],
       },
@@ -87,7 +105,9 @@ export class TenantProvisioningService {
         name: 'Warden',
         description: 'Hostel management',
         codes: [
-          'students.read', 'hostel.read', 'hostel.manage',
+          'students.read',
+          'hostel.read',
+          'hostel.manage',
           'notifications.read',
         ],
       },
@@ -95,7 +115,9 @@ export class TenantProvisioningService {
         name: 'Transport Manager',
         description: 'School transport and vehicle management',
         codes: [
-          'students.read', 'transport.read', 'transport.manage',
+          'students.read',
+          'transport.read',
+          'transport.manage',
           'notifications.read',
         ],
       },
@@ -112,11 +134,12 @@ export class TenantProvisioningService {
       {
         name: 'Student',
         description: 'Read-only student portal access',
-        codes: [
-          'attendance.read', 'exams.read', 'notifications.read',
-        ],
+        codes: ['attendance.read', 'exams.read', 'notifications.read'],
       },
     ];
+
+    let rolesCreated = 0;
+    let permissionsGranted = 0;
 
     for (const spec of specs) {
       let role = await this.prisma.role.findFirst({
@@ -131,6 +154,7 @@ export class TenantProvisioningService {
             isSystem: true,
           },
         });
+        rolesCreated++;
       }
 
       const existingIds = (
@@ -152,11 +176,14 @@ export class TenantProvisioningService {
           data: rows.map((permissionId) => ({ roleId: role.id, permissionId })),
           skipDuplicates: true,
         });
+        permissionsGranted += rows.length;
       }
     }
 
-    this.logger.log(
-      `Provisioned ${specs.length} default roles for tenant ${tenantId}`,
-    );
+    if (rolesCreated > 0 || permissionsGranted > 0) {
+      this.logger.log(
+        `Default roles for tenant ${tenantId}: ${rolesCreated} created, ${permissionsGranted} permissions granted`,
+      );
+    }
   }
 }

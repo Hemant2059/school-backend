@@ -902,6 +902,18 @@ TUSER=$(req POST "/tenants/$TID/users" "$BODY" "$TH")
 TUID=$(echo "$TUSER" | j "d.get('id','')")
 ok "the teacher was created" "$([ -n "$TUID" ] && echo yes || echo no)" yes
 
+step "13.2b An unknown role is refused without leaving an orphaned account"
+BODY=$(cat <<JSON
+{"email":"wf-no-role-$SUF@test.com","firstNameEn":"No","firstNameNe":"होइन",
+ "lastNameEn":"Role","lastNameNe":"भूमिका","password":"No-Role-Secure1!",
+ "roleNames":["DefinitelyNotARole$SUF"]}
+JSON
+)
+BADROLE=$(req POST "/tenants/$TID/users" "$BODY" "$TH")
+ok "the unknown role was refused" "$(echo "$BADROLE" | j "d.get('statusCode',200)")" 404
+ok "no orphaned account was created" \
+  "$(req GET "/tenants/$TID/users?search=wf-no-role-$SUF" "" "$TH" | j "d.get('meta',{}).get('total',-1)")" 0
+
 step "13.3 The teacher logs in and is restricted to their permissions"
 BODY=$(cat <<JSON
 {"email":"wf-teacher-$SUF@test.com","password":"Workflow-Teacher-1!","tenantId":"$TID"}
@@ -931,6 +943,29 @@ JSON
 TTOK2=$(req POST /tenant/auth/login "$BODY" "" | sed -n 's/.*"accessToken":"\([^"]*\)".*/\1/p')
 ok "the reduced permission set takes effect immediately" \
   "$(code "$BASE/tenants/$TID/sections" -H "Authorization: Bearer $TTOK2")" 403
+
+step "13.6 The student portal scopes data to the linked student"
+BODY=$(cat <<JSON
+{"email":"wf-student-$SUF@test.com","firstNameEn":"Student","firstNameNe":"छात्र",
+ "lastNameEn":"Portal","lastNameNe":"पोर्टल","password":"Wf-Student-1!",
+ "roleNames":["Student"]}
+JSON
+)
+STUUSER=$(req POST "/tenants/$TID/users" "$BODY" "$TH")
+STUUSERID=$(echo "$STUUSER" | j "d.get('user',{}).get('id','')")
+ok "the student account was created" "$([ -n "$STUUSERID" ] && echo yes || echo no)" yes
+req PATCH "/tenants/$TID/students/$STUID" "{\"userId\":\"$STUUSERID\"}" "$TH" > /dev/null
+BODY=$(cat <<JSON
+{"email":"wf-student-$SUF@test.com","password":"Wf-Student-1!","tenantId":"$TID"}
+JSON
+)
+STOKEN=$(req POST /tenant/auth/login "$BODY" "" | sed -n 's/.*"accessToken":"\([^"]*\)".*/\1/p')
+ok "the linked student can read their own profile" \
+  "$(req GET "/tenants/$TID/student/me" "" "Authorization: Bearer $STOKEN" | j "d.get('admissionNo','')")" "$SUF/001"
+ok "the student cannot use the student portal before linking (teacher account)" \
+  "$(code "$BASE/tenants/$TID/student/me" -H "Authorization: Bearer $TTOK")" 403
+ok "the student cannot read every student in the school" \
+  "$(code "$BASE/tenants/$TID/students" -H "Authorization: Bearer $STOKEN")" 403
 
 ###############################################################################
 head1 "Workflow 14 - Session lifecycle"

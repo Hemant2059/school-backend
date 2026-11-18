@@ -1,4 +1,9 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { PrismaService } from '../../prisma.service.js';
 import { SAFE_USER_SELECT } from '../../common/selectors.js';
@@ -13,69 +18,83 @@ export class TenantUserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(tenantId: string, dto: any) {
-    const tenant = await this.prisma.tenant.findUnique({ where: { id: tenantId } });
+    const tenant = await this.prisma.tenant.findUnique({
+      where: { id: tenantId },
+    });
     if (!tenant) throw new NotFoundException('Tenant not found');
 
-    let userId = dto.userId;
-    if (!userId) {
-      if (!dto.email || !dto.firstNameEn || !dto.lastNameEn) {
-        throw new BadRequestException(
-          'email, firstNameEn and lastNameEn are required to create a new user',
-        );
-      }
-      const existing = dto.email
-        ? await this.prisma.user.findUnique({
-            where: { email: dto.email },
-            select: { id: true },
-          })
-        : null;
-      if (existing) {
-        // An existing global identity is attached to this tenant. It is a
-        // cross-tenant link, so it is recorded rather than silent.
-        userId = existing.id;
-      } else {
-        const passwordHash = dto.password ? await bcrypt.hash(dto.password, 12) : null;
-        const created = await this.prisma.user.create({
-          data: {
-            email: dto.email,
-            phone: dto.phone,
-            firstNameEn: dto.firstNameEn,
-            firstNameNe: dto.firstNameNe ?? dto.firstNameEn,
-            lastNameEn: dto.lastNameEn,
-            lastNameNe: dto.lastNameNe ?? dto.lastNameEn,
-            passwordHash,
-            status: 'ACTIVE',
-          },
-          select: { id: true },
-        });
-        userId = created.id;
-      }
-    }
-
-    const user = await this.prisma.user.findUnique({
-      where: { id: userId },
-      select: { id: true },
-    });
-    if (!user) throw new NotFoundException('User not found');
-
-    const membership = await this.prisma.tenantUser.findUnique({
-      where: { tenantId_userId: { tenantId, userId } },
-    });
-    if (membership) throw new ConflictException('User is already a member of this tenant');
-
+    // Resolve the roles BEFORE creating anything. A request with an
+    // unknown role name must not leave an orphaned user row behind
+    // (previously the user was created and only then were the roles
+    // validated, so a 404 on the roles stranded a global identity).
     let roleNames: string[] = dto.roleNames ?? [];
     if (roleNames.length === 0) roleNames = [DEFAULT_ADMIN_ROLE];
     await this.ensureDefaultAdminRole(tenantId, roleNames);
-
     const roleIds = await this.resolveRoleIds(tenantId, roleNames);
-    return this.prisma.tenantUser.create({
-      data: {
-        tenantId,
-        userId,
-        isPrimary: dto.isPrimary ?? false,
-        roles: { create: roleIds.map((roleId) => ({ roleId })) },
-      },
-      include: { user: { select: SAFE_USER_SELECT }, roles: { include: { role: true } } },
+
+    return this.prisma.$transaction(async (tx) => {
+      let userId = dto.userId;
+      if (!userId) {
+        if (!dto.email || !dto.firstNameEn || !dto.lastNameEn) {
+          throw new BadRequestException(
+            'email, firstNameEn and lastNameEn are required to create a new user',
+          );
+        }
+        const existing = await tx.user.findUnique({
+          where: { email: dto.email },
+          select: { id: true },
+        });
+        if (existing) {
+          // An existing global identity is attached to this tenant. It is a
+          // cross-tenant link, so it is recorded rather than silent. The
+          // password is deliberately NOT updated — the identity belongs to
+          // every school that already linked it.
+          userId = existing.id;
+        } else {
+          const passwordHash = dto.password
+            ? await bcrypt.hash(dto.password, 12)
+            : null;
+          const created = await tx.user.create({
+            data: {
+              email: dto.email,
+              phone: dto.phone,
+              firstNameEn: dto.firstNameEn,
+              firstNameNe: dto.firstNameNe ?? dto.firstNameEn,
+              lastNameEn: dto.lastNameEn,
+              lastNameNe: dto.lastNameNe ?? dto.lastNameEn,
+              passwordHash,
+              status: 'ACTIVE',
+            },
+            select: { id: true },
+          });
+          userId = created.id;
+        }
+      }
+
+      const user = await tx.user.findUnique({
+        where: { id: userId },
+        select: { id: true },
+      });
+      if (!user) throw new NotFoundException('User not found');
+
+      const membership = await tx.tenantUser.findUnique({
+        where: { tenantId_userId: { tenantId, userId } },
+      });
+      if (membership)
+        throw new ConflictException('User is already a member of this tenant');
+
+      return tx.tenantUser.create({
+        data: {
+          tenantId,
+          userId,
+          isPrimary: dto.isPrimary ?? false,
+          roles: { create: roleIds.map((roleId) => ({ roleId })) },
+        },
+        include: {
+          user: { select: SAFE_USER_SELECT },
+          roles: { include: { role: true } },
+        },
+      });
     });
   }
 
@@ -98,7 +117,10 @@ export class TenantUserService {
         where,
         // `include: { user: true }` would have leaked `passwordHash` and
         // `refreshTokenHash` to every tenant administrator.
-        include: { user: { select: SAFE_USER_SELECT }, roles: { include: { role: true } } },
+        include: {
+          user: { select: SAFE_USER_SELECT },
+          roles: { include: { role: true } },
+        },
         orderBy: { joinedAt: 'desc' },
         skip,
         take,
@@ -111,7 +133,10 @@ export class TenantUserService {
   async findOne(tenantId: string, id: string) {
     const tu = await this.prisma.tenantUser.findFirst({
       where: { id, tenantId },
-      include: { user: { select: SAFE_USER_SELECT }, roles: { include: { role: true } } },
+      include: {
+        user: { select: SAFE_USER_SELECT },
+        roles: { include: { role: true } },
+      },
     });
     if (!tu) throw new NotFoundException('Tenant user not found');
     return tu;
@@ -138,13 +163,19 @@ export class TenantUserService {
     if (dto.lastNameNe) userData.lastNameNe = dto.lastNameNe;
     if (dto.phone) userData.phone = dto.phone;
     if (Object.keys(userData).length > 0) {
-      await this.prisma.user.update({ where: { id: tu.userId }, data: userData });
+      await this.prisma.user.update({
+        where: { id: tu.userId },
+        data: userData,
+      });
     }
 
     return this.prisma.tenantUser.update({
       where: { id },
       data: { isPrimary: dto.isPrimary, status: dto.status },
-      include: { user: { select: SAFE_USER_SELECT }, roles: { include: { role: true } } },
+      include: {
+        user: { select: SAFE_USER_SELECT },
+        roles: { include: { role: true } },
+      },
     });
   }
 
@@ -198,7 +229,10 @@ export class TenantUserService {
    * point of a "school administrator" — but it is only ever granted to the
    * account that created it.
    */
-  private async ensureDefaultAdminRole(tenantId: string, roleNames: string[]): Promise<void> {
+  private async ensureDefaultAdminRole(
+    tenantId: string,
+    roleNames: string[],
+  ): Promise<void> {
     if (!roleNames.includes(DEFAULT_ADMIN_ROLE)) return;
     const existing = await this.prisma.role.findFirst({
       where: { tenantId, name: DEFAULT_ADMIN_ROLE },
@@ -206,7 +240,9 @@ export class TenantUserService {
     });
     if (existing) return;
 
-    const perms = await this.prisma.permission.findMany({ select: { id: true } });
+    const perms = await this.prisma.permission.findMany({
+      select: { id: true },
+    });
     await this.prisma.role.create({
       data: {
         tenantId,
@@ -218,7 +254,10 @@ export class TenantUserService {
     });
   }
 
-  private async resolveRoleIds(tenantId: string, roleNames: string[]): Promise<string[]> {
+  private async resolveRoleIds(
+    tenantId: string,
+    roleNames: string[],
+  ): Promise<string[]> {
     if (roleNames.length === 0) return [];
     const roles = await this.prisma.role.findMany({
       where: { tenantId, name: { in: roleNames } },
@@ -226,7 +265,8 @@ export class TenantUserService {
     });
     const found = new Set(roles.map((r) => r.name));
     const missing = roleNames.filter((n) => !found.has(n));
-    if (missing.length) throw new NotFoundException(`Unknown roles: ${missing.join(', ')}`);
+    if (missing.length)
+      throw new NotFoundException(`Unknown roles: ${missing.join(', ')}`);
     return roles.map((r) => r.id);
   }
 }
