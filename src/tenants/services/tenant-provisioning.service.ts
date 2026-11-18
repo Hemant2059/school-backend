@@ -101,10 +101,13 @@ export class TenantProvisioningService {
       },
       {
         name: 'Parent',
-        description: 'Read-only parent portal access',
-        codes: [
-          'students.read', 'fee_invoices.read', 'notifications.read',
-        ],
+        description:
+          'Parent portal access scoped to own children. Read access to all students is not granted.',
+        // The Parent portal endpoints (/tenants/:tenantId/parent/*) use
+        // a guard that only returns the caller's own children. The parent
+        // does not get `students.read` because that permission exposes
+        // every student in the school.
+        codes: ['notifications.read'],
       },
       {
         name: 'Student',

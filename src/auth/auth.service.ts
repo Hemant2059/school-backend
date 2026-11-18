@@ -113,6 +113,8 @@ export class AuthService {
         refreshTokenExpiresAt: null,
       },
     });
+    // Note: the `mustChangePassword` flag is not cleared here.
+    // An admin password change or invite acceptance should clear it explicitly.
     return { changed: true };
   }
 
@@ -141,6 +143,7 @@ export class AuthService {
       firstNameEn: user.firstNameEn,
       lastNameEn: user.lastNameEn,
       status: user.status,
+      mustChangePassword: user.mustChangePassword,
       roles,
       permissions: Array.from(permissionSet),
     };
