@@ -4,12 +4,18 @@ import { ValidationPipe, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import express from 'express';
 import { AppModule } from './app.module.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: false });
   const config = app.get(ConfigService);
   const logger = new Logger('Bootstrap');
+
+  // ---- CSV uploads ------------------------------------------------------
+  // Import endpoints accept raw `text/csv` bodies (alongside the JSON
+  // `{ "csv": "..." }` wrapper). Parsed to a string, capped at 1 MB.
+  app.use(express.text({ type: 'text/csv', limit: '1mb' }));
 
   // ---- Security headers -------------------------------------------------
   app.use(
@@ -62,7 +68,10 @@ async function bootstrap() {
       .setDescription('Multi-tenant school management system API documentation')
       .setVersion('1.0.0')
       .addBearerAuth()
-      .addServer(`http://localhost:${config.get<number>('PORT') ?? 3000}`, 'Local')
+      .addServer(
+        `http://localhost:${config.get<number>('PORT') ?? 3000}`,
+        'Local',
+      )
       .build();
     const document = SwaggerModule.createDocument(app, documentConfig);
     SwaggerModule.setup('api-docs', app, document);

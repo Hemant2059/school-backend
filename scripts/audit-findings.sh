@@ -85,7 +85,7 @@ ok "the linter is clean" \
   "$(npx oxlint --type-aware src/ test/ 2>/dev/null | grep -c 'warning' | sed 's/^0$/yes/;s/^[1-9].*/no/')" yes
 ok "every DTO property is validated" \
   "$(python3 scripts/check-dto-decorators.py >/dev/null && echo yes || echo no)" yes
-ok "there are unit tests" "$(find src -name '*.spec.ts' | wc -l | tr -d ' ')" 11
+ok "there are unit tests" "$(find src -name '*.spec.ts' | wc -l | tr -d ' ')" 13
 ok "there are end-to-end tests" "$(find test -name '*.e2e-spec.ts' | wc -l | tr -d ' ')" 3
 
 echo ""

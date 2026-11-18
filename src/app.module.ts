@@ -26,6 +26,8 @@ import { LibraryModule } from './library/library.module.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
 import { AttendanceModule } from './attendance/attendance.module.js';
 import { TimetableModule } from './timetable/timetable.module.js';
+import { IemisModule } from './iemis/iemis.module.js';
+import { ReportCardsModule } from './report-cards/report-cards.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
 import { CommonModule } from './common/common.module.js';
@@ -72,6 +74,8 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.
     NotificationsModule,
     AttendanceModule,
     TimetableModule,
+    IemisModule,
+    ReportCardsModule,
   ],
   controllers: [AppController],
   providers: [

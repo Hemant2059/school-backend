@@ -189,6 +189,17 @@ ok "it is the current year" "$(echo "$AY" | j "d.get('isCurrent',False)")" True
 ok "only one academic year can be current" \
   "$(req GET "/tenants/$TID/academic-years?limit=50" "" "$TH" | j "sum(1 for a in d['data'] if a.get('isCurrent'))")" 1
 
+step "2.1b The academic calendar can be populated by CSV import"
+CSVBODY=$(python3 -c "import json; print(json.dumps({'csv': 'dateAd,dateBs,titleEn,titleNe,isHoliday\n2026-10-21,2083-07-05,Vijaya Dashami,विजयादशमी,true\n2026-11-05,2083-07-20,Laxmi Puja,लक्ष्मी पूजा,true\n2026-13-40,2083-07-01,Bad Date,मिति,true\n'}))")
+IMP=$(req POST "/tenants/$TID/academic-calendar-events/import?academicYearId=$AYID" "$CSVBODY" "$TH")
+ok "valid rows are created and invalid rows are reported" \
+  "$(echo "$IMP" | j "(d.get('created'), len(d.get('errors', [])))")" "(2, 1)"
+IMP2=$(req POST "/tenants/$TID/academic-calendar-events/import?academicYearId=$AYID" "$CSVBODY" "$TH")
+ok "re-importing skips duplicates instead of duplicating" \
+  "$(echo "$IMP2" | j "(d.get('created'), d.get('duplicates'))")" "(0, 2)"
+ok "the imported holidays are listed for the year" \
+  "$(req GET "/tenants/$TID/academic-calendar-events?limit=10" "" "$TH" | j "sum(1 for e in d['data'] if e.get('isHoliday'))")" 2
+
 step "2.2 The stream, grade level and section are created"
 ST=$(req POST "/tenants/$TID/streams" '{"code":"SCI","nameEn":"Science","nameNe":"विज्ञान"}' "$TH")
 STID=$(echo "$ST" | j "d.get('id','')")
