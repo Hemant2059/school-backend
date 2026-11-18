@@ -128,12 +128,12 @@ src/
   auth/                   # platform + tenant authentication, guards, decorators
   platform/               # platform users, roles, permissions, audit log
   organizations/          # educational foundations / parent entities
-  tenants/                # individual schools / campuses
+  tenants/                # individual schools / campuses, default-role provisioning
   subscriptions/          # subscription plans & dynamic features
   tenant-rbac/            # tenant roles, permissions, tenant users
   billing/                # tenant subscriptions, invoices, payments, entitlements
   academics/              # academic years, streams, grade levels, sections, staff, subjects
-  students/               # students, addresses, guardians
+  students/               # students, addresses, guardians, bulk import, parent/student portals
   enrollments/            # enrolments
   exams/                  # exams, schedules, marks, summaries, results engine
   examinations/           # grading scales
@@ -141,12 +141,16 @@ src/
   timetable/              # the weekly timetable
   fees/                   # fiscal years, fee heads, class fee structures, scholarships
   fee-billing/            # fee invoices, items, payments, credit notes, fee engine
-  hr/                     # teacher allocations, payroll runs, salary slips, payroll engine
+  hr/                     # teacher allocations, payroll runs, salary slips, remittance CSV, payroll engine
   transport/              # vehicles, routes, stops, student transport
   hostel/                 # hostels, rooms, allocations
   library/                # library books & book issues
   notifications/          # per-principal in-app notifications
   transfer-certificates/  # transfer certificates
+  iemis/                  # IEMIS exports (students, staff, results, scholarships) as JSON/CSV
+  report-cards/           # PDF report cards and class marksheets (pdfkit)
+  sms/                    # SMS provider abstraction (noop default, Sparrow SMS for Nepal)
+  analytics/              # aggregate school KPIs (students, attendance, fee collection)
 prisma/
   schema.prisma
   migrations/             # a replayable baseline + incremental migrations
@@ -154,6 +158,7 @@ prisma/
   seed.ts                 # idempotent development seed
 scripts/
   verify-security.sh      # live security regression check
+  provision-default-roles.ts # backfills the default role set into pre-existing tenants
 ```
 
 ---
@@ -229,6 +234,7 @@ The net is derived; deductions larger than the gross are rejected.
 | --- | --- |
 | `pnpm verify:security` | 22 assertions: domain separation, tenant isolation, authentication, boolean parameters, the audit trail and credential hygiene, against a running instance |
 | `pnpm verify:domain` | 34 assertions: the fee engine, the result engine, the payroll rules, attendance and timetable, end to end against a running instance |
+| `pnpm verify:workflows` | 147 assertions: the full onboarding → operations journey on a disposable school — platform provisioning, academic structure, calendar import, bulk admission, teachers, fees, exams, payroll, portals and access control |
 | `pnpm verify:migrations` | The migration chain replays cleanly against an empty database and the result matches the Prisma schema |
 | `pnpm verify:audit` | 38 static assertions that the findings of the original review stay fixed |
 
