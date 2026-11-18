@@ -14,7 +14,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "oxlint --type-aware src/ test/ && python3 scripts/check-dto-decorators.py",
+    "lint": "oxlint --type-aware src/ test/ && python3 scripts/check-dto-decorators.py && python3 scripts/check-dto-coverage.py",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
@@ -25,8 +25,9 @@
     "verify:security": "./scripts/verify-security.sh",
     "verify:domain": "./scripts/verify-domain.sh",
     "verify:migrations": "./scripts/verify-migrations.sh",
-    "verify": "./scripts/audit-findings.sh && ./scripts/verify-security.sh && ./scripts/verify-domain.sh && ./scripts/verify-migrations.sh",
-    "verify:audit": "./scripts/audit-findings.sh"
+    "verify": "./scripts/verify-security.sh && ./scripts/verify-domain.sh && ./scripts/verify-workflows.sh && ./scripts/verify-migrations.sh",
+    "verify:audit": "./scripts/audit-findings.sh",
+    "verify:workflows": "./scripts/verify-workflows.sh"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",

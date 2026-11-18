@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
 
@@ -83,7 +83,7 @@ export class SalarySlipService {
   async update(tenantId: string, id: string, dto: any) {
     const slip = await this.findOne(tenantId, id);
     if (slip.payrollRun.status === 'DISBURSED') {
-      throw new NotFoundException('The salary slips of a disbursed run can no longer be edited');
+      throw new ConflictException('The salary slips of a disbursed run can no longer be edited');
     }
     return this.prisma.salarySlip.update({
       where: { id },
@@ -95,7 +95,7 @@ export class SalarySlipService {
   async softDelete(tenantId: string, id: string) {
     const slip = await this.findOne(tenantId, id);
     if (slip.payrollRun.status === 'DISBURSED') {
-      throw new NotFoundException('The salary slips of a disbursed run cannot be deleted');
+      throw new ConflictException('The salary slips of a disbursed run cannot be deleted');
     }
     await this.prisma.salarySlip.update({ where: { id }, data: { deletedAt: new Date() } });
     return { deleted: true };

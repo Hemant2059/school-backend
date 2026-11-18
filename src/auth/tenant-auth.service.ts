@@ -2,6 +2,7 @@ import { BadRequestException, ForbiddenException, Injectable, Logger, Unauthoriz
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { createHash, randomUUID } from 'node:crypto';
 import { TenantStatus } from '../generated/prisma/client.js';
 import { PrismaService } from '../prisma.service.js';
 import { parseDurationMs } from '../common/utils/duration.js';
@@ -90,7 +91,7 @@ export class TenantAuthService {
     // A refresh must not resurrect a suspended account.
     if (user.status !== 'ACTIVE') throw new UnauthorizedException('User is not active');
 
-    const valid = await bcrypt.compare(refreshToken, user.refreshTokenHash);
+    const valid = user.refreshTokenHash === createHash('sha256').update(refreshToken).digest('hex');
     if (!valid) throw new UnauthorizedException('Invalid refresh token');
 
     const membership = await this.prisma.tenantUser.findFirst({
@@ -199,12 +200,17 @@ export class TenantAuthService {
       { sub: user.id, email: user.email, tenantId: membership.tenantId, roles, permissions },
       { secret: accessSecret, expiresIn: accessExpires as any },
     );
+    // The `jti` makes every refresh token unique, so issuing a new one
+    // genuinely invalidates the previous one.
     const refreshToken = this.jwtService.sign(
-      { sub: user.id, tenantId: membership.tenantId },
+      { sub: user.id, tenantId: membership.tenantId, jti: randomUUID() },
       { secret: refreshSecret, expiresIn: refreshExpires as any },
     );
 
-    const refreshHash = await bcrypt.hash(refreshToken, 10);
+    // See auth.service.ts: refresh tokens are stored as a SHA-256 digest,
+    // not a bcrypt hash, because bcrypt only reads the first 72 bytes and
+    // every token of the same user shares those bytes.
+    const refreshHash = createHash('sha256').update(refreshToken).digest('hex');
     await this.prisma.user.update({
       where: { id: user.id },
       data: {

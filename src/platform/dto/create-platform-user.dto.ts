@@ -11,10 +11,12 @@ export class CreatePlatformUserDto {
   @MaxLength(120)
   firstNameEn!: string;
 
+  @IsOptional()
+  @IsOptional()
   @IsString()
   @MinLength(1)
   @MaxLength(120)
-  firstNameNe!: string;
+  firstNameNe?: string;
 
   @IsOptional()
   @IsString()
@@ -31,10 +33,12 @@ export class CreatePlatformUserDto {
   @MaxLength(120)
   lastNameEn!: string;
 
+  @IsOptional()
+  @IsOptional()
   @IsString()
   @MinLength(1)
   @MaxLength(120)
-  lastNameNe!: string;
+  lastNameNe?: string;
 
   @IsOptional()
   @IsString()
@@ -43,7 +47,11 @@ export class CreatePlatformUserDto {
 
   @IsOptional()
   @IsEnum(PlatformUserStatus)
-  status?: PlatformUserStatus = PlatformUserStatus.INVITED;
+  /**
+   * Defaults to ACTIVE, because credentials are issued with the account.
+   * Pass INVITED explicitly to onboard someone later.
+   */
+  status?: PlatformUserStatus;
 
   @IsOptional()
   @IsString()

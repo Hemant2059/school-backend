@@ -1,5 +1,6 @@
 import { HostelType } from '../../generated/prisma/client.js';
-import { IsEnum, IsInt, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { IsDate, IsEnum, IsInt, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateHostelDto {
   @IsString() @MinLength(2) @MaxLength(120) nameEn!: string;
@@ -37,13 +38,13 @@ export class CreateHostelAllocationDto {
   @IsUUID() hostelId!: string;
   @IsUUID() roomId!: string;
   @IsUUID() enrollmentId!: string;
-  @IsString() @MaxLength(20) startDate!: string;
-  @IsOptional() @IsString() @MaxLength(20) endDate?: string;
+  @IsDate() @Type(() => Date) startDate!: Date;
+  @IsOptional() @IsDate() @Type(() => Date) endDate?: Date;
   @IsOptional() @IsString() @MaxLength(20) status?: string = 'ACTIVE';
 }
 
 export class UpdateHostelAllocationDto {
   @IsOptional() @IsUUID() roomId?: string;
-  @IsOptional() @IsString() @MaxLength(20) endDate?: string;
+  @IsOptional() @IsDate() @Type(() => Date) endDate?: Date;
   @IsOptional() @IsString() @MaxLength(20) status?: string;
 }

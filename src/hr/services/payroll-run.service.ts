@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
 import { PayrollEngineService } from './payroll-engine.service.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
@@ -89,7 +89,7 @@ export class PayrollRunService {
     const run = await this.findOne(tenantId, id);
     // The status of a disbursed run is final.
     if (run.status === 'DISBURSED') {
-      throw new NotFoundException('A disbursed payroll run can no longer be modified');
+      throw new ConflictException('A disbursed payroll run can no longer be modified');
     }
     return this.prisma.payrollRun.update({
       where: { id },
@@ -101,7 +101,7 @@ export class PayrollRunService {
   async softDelete(tenantId: string, id: string) {
     const run = await this.findOne(tenantId, id);
     if (run.status === 'DISBURSED') {
-      throw new NotFoundException('A disbursed payroll run cannot be deleted');
+      throw new ConflictException('A disbursed payroll run cannot be deleted');
     }
     await this.prisma.payrollRun.update({ where: { id }, data: { deletedAt: new Date() } });
     return { deleted: true };

@@ -1,11 +1,13 @@
 import { EvaluationType } from '../../generated/prisma/client.js';
-import { IsEnum, IsInt, IsOptional, IsString, IsUUID, MaxLength, Min, MinLength } from 'class-validator';
+import { IsEnum, IsInt, IsOptional, IsString, IsUUID, Max, MaxLength, Min, MinLength } from 'class-validator';
 
 export class CreateGradeLevelDto {
   @IsOptional() @IsUUID() streamId?: string;
   @IsString() @MinLength(2) @MaxLength(80) nameEn!: string;
   @IsString() @MinLength(2) @MaxLength(80) nameNe!: string;
   @IsOptional() @IsString() @MaxLength(20) iemisGradeCode?: string;
+  /** The numeric grade (1-12), used for ordering and NEB reporting. */
+  @IsOptional() @IsInt() @Min(1) @Max(12) gradeNumber?: number;
   @IsOptional() @IsEnum(EvaluationType) evaluationType?: EvaluationType = EvaluationType.PERCENTAGE;
   @IsOptional() @IsInt() @Min(0) sortOrder?: number = 0;
 }
@@ -15,6 +17,7 @@ export class UpdateGradeLevelDto {
   @IsOptional() @IsString() @MinLength(2) @MaxLength(80) nameEn?: string;
   @IsOptional() @IsString() @MinLength(2) @MaxLength(80) nameNe?: string;
   @IsOptional() @IsString() @MaxLength(20) iemisGradeCode?: string;
+  @IsOptional() @IsInt() @Min(1) @Max(12) gradeNumber?: number;
   @IsOptional() @IsEnum(EvaluationType) evaluationType?: EvaluationType;
   @IsOptional() @IsInt() @Min(0) sortOrder?: number;
 }

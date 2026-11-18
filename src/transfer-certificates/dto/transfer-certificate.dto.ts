@@ -5,7 +5,11 @@ export class CreateTransferCertificateDto {
   @IsUUID() studentId!: string;
   @IsDate() @Type(() => Date) issueDateAd!: Date;
   @IsString() @MaxLength(10) issueDateBs!: string;
-  @IsString() @MinLength(2) @MaxLength(60) tcNumber!: string;
+  /**
+   * Server-generated from a gap-free sequence when omitted. Supplying it was
+   * for back-office imports only.
+   */
+  @IsOptional() @IsString() @MinLength(2) @MaxLength(60) tcNumber?: string;
   @IsOptional() @IsString() @MaxLength(20) destinationIemisCode?: string;
   @IsString() @MinLength(2) @MaxLength(500) characterRemark!: string;
   @IsString() @MinLength(2) @MaxLength(500) leavingReason!: string;

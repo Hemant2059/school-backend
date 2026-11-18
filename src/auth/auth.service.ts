@@ -2,6 +2,7 @@ import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { createHash, randomUUID } from 'node:crypto';
 import { PlatformUserStatus } from '../generated/prisma/client.js';
 import { PrismaService } from '../prisma.service.js';
 import { parseDurationMs } from '../common/utils/duration.js';
@@ -82,7 +83,7 @@ export class AuthService {
       throw new UnauthorizedException('User is not active');
     }
 
-    const valid = await bcrypt.compare(refreshToken, user.refreshTokenHash);
+    const valid = user.refreshTokenHash === createHash('sha256').update(refreshToken).digest('hex');
     if (!valid) throw new UnauthorizedException('Invalid refresh token');
 
     return this.issueTokens(user);
@@ -185,12 +186,19 @@ export class AuthService {
       { sub: user.id, email: user.email, roles, permissions },
       { secret: accessSecret, expiresIn: accessExpires as any },
     );
+    // The `jti` makes every refresh token unique. Without it two tokens
+    // issued in the same second were byte-identical, so the rotation did
+    // not invalidate the previous token and a replayed token still worked.
     const refreshToken = this.jwtService.sign(
-      { sub: user.id },
+      { sub: user.id, jti: randomUUID() },
       { secret: refreshSecret, expiresIn: refreshExpires as any },
     );
 
-    const refreshHash = await bcrypt.hash(refreshToken, 10);
+    // bcrypt reads only the first 72 bytes of its input, and every refresh
+    // token of the same user starts with the same bytes, so comparing two
+    // tokens with it always returned true. The token is already high
+    // entropy, so a fast SHA-256 is the right way to store it.
+    const refreshHash = createHash('sha256').update(refreshToken).digest('hex');
     await this.prisma.platformUser.update({
       where: { id: user.id },
       data: {

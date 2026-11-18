@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD, APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { validateEnv } from './config/env.validation.js';
@@ -29,6 +29,7 @@ import { TimetableModule } from './timetable/timetable.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
 import { CommonModule } from './common/common.module.js';
+import { AccountThrottlerGuard } from './common/guards/account-throttler.guard.js';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { AuthorizationGuard } from './auth/guards/authorization.guard.js';
 import { AuditLogInterceptor } from './common/interceptors/audit-log.interceptor.js';
@@ -75,7 +76,7 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.
   controllers: [AppController],
   providers: [
     AppService,
-    { provide: APP_GUARD, useClass: ThrottlerGuard },
+    { provide: APP_GUARD, useClass: AccountThrottlerGuard },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_GUARD, useClass: AuthorizationGuard },
     { provide: APP_FILTER, useClass: PrismaExceptionFilter },

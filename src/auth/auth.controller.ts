@@ -15,7 +15,10 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @Throttle({ default: { limit: 10, ttl: 60_000 } })
+  // A school office shares one NAT address, so the per-IP limit has
+  // to allow for more than one person signing in at once. The per-account
+  // lockout is the real defence against guessing.
+  @Throttle({ default: { limit: 30, ttl: 60_000 } })
   @Post('login')
   login(@Body() dto: LoginDto) {
     return this.authService.login(dto.email, dto.password);

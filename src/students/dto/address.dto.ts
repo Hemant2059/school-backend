@@ -1,11 +1,13 @@
 import { AddressEntityType, AddressFormat, AddressType } from '../../generated/prisma/client.js';
-import { IsEnum, IsInt, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
+import { IsEnum, IsInt, IsNumber, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
 
 export class CreateAddressDto {
   @IsEnum(AddressEntityType) entityType!: AddressEntityType;
   @IsString() entityId!: string;
   @IsEnum(AddressType) type!: AddressType;
   @IsEnum(AddressFormat) format!: AddressFormat;
+
+  // Provincial format
   @IsOptional() @IsString() @MaxLength(20) provinceCode?: string;
   @IsOptional() @IsString() @MaxLength(80) provinceNe?: string;
   @IsOptional() @IsString() @MaxLength(80) provinceEn?: string;
@@ -18,6 +20,8 @@ export class CreateAddressDto {
   @IsOptional() @IsInt() @Min(1) @Max(35) ward?: number;
   @IsOptional() @IsString() @MaxLength(120) toleNe?: string;
   @IsOptional() @IsString() @MaxLength(120) toleEn?: string;
+
+  // Zonal format
   @IsOptional() @IsString() @MaxLength(20) zoneCode?: string;
   @IsOptional() @IsString() @MaxLength(80) zoneNe?: string;
   @IsOptional() @IsString() @MaxLength(80) zoneEn?: string;
@@ -25,6 +29,10 @@ export class CreateAddressDto {
   @IsOptional() @IsString() @MaxLength(120) vdcNe?: string;
   @IsOptional() @IsString() @MaxLength(120) vdcEn?: string;
   @IsOptional() @IsString() @MaxLength(120) village?: string;
+
+  /// Where the address is, for mapping and route planning.
+  @IsOptional() @IsNumber() @Min(-90) @Max(90) latitude?: number;
+  @IsOptional() @IsNumber() @Min(-180) @Max(180) longitude?: number;
 }
 
 export class UpdateAddressDto {
@@ -49,4 +57,6 @@ export class UpdateAddressDto {
   @IsOptional() @IsString() @MaxLength(120) vdcNe?: string;
   @IsOptional() @IsString() @MaxLength(120) vdcEn?: string;
   @IsOptional() @IsString() @MaxLength(120) village?: string;
+  @IsOptional() @IsNumber() @Min(-90) @Max(90) latitude?: number;
+  @IsOptional() @IsNumber() @Min(-180) @Max(180) longitude?: number;
 }

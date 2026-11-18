@@ -1,4 +1,10 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
 import { paginatedQuery } from '../../common/utils/paginated-query.js';
 
@@ -9,13 +15,43 @@ export class ClassFeeStructureService {
   async create(tenantId: string, dto: any) {
     const tenant = await this.prisma.tenant.findUnique({ where: { id: tenantId } });
     if (!tenant) throw new NotFoundException('Tenant not found');
-    const ay = await this.prisma.academicYear.findFirst({ where: { id: dto.academicYearId, tenantId } });
+    const ay = await this.prisma.academicYear.findFirst({
+      where: { id: dto.academicYearId, tenantId, deletedAt: null },
+    });
     if (!ay) throw new NotFoundException('Academic year not found');
-    const gl = await this.prisma.gradeLevel.findFirst({ where: { id: dto.gradeLevelId, tenantId } });
+    const gl = await this.prisma.gradeLevel.findFirst({
+      where: { id: dto.gradeLevelId, tenantId, deletedAt: null },
+    });
     if (!gl) throw new NotFoundException('Grade level not found');
-    const fh = await this.prisma.feeHead.findFirst({ where: { id: dto.feeHeadId, tenantId } });
+    const fh = await this.prisma.feeHead.findFirst({
+      where: { id: dto.feeHeadId, tenantId, deletedAt: null },
+    });
     if (!fh) throw new NotFoundException('Fee head not found');
-    return this.prisma.classFeeStructure.create({ data: { ...dto, tenantId } });
+    if (dto.fiscalYearId) {
+      const fy = await this.prisma.fiscalYear.findFirst({
+        where: { id: dto.fiscalYearId, tenantId, deletedAt: null },
+      });
+      if (!fy) throw new NotFoundException('Fiscal year not found');
+    }
+
+    // A monthly fee head must say which months it covers, otherwise the
+    // invoice generator cannot expand it into lines.
+    if (fh.frequency === 'MONTHLY_BS' && !(dto.applicableBsMonths ?? []).length) {
+      throw new BadRequestException(
+        'A monthly fee head needs the Bikram Sambat months it applies to',
+      );
+    }
+
+    try {
+      return await this.prisma.classFeeStructure.create({ data: { ...dto, tenantId } });
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {
+        throw new ConflictException(
+          'A fee structure for this class, year and fee head already exists',
+        );
+      }
+      throw e;
+    }
   }
 
   async findAll(tenantId: string, query: Record<string, any> = {}) {

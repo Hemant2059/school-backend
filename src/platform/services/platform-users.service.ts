@@ -32,13 +32,16 @@ export class PlatformUsersService {
         data: {
           email: dto.email,
           firstNameEn: dto.firstNameEn,
-          firstNameNe: dto.firstNameNe,
+          firstNameNe: dto.firstNameNe ?? dto.firstNameEn,
           lastNameEn: dto.lastNameEn,
-          lastNameNe: dto.lastNameNe,
+          lastNameNe: dto.lastNameNe ?? dto.lastNameEn,
           phone: dto.phone,
           address: dto.address,
           passwordHash,
-          status: dto.status ?? PlatformUserStatus.INVITED,
+          // Credentials are always issued, so the account must be usable.
+          // Leaving it INVITED made every API-created platform account
+          // permanently unable to sign in.
+          status: dto.status ?? PlatformUserStatus.ACTIVE,
           twoFactorEnabled: dto.twoFactorEnabled ?? false,
           mustChangePassword: isTemporary ? true : (dto.mustChangePassword ?? false),
           invitationToken: isTemporary ? randomToken() : null,
@@ -125,9 +128,9 @@ export class PlatformUsersService {
         data: {
           email: dto.email,
           firstNameEn: dto.firstNameEn,
-          firstNameNe: dto.firstNameNe,
+          firstNameNe: dto.firstNameNe ?? dto.firstNameEn,
           lastNameEn: dto.lastNameEn,
-          lastNameNe: dto.lastNameNe,
+          lastNameNe: dto.lastNameNe ?? dto.lastNameEn,
           phone: dto.phone,
           address: dto.address,
           status: dto.status,
