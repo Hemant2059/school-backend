@@ -280,6 +280,25 @@ ok "the duplicate allocation was rejected" "$(echo "$DUPALLOC" | j "d.get('statu
 head1 "Workflow 4 - Student admission through to enrolment"
 ###############################################################################
 
+step "4.0 Two students are admitted in bulk via CSV import"
+CSVBODY=$(python3 -c "import json,sys
+suf = sys.argv[1]
+rows = [
+  '$SUF/201,Imported,इम्पोर्टेड,One,वन,2013-01-15,2069-10-01,MALE,1,Brahmin/Chhetri,Nepali,BC-$SUF-201,NIN-$SUF-201',
+  '$SUF/202,Imported,इम्पोर्टेड,Two,टु,2013-02-20,2069-11-07,FEMALE,1,Brahmin/Chhetri,Nepali,BC-$SUF-202,NIN-$SUF-202',
+  '$SUF/BAD,Bad,खराब,Gender,लिङ्ग,2013-03-25,2069-12-11,ALIEN,1,Brahmin/Chhetri,Nepali,BC-$SUF-203,NIN-$SUF-203',
+]
+csv = 'admissionNo,firstNameEn,firstNameNe,lastNameEn,lastNameNe,dobAd,dobBs,gender,casteEthnicityCode,casteEthnicity,motherTongue,birthCertificateNo,nationalIdNin\n' + '\n'.join(rows) + '\n'
+print(json.dumps({'csv': csv}))" "$SUF")
+IMP=$(req POST "/tenants/$TID/students/import" "$CSVBODY" "$TH")
+ok "the valid rows are created and the invalid row is reported" \
+  "$(echo "$IMP" | j "(d.get('created'), len(d.get('errors', [])))")" "(2, 1)"
+IMP2=$(req POST "/tenants/$TID/students/import" "$CSVBODY" "$TH")
+ok "re-importing skips duplicates instead of duplicating" \
+  "$(echo "$IMP2" | j "(d.get('created'), d.get('duplicates'))")" "(0, 2)"
+ok "the imported students are in the roster" \
+  "$(req GET "/tenants/$TID/students?limit=100" "" "$TH" | j "sum(1 for s in d['data'] if s.get('admissionNo','').startswith('$SUF/20'))")" 2
+
 step "4.1 The student is admitted"
 BODY=$(cat <<JSON
 {"admissionNo":"$SUF/001","firstNameEn":"Aayush","firstNameNe":"आयुष",
@@ -655,6 +674,15 @@ ok "the CIT share was computed" \
   "$(echo "$SLIPS" | j "d.get('data',[{}])[0].get('citDeduction','?')")" 1500
 ok "the net pay was computed" \
   "$(echo "$SLIPS" | j "d.get('data',[{}])[0].get('netPayable','?')")" 33813.33
+
+step "9.1b The SSF/PF/CIT/TDS remittance statement downloads"
+REMIT_HEADERS=$(curl -s "$BASE/tenants/$TID/payroll-runs/$PRUNID/remittance" -H "$TH")
+ok "the remittance CSV is served with the remittance columns" \
+  "$(printf '%s' "$REMIT_HEADERS" | head -1 | grep -c 'employeeCode,employeeName,panNumber')" 1
+ok "it carries a TOTAL row for the run" \
+  "$(printf '%s' "$REMIT_HEADERS" | grep -c '^TOTAL')" 1
+ok "it carries the TDS deduction of the slip" \
+  "$(printf '%s' "$REMIT_HEADERS" | grep -cE ',[0-9]+\.[0-9]{2},[0-9]+\.[0-9]{2}$')" 2
 
 step "9.2 A duplicate payroll run for the same month is refused"
 DUPRUN=$(req POST "/tenants/$TID/payroll-runs/generate" "$BODY" "$TH")

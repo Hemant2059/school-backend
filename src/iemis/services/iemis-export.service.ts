@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
+import { toCsv } from '../../common/utils/csv-writer.js';
 
 /**
  * Exports the data a school needs to submit to the IEMIS portal.
@@ -80,7 +81,7 @@ export class IemisExportService {
 
   async studentsCsv(tenantId: string): Promise<string> {
     const data = await this.studentsJson(tenantId);
-    return this.toCsv(
+    return toCsv(
       [
         'admissionNo',
         'iemisStudentId',
@@ -152,7 +153,7 @@ export class IemisExportService {
 
   async staffCsv(tenantId: string): Promise<string> {
     const data = await this.staffJson(tenantId);
-    return this.toCsv(
+    return toCsv(
       [
         'employeeCode',
         'iemisTeacherId',
@@ -217,7 +218,7 @@ export class IemisExportService {
 
   async resultsCsv(tenantId: string, academicYearId?: string): Promise<string> {
     const data = await this.resultsJson(tenantId, academicYearId);
-    return this.toCsv(
+    return toCsv(
       [
         'admissionNo',
         'iemisStudentId',
@@ -256,7 +257,7 @@ export class IemisExportService {
       },
     });
 
-    return this.toCsv(
+    return toCsv(
       [
         'admissionNo',
         'iemisStudentId',
@@ -276,28 +277,5 @@ export class IemisExportService {
         discountValue: s.discountValue?.toString(),
       })),
     );
-  }
-
-  // ---------------------------------------------------------------------
-  // Helpers
-  // ---------------------------------------------------------------------
-
-  private toCsv(headers: string[], rows: any[]): string {
-    const escape = (value: unknown): string => {
-      if (value === null || value === undefined) return '';
-      const text =
-        typeof value === 'object'
-          ? JSON.stringify(value)
-          : String(value as string | number | boolean);
-      if (/[",\n]/.test(text)) {
-        return '"' + text.replace(/"/g, '""') + '"';
-      }
-      return text;
-    };
-    const lines = [headers.join(',')];
-    for (const row of rows) {
-      lines.push(headers.map((h) => escape(row[h])).join(','));
-    }
-    return lines.join('\n');
   }
 }

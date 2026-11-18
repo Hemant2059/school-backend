@@ -5,11 +5,13 @@ import { GuardianController } from './controllers/guardian.controller.js';
 import { AddressController } from './controllers/address.controller.js';
 import { StudentGuardianController } from './controllers/student-guardian.controller.js';
 import { ParentController } from './controllers/parent.controller.js';
+import { StudentImportController } from './controllers/student-import.controller.js';
 import { StudentService } from './services/student.service.js';
 import { AddressService } from './services/address.service.js';
 import { GuardianService } from './services/guardian.service.js';
 import { StudentGuardianService } from './services/student-guardian.service.js';
 import { ParentService } from './services/parent.service.js';
+import { StudentImportService } from './services/student-import.service.js';
 import { ParentGuard } from './guards/parent.guard.js';
 
 @Module({
@@ -20,6 +22,7 @@ import { ParentGuard } from './guards/parent.guard.js';
     AddressController,
     StudentGuardianController,
     ParentController,
+    StudentImportController,
   ],
   providers: [
     StudentService,
@@ -28,7 +31,13 @@ import { ParentGuard } from './guards/parent.guard.js';
     StudentGuardianService,
     ParentService,
     ParentGuard,
+    StudentImportService,
   ],
-  exports: [StudentService, AddressService, GuardianService, StudentGuardianService],
+  exports: [
+    StudentService,
+    AddressService,
+    GuardianService,
+    StudentGuardianService,
+  ],
 })
 export class StudentsModule {}
