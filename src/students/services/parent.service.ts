@@ -85,6 +85,101 @@ export class ParentService {
     return link?.student ?? null;
   }
 
+  /**
+   * The parent's child's fee invoices across every enrolment (historical
+   * and current). Never another child's data.
+   */
+  async myChildFeeInvoices(tenantId: string, guardianId: string, studentId: string) {
+    const student = await this.myChild(tenantId, guardianId, studentId);
+    if (!student) return null;
+
+    const enrollments = await this.prisma.studentEnrollment.findMany({
+      where: { tenantId, studentId, deletedAt: null },
+      select: { id: true },
+    });
+    const enrollmentIds = enrollments.map((e) => e.id);
+    if (enrollmentIds.length === 0) return [];
+
+    const invoices = await this.prisma.feeInvoice.findMany({
+      where: { tenantId, enrollmentId: { in: enrollmentIds }, deletedAt: null },
+      select: {
+        id: true,
+        invoiceNumber: true,
+        issueDateAd: true,
+        issueDateBs: true,
+        dueDateBs: true,
+        netPayableAmount: true,
+        paidAmount: true,
+        balanceDue: true,
+        status: true,
+        enrollment: {
+          select: {
+            academicYear: { select: { name: true } },
+            gradeLevel: { select: { nameEn: true, nameNe: true } },
+            section: { select: { nameEn: true, nameNe: true } },
+          },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+    return invoices;
+  }
+
+  /**
+   * The parent's child's published exam results, newest first. Draft
+   * results are never leaked to parents.
+   */
+  async myChildExamResults(tenantId: string, guardianId: string, studentId: string) {
+    const student = await this.myChild(tenantId, guardianId, studentId);
+    if (!student) return null;
+
+    const enrollments = await this.prisma.studentEnrollment.findMany({
+      where: { tenantId, studentId, deletedAt: null },
+      select: { id: true },
+    });
+    const enrollmentIds = enrollments.map((e) => e.id);
+    if (enrollmentIds.length === 0) return [];
+
+    return this.prisma.studentExamSummary.findMany({
+      where: {
+        tenantId,
+        enrollmentId: { in: enrollmentIds },
+        exam: { isPublished: true, deletedAt: null },
+      },
+      select: {
+        id: true,
+        totalMarksObtained: true,
+        percentage: true,
+        gpa: true,
+        finalGrade: true,
+        rankInSection: true,
+        rankInGrade: true,
+        totalAttendanceDays: true,
+        presentDays: true,
+        classTeacherRemarks: true,
+        exam: {
+          select: {
+            name: true,
+            examType: true,
+            academicYear: { select: { name: true } },
+          },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  /** The current (latest) enrolment of the parent's child, or null. */
+  async myChildCurrentEnrollment(tenantId: string, guardianId: string, studentId: string) {
+    const student = await this.myChild(tenantId, guardianId, studentId);
+    if (!student) return null;
+    return this.prisma.studentEnrollment.findFirst({
+      where: { tenantId, studentId, deletedAt: null },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true },
+    });
+  }
+
   /** Attendance summary for the parent's child. */
   async attendanceSummary(tenantId: string, guardianId: string, studentId: string) {
     await this.myChild(tenantId, guardianId, studentId);

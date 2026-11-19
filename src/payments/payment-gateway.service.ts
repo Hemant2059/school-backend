@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   ConflictException,
+  ForbiddenException,
   Injectable,
   Logger,
   NotFoundException,
@@ -21,6 +22,7 @@ import type {
   VerifyInput,
 } from './providers/types.js';
 import { TenantPaymentGatewayService } from './tenant-payment-gateway.service.js';
+import { TenantEntitlementService } from '../billing/services/tenant-entitlement.service.js';
 import type { ResolvedGatewayConfig } from './providers/resolved-config.js';
 import { FeePaymentMethod } from '../generated/prisma/client.js';
 
@@ -55,6 +57,7 @@ export class PaymentGatewayService {
     private readonly engine: FeeEngineService,
     private readonly config: ConfigService,
     private readonly tenantGateways: TenantPaymentGatewayService,
+    private readonly entitlements: TenantEntitlementService,
   ) {}
 
   private providerFor(resolved: ResolvedGatewayConfig): PaymentGatewayProvider {
@@ -100,6 +103,8 @@ export class PaymentGatewayService {
     dto: CreatePaymentIntentDto,
     createdByUserId?: string,
   ) {
+    await this.entitlements.assertFeatureEnabled(tenantId, 'online.payments');
+
     const gateway = (
       dto.gateway ?? this.defaultGateway()
     ).toUpperCase() as GatewayName;
@@ -193,6 +198,41 @@ export class PaymentGatewayService {
       invoiceId: invoice.id,
       ...initiation.payload,
     };
+  }
+
+  /**
+   * Parent-scoped initiation: the invoice must belong to a student linked
+   * to this guardian. This is the only gateway path a parent can reach —
+   * they never see invoices for other children, and never initiate for
+   * another child either.
+   */
+  async initiateAsGuardian(
+    tenantId: string,
+    dto: CreatePaymentIntentDto,
+    guardianId: string,
+    studentId: string,
+    createdByUserId?: string,
+  ) {
+    await this.entitlements.assertFeatureEnabled(tenantId, 'online.payments');
+
+    const invoice = await this.prisma.feeInvoice.findFirst({
+      where: { id: dto.invoiceId, tenantId, deletedAt: null },
+      include: { enrollment: { select: { studentId: true } } },
+    });
+    if (!invoice) throw new NotFoundException('Fee invoice not found');
+    if (invoice.enrollment.studentId !== studentId) {
+      throw new ForbiddenException('That invoice does not belong to this child');
+    }
+
+    const link = await this.prisma.studentGuardian.findFirst({
+      where: { guardianId, studentId },
+      select: { id: true },
+    });
+    if (!link) {
+      throw new ForbiddenException('This student is not linked to your account');
+    }
+
+    return this.initiate(tenantId, dto, createdByUserId);
   }
 
   async listIntents(tenantId: string, query: Record<string, any> = {}) {

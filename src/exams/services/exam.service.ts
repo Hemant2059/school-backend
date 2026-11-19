@@ -1,10 +1,14 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma.service.js';
+import { GuardianNotificationService } from '../../notifications/services/guardian-notification.service.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
 
 @Injectable()
 export class ExamService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly guardianNotify: GuardianNotificationService,
+  ) {}
 
   async create(tenantId: string, dto: any) {
     const tenant = await this.prisma.tenant.findUnique({ where: { id: tenantId } });
@@ -93,7 +97,35 @@ export class ExamService {
     if (scheduleCount === 0) {
       throw new ConflictException('An exam must have at least one schedule before it can be published');
     }
-    return this.prisma.exam.update({ where: { id }, data: { isPublished: true } });
+    const published = await this.prisma.exam.update({ where: { id }, data: { isPublished: true } });
+
+    // Best-effort: every guardian of a student enrolled this academic year
+    // gets told. A notification failure must never block publishing.
+    try {
+      const enrollments = await this.prisma.studentEnrollment.findMany({
+        where: { tenantId, academicYearId: exam.academicYearId, deletedAt: null },
+        select: { studentId: true },
+      });
+      // Limited concurrency so a 1,000-student school doesn't block the request.
+      const studentIds = [...new Set(enrollments.map((e) => e.studentId))];
+      const CONCURRENCY = 10;
+      for (let i = 0; i < studentIds.length; i += CONCURRENCY) {
+        await Promise.allSettled(
+          studentIds.slice(i, i + CONCURRENCY).map((studentId) =>
+            this.guardianNotify.notifyForStudent(tenantId, studentId, {
+              title: 'Results published',
+              message: `Results for ${exam.name} have been published.`,
+              smsText: `${exam.name} results have been published. Check the school portal for details.`,
+              type: 'exam',
+            }),
+          ),
+        );
+      }
+    } catch {
+      // notifications are counted/logged inside the helper
+    }
+
+    return published;
   }
 
   /**

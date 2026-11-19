@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { NotificationsModule } from '../notifications/notifications.module.js';
 import { FeeInvoiceController } from './controllers/fee-invoice.controller.js';
 import { FeeInvoiceItemController } from './controllers/fee-invoice-item.controller.js';
 import { FeePaymentController } from './controllers/fee-payment.controller.js';
@@ -10,6 +11,7 @@ import { CreditNoteService } from './services/credit-note.service.js';
 import { FeeEngineService } from './services/fee-engine.service.js';
 
 @Module({
+  imports: [NotificationsModule],
   controllers: [FeeInvoiceController, FeeInvoiceItemController, FeePaymentController, CreditNoteController],
   providers: [
     FeeInvoiceService,

@@ -1,11 +1,15 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
+import { GuardianNotificationService } from '../../notifications/services/guardian-notification.service.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
 
 @Injectable()
 export class EnrollmentService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly guardianNotify: GuardianNotificationService,
+  ) {}
 
   async create(tenantId: string, dto: any) {
     const tenant = await this.prisma.tenant.findUnique({ where: { id: tenantId } });
@@ -79,8 +83,9 @@ export class EnrollmentService {
 
     await this.assertSectionCapacity(tenantId, section.id, section.capacity);
 
+    let enrollment;
     try {
-      return await this.prisma.studentEnrollment.create({
+      enrollment = await this.prisma.studentEnrollment.create({
         data: { ...dto, tenantId },
         include: { student: true, academicYear: true, gradeLevel: true, section: true },
       });
@@ -92,6 +97,21 @@ export class EnrollmentService {
       }
       throw e;
     }
+
+    // Best-effort: tell the guardian(s) their child is enrolled. A delivery
+    // failure must never block the admission itself.
+    try {
+      await this.guardianNotify.notifyForStudent(tenantId, enrollment.studentId, {
+        title: 'Admission confirmed',
+        message: `${enrollment.student.firstNameEn} ${enrollment.student.lastNameEn} is enrolled in ${enrollment.gradeLevel.nameEn} ${enrollment.section.nameEn} for ${enrollment.academicYear.name} (Roll ${enrollment.rollNo}).`,
+        smsText: `Admission: ${enrollment.student.firstNameEn} ${enrollment.student.lastNameEn} enrolled in ${enrollment.gradeLevel.nameEn}-${enrollment.section.nameEn} for ${enrollment.academicYear.name}. Roll ${enrollment.rollNo}.`,
+        type: 'admission',
+      });
+    } catch {
+      // notification failures are counted/logged inside the helper
+    }
+
+    return enrollment;
   }
 
   /** Enforces the section capacity, which was previously never checked. */

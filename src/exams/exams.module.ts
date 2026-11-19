@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { NotificationsModule } from '../notifications/notifications.module.js';
 import { ExamController } from './controllers/exam.controller.js';
 import { ExamService } from './services/exam.service.js';
 import { ExamScheduleController } from './controllers/exam-schedule.controller.js';
@@ -10,6 +11,7 @@ import { StudentExamSummaryService } from './services/student-exam-summary.servi
 import { ExamResultService } from './services/exam-result.service.js';
 
 @Module({
+  imports: [NotificationsModule],
   controllers: [ExamController, ExamScheduleController, ExamMarkController, StudentExamSummaryController],
   providers: [
     ExamService,

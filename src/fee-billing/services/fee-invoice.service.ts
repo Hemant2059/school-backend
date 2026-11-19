@@ -1,6 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { FeeInvoiceStatus, Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
+import { GuardianNotificationService } from '../../notifications/services/guardian-notification.service.js';
 import { FeeEngineService } from './fee-engine.service.js';
 import { money, toDecimal } from '../../common/utils/money.js';
 import { buildMeta, resolvePagination } from '../../common/utils/pagination.js';
@@ -11,6 +12,7 @@ export class FeeInvoiceService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly engine: FeeEngineService,
+    private readonly guardianNotify: GuardianNotificationService,
   ) {}
 
   /**
@@ -18,7 +20,34 @@ export class FeeInvoiceService {
    * every total is computed by the server.
    */
   async generate(tenantId: string, dto: GenerateFeeInvoiceDto) {
-    return this.engine.generateInvoice(tenantId, dto);
+    const invoice = await this.engine.generateInvoice(tenantId, dto);
+    await this.notifyInvoice(tenantId, invoice);
+    return invoice;
+  }
+
+  /**
+   * Best-effort guardian notification for a new invoice. Delivery failures
+   * are counted and logged inside the helper — never thrown.
+   */
+  private async notifyInvoice(tenantId: string, invoice: any) {
+    try {
+      const enrollment = await this.prisma.studentEnrollment.findFirst({
+        where: { id: invoice.enrollmentId, tenantId, deletedAt: null },
+        select: { student: { select: { id: true, firstNameEn: true, lastNameEn: true } } },
+      });
+      if (!enrollment) return;
+      const studentId = enrollment.student.id;
+      const name = `${enrollment.student.firstNameEn} ${enrollment.student.lastNameEn}`;
+      const balance = String(invoice.balanceDue ?? invoice.netPayableAmount);
+      await this.guardianNotify.notifyForStudent(tenantId, studentId, {
+        title: 'Fee invoice generated',
+        message: `Fee invoice ${invoice.invoiceNumber} for ${name} has been generated. Amount to pay: NPR ${balance}. Due: ${invoice.dueDateBs}.`,
+        smsText: `Fee invoice ${invoice.invoiceNumber} for ${name} generated. Amount due: NPR ${balance}. Due: ${invoice.dueDateBs}.`,
+        type: 'fee',
+      });
+    } catch {
+      // the helper already logs; nothing else to do
+    }
   }
 
   /**
@@ -86,6 +115,7 @@ export class FeeInvoiceService {
           notes: dto.notes,
         },
       });
+      await this.notifyInvoice(tenantId, invoice);
       return invoice;
     } catch (e) {
       if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {

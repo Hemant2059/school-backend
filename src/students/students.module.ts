@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BillingModule } from '../billing/billing.module.js';
+import { PaymentsModule } from '../payments/payments.module.js';
+import { ReportCardsModule } from '../report-cards/report-cards.module.js';
 import { StudentController } from './controllers/student.controller.js';
 import { GuardianController } from './controllers/guardian.controller.js';
 import { AddressController } from './controllers/address.controller.js';
@@ -18,7 +20,7 @@ import { StudentGuard } from './guards/student.guard.js';
 import { ParentGuard } from './guards/parent.guard.js';
 
 @Module({
-  imports: [BillingModule],
+  imports: [BillingModule, PaymentsModule, ReportCardsModule],
   controllers: [
     StudentController,
     GuardianController,
