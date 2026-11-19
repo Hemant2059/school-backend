@@ -5,9 +5,7 @@ import {
   Get,
   Param,
   Post,
-  Req,
 } from '@nestjs/common';
-import type { Request } from 'express';
 import { IsInt, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';

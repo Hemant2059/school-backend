@@ -1,7 +1,6 @@
 import {
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { createHash, randomBytes, timingSafeEqual } from 'crypto';
 import { PrismaService } from '../../prisma.service.js';
