@@ -1037,6 +1037,73 @@ ok "a suspended school cannot be logged into" "$(echo "$SUSP" | j "d.get('status
 req PATCH "/tenants/$TID" '{"status":"ACTIVE"}' "$PH" >/dev/null
 
 ###############################################################################
+head1 "Workflow 16 - Reporting, portal and SMS modules"
+###############################################################################
+
+step "16.1 IEMIS exports the student register"
+ICSV=$(code "$BASE/tenants/$TID/iemis/students" -H "$TH")
+ok "the IEMIS students CSV is served" "$ICSV" 200
+ok "it contains the section's students" \
+  "$(curl -s "$BASE/tenants/$TID/iemis/students" -H "$TH" | head -1 | grep -c 'admissionNo')" 1
+IJSN=$(req GET "/tenants/$TID/iemis/students.json" "" "$TH")
+ok "the IEMIS JSON register is a list" "$(echo "$IJSN" | j "isinstance(d, list)")" True
+ok "it contains the admitted student" \
+  "$(echo "$IJSN" | j "sum(1 for s in d if s.get('admissionNo')=='$SUF/001')")" 1
+
+step "16.2 The report card PDF is generated for the enrollment"
+RP=$(code "$BASE/tenants/$TID/report-cards/$ENRID?examId=$EXID" -H "$TH")
+ok "the report card PDF is served" "$RP" 200
+
+step "16.3 The analytics endpoints report aggregates"
+AN=$(req GET "/tenants/$TID/analytics/students" "" "$TH")
+ok "the student KPI is at least one" "$(echo "$AN" | j "d.get('totalStudents',0) >= 1")" True
+AN2=$(req GET "/tenants/$TID/analytics/finance" "" "$TH")
+ok "the collection rate is reported" "$(echo "$AN2" | j "'collectionRate' in d")" True
+
+step "16.4 SMS is accepted (noop provider in the sandbox)"
+SMS=$(req POST "/tenants/$TID/sms/send" '{"to":"9801234567","message":"Verification SMS"}' "$TH")
+ok "the SMS was accepted" "$(echo "$SMS" | j "d.get('ok',False)")" True
+ok "the noop provider handled it" "$(echo "$SMS" | j "d.get('provider','')")" noop
+
+step "16.5 The onboarding checklist reports setup progress"
+OB=$(req GET "/tenants/$TID/onboarding-status" "" "$TH")
+ok "the checklist has every step" "$(echo "$OB" | j "d.get('total',0)")" 14
+ok "the school is flagged ready once fully set up" "$(echo "$OB" | j "d.get('completed',0) >= 1")" True
+ok "it points at a next step" "$(echo "$OB" | j "bool(d.get('next',{}).get('code','')) if not d.get('ready') else True")" True
+
+step "16.6 The parent portal is parent-only"
+PG=$(code "$BASE/tenants/$TID/parent/children" -H "$TH")
+ok "an admin without a guardian link is refused" "$PG" 403
+SG=$(code "$BASE/tenants/$TID/student/me" -H "$TH")
+ok "an admin without a student link is refused" "$SG" 403
+
+step "16.7 A guardian is linked to a user and the parent portal works"
+BODY=$(cat <<JSON
+{"email":"wf-parent-$SUF@test.com","firstNameEn":"Parent","firstNameNe":"अभिभावक",
+ "lastNameEn":"Portal","lastNameNe":"पोर्टल","password":"Wf-Parent-1!",
+ "roleNames":["Parent"]}
+JSON
+)
+PUSER=$(req POST "/tenants/$TID/users" "$BODY" "$TH")
+PUID=$(echo "$PUSER" | j "d.get('user',{}).get('id','')")
+ok "the parent account was created" "$([ -n "$PUID" ] && echo yes || echo no)" yes
+req PATCH "/tenants/$TID/guardians/$GUID" "{\"userId\":\"$PUID\"}" "$TH" > /dev/null
+PBODY=$(cat <<JSON
+{"email":"wf-parent-$SUF@test.com","password":"Wf-Parent-1!","tenantId":"$TID"}
+JSON
+)
+PTOK=$(req POST /tenant/auth/login "$PBODY" "" | sed -n 's/.*"accessToken":"\([^"]*\)".*/\1/p')
+ok "the parent can log in" "$([ -n "$PTOK" ] && echo yes || echo no)" yes
+ok "the parent sees their child" \
+  "$(req GET "/tenants/$TID/parent/children" "" "Authorization: Bearer $PTOK" | j "len(d)")" 1
+ok "the parent sees the child's published results" \
+  "$(req GET "/tenants/$TID/parent/children/$STUID/exams" "" "Authorization: Bearer $PTOK" | j "len(d)")" 1
+ok "the parent sees the child's invoices" \
+  "$(req GET "/tenants/$TID/parent/children/$STUID/fee-invoices" "" "Authorization: Bearer $PTOK" | j "isinstance(d, list)")" True
+OBB=$(req GET "/tenants/$TID/onboarding-status" "" "$TH")
+ok "the checklist now shows the school ready" "$(echo "$OBB" | j "d.get('ready',False)")" True
+
+###############################################################################
 echo ""
 echo "############################################################"
 echo "# PASS: $PASS   FAIL: $FAIL"

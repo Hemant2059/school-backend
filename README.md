@@ -134,6 +134,8 @@ src/
   billing/                # tenant subscriptions, invoices, payments, entitlements
   academics/              # academic years, streams, grade levels, sections, staff, subjects
   students/               # students, addresses, guardians, bulk import, parent/student portals
+  payments/               # online payments (DEMO/eSewa/Khalti/ConnectIPS) with per-tenant credentials
+  onboarding/             # the school's setup checklist (what remains until the school can run)
   enrollments/            # enrolments
   exams/                  # exams, schedules, marks, summaries, results engine
   examinations/           # grading scales
@@ -159,7 +161,33 @@ prisma/
 scripts/
   verify-security.sh      # live security regression check
   provision-default-roles.ts # backfills the default role set into pre-existing tenants
+postman/
+  school-saas-backend.postman_collection.json  # every route, regenerated from the OpenAPI document
 ```
+
+## Payment gateways
+
+A school collects fees online with **its own merchant account** — credentials are
+never shared across tenants and are encrypted at rest (AES-256-GCM, master key
+in `/run/secrets/payment_master_key`, auto-generated on first boot into the
+gitignored `./.local-secrets/`).
+
+- `PUT /tenants/:tenantId/payment-gateways/:gateway` — set `ESEWA` (product code +
+  secret) or `KHALTI` (live_secret_key) or `CONNECTIPS` (merchantId, appId, app
+  password, creditor private key as PEM). Responses are masked — secrets never leave
+  the server in clear.
+- `DELETE .../payment-gateways/:gateway` — the school goes back to DEMO mode.
+- `POST /tenants/:tenantId/payment-intents` — `{ invoiceId, gateway?, paymentDateBs }`
+  returns what the client needs to reach the gateway (redirect URL / signed form /
+  demo checkout hint).
+- The gateway's own callback (`/payments/gateways/esewa|khalti|connectips`) is
+  verified server-to-server before a receipt exists. DEMO mode
+  (`POST /payments/gateways/demo/complete`) simulates the roundtrip locally and
+  records an honest `DEMO` receipt.
+- Parents pay their own children's fees from the parent portal
+  (`POST /tenants/:tenantId/parent/children/:studentId/payment-intents`) — the
+  guardian link is verified, so a parent can never pay (or see) another child's
+  invoice.
 
 ---
 
@@ -234,7 +262,7 @@ The net is derived; deductions larger than the gross are rejected.
 | --- | --- |
 | `pnpm verify:security` | 22 assertions: domain separation, tenant isolation, authentication, boolean parameters, the audit trail and credential hygiene, against a running instance |
 | `pnpm verify:domain` | 34 assertions: the fee engine, the result engine, the payroll rules, attendance and timetable, end to end against a running instance |
-| `pnpm verify:workflows` | 147 assertions: the full onboarding → operations journey on a disposable school — platform provisioning, academic structure, calendar import, bulk admission, teachers, fees, exams, payroll, portals and access control |
+| `pnpm verify:workflows` | 174 assertions: the full onboarding → operations journey on a disposable school — platform provisioning, academic structure, calendar import, bulk admission, teachers, fees, exams, payroll, portals and access control |
 | `pnpm verify:migrations` | The migration chain replays cleanly against an empty database and the result matches the Prisma schema |
 | `pnpm verify:audit` | 38 static assertions that the findings of the original review stay fixed |
 
