@@ -453,6 +453,7 @@ model Tenant {
   hostelRooms               HostelRoom[]
   hostelAllocations         HostelAllocation[]
   notifications             Notification[]
+  apiKeys                   ApiKey[]
 
   @@index([organizationId])
   @@index([status])
@@ -2274,4 +2275,36 @@ model TenantPaymentGatewayConfig {
 
   @@unique([tenantId, gateway])
   @@index([tenantId])
+}
+
+/// A machine credential for the school's own integrations (Zapier,
+/// Google Sheets, the school's website).
+///
+/// Keys are high-entropy random secrets; only the SHA-256 hash is stored.
+/// The raw key is shown exactly once, at creation. Keys grant read-only
+/// access to this tenant's data only (`*.read` permission codes) — they can
+/// never mutate state, never reach another tenant, and never create or
+/// revoke other keys.
+model ApiKey {
+  id       String @id @default(uuid())
+  tenantId String
+
+  name   String
+  /// First 12 characters — used for lookup and safe display.
+  prefix String @db.VarChar(20)
+  /// SHA-256 of the full key.
+  hash   String
+
+  lastUsedAt      DateTime?
+  expiresAt       DateTime?
+  revokedAt       DateTime?
+  createdByUserId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([prefix])
 }

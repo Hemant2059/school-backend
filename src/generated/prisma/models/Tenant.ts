@@ -543,6 +543,7 @@ export type TenantWhereInput = {
   hostelRooms?: Prisma.HostelRoomListRelationFilter
   hostelAllocations?: Prisma.HostelAllocationListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  apiKeys?: Prisma.ApiKeyListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -632,6 +633,7 @@ export type TenantOrderByWithRelationInput = {
   hostelRooms?: Prisma.HostelRoomOrderByRelationAggregateInput
   hostelAllocations?: Prisma.HostelAllocationOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  apiKeys?: Prisma.ApiKeyOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -724,6 +726,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   hostelRooms?: Prisma.HostelRoomListRelationFilter
   hostelAllocations?: Prisma.HostelAllocationListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  apiKeys?: Prisma.ApiKeyListRelationFilter
 }, "id" | "subdomain" | "iemisCode" | "schoolCode">
 
 export type TenantOrderByWithAggregationInput = {
@@ -903,6 +906,7 @@ export type TenantCreateInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -990,6 +994,7 @@ export type TenantUncheckedCreateInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -1077,6 +1082,7 @@ export type TenantUpdateInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -1164,6 +1170,7 @@ export type TenantUncheckedUpdateInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -2180,6 +2187,20 @@ export type TenantUpdateOneRequiredWithoutPaymentGatewayConfigsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPaymentGatewayConfigsInput, Prisma.TenantUpdateWithoutPaymentGatewayConfigsInput>, Prisma.TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput>
 }
 
+export type TenantCreateNestedOneWithoutApiKeysInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutApiKeysInput, Prisma.TenantUncheckedCreateWithoutApiKeysInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutApiKeysInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutApiKeysNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutApiKeysInput, Prisma.TenantUncheckedCreateWithoutApiKeysInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutApiKeysInput
+  upsert?: Prisma.TenantUpsertWithoutApiKeysInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutApiKeysInput, Prisma.TenantUpdateWithoutApiKeysInput>, Prisma.TenantUncheckedUpdateWithoutApiKeysInput>
+}
+
 export type TenantCreateWithoutCreatedByInput = {
   id?: string
   nameEn: string
@@ -2264,6 +2285,7 @@ export type TenantCreateWithoutCreatedByInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCreatedByInput = {
@@ -2350,6 +2372,7 @@ export type TenantUncheckedCreateWithoutCreatedByInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCreatedByInput = {
@@ -2507,6 +2530,7 @@ export type TenantCreateWithoutOrganizationInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutOrganizationInput = {
@@ -2593,6 +2617,7 @@ export type TenantUncheckedCreateWithoutOrganizationInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutOrganizationInput = {
@@ -2705,6 +2730,7 @@ export type TenantCreateWithoutRolesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -2791,6 +2817,7 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -2893,6 +2920,7 @@ export type TenantUpdateWithoutRolesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -2979,6 +3007,7 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTenantUsersInput = {
@@ -3065,6 +3094,7 @@ export type TenantCreateWithoutTenantUsersInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTenantUsersInput = {
@@ -3151,6 +3181,7 @@ export type TenantUncheckedCreateWithoutTenantUsersInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTenantUsersInput = {
@@ -3253,6 +3284,7 @@ export type TenantUpdateWithoutTenantUsersInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTenantUsersInput = {
@@ -3339,6 +3371,7 @@ export type TenantUncheckedUpdateWithoutTenantUsersInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionsInput = {
@@ -3425,6 +3458,7 @@ export type TenantCreateWithoutSubscriptionsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionsInput = {
@@ -3511,6 +3545,7 @@ export type TenantUncheckedCreateWithoutSubscriptionsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionsInput = {
@@ -3613,6 +3648,7 @@ export type TenantUpdateWithoutSubscriptionsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionsInput = {
@@ -3699,6 +3735,7 @@ export type TenantUncheckedUpdateWithoutSubscriptionsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -3785,6 +3822,7 @@ export type TenantCreateWithoutInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -3871,6 +3909,7 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -3973,6 +4012,7 @@ export type TenantUpdateWithoutInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -4059,6 +4099,7 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAcademicYearsInput = {
@@ -4145,6 +4186,7 @@ export type TenantCreateWithoutAcademicYearsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAcademicYearsInput = {
@@ -4231,6 +4273,7 @@ export type TenantUncheckedCreateWithoutAcademicYearsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAcademicYearsInput = {
@@ -4333,6 +4376,7 @@ export type TenantUpdateWithoutAcademicYearsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAcademicYearsInput = {
@@ -4419,6 +4463,7 @@ export type TenantUncheckedUpdateWithoutAcademicYearsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStreamsInput = {
@@ -4505,6 +4550,7 @@ export type TenantCreateWithoutStreamsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStreamsInput = {
@@ -4591,6 +4637,7 @@ export type TenantUncheckedCreateWithoutStreamsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStreamsInput = {
@@ -4693,6 +4740,7 @@ export type TenantUpdateWithoutStreamsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStreamsInput = {
@@ -4779,6 +4827,7 @@ export type TenantUncheckedUpdateWithoutStreamsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGradeLevelsInput = {
@@ -4865,6 +4914,7 @@ export type TenantCreateWithoutGradeLevelsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGradeLevelsInput = {
@@ -4951,6 +5001,7 @@ export type TenantUncheckedCreateWithoutGradeLevelsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGradeLevelsInput = {
@@ -5053,6 +5104,7 @@ export type TenantUpdateWithoutGradeLevelsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGradeLevelsInput = {
@@ -5139,6 +5191,7 @@ export type TenantUncheckedUpdateWithoutGradeLevelsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSectionsInput = {
@@ -5225,6 +5278,7 @@ export type TenantCreateWithoutSectionsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSectionsInput = {
@@ -5311,6 +5365,7 @@ export type TenantUncheckedCreateWithoutSectionsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSectionsInput = {
@@ -5413,6 +5468,7 @@ export type TenantUpdateWithoutSectionsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSectionsInput = {
@@ -5499,6 +5555,7 @@ export type TenantUncheckedUpdateWithoutSectionsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStaffProfilesInput = {
@@ -5585,6 +5642,7 @@ export type TenantCreateWithoutStaffProfilesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStaffProfilesInput = {
@@ -5671,6 +5729,7 @@ export type TenantUncheckedCreateWithoutStaffProfilesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStaffProfilesInput = {
@@ -5773,6 +5832,7 @@ export type TenantUpdateWithoutStaffProfilesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStaffProfilesInput = {
@@ -5859,6 +5919,7 @@ export type TenantUncheckedUpdateWithoutStaffProfilesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubjectsInput = {
@@ -5945,6 +6006,7 @@ export type TenantCreateWithoutSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubjectsInput = {
@@ -6031,6 +6093,7 @@ export type TenantUncheckedCreateWithoutSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubjectsInput = {
@@ -6133,6 +6196,7 @@ export type TenantUpdateWithoutSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubjectsInput = {
@@ -6219,6 +6283,7 @@ export type TenantUncheckedUpdateWithoutSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGradeSubjectsInput = {
@@ -6305,6 +6370,7 @@ export type TenantCreateWithoutGradeSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGradeSubjectsInput = {
@@ -6391,6 +6457,7 @@ export type TenantUncheckedCreateWithoutGradeSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGradeSubjectsInput = {
@@ -6493,6 +6560,7 @@ export type TenantUpdateWithoutGradeSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGradeSubjectsInput = {
@@ -6579,6 +6647,7 @@ export type TenantUncheckedUpdateWithoutGradeSubjectsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStudentsInput = {
@@ -6665,6 +6734,7 @@ export type TenantCreateWithoutStudentsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStudentsInput = {
@@ -6751,6 +6821,7 @@ export type TenantUncheckedCreateWithoutStudentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStudentsInput = {
@@ -6853,6 +6924,7 @@ export type TenantUpdateWithoutStudentsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStudentsInput = {
@@ -6939,6 +7011,7 @@ export type TenantUncheckedUpdateWithoutStudentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAddressesInput = {
@@ -7025,6 +7098,7 @@ export type TenantCreateWithoutAddressesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAddressesInput = {
@@ -7111,6 +7185,7 @@ export type TenantUncheckedCreateWithoutAddressesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAddressesInput = {
@@ -7213,6 +7288,7 @@ export type TenantUpdateWithoutAddressesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAddressesInput = {
@@ -7299,6 +7375,7 @@ export type TenantUncheckedUpdateWithoutAddressesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGuardiansInput = {
@@ -7385,6 +7462,7 @@ export type TenantCreateWithoutGuardiansInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGuardiansInput = {
@@ -7471,6 +7549,7 @@ export type TenantUncheckedCreateWithoutGuardiansInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGuardiansInput = {
@@ -7573,6 +7652,7 @@ export type TenantUpdateWithoutGuardiansInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGuardiansInput = {
@@ -7659,6 +7739,7 @@ export type TenantUncheckedUpdateWithoutGuardiansInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStudentEnrollmentsInput = {
@@ -7745,6 +7826,7 @@ export type TenantCreateWithoutStudentEnrollmentsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStudentEnrollmentsInput = {
@@ -7831,6 +7913,7 @@ export type TenantUncheckedCreateWithoutStudentEnrollmentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStudentEnrollmentsInput = {
@@ -7933,6 +8016,7 @@ export type TenantUpdateWithoutStudentEnrollmentsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStudentEnrollmentsInput = {
@@ -8019,6 +8103,7 @@ export type TenantUncheckedUpdateWithoutStudentEnrollmentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTransferCertificatesInput = {
@@ -8105,6 +8190,7 @@ export type TenantCreateWithoutTransferCertificatesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTransferCertificatesInput = {
@@ -8191,6 +8277,7 @@ export type TenantUncheckedCreateWithoutTransferCertificatesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTransferCertificatesInput = {
@@ -8293,6 +8380,7 @@ export type TenantUpdateWithoutTransferCertificatesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTransferCertificatesInput = {
@@ -8379,6 +8467,7 @@ export type TenantUncheckedUpdateWithoutTransferCertificatesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGradingScalesInput = {
@@ -8465,6 +8554,7 @@ export type TenantCreateWithoutGradingScalesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGradingScalesInput = {
@@ -8551,6 +8641,7 @@ export type TenantUncheckedCreateWithoutGradingScalesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGradingScalesInput = {
@@ -8653,6 +8744,7 @@ export type TenantUpdateWithoutGradingScalesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGradingScalesInput = {
@@ -8739,6 +8831,7 @@ export type TenantUncheckedUpdateWithoutGradingScalesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExamsInput = {
@@ -8825,6 +8918,7 @@ export type TenantCreateWithoutExamsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExamsInput = {
@@ -8911,6 +9005,7 @@ export type TenantUncheckedCreateWithoutExamsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExamsInput = {
@@ -9013,6 +9108,7 @@ export type TenantUpdateWithoutExamsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExamsInput = {
@@ -9099,6 +9195,7 @@ export type TenantUncheckedUpdateWithoutExamsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFiscalYearsInput = {
@@ -9185,6 +9282,7 @@ export type TenantCreateWithoutFiscalYearsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFiscalYearsInput = {
@@ -9271,6 +9369,7 @@ export type TenantUncheckedCreateWithoutFiscalYearsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFiscalYearsInput = {
@@ -9373,6 +9472,7 @@ export type TenantUpdateWithoutFiscalYearsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFiscalYearsInput = {
@@ -9459,6 +9559,7 @@ export type TenantUncheckedUpdateWithoutFiscalYearsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFeeHeadsInput = {
@@ -9545,6 +9646,7 @@ export type TenantCreateWithoutFeeHeadsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFeeHeadsInput = {
@@ -9631,6 +9733,7 @@ export type TenantUncheckedCreateWithoutFeeHeadsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFeeHeadsInput = {
@@ -9733,6 +9836,7 @@ export type TenantUpdateWithoutFeeHeadsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFeeHeadsInput = {
@@ -9819,6 +9923,7 @@ export type TenantUncheckedUpdateWithoutFeeHeadsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClassFeeStructuresInput = {
@@ -9905,6 +10010,7 @@ export type TenantCreateWithoutClassFeeStructuresInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClassFeeStructuresInput = {
@@ -9991,6 +10097,7 @@ export type TenantUncheckedCreateWithoutClassFeeStructuresInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClassFeeStructuresInput = {
@@ -10093,6 +10200,7 @@ export type TenantUpdateWithoutClassFeeStructuresInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClassFeeStructuresInput = {
@@ -10179,6 +10287,7 @@ export type TenantUncheckedUpdateWithoutClassFeeStructuresInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutScholarshipSchemesInput = {
@@ -10265,6 +10374,7 @@ export type TenantCreateWithoutScholarshipSchemesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutScholarshipSchemesInput = {
@@ -10351,6 +10461,7 @@ export type TenantUncheckedCreateWithoutScholarshipSchemesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutScholarshipSchemesInput = {
@@ -10453,6 +10564,7 @@ export type TenantUpdateWithoutScholarshipSchemesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutScholarshipSchemesInput = {
@@ -10539,6 +10651,7 @@ export type TenantUncheckedUpdateWithoutScholarshipSchemesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStudentScholarshipsInput = {
@@ -10625,6 +10738,7 @@ export type TenantCreateWithoutStudentScholarshipsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStudentScholarshipsInput = {
@@ -10711,6 +10825,7 @@ export type TenantUncheckedCreateWithoutStudentScholarshipsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStudentScholarshipsInput = {
@@ -10813,6 +10928,7 @@ export type TenantUpdateWithoutStudentScholarshipsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStudentScholarshipsInput = {
@@ -10899,6 +11015,7 @@ export type TenantUncheckedUpdateWithoutStudentScholarshipsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFeeInvoicesInput = {
@@ -10985,6 +11102,7 @@ export type TenantCreateWithoutFeeInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFeeInvoicesInput = {
@@ -11071,6 +11189,7 @@ export type TenantUncheckedCreateWithoutFeeInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFeeInvoicesInput = {
@@ -11173,6 +11292,7 @@ export type TenantUpdateWithoutFeeInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFeeInvoicesInput = {
@@ -11259,6 +11379,7 @@ export type TenantUncheckedUpdateWithoutFeeInvoicesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFeeInvoiceItemsInput = {
@@ -11345,6 +11466,7 @@ export type TenantCreateWithoutFeeInvoiceItemsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFeeInvoiceItemsInput = {
@@ -11431,6 +11553,7 @@ export type TenantUncheckedCreateWithoutFeeInvoiceItemsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFeeInvoiceItemsInput = {
@@ -11533,6 +11656,7 @@ export type TenantUpdateWithoutFeeInvoiceItemsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFeeInvoiceItemsInput = {
@@ -11619,6 +11743,7 @@ export type TenantUncheckedUpdateWithoutFeeInvoiceItemsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFeePaymentsInput = {
@@ -11705,6 +11830,7 @@ export type TenantCreateWithoutFeePaymentsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFeePaymentsInput = {
@@ -11791,6 +11917,7 @@ export type TenantUncheckedCreateWithoutFeePaymentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFeePaymentsInput = {
@@ -11893,6 +12020,7 @@ export type TenantUpdateWithoutFeePaymentsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFeePaymentsInput = {
@@ -11979,6 +12107,7 @@ export type TenantUncheckedUpdateWithoutFeePaymentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutCreditNotesInput = {
@@ -12065,6 +12194,7 @@ export type TenantCreateWithoutCreditNotesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCreditNotesInput = {
@@ -12151,6 +12281,7 @@ export type TenantUncheckedCreateWithoutCreditNotesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCreditNotesInput = {
@@ -12253,6 +12384,7 @@ export type TenantUpdateWithoutCreditNotesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCreditNotesInput = {
@@ -12339,6 +12471,7 @@ export type TenantUncheckedUpdateWithoutCreditNotesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTeacherSubjectAllocationsInput = {
@@ -12425,6 +12558,7 @@ export type TenantCreateWithoutTeacherSubjectAllocationsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTeacherSubjectAllocationsInput = {
@@ -12511,6 +12645,7 @@ export type TenantUncheckedCreateWithoutTeacherSubjectAllocationsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTeacherSubjectAllocationsInput = {
@@ -12613,6 +12748,7 @@ export type TenantUpdateWithoutTeacherSubjectAllocationsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTeacherSubjectAllocationsInput = {
@@ -12699,6 +12835,7 @@ export type TenantUncheckedUpdateWithoutTeacherSubjectAllocationsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPayrollRunsInput = {
@@ -12785,6 +12922,7 @@ export type TenantCreateWithoutPayrollRunsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPayrollRunsInput = {
@@ -12871,6 +13009,7 @@ export type TenantUncheckedCreateWithoutPayrollRunsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPayrollRunsInput = {
@@ -12973,6 +13112,7 @@ export type TenantUpdateWithoutPayrollRunsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPayrollRunsInput = {
@@ -13059,6 +13199,7 @@ export type TenantUncheckedUpdateWithoutPayrollRunsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSalarySlipsInput = {
@@ -13145,6 +13286,7 @@ export type TenantCreateWithoutSalarySlipsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSalarySlipsInput = {
@@ -13231,6 +13373,7 @@ export type TenantUncheckedCreateWithoutSalarySlipsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSalarySlipsInput = {
@@ -13333,6 +13476,7 @@ export type TenantUpdateWithoutSalarySlipsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSalarySlipsInput = {
@@ -13419,6 +13563,7 @@ export type TenantUncheckedUpdateWithoutSalarySlipsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAcademicCalendarEventsInput = {
@@ -13505,6 +13650,7 @@ export type TenantCreateWithoutAcademicCalendarEventsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAcademicCalendarEventsInput = {
@@ -13591,6 +13737,7 @@ export type TenantUncheckedCreateWithoutAcademicCalendarEventsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAcademicCalendarEventsInput = {
@@ -13693,6 +13840,7 @@ export type TenantUpdateWithoutAcademicCalendarEventsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAcademicCalendarEventsInput = {
@@ -13779,6 +13927,7 @@ export type TenantUncheckedUpdateWithoutAcademicCalendarEventsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStudentDailyAttendancesInput = {
@@ -13865,6 +14014,7 @@ export type TenantCreateWithoutStudentDailyAttendancesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStudentDailyAttendancesInput = {
@@ -13951,6 +14101,7 @@ export type TenantUncheckedCreateWithoutStudentDailyAttendancesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStudentDailyAttendancesInput = {
@@ -14053,6 +14204,7 @@ export type TenantUpdateWithoutStudentDailyAttendancesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStudentDailyAttendancesInput = {
@@ -14139,6 +14291,7 @@ export type TenantUncheckedUpdateWithoutStudentDailyAttendancesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTimetableSlotsInput = {
@@ -14225,6 +14378,7 @@ export type TenantCreateWithoutTimetableSlotsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTimetableSlotsInput = {
@@ -14311,6 +14465,7 @@ export type TenantUncheckedCreateWithoutTimetableSlotsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTimetableSlotsInput = {
@@ -14413,6 +14568,7 @@ export type TenantUpdateWithoutTimetableSlotsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTimetableSlotsInput = {
@@ -14499,6 +14655,7 @@ export type TenantUncheckedUpdateWithoutTimetableSlotsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTransportVehiclesInput = {
@@ -14585,6 +14742,7 @@ export type TenantCreateWithoutTransportVehiclesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTransportVehiclesInput = {
@@ -14671,6 +14829,7 @@ export type TenantUncheckedCreateWithoutTransportVehiclesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTransportVehiclesInput = {
@@ -14773,6 +14932,7 @@ export type TenantUpdateWithoutTransportVehiclesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTransportVehiclesInput = {
@@ -14859,6 +15019,7 @@ export type TenantUncheckedUpdateWithoutTransportVehiclesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTransportRoutesInput = {
@@ -14945,6 +15106,7 @@ export type TenantCreateWithoutTransportRoutesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTransportRoutesInput = {
@@ -15031,6 +15193,7 @@ export type TenantUncheckedCreateWithoutTransportRoutesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTransportRoutesInput = {
@@ -15133,6 +15296,7 @@ export type TenantUpdateWithoutTransportRoutesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTransportRoutesInput = {
@@ -15219,6 +15383,7 @@ export type TenantUncheckedUpdateWithoutTransportRoutesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTransportStopsInput = {
@@ -15305,6 +15470,7 @@ export type TenantCreateWithoutTransportStopsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTransportStopsInput = {
@@ -15391,6 +15557,7 @@ export type TenantUncheckedCreateWithoutTransportStopsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTransportStopsInput = {
@@ -15493,6 +15660,7 @@ export type TenantUpdateWithoutTransportStopsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTransportStopsInput = {
@@ -15579,6 +15747,7 @@ export type TenantUncheckedUpdateWithoutTransportStopsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStudentTransportsInput = {
@@ -15665,6 +15834,7 @@ export type TenantCreateWithoutStudentTransportsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStudentTransportsInput = {
@@ -15751,6 +15921,7 @@ export type TenantUncheckedCreateWithoutStudentTransportsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStudentTransportsInput = {
@@ -15853,6 +16024,7 @@ export type TenantUpdateWithoutStudentTransportsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStudentTransportsInput = {
@@ -15939,6 +16111,7 @@ export type TenantUncheckedUpdateWithoutStudentTransportsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLibraryBooksInput = {
@@ -16025,6 +16198,7 @@ export type TenantCreateWithoutLibraryBooksInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLibraryBooksInput = {
@@ -16111,6 +16285,7 @@ export type TenantUncheckedCreateWithoutLibraryBooksInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLibraryBooksInput = {
@@ -16213,6 +16388,7 @@ export type TenantUpdateWithoutLibraryBooksInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLibraryBooksInput = {
@@ -16299,6 +16475,7 @@ export type TenantUncheckedUpdateWithoutLibraryBooksInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBookIssuesInput = {
@@ -16385,6 +16562,7 @@ export type TenantCreateWithoutBookIssuesInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBookIssuesInput = {
@@ -16471,6 +16649,7 @@ export type TenantUncheckedCreateWithoutBookIssuesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBookIssuesInput = {
@@ -16573,6 +16752,7 @@ export type TenantUpdateWithoutBookIssuesInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBookIssuesInput = {
@@ -16659,6 +16839,7 @@ export type TenantUncheckedUpdateWithoutBookIssuesInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutHostelsInput = {
@@ -16745,6 +16926,7 @@ export type TenantCreateWithoutHostelsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutHostelsInput = {
@@ -16831,6 +17013,7 @@ export type TenantUncheckedCreateWithoutHostelsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutHostelsInput = {
@@ -16933,6 +17116,7 @@ export type TenantUpdateWithoutHostelsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutHostelsInput = {
@@ -17019,6 +17203,7 @@ export type TenantUncheckedUpdateWithoutHostelsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutHostelRoomsInput = {
@@ -17105,6 +17290,7 @@ export type TenantCreateWithoutHostelRoomsInput = {
   hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutHostelRoomsInput = {
@@ -17191,6 +17377,7 @@ export type TenantUncheckedCreateWithoutHostelRoomsInput = {
   hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutHostelRoomsInput = {
@@ -17293,6 +17480,7 @@ export type TenantUpdateWithoutHostelRoomsInput = {
   hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutHostelRoomsInput = {
@@ -17379,6 +17567,7 @@ export type TenantUncheckedUpdateWithoutHostelRoomsInput = {
   hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutHostelAllocationsInput = {
@@ -17465,6 +17654,7 @@ export type TenantCreateWithoutHostelAllocationsInput = {
   hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutHostelAllocationsInput = {
@@ -17551,6 +17741,7 @@ export type TenantUncheckedCreateWithoutHostelAllocationsInput = {
   hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutHostelAllocationsInput = {
@@ -17653,6 +17844,7 @@ export type TenantUpdateWithoutHostelAllocationsInput = {
   hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutHostelAllocationsInput = {
@@ -17739,6 +17931,7 @@ export type TenantUncheckedUpdateWithoutHostelAllocationsInput = {
   hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationsInput = {
@@ -17825,6 +18018,7 @@ export type TenantCreateWithoutNotificationsInput = {
   hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationsInput = {
@@ -17911,6 +18105,7 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationsInput = {
@@ -18013,6 +18208,7 @@ export type TenantUpdateWithoutNotificationsInput = {
   hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationsInput = {
@@ -18099,6 +18295,7 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPaymentIntentsInput = {
@@ -18185,6 +18382,7 @@ export type TenantCreateWithoutPaymentIntentsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPaymentIntentsInput = {
@@ -18271,6 +18469,7 @@ export type TenantUncheckedCreateWithoutPaymentIntentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPaymentIntentsInput = {
@@ -18373,6 +18572,7 @@ export type TenantUpdateWithoutPaymentIntentsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPaymentIntentsInput = {
@@ -18459,6 +18659,7 @@ export type TenantUncheckedUpdateWithoutPaymentIntentsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPaymentGatewayConfigsInput = {
@@ -18545,6 +18746,7 @@ export type TenantCreateWithoutPaymentGatewayConfigsInput = {
   hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPaymentGatewayConfigsInput = {
@@ -18631,6 +18833,7 @@ export type TenantUncheckedCreateWithoutPaymentGatewayConfigsInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPaymentGatewayConfigsInput = {
@@ -18733,6 +18936,7 @@ export type TenantUpdateWithoutPaymentGatewayConfigsInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput = {
@@ -18803,6 +19007,371 @@ export type TenantUncheckedUpdateWithoutPaymentGatewayConfigsInput = {
   feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
   creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
   paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUncheckedUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUncheckedUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUncheckedUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUncheckedUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUncheckedUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUncheckedUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutApiKeysInput = {
+  id?: string
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  organization?: Prisma.OrganizationCreateNestedOneWithoutTenantsInput
+  createdBy: Prisma.PlatformUserCreateNestedOneWithoutCreatedTenantsInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutApiKeysInput = {
+  id?: string
+  organizationId?: string | null
+  nameEn: string
+  nameNe: string
+  subdomain: string
+  iemisCode: string
+  schoolCode: string
+  registrationNumber: string
+  panVatNumber: string
+  schoolType: $Enums.SchoolType
+  provinceCode: string
+  provinceNe: string
+  provinceEn: string
+  districtCode: string
+  districtNe: string
+  districtEn: string
+  municipalityCode: string
+  municipalityNe: string
+  municipalityEn: string
+  wardNumber: number
+  toleEn: string
+  toleNe: string
+  addressEn: string
+  addressNe: string
+  phone: string
+  email: string
+  website?: string | null
+  logoUrl?: string | null
+  establishedDateAd: Date | string
+  establishedDateBs: string
+  motoEn: string
+  motoNe: string
+  latitude: number
+  longitude: number
+  status?: $Enums.TenantStatus
+  createdByPlatformUserId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  tenantUsers?: Prisma.TenantUserUncheckedCreateNestedManyWithoutTenantInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutTenantInput
+  streams?: Prisma.StreamUncheckedCreateNestedManyWithoutTenantInput
+  gradeLevels?: Prisma.GradeLevelUncheckedCreateNestedManyWithoutTenantInput
+  sections?: Prisma.SectionUncheckedCreateNestedManyWithoutTenantInput
+  staffProfiles?: Prisma.StaffProfileUncheckedCreateNestedManyWithoutTenantInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutTenantInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedCreateNestedManyWithoutTenantInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutTenantInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutTenantInput
+  guardians?: Prisma.GuardianUncheckedCreateNestedManyWithoutTenantInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedCreateNestedManyWithoutTenantInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedCreateNestedManyWithoutTenantInput
+  gradingScales?: Prisma.GradingScaleUncheckedCreateNestedManyWithoutTenantInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutTenantInput
+  fiscalYears?: Prisma.FiscalYearUncheckedCreateNestedManyWithoutTenantInput
+  feeHeads?: Prisma.FeeHeadUncheckedCreateNestedManyWithoutTenantInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedCreateNestedManyWithoutTenantInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedCreateNestedManyWithoutTenantInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedCreateNestedManyWithoutTenantInput
+  feePayments?: Prisma.FeePaymentUncheckedCreateNestedManyWithoutTenantInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutTenantInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedCreateNestedManyWithoutTenantInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedCreateNestedManyWithoutTenantInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedCreateNestedManyWithoutTenantInput
+  payrollRuns?: Prisma.PayrollRunUncheckedCreateNestedManyWithoutTenantInput
+  salarySlips?: Prisma.SalarySlipUncheckedCreateNestedManyWithoutTenantInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUncheckedCreateNestedManyWithoutTenantInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUncheckedCreateNestedManyWithoutTenantInput
+  timetableSlots?: Prisma.TimetableSlotUncheckedCreateNestedManyWithoutTenantInput
+  transportVehicles?: Prisma.TransportVehicleUncheckedCreateNestedManyWithoutTenantInput
+  transportRoutes?: Prisma.TransportRouteUncheckedCreateNestedManyWithoutTenantInput
+  transportStops?: Prisma.TransportStopUncheckedCreateNestedManyWithoutTenantInput
+  studentTransports?: Prisma.StudentTransportUncheckedCreateNestedManyWithoutTenantInput
+  libraryBooks?: Prisma.LibraryBookUncheckedCreateNestedManyWithoutTenantInput
+  bookIssues?: Prisma.BookIssueUncheckedCreateNestedManyWithoutTenantInput
+  hostels?: Prisma.HostelUncheckedCreateNestedManyWithoutTenantInput
+  hostelRooms?: Prisma.HostelRoomUncheckedCreateNestedManyWithoutTenantInput
+  hostelAllocations?: Prisma.HostelAllocationUncheckedCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutApiKeysInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutApiKeysInput, Prisma.TenantUncheckedCreateWithoutApiKeysInput>
+}
+
+export type TenantUpsertWithoutApiKeysInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutApiKeysInput, Prisma.TenantUncheckedUpdateWithoutApiKeysInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutApiKeysInput, Prisma.TenantUncheckedCreateWithoutApiKeysInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutApiKeysInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutApiKeysInput, Prisma.TenantUncheckedUpdateWithoutApiKeysInput>
+}
+
+export type TenantUpdateWithoutApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneWithoutTenantsNestedInput
+  createdBy?: Prisma.PlatformUserUpdateOneRequiredWithoutCreatedTenantsNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUpdateManyWithoutTenantNestedInput
+  teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUpdateManyWithoutTenantNestedInput
+  payrollRuns?: Prisma.PayrollRunUpdateManyWithoutTenantNestedInput
+  salarySlips?: Prisma.SalarySlipUpdateManyWithoutTenantNestedInput
+  academicCalendarEvents?: Prisma.AcademicCalendarEventUpdateManyWithoutTenantNestedInput
+  studentDailyAttendances?: Prisma.StudentDailyAttendanceUpdateManyWithoutTenantNestedInput
+  timetableSlots?: Prisma.TimetableSlotUpdateManyWithoutTenantNestedInput
+  transportVehicles?: Prisma.TransportVehicleUpdateManyWithoutTenantNestedInput
+  transportRoutes?: Prisma.TransportRouteUpdateManyWithoutTenantNestedInput
+  transportStops?: Prisma.TransportStopUpdateManyWithoutTenantNestedInput
+  studentTransports?: Prisma.StudentTransportUpdateManyWithoutTenantNestedInput
+  libraryBooks?: Prisma.LibraryBookUpdateManyWithoutTenantNestedInput
+  bookIssues?: Prisma.BookIssueUpdateManyWithoutTenantNestedInput
+  hostels?: Prisma.HostelUpdateManyWithoutTenantNestedInput
+  hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
+  hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameNe?: Prisma.StringFieldUpdateOperationsInput | string
+  subdomain?: Prisma.StringFieldUpdateOperationsInput | string
+  iemisCode?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolCode?: Prisma.StringFieldUpdateOperationsInput | string
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  panVatNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolType?: Prisma.EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+  provinceCode?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceNe?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceEn?: Prisma.StringFieldUpdateOperationsInput | string
+  districtCode?: Prisma.StringFieldUpdateOperationsInput | string
+  districtNe?: Prisma.StringFieldUpdateOperationsInput | string
+  districtEn?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityCode?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityNe?: Prisma.StringFieldUpdateOperationsInput | string
+  municipalityEn?: Prisma.StringFieldUpdateOperationsInput | string
+  wardNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  toleEn?: Prisma.StringFieldUpdateOperationsInput | string
+  toleNe?: Prisma.StringFieldUpdateOperationsInput | string
+  addressEn?: Prisma.StringFieldUpdateOperationsInput | string
+  addressNe?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedDateAd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  establishedDateBs?: Prisma.StringFieldUpdateOperationsInput | string
+  motoEn?: Prisma.StringFieldUpdateOperationsInput | string
+  motoNe?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  longitude?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  createdByPlatformUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  tenantUsers?: Prisma.TenantUserUncheckedUpdateManyWithoutTenantNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutTenantNestedInput
+  streams?: Prisma.StreamUncheckedUpdateManyWithoutTenantNestedInput
+  gradeLevels?: Prisma.GradeLevelUncheckedUpdateManyWithoutTenantNestedInput
+  sections?: Prisma.SectionUncheckedUpdateManyWithoutTenantNestedInput
+  staffProfiles?: Prisma.StaffProfileUncheckedUpdateManyWithoutTenantNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutTenantNestedInput
+  gradeSubjects?: Prisma.GradeSubjectUncheckedUpdateManyWithoutTenantNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutTenantNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutTenantNestedInput
+  guardians?: Prisma.GuardianUncheckedUpdateManyWithoutTenantNestedInput
+  studentEnrollments?: Prisma.StudentEnrollmentUncheckedUpdateManyWithoutTenantNestedInput
+  transferCertificates?: Prisma.TransferCertificateUncheckedUpdateManyWithoutTenantNestedInput
+  gradingScales?: Prisma.GradingScaleUncheckedUpdateManyWithoutTenantNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutTenantNestedInput
+  fiscalYears?: Prisma.FiscalYearUncheckedUpdateManyWithoutTenantNestedInput
+  feeHeads?: Prisma.FeeHeadUncheckedUpdateManyWithoutTenantNestedInput
+  classFeeStructures?: Prisma.ClassFeeStructureUncheckedUpdateManyWithoutTenantNestedInput
+  scholarshipSchemes?: Prisma.ScholarshipSchemeUncheckedUpdateManyWithoutTenantNestedInput
+  studentScholarships?: Prisma.StudentScholarshipUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoices?: Prisma.FeeInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  feeInvoiceItems?: Prisma.FeeInvoiceItemUncheckedUpdateManyWithoutTenantNestedInput
+  feePayments?: Prisma.FeePaymentUncheckedUpdateManyWithoutTenantNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutTenantNestedInput
+  paymentIntents?: Prisma.PaymentIntentUncheckedUpdateManyWithoutTenantNestedInput
+  paymentGatewayConfigs?: Prisma.TenantPaymentGatewayConfigUncheckedUpdateManyWithoutTenantNestedInput
   teacherSubjectAllocations?: Prisma.TeacherSubjectAllocationUncheckedUpdateManyWithoutTenantNestedInput
   payrollRuns?: Prisma.PayrollRunUncheckedUpdateManyWithoutTenantNestedInput
   salarySlips?: Prisma.SalarySlipUncheckedUpdateManyWithoutTenantNestedInput
@@ -18946,6 +19515,7 @@ export type TenantUpdateWithoutCreatedByInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCreatedByInput = {
@@ -19032,6 +19602,7 @@ export type TenantUncheckedUpdateWithoutCreatedByInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateManyWithoutCreatedByInput = {
@@ -19200,6 +19771,7 @@ export type TenantUpdateWithoutOrganizationInput = {
   hostelRooms?: Prisma.HostelRoomUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutOrganizationInput = {
@@ -19286,6 +19858,7 @@ export type TenantUncheckedUpdateWithoutOrganizationInput = {
   hostelRooms?: Prisma.HostelRoomUncheckedUpdateManyWithoutTenantNestedInput
   hostelAllocations?: Prisma.HostelAllocationUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateManyWithoutOrganizationInput = {
@@ -19380,6 +19953,7 @@ export type TenantCountOutputType = {
   hostelRooms: number
   hostelAllocations: number
   notifications: number
+  apiKeys: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -19428,6 +20002,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   hostelRooms?: boolean | TenantCountOutputTypeCountHostelRoomsArgs
   hostelAllocations?: boolean | TenantCountOutputTypeCountHostelAllocationsArgs
   notifications?: boolean | TenantCountOutputTypeCountNotificationsArgs
+  apiKeys?: boolean | TenantCountOutputTypeCountApiKeysArgs
 }
 
 /**
@@ -19755,6 +20330,13 @@ export type TenantCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.
   where?: Prisma.NotificationWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApiKeyWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -19843,6 +20425,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   hostelRooms?: boolean | Prisma.Tenant$hostelRoomsArgs<ExtArgs>
   hostelAllocations?: boolean | Prisma.Tenant$hostelAllocationsArgs<ExtArgs>
   notifications?: boolean | Prisma.Tenant$notificationsArgs<ExtArgs>
+  apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -20025,6 +20608,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   hostelRooms?: boolean | Prisma.Tenant$hostelRoomsArgs<ExtArgs>
   hostelAllocations?: boolean | Prisma.Tenant$hostelAllocationsArgs<ExtArgs>
   notifications?: boolean | Prisma.Tenant$notificationsArgs<ExtArgs>
+  apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -20086,6 +20670,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     hostelRooms: Prisma.$HostelRoomPayload<ExtArgs>[]
     hostelAllocations: Prisma.$HostelAllocationPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -20568,6 +21153,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   hostelRooms<T extends Prisma.Tenant$hostelRoomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$hostelRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HostelRoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   hostelAllocations<T extends Prisma.Tenant$hostelAllocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$hostelAllocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HostelAllocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.Tenant$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  apiKeys<T extends Prisma.Tenant$apiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22133,6 +22719,30 @@ export type Tenant$notificationsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * Tenant.apiKeys
+ */
+export type Tenant$apiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApiKey
+   */
+  select?: Prisma.ApiKeySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApiKey
+   */
+  omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  where?: Prisma.ApiKeyWhereInput
+  orderBy?: Prisma.ApiKeyOrderByWithRelationInput | Prisma.ApiKeyOrderByWithRelationInput[]
+  cursor?: Prisma.ApiKeyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApiKeyScalarFieldEnum | Prisma.ApiKeyScalarFieldEnum[]
 }
 
 /**

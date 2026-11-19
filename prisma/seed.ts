@@ -152,6 +152,16 @@ const PLATFORM_PERMISSIONS = dedupe([
     name: 'Manage payment gateway configuration',
     category: 'billing',
   },
+  {
+    code: 'integrations.read',
+    name: 'Read API keys',
+    category: 'integrations',
+  },
+  {
+    code: 'integrations.manage',
+    name: 'Manage API keys',
+    category: 'integrations',
+  },
   { code: 'credit_notes.read', name: 'Read credit notes', category: 'billing' },
   {
     code: 'credit_notes.manage',
@@ -319,6 +329,8 @@ const PLATFORM_ROLES = [
  * `@PlatformOnly()` marker on the platform controllers, not by the codes.
  */
 const TENANT_PERMISSIONS = dedupe([
+  { code: 'school.read', name: 'Read school settings', category: 'school' },
+  { code: 'school.manage', name: 'Manage school settings', category: 'school' },
   { code: 'roles.read', name: 'Read roles', category: 'roles' },
   { code: 'roles.manage', name: 'Manage roles', category: 'roles' },
   {
@@ -374,6 +386,16 @@ const TENANT_PERMISSIONS = dedupe([
     code: 'payment_gateways.manage',
     name: 'Manage payment gateway configuration',
     category: 'billing',
+  },
+  {
+    code: 'integrations.read',
+    name: 'Read API keys',
+    category: 'integrations',
+  },
+  {
+    code: 'integrations.manage',
+    name: 'Manage API keys',
+    category: 'integrations',
   },
   { code: 'credit_notes.read', name: 'Read credit notes', category: 'billing' },
   {
@@ -1400,6 +1422,7 @@ async function main() {
         'fee_payments.manage',
         'payment_gateways.read',
         'payment_gateways.manage',
+        'integrations.read',
         'credit_notes.read',
         'scholarships.read',
         'guardians.read',

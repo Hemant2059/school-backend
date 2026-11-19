@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { CreditNoteService } from '../services/credit-note.service.js';
 import { CreateCreditNoteDto, UpdateCreditNoteDto } from '../dto/credit-note.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlanFeature } from '../../common/decorators/plan-feature.decorator.js';
 
+@PlanFeature('fee.management')
 @Controller('tenants/:tenantId/credit-notes')
 export class CreditNoteController {
   constructor(private readonly service: CreditNoteService) {}

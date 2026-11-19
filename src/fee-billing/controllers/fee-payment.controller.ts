@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { FeePaymentService } from '../services/fee-payment.service.js';
 import { CreateFeePaymentDto, UpdateFeePaymentDto } from '../dto/fee-payment.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlanFeature } from '../../common/decorators/plan-feature.decorator.js';
 
+@PlanFeature('fee.management')
 @Controller('tenants/:tenantId/fee-payments')
 export class FeePaymentController {
   constructor(private readonly service: FeePaymentService) {}

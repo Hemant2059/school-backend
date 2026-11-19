@@ -75,6 +75,30 @@ export class TenantEntitlementService {
   }
 
   /**
+   * Plan code + enabled feature codes for the tenant, for clients that
+   * gate UI on plan entitlements (e.g. whether to show the mobile-app
+   * download, brand colors, or a priority-support badge).
+   *
+   * `mobile.app` and `priority.support` have no server-side surface —
+   * the same API serves web and mobile — so they are delivered to the
+   * client here. Server-enforceable flags are enforced by the guards, not
+   * merely listed.
+   */
+  async getPlanFeatures(
+    tenantId: string,
+  ): Promise<{ planCode: string | null; features: string[] }> {
+    const subscription = await this.getCurrentSubscription(tenantId);
+    if (!subscription?.plan) return { planCode: null, features: [] };
+    return {
+      planCode: subscription.plan.code,
+      features: subscription.plan.features
+        .filter((f) => f.isEnabled)
+        .map((f) => f.feature.code)
+        .sort(),
+    };
+  }
+
+  /**
    * Rejects a tenant whose subscription has lapsed.
    *
    * `TRIAL` and `ACTIVE` are allowed; `PAST_DUE` is allowed but logged.
@@ -90,10 +114,21 @@ export class TenantEntitlementService {
     }
   }
 
-  /** Throws when a feature is not part of the tenant's plan. */
+  /**
+   * Throws when a feature is not part of the tenant's plan.
+   *
+   * A tenant with no subscription at all gets nothing: trials and paid
+   * plans carry feature sets, and an unsubscribed school has not bought any.
+   * (The old behaviour silently allowed everything, which made plan gating
+   * decorative for any tenant without a subscription row.)
+   */
   async assertFeatureEnabled(tenantId: string, featureCode: string): Promise<void> {
     const limits = await this.getPlanLimits(tenantId);
-    if (limits.size === 0) return; // No plan configured: nothing to enforce.
+    if (limits.size === 0) {
+      throw new ForbiddenException(
+        'This school has no subscription — an active plan is required to use this feature. Please contact the platform administrator.',
+      );
+    }
     const limit = limits.get(featureCode);
     if (!limit || !limit.enabled) {
       throw new ForbiddenException(

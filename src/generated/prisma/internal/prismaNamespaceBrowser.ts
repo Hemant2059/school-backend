@@ -118,7 +118,8 @@ export const ModelName = {
   AuditLog: 'AuditLog',
   DocumentSequence: 'DocumentSequence',
   PaymentIntent: 'PaymentIntent',
-  TenantPaymentGatewayConfig: 'TenantPaymentGatewayConfig'
+  TenantPaymentGatewayConfig: 'TenantPaymentGatewayConfig',
+  ApiKey: 'ApiKey'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1421,6 +1422,23 @@ export const TenantPaymentGatewayConfigScalarFieldEnum = {
 } as const
 
 export type TenantPaymentGatewayConfigScalarFieldEnum = (typeof TenantPaymentGatewayConfigScalarFieldEnum)[keyof typeof TenantPaymentGatewayConfigScalarFieldEnum]
+
+
+export const ApiKeyScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  prefix: 'prefix',
+  hash: 'hash',
+  lastUsedAt: 'lastUsedAt',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  createdByUserId: 'createdByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ApiKeyScalarFieldEnum = (typeof ApiKeyScalarFieldEnum)[keyof typeof ApiKeyScalarFieldEnum]
 
 
 export const SortOrder = {

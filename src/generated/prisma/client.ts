@@ -397,3 +397,15 @@ export type PaymentIntent = Prisma.PaymentIntentModel
  * masked hints (last 4 characters / "configured") only.
  */
 export type TenantPaymentGatewayConfig = Prisma.TenantPaymentGatewayConfigModel
+/**
+ * Model ApiKey
+ * A machine credential for the school's own integrations (Zapier,
+ * Google Sheets, the school's website).
+ * 
+ * Keys are high-entropy random secrets; only the SHA-256 hash is stored.
+ * The raw key is shown exactly once, at creation. Keys grant read-only
+ * access to this tenant's data only (`*.read` permission codes) — they can
+ * never mutate state, never reach another tenant, and never create or
+ * revoke other keys.
+ */
+export type ApiKey = Prisma.ApiKeyModel

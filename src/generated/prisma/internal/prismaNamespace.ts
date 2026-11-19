@@ -464,7 +464,8 @@ export const ModelName = {
   AuditLog: 'AuditLog',
   DocumentSequence: 'DocumentSequence',
   PaymentIntent: 'PaymentIntent',
-  TenantPaymentGatewayConfig: 'TenantPaymentGatewayConfig'
+  TenantPaymentGatewayConfig: 'TenantPaymentGatewayConfig',
+  ApiKey: 'ApiKey'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -480,7 +481,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog" | "documentSequence" | "paymentIntent" | "tenantPaymentGatewayConfig"
+    modelProps: "platformUser" | "platformRole" | "platformPermission" | "platformRolePermission" | "platformUserRole" | "platformUserPermission" | "feature" | "subscriptionPlan" | "planFeature" | "organization" | "user" | "tenant" | "permission" | "role" | "rolePermission" | "tenantUser" | "tenantUserRole" | "subscription" | "invoice" | "payment" | "academicYear" | "stream" | "gradeLevel" | "section" | "staffProfile" | "subject" | "gradeSubject" | "student" | "address" | "guardian" | "studentGuardian" | "studentEnrollment" | "transferCertificate" | "gradingScale" | "gradingScaleItem" | "exam" | "examSchedule" | "examMark" | "studentExamSummary" | "fiscalYear" | "feeHead" | "classFeeStructure" | "scholarshipScheme" | "studentScholarship" | "feeInvoice" | "feeInvoiceItem" | "feePayment" | "creditNote" | "teacherSubjectAllocation" | "payrollRun" | "salarySlip" | "academicCalendarEvent" | "studentDailyAttendance" | "timetableSlot" | "transportVehicle" | "transportRoute" | "transportStop" | "studentTransport" | "libraryBook" | "bookIssue" | "hostel" | "hostelRoom" | "hostelAllocation" | "notification" | "auditLog" | "documentSequence" | "paymentIntent" | "tenantPaymentGatewayConfig" | "apiKey"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5516,6 +5517,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ApiKey: {
+      payload: Prisma.$ApiKeyPayload<ExtArgs>
+      fields: Prisma.ApiKeyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ApiKeyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ApiKeyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>
+        }
+        findFirst: {
+          args: Prisma.ApiKeyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ApiKeyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>
+        }
+        findMany: {
+          args: Prisma.ApiKeyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>[]
+        }
+        create: {
+          args: Prisma.ApiKeyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>
+        }
+        createMany: {
+          args: Prisma.ApiKeyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ApiKeyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>[]
+        }
+        delete: {
+          args: Prisma.ApiKeyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>
+        }
+        update: {
+          args: Prisma.ApiKeyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>
+        }
+        deleteMany: {
+          args: Prisma.ApiKeyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ApiKeyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ApiKeyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>[]
+        }
+        upsert: {
+          args: Prisma.ApiKeyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApiKeyPayload>
+        }
+        aggregate: {
+          args: Prisma.ApiKeyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateApiKey>
+        }
+        groupBy: {
+          args: Prisma.ApiKeyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ApiKeyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ApiKeyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ApiKeyCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6841,6 +6916,23 @@ export const TenantPaymentGatewayConfigScalarFieldEnum = {
 export type TenantPaymentGatewayConfigScalarFieldEnum = (typeof TenantPaymentGatewayConfigScalarFieldEnum)[keyof typeof TenantPaymentGatewayConfigScalarFieldEnum]
 
 
+export const ApiKeyScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  prefix: 'prefix',
+  hash: 'hash',
+  lastUsedAt: 'lastUsedAt',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  createdByUserId: 'createdByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ApiKeyScalarFieldEnum = (typeof ApiKeyScalarFieldEnum)[keyof typeof ApiKeyScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7743,6 +7835,7 @@ export type GlobalOmitConfig = {
   documentSequence?: Prisma.DocumentSequenceOmit
   paymentIntent?: Prisma.PaymentIntentOmit
   tenantPaymentGatewayConfig?: Prisma.TenantPaymentGatewayConfigOmit
+  apiKey?: Prisma.ApiKeyOmit
 }
 
 /* Types for Logging */

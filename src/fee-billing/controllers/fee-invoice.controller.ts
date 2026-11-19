@@ -6,7 +6,9 @@ import {
   UpdateFeeInvoiceDto,
 } from '../dto/fee-invoice.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlanFeature } from '../../common/decorators/plan-feature.decorator.js';
 
+@PlanFeature('fee.management')
 @Controller('tenants/:tenantId/fee-invoices')
 export class FeeInvoiceController {
   constructor(private readonly service: FeeInvoiceService) {}

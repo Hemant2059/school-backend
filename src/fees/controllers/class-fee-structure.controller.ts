@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { ClassFeeStructureService } from '../services/class-fee-structure.service.js';
 import { CreateClassFeeStructureDto, UpdateClassFeeStructureDto } from '../dto/class-fee-structure.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlanFeature } from '../../common/decorators/plan-feature.decorator.js';
 
+@PlanFeature('fee.management')
 @Controller('tenants/:tenantId/class-fee-structures')
 export class ClassFeeStructureController {
   constructor(private readonly service: ClassFeeStructureService) {}

@@ -1,7 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma.service.js';
 import { TenantProvisioningService } from './tenant-provisioning.service.js';
+import type { UpdateBrandingDto } from '../dto/branding.dto.js';
 
 @Injectable()
 export class TenantService {
@@ -100,6 +101,30 @@ export class TenantService {
       }
       throw e;
     }
+  }
+
+  /**
+   * The branding surface `custom.branding` (premium) unlocks — the only
+   * tenant-writable fields outside the main update: logo, website, motto.
+   * Deliberately not allowed: legal identity (IEMIS code, PAN, subdomain).
+   */
+  async updateBranding(id: string, dto: UpdateBrandingDto) {
+    await this.findOne(id);
+    const data: Record<string, string> = {};
+    if (dto.logoUrl !== undefined) data.logoUrl = dto.logoUrl;
+    if (dto.website !== undefined) data.website = dto.website;
+    if (dto.motoEn !== undefined) data.motoEn = dto.motoEn;
+    if (dto.motoNe !== undefined) data.motoNe = dto.motoNe;
+    if (Object.keys(data).length === 0) {
+      throw new BadRequestException(
+        'Nothing to update — pass at least one of logoUrl, website, motoEn, motoNe',
+      );
+    }
+    return this.prisma.tenant.update({
+      where: { id },
+      data,
+      include: { organization: true },
+    });
   }
 
   async softDelete(id: string) {

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { BillingModule } from '../billing/billing.module.js';
 import { AuthService } from './auth.service.js';
 import { AuthController } from './auth.controller.js';
 import { TenantAuthService } from './tenant-auth.service.js';
@@ -10,6 +11,7 @@ import { JwtStrategy } from './strategies/jwt.strategy.js';
 
 @Module({
   imports: [
+    BillingModule,
     PassportModule,
     // The secret is resolved lazily from the validated configuration. The
     // previous version read `process.env.JWT_SECRET` at import time — which is

@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { FiscalYearService } from '../services/fiscal-year.service.js';
 import { CreateFiscalYearDto, UpdateFiscalYearDto } from '../dto/fiscal-year.dto.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { PlanFeature } from '../../common/decorators/plan-feature.decorator.js';
 
+@PlanFeature('fee.management')
 @Controller('tenants/:tenantId/fiscal-years')
 export class FiscalYearController {
   constructor(private readonly service: FiscalYearService) {}

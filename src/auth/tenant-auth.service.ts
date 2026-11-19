@@ -5,6 +5,7 @@ import * as bcrypt from 'bcryptjs';
 import { createHash, randomUUID } from 'node:crypto';
 import { TenantStatus } from '../generated/prisma/client.js';
 import { PrismaService } from '../prisma.service.js';
+import { TenantEntitlementService } from '../billing/services/tenant-entitlement.service.js';
 import { parseDurationMs } from '../common/utils/duration.js';
 
 const MAX_FAILED_LOGIN_ATTEMPTS = 5;
@@ -20,6 +21,7 @@ export class TenantAuthService {
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    private readonly entitlements: TenantEntitlementService,
   ) {}
 
   async login(email: string, password: string, tenantId?: string) {
@@ -151,6 +153,7 @@ export class TenantAuthService {
     const permissionSet = new Set<string>();
     for (const tur of membership.roles) for (const rp of tur.role.permissions) permissionSet.add(rp.permission.code);
 
+    const plan = await this.entitlements.getPlanFeatures(tenantId);
     return {
       id: user.id,
       email: user.email,
@@ -159,6 +162,7 @@ export class TenantAuthService {
       tenantId,
       roles: membership.roles.map((r) => r.role.name),
       permissions: Array.from(permissionSet),
+      plan,
     };
   }
 

@@ -32,12 +32,14 @@ import { SmsModule } from './sms/sms.module.js';
 import { AnalyticsModule } from './analytics/analytics.module.js';
 import { PaymentsModule } from './payments/payments.module.js';
 import { OnboardingModule } from './onboarding/onboarding.module.js';
+import { IntegrationsModule } from './integrations/integrations.module.js';
 import { EnrollmentsModule } from './enrollments/enrollments.module.js';
 import { TransferCertificatesModule } from './transfer-certificates/transfer-certificates.module.js';
 import { CommonModule } from './common/common.module.js';
 import { AccountThrottlerGuard } from './common/guards/account-throttler.guard.js';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { AuthorizationGuard } from './auth/guards/authorization.guard.js';
+import { PlanFeatureGuard } from './common/guards/plan-feature.guard.js';
 import { AuditLogInterceptor } from './common/interceptors/audit-log.interceptor.js';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
 
@@ -84,6 +86,7 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.
     AnalyticsModule,
     PaymentsModule,
     OnboardingModule,
+    IntegrationsModule,
   ],
   controllers: [AppController],
   providers: [
@@ -91,6 +94,7 @@ import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.
     { provide: APP_GUARD, useClass: AccountThrottlerGuard },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_GUARD, useClass: AuthorizationGuard },
+    { provide: APP_GUARD, useClass: PlanFeatureGuard },
     { provide: APP_FILTER, useClass: PrismaExceptionFilter },
     { provide: APP_INTERCEPTOR, useClass: AuditLogInterceptor },
   ],

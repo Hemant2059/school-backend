@@ -30,4 +30,6 @@ export interface AuthenticatedPrincipal {
    * subscription has lapsed.
    */
   subscriptionStatus?: string;
+  /** Set on principals authenticated by an integration API key. */
+  apiKeyId?: string;
 }
