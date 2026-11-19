@@ -650,6 +650,100 @@
       ]
     },
     {
+      "name": "ApiKeys",
+      "item": [
+        {
+          "name": "POST /tenants/{tenantId}/api-keys",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants/{tenantId}/api-keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants",
+                "{tenantId}",
+                "api-keys"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My integration\",\n  \"expiresInDays\": 90\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /tenants/{tenantId}/api-keys",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants/{tenantId}/api-keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants",
+                "{tenantId}",
+                "api-keys"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /tenants/{tenantId}/api-keys/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants/{tenantId}/api-keys/{id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants",
+                "{tenantId}",
+                "api-keys",
+                "{id}"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
       "name": "App",
       "item": [
         {
@@ -11327,6 +11421,39 @@
                 "tenant",
                 "auth",
                 "me"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "TenantBranding",
+      "item": [
+        {
+          "name": "PATCH /tenants/{tenantId}/branding",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants/{tenantId}/branding",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants",
+                "{tenantId}",
+                "branding"
               ]
             },
             "description": ""

@@ -1104,6 +1104,36 @@ OBB=$(req GET "/tenants/$TID/onboarding-status" "" "$TH")
 ok "the checklist now shows the school ready" "$(echo "$OBB" | j "d.get('ready',False)")" True
 
 ###############################################################################
+head1 "Workflow 17 - Plan entitlement gates"
+###############################################################################
+
+step "17.1 The school sees its plan in /tenant/auth/me"
+ME=$(req GET /tenant/auth/me "" "$TH")
+ok "the plan code is standard" "$(echo "$ME" | j "d.get('plan',{}).get('planCode','')")" standard
+ok "the standard plan includes fee management" \
+  "$(echo "$ME" | j "'fee.management' in d.get('plan',{}).get('features',[])")" True
+ok "the standard plan does not include api access" \
+  "$(echo "$ME" | j "'api.access' in d.get('plan',{}).get('features',[])")" False
+
+step "17.2 Integration API keys are refused without the api.access flag"
+KEY403=$(req POST "/tenants/$TID/api-keys" '{"name":"wf-key"}' "$TH")
+ok "the standard plan cannot create API keys" \
+  "$(echo "$KEY403" | j "d.get('statusCode',200)")" 403
+ok "the error names the missing plan feature" \
+  "$(echo "$KEY403" | grep -c 'api.access')" 1
+
+step "17.3 Custom branding is refused without the custom.branding flag"
+BR403=$(req PATCH "/tenants/$TID/branding" '{"motoEn":"nope"}' "$TH")
+ok "the standard plan cannot edit branding" \
+  "$(echo "$BR403" | j "d.get('statusCode',200)")" 403
+
+step "17.4 Fee management works because the plan includes it"
+FH403=$(req POST "/tenants/$TID/fee-heads" \
+  '{"nameEn":"Gate test head","nameNe":"गेट टेस्ट","frequency":"MONTHLY_BS"}' "$TH")
+ok "fee management is available on standard" \
+  "$(echo "$FH403" | j "d.get('id','') != ''")" True
+
+###############################################################################
 echo ""
 echo "############################################################"
 echo "# PASS: $PASS   FAIL: $FAIL"

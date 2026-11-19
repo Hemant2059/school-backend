@@ -189,6 +189,50 @@ gitignored `./.local-secrets/`).
   guardian link is verified, so a parent can never pay (or see) another child's
   invoice.
 
+## Plan entitlements
+
+Every plan-gated feature is enforced at the edge, and the full feature list is
+also visible to clients at `GET /tenant/auth/me` under `plan.features`:
+
+| Feature code | Gate |
+| --- | --- |
+| `fee.management` | Fees, fee heads, class fee structures, scholarships, fee invoices/payments, credit notes |
+| `online.payments` | Payment initiation (tenant and parent portal) |
+| `sms.notifications` | `POST /sms/send` + guardian SMS triggers (admission, results, invoice) |
+| `report.cards` | Report card and class marksheet PDFs |
+| `parent.portal` | The entire parent portal |
+| `attendance.tracking` | Attendance marking |
+| `custom.branding` | `PATCH /tenants/:tenantId/branding` |
+| `api.access` | Integration API keys (below) |
+| `mobile.app` | Delivered in `plan.features` only — the API cannot distinguish web from mobile clients, so the app hides mobile-only UI when absent |
+| `priority.support` | Delivered in `plan.features` only — an SLA flag for the support workflow, not an API surface |
+
+A school with no subscription gets **nothing** beyond authentication: every
+gated feature returns `403` with a clear message ("This school has no
+subscription — an active plan is required to use this feature").
+
+## Integration API keys
+
+Machine credentials for the school's own systems (Zapier, Google Sheets, a
+website). Keys are **read-only** — they can pull data out (invoices, roster,
+results) but can never change anything, touch platform routes, or read
+another school's data.
+
+- `POST /tenants/:tenantId/api-keys` — create `{ name, expiresInDays? }`. The
+  raw key is returned **once**; listings show only `prefix` and usage
+  metadata.
+- `GET /tenants/:tenantId/api-keys` — masked list (`prefix`, last used, expiry).
+- `DELETE /tenants/:tenantId/api-keys/:id` — revoke; the key stops working immediately.
+- Send the key as `x-api-key: sk_…` (or `Authorization: Api-Key sk_…`).
+- Tenant isolation: the key is bound to the school that created it; addressing
+  any other tenant's routes returns `403`.
+- Keys receive only `*.read` permission codes — never `*.manage`, never staff
+  PII, never catalog/admin routes.
+- Requires the `api.access` plan feature (Enterprise).
+
+API keys never appear in logs or list responses; only a SHA-256 hash of the key
+is stored.
+
 ---
 
 ## Key domain behaviours
