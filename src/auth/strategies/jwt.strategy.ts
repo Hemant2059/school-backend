@@ -91,6 +91,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       lastNameEn: user.lastNameEn,
       roles,
       permissions: Array.from(permissionSet),
+      mustChangePassword: user.mustChangePassword,
     };
   }
 

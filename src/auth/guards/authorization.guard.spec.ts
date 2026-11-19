@@ -14,6 +14,8 @@ function makeContext(options: {
   permissions?: string[];
   platformOnly?: boolean;
   tenantOnly?: boolean;
+  path?: string;
+  method?: string;
 }): ExecutionContext {
   const handler = () => undefined;
   const cls = class {};
@@ -31,6 +33,8 @@ function makeContext(options: {
   const request = {
     user: options.user,
     params: options.params ?? {},
+    path: (options as any).path ?? '/whatever',
+    method: (options as any).method ?? 'GET',
   };
 
   return {
@@ -160,6 +164,50 @@ describe('AuthorizationGuard', () => {
           permissions: [],
           subscriptionStatus: 'NONE',
         },
+      });
+      expect(guard.canActivate(context)).toBe(true);
+    });
+  });
+
+  describe('mustChangePassword', () => {
+    const tempPrincipal = {
+      type: 'platform',
+      id: 'p1',
+      permissions: ['students.read'],
+      mustChangePassword: true,
+    };
+
+    it('blocks every non-whitelisted route while the flag is set', () => {
+      const context = makeContext({ user: tempPrincipal });
+      expect(() => guard.canActivate(context)).toThrow(/must change your password/i);
+    });
+
+    it('allows the change-password route', () => {
+      const context = makeContext({
+        user: tempPrincipal,
+        path: '/auth/change-password',
+        method: 'POST',
+      });
+      expect(guard.canActivate(context)).toBe(true);
+    });
+
+    it('allows the tenant change-password route', () => {
+      const context = makeContext({
+        user: tempPrincipal,
+        path: '/tenant/auth/change-password',
+        method: 'POST',
+      });
+      expect(guard.canActivate(context)).toBe(true);
+    });
+
+    it('allows the identity endpoint', () => {
+      const context = makeContext({ user: tempPrincipal, path: '/auth/me', method: 'GET' });
+      expect(guard.canActivate(context)).toBe(true);
+    });
+
+    it('allows a cleared flag to use any route', () => {
+      const context = makeContext({
+        user: { ...tempPrincipal, mustChangePassword: false },
       });
       expect(guard.canActivate(context)).toBe(true);
     });

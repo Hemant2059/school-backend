@@ -19,6 +19,7 @@ export class ReportCardService {
     tenantId: string,
     enrollmentId: string,
     examId?: string,
+    publishedOnly = false,
   ): Promise<Buffer> {
     const enrollment = await this.prisma.studentEnrollment.findFirst({
       where: { id: enrollmentId, tenantId, deletedAt: null },
@@ -31,11 +32,13 @@ export class ReportCardService {
     });
     if (!enrollment) throw new NotFoundException('Enrollment not found');
 
-    // Resolve the exam (latest if not specified).
+    // Resolve the exam (latest published exam if not specified).
     let resolvedExamId = examId;
     if (!resolvedExamId) {
+      const examWhere: any = { tenantId, deletedAt: null };
+      if (publishedOnly) examWhere.isPublished = true;
       const latestExam = await this.prisma.exam.findFirst({
-        where: { tenantId, deletedAt: null },
+        where: examWhere,
         orderBy: { createdAt: 'desc' },
         select: { id: true },
       });
@@ -43,8 +46,10 @@ export class ReportCardService {
       resolvedExamId = latestExam.id;
     }
 
+    const examWhere: any = { id: resolvedExamId, tenantId, deletedAt: null };
+    if (publishedOnly) examWhere.isPublished = true;
     const exam = await this.prisma.exam.findFirst({
-      where: { id: resolvedExamId, tenantId, deletedAt: null },
+      where: examWhere,
       include: { gradingScale: { include: { items: true } } },
     });
     if (!exam) throw new NotFoundException('Exam not found');

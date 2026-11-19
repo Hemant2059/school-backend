@@ -45,6 +45,12 @@ function tenantGatewaysMock() {
   } as any;
 }
 
+function makeEntitlements() {
+  return {
+    assertFeatureEnabled: vi.fn(async () => undefined),
+  } as any;
+}
+
 const unpaidInvoice = {
   id: 'invoice-1',
   tenantId: 't1',
@@ -82,6 +88,7 @@ describe('PaymentGatewayService', () => {
       engine,
       makeConfig(),
       tenantGateways,
+      makeEntitlements(),
     );
 
     prisma.feeInvoice.findFirst.mockResolvedValue(unpaidInvoice);
@@ -94,6 +101,15 @@ describe('PaymentGatewayService', () => {
   });
 
   describe('initiate', () => {
+    it('rejects initiation when the school plan lacks online.payments', async () => {
+      const entitlements = (service as any).entitlements;
+      entitlements.assertFeatureEnabled.mockRejectedValueOnce(new (await import('@nestjs/common')).ForbiddenException('not included'));
+      await expect(
+        service.initiate('t1', { invoiceId: 'invoice-1', gateway: 'DEMO', paymentDateBs: '2082-08-04' }),
+      ).rejects.toThrow(/not included/);
+      expect(prisma.feeInvoice.findFirst).not.toHaveBeenCalled();
+    });
+
     it('rejects an unknown gateway before touching the database', async () => {
       await expect(
         service.initiate('t1', {

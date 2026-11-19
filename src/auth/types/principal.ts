@@ -15,6 +15,12 @@ export interface AuthenticatedPrincipal {
   tenantUserId?: string;
   roles: string[];
   permissions: string[];
+  /**
+   * Set when a platform account is using an admin-issued temporary
+   * password. The authorization guard refuses every route except the
+   * password change + identity endpoints until it is cleared.
+   */
+  mustChangePassword?: boolean;
   firstNameEn?: string;
   lastNameEn?: string;
   status?: string;

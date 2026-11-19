@@ -61,6 +61,8 @@ export class AuthorizationGuard implements CanActivate {
       this.assertSubscriptionUsable(user.subscriptionStatus);
     }
 
+    this.assertPasswordChangeAllowed(user, request);
+
     this.assertTenantScope(user, request.params);
 
     const required = this.reflector.getAllAndOverride<string[]>(PERMISSIONS_KEY, [
@@ -75,6 +77,31 @@ export class AuthorizationGuard implements CanActivate {
       throw new ForbiddenException(`Insufficient permissions: ${missing.join(', ')}`);
     }
     return true;
+  }
+
+  /**
+   * A principal whose account carries a forced password change may only
+   * reach the password change + identity endpoints; everything else is
+   * refused until the flag is cleared (a new password clears it).
+   */
+  private assertPasswordChangeAllowed(
+    user: AuthenticatedPrincipal,
+    request: { path?: string; url?: string; method?: string } = {},
+  ): void {
+    if (!user.mustChangePassword) return;
+    const path = (request.path ?? request.url?.split('?')[0] ?? '').replace(/\/+$/, '');
+    const method = (request.method ?? 'GET').toUpperCase();
+    const allowed: Array<[string, string]> = [
+      ['POST', '/auth/change-password'],
+      ['POST', '/tenant/auth/change-password'],
+      ['GET', '/auth/me'],
+      ['GET', '/tenant/auth/me'],
+    ];
+    if (!allowed.some(([m, p]) => m === method && p === path)) {
+      throw new ForbiddenException(
+        'You must change your password before using this application',
+      );
+    }
   }
 
   /**

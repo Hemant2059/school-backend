@@ -108,13 +108,12 @@ export class AuthService {
       data: {
         passwordHash: hash,
         passwordChangedAt: new Date(),
+        mustChangePassword: false,
         // Force every existing session to re-authenticate.
         refreshTokenHash: null,
         refreshTokenExpiresAt: null,
       },
     });
-    // Note: the `mustChangePassword` flag is not cleared here.
-    // An admin password change or invite acceptance should clear it explicitly.
     return { changed: true };
   }
 

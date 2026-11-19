@@ -2,10 +2,14 @@ import { Controller, Get, Param, Query, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { ReportCardService } from '../services/report-card.service.js';
 import { Permissions } from '../../auth/decorators/permissions.decorator.js';
+import { TenantEntitlementService } from '../../billing/services/tenant-entitlement.service.js';
 
 @Controller('tenants/:tenantId/report-cards')
 export class ReportCardController {
-  constructor(private readonly service: ReportCardService) {}
+  constructor(
+    private readonly service: ReportCardService,
+    private readonly entitlements: TenantEntitlementService,
+  ) {}
 
   /** Generate a PDF marksheet for one student for a specific exam. */
   @Permissions('exams.manage')
